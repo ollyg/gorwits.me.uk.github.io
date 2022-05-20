@@ -1,0 +1,299 @@
+"==========================================================
+"
+" this file at http://gorwits.me.uk/data/files/vimrc
+"
+"==========================================================
+
+" this section for basic stuff
+
+set nocompatible
+syntax on
+
+set backspace=indent,eol,start
+set lazyredraw
+set nobackup
+set nowb
+set noswapfile
+
+set ruler
+set number
+set background=dark
+set cursorline
+
+" mouse movement/srolling (shift-select to copy)
+set mouse=r
+" for PuTTY
+set ttymouse=xterm2
+                
+set expandtab
+set tabstop=4
+set softtabstop=2
+set shiftwidth=4
+set shiftround
+set autoindent
+
+autocmd FileType make setlocal noexpandtab
+autocmd BufEnter * :syntax sync fromstart
+
+" hack for perl t/*.t module test files
+autocmd FileType tads set filetype=perl
+
+autocmd BufNewFile,BufRead *.tt  setf tt2
+autocmd BufNewFile,BufRead *.tt2 setf tt2
+
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+
+set encoding=utf8
+set fileformats=unix,dos
+
+set showmatch
+set scrolloff=10
+set sidescroll=5
+set listchars+=precedes:<,extends:>
+
+"allow one-line scroll from within insert mode
+inoremap <C-E> <C-X><C-E>
+inoremap <C-Y> <C-X><C-Y>
+
+" respect vim mode lines
+set modeline
+set modelines=5
+
+" default is to have line wrap OFF
+set nowrap
+
+set ignorecase
+set smartcase
+set incsearch
+
+" default is to have search highlight ON
+set hlsearch
+
+" clear search by typing ,/
+nmap <silent> ,/ :nohlsearch<CR>
+
+"==========================================================
+" this section for fancier setup
+
+" remap 0 to first non-blank character
+map 0 ^
+
+" allow shift+TAB to create a real TAB (for makefiles)
+inoremap <S-Tab> <C-V><Tab>
+
+" display real TABs as >---
+set listchars=tab:>-
+set list
+
+" then also colour real TAB areas blue (applied in Wava)
+highlight TabChar ctermfg=lightblue
+match TabChar /\t/
+
+set smartindent cinwords=if,elif,else,for,foreach,while,until,try,catch,finally
+inoremap # X#
+
+" nicer colour for comments and line numbers
+highlight Comment ctermfg=darkblue 
+highlight LineNr  ctermfg=darkgreen 
+
+" highlight the character on col 79 (applied in Wava)
+highlight Col79 ctermbg=darkblue
+match Col79 '\%<80v.\%>79v'
+
+" custom status line
+set laststatus=2
+set statusline=\[%n]\ %{HighlightSearchIsOn()}%{WrapIsOn()}%{PasteIsOn()}\ %m%r\ %<%F%=%l/%L\ (%p%%)\ %v\ 
+hi StatusLine ctermbg=3 ctermfg=4
+
+" Wava plugin highlighting
+let g:hlvarhl = "ctermbg=black ctermfg=darkred"
+let g:hlvarnoauto = 1
+
+"==========================================================
+" this section for hotkey toggle setup
+
+" hotkey F2 to reformat current paragraph
+map <F2> gq}
+
+" hotkey F3 toggles highlighting search locations
+nnoremap \th :set invhls hls?<CR>
+nmap <F3> \th
+imap <F3> <C-O>\th
+
+" by default text will not be auto-wrapped at 78 chars,
+" but setup hotkey F4 to toggle this on and off.
+" the VimEnter autocmd line is needed due to a Fedora bug
+set textwidth=78
+autocmd VimEnter * set formatoptions-=t
+nnoremap \tf :if &fo =~ 't' <Bar> set fo-=t <Bar>  else <Bar> set fo+=t <Bar>  endif <Bar> set invwrap wrap?<CR>
+nmap <F4> \tf
+imap <F4> <C-O>\tf
+
+" hotkey F5 to toggle highlighting of real TABs
+nnoremap \tl :set invlist list?<CR>
+nmap <F5> \tl
+imap <F5> <C-O>\tl
+
+" hotkey F7 to toggle paste mode
+nnoremap \tp :set invpaste paste?<CR>
+nmap <F7> \tp
+imap <F7> <C-O>\tp
+"set pastetoggle=<F11>
+
+" hotkey F8 to toggle line numbers
+nnoremap \tn :set invnumber number?<CR>
+nmap <F8> \tn
+imap <F8> <C-O>\tn
+
+"==========================================================
+" this section for memos...
+
+":TOhtml
+
+"==========================================================
+" this section for functions...
+
+" toggle background light or dark
+function! ReverseBackground()
+  if (&background=="light")
+    set background=dark
+  else
+    set background=light
+  endif
+  echo "background set to "&background
+endfunction
+
+" implement a custom Indent function because we have shiftwidth=4 for
+" the benefit of smartindent, but for manual indent/unindent only want 2
+let g:linecounter = 0
+
+function! MyIndent(dir)
+  let numlines = a:lastline - a:firstline + 1
+
+  if (g:linecounter == 0)
+    if (strpart(a:dir,0,1) == '>')
+      execute a:firstline .','. a:lastline .'s/^/  /e'
+    else
+      execute a:firstline .','. a:lastline .'s/^  //e'
+    endif
+  endif
+
+  let g:linecounter = g:linecounter + 1
+
+  if (g:linecounter == numlines)
+    let g:linecounter = 0
+  endif
+endfunction
+
+" gv at end will maintain visual selection
+vnoremap > :call MyIndent('>')<CR>gv
+vnoremap < :call MyIndent('<')<CR>gv
+
+function! HighlightSearchIsOn()
+  if &hls
+    return 'h'
+  else
+    return ' '
+  endif
+endfunction
+
+function! WrapIsOn()
+  if &wrap
+    return 'w'
+  else
+    return ' '
+  endif
+endfunction
+
+function! PasteIsOn()
+  if &paste
+    return 'p'
+  else
+    return ' '
+  endif
+endfunction
+
+" automatically highlights variables under cursor, allowing you to easily see the data flow.
+" Vawa Plugin for VIM > 7.3 version 1.00
+" Maintainer: Sandeep.c.r<sandeepcr2@gmail.com>
+" Hacked for Perl by Curtis "Ovid" Poe <ovid@allaroundtheworld.fr>
+" https://github.com/pjcj/vim-hl-var
+" http://blogs.perl.org/users/confuseacat/2014/05/automatic-variable-highlighting-in-vim-the-easy-way.html
+
+function! s:hlvar()
+    if (exists("w:current_match"))
+        call matchdelete(w:current_match)
+        unlet w:current_match
+    endif
+
+    " XXX reapply local matches
+    match TabChar /\t/
+    match Col79 '\%<80v.\%>79v'
+
+    let s:temp         = getpos('.')
+    let s:current_col  = s:temp[2]
+    let s:current_line = s:temp[1]
+    let s:temp         = searchpos('[>$@%*&]','bcnW')
+    let s:sigil_line   = s:temp[0]
+    let s:sigil_col    = s:temp[1]
+
+    if (s:sigil_line != s:current_line)
+        return
+    endif
+
+    let s:temp = getbufline(bufnr('%'),line('.'))
+    let s:varend = match(s:temp[0], '[^a-zA-Z0-9_\x7f-\xff]\|\n', s:sigil_col) + 1
+    let s:space_col = s:varend
+
+    if (s:varend == 0 || (s:space_col > s:sigil_col && s:space_col < s:current_col))
+        return
+    endif
+
+    let s:current_char = s:temp[0][s:current_col-1]
+
+    if (s:current_char == '>' || s:current_char == '-')
+        return
+    endif
+
+    let s:str = strpart(s:temp[0], s:sigil_col - 1, s:varend - s:sigil_col)
+    let s:prefix = ''
+
+    if (s:str == '$' || s:str == '&' || s:str == '*')
+        return
+    endif
+
+    if (exists("g:hlvarcurrent") && g:hlvarcurrent == 1)
+        let s:lineab = s:current_line - 1
+        let s:linebe = s:current_line + 1
+        let s:colbf  = s:sigil_col + 1
+        let s:prefix = '\(\%>' . s:lineab . 'l.\%<' . s:linebe . 'l.\%>' . s:colbf . 'c\)\@!'
+    endif
+
+    let s:match = s:prefix
+
+    if (strpart(s:str, 0, 1) == '>')
+        let s:str = strpart(s:str, 1)
+        let s:match = s:match . '>\@<='
+    else
+        let s:str = substitute( s:str, '^[$@%]', '[$@%]', '' )
+    endif
+
+    let s:match = s:match . s:str . '\n\{-\}\(\([^a-zA-Z0-9_\x7f-\xff]\)\|$\)\@='
+    let w:current_match = matchadd('VarHl', s:match)
+endfunction
+
+if (!exists("g:hlvarnoauto") || g:hlvarnoauto == 1)
+    augroup HighlightVar
+        autocmd!
+        au FileType perl :au CursorMoved  * call <sid>hlvar()
+        au FileType perl :au CursorMovedi * call <sid>hlvar()
+    augroup END
+
+    if (exists("g:hlvarhl"))
+        exe "highlight VarHl  " . g:hlvarhl
+    else
+        highlight VarHl ctermbg=black guifg=#ff0000 guibg=#000000 ctermfg=LightRed gui=bold
+    endif
+endif
+
+command! HlVar :call <sid>hlvar()

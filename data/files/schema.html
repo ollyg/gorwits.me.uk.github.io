@@ -1,0 +1,1034 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+<title>Description of  v1.x</title>
+<meta name="generator" content="SQL::Translator::Producer::CustomHTML" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body>
+
+
+<h1 class="SchemaDescription">
+	Description of  v1.x
+</h1>
+
+<hr />
+
+<!-- 
+	Table listing (7 tables)
+ -->
+
+<a name="top" />
+
+<table class="LinkTable" width="100%">
+
+<tr>
+	<td class="LinkTableCell"><h2 class="LinkTableTitle">
+	Tables
+</h2></td>
+</tr>
+
+<!-- 
+	Start link to table 'album'
+ -->
+
+<tr class="LinkTableRow">
+	<td class="LinkTableCell"><a id="album-link" href="#album">album</a></td>
+</tr>
+
+<!-- 
+	End link to table 'album'
+ -->
+
+<!-- 
+	Start link to table 'artist'
+ -->
+
+<tr class="LinkTableRow">
+	<td class="LinkTableCell"><a id="artist-link" href="#artist">artist</a></td>
+</tr>
+
+<!-- 
+	End link to table 'artist'
+ -->
+
+<!-- 
+	Start link to table 'artist_album'
+ -->
+
+<tr class="LinkTableRow">
+	<td class="LinkTableCell"><a id="artist_album-link" href="#artist_album">artist_album</a></td>
+</tr>
+
+<!-- 
+	End link to table 'artist_album'
+ -->
+
+<!-- 
+	Start link to table 'copyright'
+ -->
+
+<tr class="LinkTableRow">
+	<td class="LinkTableCell"><a id="copyright-link" href="#copyright">copyright</a></td>
+</tr>
+
+<!-- 
+	End link to table 'copyright'
+ -->
+
+<!-- 
+	Start link to table 'location'
+ -->
+
+<tr class="LinkTableRow">
+	<td class="LinkTableCell"><a id="location-link" href="#location">location</a></td>
+</tr>
+
+<!-- 
+	End link to table 'location'
+ -->
+
+<!-- 
+	Start link to table 'sleeve_notes'
+ -->
+
+<tr class="LinkTableRow">
+	<td class="LinkTableCell"><a id="sleeve_notes-link" href="#sleeve_notes">sleeve_notes</a></td>
+</tr>
+
+<!-- 
+	End link to table 'sleeve_notes'
+ -->
+
+<!-- 
+	Start link to table 'track'
+ -->
+
+<tr class="LinkTableRow">
+	<td class="LinkTableCell"><a id="track-link" href="#track">track</a></td>
+</tr>
+
+<!-- 
+	End link to table 'track'
+ -->
+
+</table>
+
+<!-- 
+	Starting table 'album'
+ -->
+
+<a name="album" />
+
+<table class="TableHeader" width="100%">
+	<tr class="TableHeaderRow">
+		<td class="TableHeaderCell"><h3>
+	album
+</h3></td>
+		<a name="album"> <td class="TableHeaderCell" align="right"><a href="#top">Top</a></td>
+	</tr>
+</table>
+
+<b>
+	Relationships:
+</b>
+
+<br />
+
+<ul>
+	<li>
+		<a href="#artist">Artists</a> (many_to_many) from <a href="#artist_album">artist_album</a>
+	</li>
+	<li>
+		<a href="#sleeve_notes">Sleeve Notes</a> (might_have) from <a href="#sleeve_notes">sleeve_notes</a>
+	</li>
+	<li>
+		<a href="#track">Tracks</a> (has_many) from <a href="#track">track</a>
+	</li>
+</ul>
+
+<br />
+
+<table border="1">
+
+<tr>
+	<th class="FieldHeader">
+		Field Name
+	</th>
+	<th class="FieldHeader">
+		Data Type
+	</th>
+	<th class="FieldHeader">
+		Size
+	</th>
+	<th class="FieldHeader">
+		Default Value
+	</th>
+	<th class="FieldHeader">
+		Other
+	</th>
+	<th class="FieldHeader">
+		Foreign Key
+	</th>
+	<th class="FieldHeader">
+		Extra
+	</th>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="album-id">id</a></td>
+	<td class="FieldCellType">integer</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">PRIMARY KEY,<BR>NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Id,<br>path_part = id</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="album-title">title</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Title,<br>path_part = title</td>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="album-recorded">recorded</a></td>
+	<td class="FieldCellType">date</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Recorded,<br>path_part = recorded</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="album-deleted">deleted</a></td>
+	<td class="FieldCellType">boolean</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault">false</td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Deleted,<br>path_part = deleted</td>
+</tr>
+
+</table>
+
+<hr />
+
+<!-- 
+	Starting table 'artist'
+ -->
+
+<a name="artist" />
+
+<table class="TableHeader" width="100%">
+	<tr class="TableHeaderRow">
+		<td class="TableHeaderCell"><h3>
+	artist
+</h3></td>
+		<a name="artist"> <td class="TableHeaderCell" align="right"><a href="#top">Top</a></td>
+	</tr>
+</table>
+
+<b>
+	Relationships:
+</b>
+
+<br />
+
+<ul>
+	<li>
+		<a href="#album">Albums</a> (many_to_many) from <a href="#artist_album">artist_album</a>
+	</li>
+</ul>
+
+<br />
+
+<table border="1">
+
+<tr>
+	<th class="FieldHeader">
+		Field Name
+	</th>
+	<th class="FieldHeader">
+		Data Type
+	</th>
+	<th class="FieldHeader">
+		Size
+	</th>
+	<th class="FieldHeader">
+		Default Value
+	</th>
+	<th class="FieldHeader">
+		Other
+	</th>
+	<th class="FieldHeader">
+		Foreign Key
+	</th>
+	<th class="FieldHeader">
+		Extra
+	</th>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="artist-id">id</a></td>
+	<td class="FieldCellType">integer</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">PRIMARY KEY,<BR>NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Id,<br>path_part = id</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="artist-forename">forename</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Forename,<br>path_part = forename</td>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="artist-surname">surname</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Surname,<br>path_part = surname</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="artist-pseudonym">pseudonym</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Pseudonym,<br>path_part = pseudonym</td>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="artist-born_country">born_country</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"><a href="#location-country">location.country</a></td>
+	<td class="FieldCellExtra">label = Born Country,<br>path_part = born_country</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="artist-born_town">born_town</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"><a href="#location-country">location.country</a></td>
+	<td class="FieldCellExtra">label = Born Town,<br>path_part = born_town</td>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="artist-home_country">home_country</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"><a href="#location-country">location.country</a></td>
+	<td class="FieldCellExtra">label = Home Country,<br>path_part = home_country</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="artist-home_town">home_town</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"><a href="#location-country">location.country</a></td>
+	<td class="FieldCellExtra">label = Home Town,<br>path_part = home_town</td>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="artist-born">born</a></td>
+	<td class="FieldCellType">date</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Born,<br>path_part = born</td>
+</tr>
+
+</table>
+
+<h3>
+	Indices
+</h3>
+
+<table border="1">
+
+<tr class="IndexRow">
+	<th>
+		Name
+	</th>
+	<th>
+		Fields
+	</th>
+</tr>
+
+<tr class="IndexCell">
+	<td>artist_idx_born_country_born_town</td>
+	<td>born_country, born_town</td>
+</tr>
+
+<tr class="IndexCell">
+	<td>artist_idx_home_country_home_town</td>
+	<td>home_country, home_town</td>
+</tr>
+
+</table>
+
+<h3>
+	Constraints
+</h3>
+
+<table border="1">
+
+<tr class="IndexRow">
+	<th>
+		Type
+	</th>
+	<th>
+		Fields
+	</th>
+</tr>
+
+<tr class="IndexCell">
+	<td>FOREIGN KEY</td>
+	<td>born_country, born_town</td>
+</tr>
+
+<tr class="IndexCell">
+	<td>FOREIGN KEY</td>
+	<td>home_country, home_town</td>
+</tr>
+
+</table>
+
+<hr />
+
+<!-- 
+	Starting table 'artist_album'
+ -->
+
+<a name="artist_album" />
+
+<table class="TableHeader" width="100%">
+	<tr class="TableHeaderRow">
+		<td class="TableHeaderCell"><h3>
+	artist_album
+</h3></td>
+		<a name="artist_album"> <td class="TableHeaderCell" align="right"><a href="#top">Top</a></td>
+	</tr>
+</table>
+
+<table border="1">
+
+<tr>
+	<th class="FieldHeader">
+		Field Name
+	</th>
+	<th class="FieldHeader">
+		Data Type
+	</th>
+	<th class="FieldHeader">
+		Size
+	</th>
+	<th class="FieldHeader">
+		Default Value
+	</th>
+	<th class="FieldHeader">
+		Other
+	</th>
+	<th class="FieldHeader">
+		Foreign Key
+	</th>
+	<th class="FieldHeader">
+		Extra
+	</th>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="artist_album-id">id</a></td>
+	<td class="FieldCellType">integer</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">PRIMARY KEY,<BR>NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Id,<br>path_part = id</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="artist_album-artist_id">artist_id</a></td>
+	<td class="FieldCellType">int</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">NOT NULL</td>
+	<td class="FieldCellFK"><a href="#artist-id">artist.id</a></td>
+	<td class="FieldCellExtra">label = Artist Id,<br>path_part = artist_id</td>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="artist_album-album_id">album_id</a></td>
+	<td class="FieldCellType">int</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">NOT NULL</td>
+	<td class="FieldCellFK"><a href="#album-id">album.id</a></td>
+	<td class="FieldCellExtra">label = Album Id,<br>path_part = album_id</td>
+</tr>
+
+</table>
+
+<h3>
+	Indices
+</h3>
+
+<table border="1">
+
+<tr class="IndexRow">
+	<th>
+		Name
+	</th>
+	<th>
+		Fields
+	</th>
+</tr>
+
+<tr class="IndexCell">
+	<td>artist_album_idx_album_id</td>
+	<td>album_id</td>
+</tr>
+
+<tr class="IndexCell">
+	<td>artist_album_idx_artist_id</td>
+	<td>artist_id</td>
+</tr>
+
+</table>
+
+<h3>
+	Constraints
+</h3>
+
+<table border="1">
+
+<tr class="IndexRow">
+	<th>
+		Type
+	</th>
+	<th>
+		Fields
+	</th>
+</tr>
+
+<tr class="IndexCell">
+	<td>FOREIGN KEY</td>
+	<td>album_id</td>
+</tr>
+
+<tr class="IndexCell">
+	<td>FOREIGN KEY</td>
+	<td>artist_id</td>
+</tr>
+
+</table>
+
+<hr />
+
+<!-- 
+	Starting table 'copyright'
+ -->
+
+<a name="copyright" />
+
+<table class="TableHeader" width="100%">
+	<tr class="TableHeaderRow">
+		<td class="TableHeaderCell"><h3>
+	copyright
+</h3></td>
+		<a name="copyright"> <td class="TableHeaderCell" align="right"><a href="#top">Top</a></td>
+	</tr>
+</table>
+
+<b>
+	Relationships:
+</b>
+
+<br />
+
+<ul>
+	<li>
+		<a href="#track">Tracks</a> (has_many) from <a href="#track">track</a>
+	</li>
+</ul>
+
+<br />
+
+<table border="1">
+
+<tr>
+	<th class="FieldHeader">
+		Field Name
+	</th>
+	<th class="FieldHeader">
+		Data Type
+	</th>
+	<th class="FieldHeader">
+		Size
+	</th>
+	<th class="FieldHeader">
+		Default Value
+	</th>
+	<th class="FieldHeader">
+		Other
+	</th>
+	<th class="FieldHeader">
+		Foreign Key
+	</th>
+	<th class="FieldHeader">
+		Extra
+	</th>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="copyright-id">id</a></td>
+	<td class="FieldCellType">integer</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">PRIMARY KEY,<BR>NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Id,<br>path_part = id</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="copyright-rights owner">rights owner</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Rights Owner,<br>path_part = rights owner</td>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="copyright-copyright_year">copyright_year</a></td>
+	<td class="FieldCellType">integer</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Copyright Year,<br>path_part = copyright_year</td>
+</tr>
+
+</table>
+
+<hr />
+
+<!-- 
+	Starting table 'location'
+ -->
+
+<a name="location" />
+
+<table class="TableHeader" width="100%">
+	<tr class="TableHeaderRow">
+		<td class="TableHeaderCell"><h3>
+	location
+</h3></td>
+		<a name="location"> <td class="TableHeaderCell" align="right"><a href="#top">Top</a></td>
+	</tr>
+</table>
+
+<b>
+	Relationships:
+</b>
+
+<br />
+
+<ul>
+	<li>
+		<a href="#artist">Artists Via Artist Fk Born Country Born Town</a> (has_many) from <a href="#artist">artist</a>
+	</li>
+	<li>
+		<a href="#artist">Artists Via Artist Fk Home Country Home Town</a> (has_many) from <a href="#artist">artist</a>
+	</li>
+</ul>
+
+<br />
+
+<table border="1">
+
+<tr>
+	<th class="FieldHeader">
+		Field Name
+	</th>
+	<th class="FieldHeader">
+		Data Type
+	</th>
+	<th class="FieldHeader">
+		Size
+	</th>
+	<th class="FieldHeader">
+		Default Value
+	</th>
+	<th class="FieldHeader">
+		Other
+	</th>
+	<th class="FieldHeader">
+		Foreign Key
+	</th>
+	<th class="FieldHeader">
+		Extra
+	</th>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="location-country">country</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">PRIMARY KEY,<BR>NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Country,<br>path_part = country</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="location-region">region</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Region,<br>path_part = region</td>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="location-town">town</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">PRIMARY KEY,<BR>NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Town,<br>path_part = town</td>
+</tr>
+
+</table>
+
+<hr />
+
+<!-- 
+	Starting table 'sleeve_notes'
+ -->
+
+<a name="sleeve_notes" />
+
+<table class="TableHeader" width="100%">
+	<tr class="TableHeaderRow">
+		<td class="TableHeaderCell"><h3>
+	sleeve_notes
+</h3></td>
+		<a name="sleeve_notes"> <td class="TableHeaderCell" align="right"><a href="#top">Top</a></td>
+	</tr>
+</table>
+
+<table border="1">
+
+<tr>
+	<th class="FieldHeader">
+		Field Name
+	</th>
+	<th class="FieldHeader">
+		Data Type
+	</th>
+	<th class="FieldHeader">
+		Size
+	</th>
+	<th class="FieldHeader">
+		Default Value
+	</th>
+	<th class="FieldHeader">
+		Other
+	</th>
+	<th class="FieldHeader">
+		Foreign Key
+	</th>
+	<th class="FieldHeader">
+		Extra
+	</th>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="sleeve_notes-id">id</a></td>
+	<td class="FieldCellType">integer</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">PRIMARY KEY,<BR>NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Id,<br>path_part = id</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="sleeve_notes-text">text</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Text,<br>path_part = text</td>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="sleeve_notes-album_id">album_id</a></td>
+	<td class="FieldCellType">int</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">UNIQUE,<BR>NOT NULL</td>
+	<td class="FieldCellFK"><a href="#album-id">album.id</a></td>
+	<td class="FieldCellExtra">label = Album Id,<br>path_part = album_id</td>
+</tr>
+
+</table>
+
+<h3>
+	Indices
+</h3>
+
+<table border="1">
+
+<tr class="IndexRow">
+	<th>
+		Name
+	</th>
+	<th>
+		Fields
+	</th>
+</tr>
+
+<tr class="IndexCell">
+	<td>sleeve_notes_idx_album_id</td>
+	<td>album_id</td>
+</tr>
+
+</table>
+
+<h3>
+	Constraints
+</h3>
+
+<table border="1">
+
+<tr class="IndexRow">
+	<th>
+		Type
+	</th>
+	<th>
+		Fields
+	</th>
+</tr>
+
+<tr class="IndexCell">
+	<td>UNIQUE</td>
+	<td>album_id</td>
+</tr>
+
+<tr class="IndexCell">
+	<td>FOREIGN KEY</td>
+	<td>album_id</td>
+</tr>
+
+</table>
+
+<hr />
+
+<!-- 
+	Starting table 'track'
+ -->
+
+<a name="track" />
+
+<table class="TableHeader" width="100%">
+	<tr class="TableHeaderRow">
+		<td class="TableHeaderCell"><h3>
+	track
+</h3></td>
+		<a name="track"> <td class="TableHeaderCell" align="right"><a href="#top">Top</a></td>
+	</tr>
+</table>
+
+<table border="1">
+
+<tr>
+	<th class="FieldHeader">
+		Field Name
+	</th>
+	<th class="FieldHeader">
+		Data Type
+	</th>
+	<th class="FieldHeader">
+		Size
+	</th>
+	<th class="FieldHeader">
+		Default Value
+	</th>
+	<th class="FieldHeader">
+		Other
+	</th>
+	<th class="FieldHeader">
+		Foreign Key
+	</th>
+	<th class="FieldHeader">
+		Extra
+	</th>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="track-id">id</a></td>
+	<td class="FieldCellType">integer</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">PRIMARY KEY,<BR>NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Id,<br>path_part = id</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="track-title">title</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">NOT NULL</td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Title,<br>path_part = title</td>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="track-length">length</a></td>
+	<td class="FieldCellType">varchar</td>
+	<td class="FieldCellSize">255</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Length,<br>path_part = length</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="track-album_id">album_id</a></td>
+	<td class="FieldCellType">int</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther">NOT NULL</td>
+	<td class="FieldCellFK"><a href="#album-id">album.id</a></td>
+	<td class="FieldCellExtra">label = Album Id,<br>path_part = album_id</td>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="track-copyright_id">copyright_id</a></td>
+	<td class="FieldCellType">int</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"><a href="#copyright-id">copyright.id</a></td>
+	<td class="FieldCellExtra">label = Copyright Id,<br>path_part = copyright_id</td>
+</tr>
+
+<tr class="tr-even">
+	<td class="FieldCellName"><a name="track-sales">sales</a></td>
+	<td class="FieldCellType">int</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Sales,<br>path_part = sales</td>
+</tr>
+
+<tr class="tr-odd">
+	<td class="FieldCellName"><a name="track-releasedate">releasedate</a></td>
+	<td class="FieldCellType">date</td>
+	<td class="FieldCellSize">0</td>
+	<td class="FieldCellDefault"></td>
+	<td class="FieldCellOther"></td>
+	<td class="FieldCellFK"></td>
+	<td class="FieldCellExtra">label = Releasedate,<br>path_part = releasedate</td>
+</tr>
+
+</table>
+
+<h3>
+	Indices
+</h3>
+
+<table border="1">
+
+<tr class="IndexRow">
+	<th>
+		Name
+	</th>
+	<th>
+		Fields
+	</th>
+</tr>
+
+<tr class="IndexCell">
+	<td>track_idx_album_id</td>
+	<td>album_id</td>
+</tr>
+
+<tr class="IndexCell">
+	<td>track_idx_copyright_id</td>
+	<td>copyright_id</td>
+</tr>
+
+</table>
+
+<h3>
+	Constraints
+</h3>
+
+<table border="1">
+
+<tr class="IndexRow">
+	<th>
+		Type
+	</th>
+	<th>
+		Fields
+	</th>
+</tr>
+
+<tr class="IndexCell">
+	<td>FOREIGN KEY</td>
+	<td>album_id</td>
+</tr>
+
+<tr class="IndexCell">
+	<td>FOREIGN KEY</td>
+	<td>copyright_id</td>
+</tr>
+
+</table>
+
+<hr />
+
+Created by <a href="http://sqlfairy.sourceforge.net">
+SQL::Translator 0.11008</a>
+
+</body>
+</html>
