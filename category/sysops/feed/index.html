@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; sysops</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/sysops/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>Evolution of Technology</title>
+		<link>http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=evolution-of-technology</link>
+		<comments>http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/#comments</comments>
+		<pubDate>Sun, 02 Sep 2012 13:03:37 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[opinion]]></category>
+		<category><![CDATA[productivity]]></category>
+		<category><![CDATA[sysops]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=786</guid>
+		<description><![CDATA[As a free software developer I come into contact with a wide variety of opinions on what development process makes for a good end product. I don&#8217;t believe the answer is straightforward. Here&#8217;s an excellent quote from Linus Torvalds which &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>As a free software developer I come into contact with a wide variety of opinions on what development process makes for a good end product. I don&#8217;t believe the answer is straightforward. Here&#8217;s an excellent <a href="http://groups.google.com/group/fa.linux.kernel/msg/52f04d4ab1121c9b" target="_blank">quote from Linus Torvalds</a> which sums things up nicely:</p>
+<blockquote><p>&#8220;Donâ€™t underestimate the power of survival of the fittest. And donâ€™tÂ everÂ make the mistake that you can design something better than what you get from ruthless massively parallel trial-and-error with a feedback cycle. Thatâ€™s giving your intelligenceÂ muchÂ too much credit.&#8221;</p></blockquote>
+<p>My point being: evolution is aÂ tremendouslyÂ powerful system which creates some very functional products. Don&#8217;t over-engineer what you&#8217;re doing. Keep it simple, try to avoid <a href="http://en.wikipedia.org/wiki/Second-system_effect" target="_blank">second system syndrome</a>, and accept that one day someone may come out of the woodwork with a competing product which is either only incrementally better, or blows yours away.</p>
+<p>I&#8217;ve had this happen to me. It doesn&#8217;t upset me, or put me off trying out more ideas, because the itch I wanted to scratch by writing the software in the first place is now being <em>scratched better</em>. I might join in with the competitor, borrow and build upon their ideas, or simply retire from that scene. It&#8217;s all good. It&#8217;s simply evolution.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Simple Tools for Describing Rack Layouts</title>
+		<link>http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=simple-tools-for-describing-rack-layouts</link>
+		<comments>http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/#comments</comments>
+		<pubDate>Thu, 09 Aug 2012 11:22:46 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[networking]]></category>
+		<category><![CDATA[productivity]]></category>
+		<category><![CDATA[sysops]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=779</guid>
+		<description><![CDATA[Often when a system at work is having a problem I won&#8217;t actually know where it is. I can remember where mostÂ of the network kit is located, but not all, and certainly not all the servers connected. Two tools we &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Often when a system at work is having a problem I won&#8217;t actually know where it is. I can remember where <em>most</em>Â of the network kit is located, but not all, and certainly not all the servers connected.</p>
+<p>Two tools we already use can help: <a href="http://netdisco.org" target="_blank">Netdisco</a> shows which switch port a device is connected to, and a good cable and patching database indicates the room or even cabinet location of the device. However I wanted a more visual understanding of just where cabinet &#8220;CX1&#8243; might be located on our campus, and particularly in our large data centre halls.</p>
+<p>There are a few options, in terms of web-based,Â Linux-hosted, open source tools:</p>
+<p><a href="http://sourceforge.net/projects/rackmonkey/" target="_blank">RackMonkey</a> is a simple bit of Perl CGI with an easy to use web interface. It&#8217;s no longer actively maintained, but is hosted on sourceforge. Good features include easy installation, numbering U (position in the rack) from top or bottom, and supporting SQLite3 storage. Missing features include specifying front/back position or facing-direction of the device.</p>
+<p><a href="http://racktables.org/" target="_blank">RackTables</a> is, I think, PHP and MySQL and in addition to rack layout includes IP address and VLAN registries. These latter features we don&#8217;t need, and would be a distraction or confusion to my colleagues if I couldn&#8217;t disable them. What I do like is that devices can occupy front/mid/back zones in each rack unit. <del>Sadly racks can&#8217;t be numbered from top or bottom, and we have a mix of both.</del>Â <strong>Update:</strong>Â From version 0.20.4 RackTables will support numbering in either direction.</p>
+<p><a href="http://demo.racksmith.net/" target="_blank">RackSmith</a> is new and has some good ideas, such as being able to place the racks on a tiled floor plan in a room, in a building. There seems to be sufficient flexibility in how devices are placed in racks, but I notice several user interface bugs, which are understandable as <del>RackSmith is still under development</del>.Â <strong>Update:</strong> It seems public <a href="http://racksmith.net/forum/viewtopic.php?f=10&amp;t=895" target="_blank">development of RackSmith is &#8220;on hold&#8221; and it&#8217;s being rewritten</a> under a SaaS model.</p>
+<p>Both RackTables and RackSmith have demos on-line. RackMonkey is really easy to install so there&#8217;s less need there, anyway.</p>
+<p>At first my choice was going to be RackTables, because of its front/mid/back device positioning, and clear hierarchy of location/room/rack. <del>Sadly because we can&#8217;t reverse the U numbering, it&#8217;s rejected.</del> RackSmith would be lovely but just isn&#8217;t ready. <del>So, I&#8217;ve installed RackMonkey and seeing as it&#8217;s only providing additional information to that in Netdisco and our cable database, it being lightweight and unmaintained is probably not an issue</del>.</p>
+<p><strong>Update:</strong>Â So, RackTables it is! Its continuing development has leap-frogged the competition,</p>
+<p><em>(p.s. given sufficient tuits, I&#8217;d rather take the network inventory tool I once worked on, and extend that to support these features, instead. I don&#8217;t like duplicatingÂ informationÂ between systems.)</em></p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+	</channel>
+</rss>

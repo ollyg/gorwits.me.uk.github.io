@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Virtual Machine on Mythbuntu | Cats and Code</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="wp-content/themes/2010-weaver/style.css" />
+<link rel="pingback" href="xmlrpc.php" />
+<link rel="alternate" type="application/rss+xml" title="Cats and Code &raquo; Feed" href="index.html%3Ffeed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="Cats and Code &raquo; Comments Feed" href="comments/feed/index.html" />
+
+            <script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.3 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-41472490-1']);
+				            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+			<script type='text/javascript' src='http://blog.gorwits.me.uk/wp-includes/js/comment-reply.min.js?ver=3.6.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.gorwits.me.uk/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Hacking # in OS X' href='index.html%3Fp=717.html' />
+<link rel='next' title='Fixed-width text and WordPress on iPhone/iPad' href='index.html%3Fp=744.html' />
+<meta name="generator" content="WordPress 3.6.1" />
+<link rel='canonical' href='index.html%3Fp=728.html' />
+<link rel='shortlink' href='index.html%3Fp=728.html' />
+<link rel="stylesheet" type="text/css" href="wp-content/plugins/wp-recaptcha/recaptcha.css" /><!-- This site is using 2010 Weaver V1.5.4 subtheme: Twenty Ten -->
+<meta name="description" content=" Cats and Code - Hello, Welcome. " />
+<meta name="keywords" content="Cats and Code blog, Cats and Code" />
+<link rel="stylesheet" type="text/css" media="all" href="wp-content/blog.gorwits.me.uk/weaver-subthemes/style-weaver.css" />
+<!-- Add your own CSS snippets between the style tags. -->
+<style type="text/css">
+</style>
+<!-- End of Weaver options -->
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>
+
+<body class="single single-post postid-728 single-format-standard">
+<div id="wrapper" class="hfeed">
+
+    
+    <div id="header">
+	<div id="masthead">
+	    <div id="branding" role="banner">
+		<div id="ttw-site-logo"></div>
+		<div id="ttw-site-logo-link" onclick="location.href='http://blog.gorwits.me.uk/';" style="cursor:pointer;"></div>
+				    		    <div id="site-title">
+		    <span>
+			<a href="index.html" title="Cats and Code" rel="home">Cats and Code</a>
+		    </span>
+		    </div>
+		<div id="site-description">by Oliver Gorwits</div>
+						
+		<div id="access2" role="navigation">
+		    <div class="skip-link screen-reader-text"><a href="index.html%3Fp=728.html#content" title="Skip to content">Skip to content</a></div>
+		    
+		</div><!-- #access2 -->
+
+				
+	    </div><!-- #branding -->
+		
+	    <div id="access" role="navigation">
+		    		<div class="skip-link screen-reader-text"><a href="index.html%3Fp=728.html#content" title="Skip to content">Skip to content</a></div>
+
+		    		    <div class="menu"><ul><li ><a href="index.html" title="Home">Home</a></li><li class="page_item page-item-13"><a href="about/index.html">About</a></li></ul></div>
+	    </div><!-- #access -->
+				
+	</div><!-- #masthead -->
+    </div><!-- #header -->
+
+    
+    <div id="main">
+
+	<div id="container">
+		    <div id="content" role="main">
+
+
+		<div id="nav-above" class="navigation">
+		    <div class="nav-previous"><a href="index.html%3Fp=717.html" rel="prev"><span class="meta-nav">&larr;</span> Hacking # in OS X</a></div>
+		    <div class="nav-next"><a href="index.html%3Fp=744.html" rel="next">Fixed-width text and WordPress on iPhone/iPad <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-above -->
+
+		<div id="post-728" class="post-728 post type-post status-publish format-standard hentry category-devops category-htpc category-linux category-networking category-virtualization">
+		    <h1 class="entry-title">Virtual Machine on Mythbuntu</h1>
+			<div class="entry-meta">
+			    <span class="meta-prep meta-prep-author">Posted on</span> <a href="index.html%3Fp=728.html" title="23:45" rel="bookmark"><span class="entry-date">January 4, 2012</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>			</div><!-- .entry-meta -->
+			<div class="entry-content">
+			    <p>I have a Linux box running the excellent <a href="http://www.mythbuntu.org/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.mythbuntu.org']);" target="_blank">Mythbuntu</a> (Ubuntu-based) distribution, headless (that is, without a monitor). Quite a lot of the time it&#8217;s sat around doing nothing (and even during recording or playback the CPU is idle).</p>
+<p>For some side-projects I wanted a clean Linux installation to mess about with. It seemed a good idea to run virtual machines and make the most of existing hardware; what surprised me was just how easy this turned out to be <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+<p>The <a href="https://help.ubuntu.com/community/KVM" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://help.ubuntu.com']);" target="_blank">Ubuntu documentation for KVM</a> is excellent, I must say, but I fancied distilling things further and blogging here, as I typically do to record most of my technical adventures. I&#8217;m not going to bother with any of the GUI VM builder tools or even the Q&amp;A install script, but simply specify the VM config fully, up front.</p>
+<p>Optionally, check whether your CPU has virtualization extensions &#8211; any fairly recent desktop chip should do. On Ubuntu there&#8217;s a command called <code>kvm-ok</code>, or you can poke <code>/proc/cpuinfo</code>:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+# kvm-ok
+INFO: /dev/kvm exists
+KVM acceleration can be used
+
+# egrep -q '(vmx|svm)' /proc/cpuinfo &amp;&amp; echo 'good to go!'
+good to go!
+</pre>
+<p>First up install the KVM software:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+# apt-get install qemu-kvm virtinst
+</pre>
+<p>This will pull in all the necessary packages. On other platforms it should be similar, but the <code>virtinst</code> package is often renamed (e.g. <code>virt-install</code> or <code>vm-install</code>).</p>
+<p>Before getting stuck in to KVM we need to reconfigure the system&#8217;s network adapter to be a bridge. I prefer to set a static IP for servers on my home LAN and use the <code>/etc/network/interfaces</code> file for configuration:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+# cat &gt; /etc/network/interfaces
+auto lo eth0 br0
+iface lo inet loopback
+iface eth0 inet manual
+iface br0 inet static
+    address &lt;IP-ADDRESS&gt;
+    network &lt;NETWORK-ADDRESS&gt;
+    netmask &lt;NETMASK&gt;
+    broadcast &lt;BROADCAST&gt;
+    gateway &lt;GATEWAY&gt;
+    bridge_ports eth0
+    bridge_stp off
+    bridge_fd 0
+    bridge_maxwait 0
+    post-up ip link set br0 address &lt;MAC-ADDRESS&gt;
+
+(hit ctrl-D)
+</pre>
+<p>Obviously, fill in the blanks for your own system&#8217;s IP and MAC address details. Next we can blow away Ubuntu&#8217;s network mangler daemon and poke the KVM service into life:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+# apt-get --purge remove network-manager
+# /etc/init.d/networking restart
+# service libvirt-bin start
+</pre>
+<p>Now find somewhere on your disk for the VMs and a little script to live, and create a directory. I named mine <code>/opt/vm</code>. In there, try starting with this little shell script:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+#!/bin/bash
+virt-install --name=sandbox --ram=512 --vcpus=2 --os-type=linux \
+  --autostart --disk=path=/opt/vm/sandbox.img,size=50 \
+  --graphics=vnc,listen=0.0.0.0,port=5900 --noautoconsole \
+  --cdrom=/opt/vm/mythbuntu-11.10-desktop-i386.iso
+</pre>
+<p>Walking through the above, it should be clear we&#8217;re creating a new VM called <code>sandbox</code> (this is the name KVM knows it by, not a hostname), with 512MB RAM, two virtual CPUs, a Linux-friendly boot environment, and 50GB (sparse) disk. The VM will be automatically booted by the KVM service when its host system boots. The last line specifies an installation CD image from which the new VM will boot.</p>
+<p>For the graphics configuration I&#8217;ve asked for a headless system with the console being offered up via a VNC port on the host server. Note that the <code>listen=0.0.0.0</code> is <em>essential</em> to connect remotely (e.g. over your home LAN) to the console because otherwise the VNC port is simply bound to the loopback interface.</p>
+<p>Running the above will bring the new VM into life:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+# ./sandbox.sh
+
+Starting install...
+Creating storage file sandbox.img                      |  50 GB     00:00
+Creating domain...                                     |    0 B     00:01
+Domain installation still in progress. You can reconnect to
+the console to complete the installation process.
+</pre>
+<p>What KVM means by &#8220;installation still in progress&#8221; is that it knows this system is installing from the boot CD, so you should go right ahead and fire up VNC and connect to the console (port 5900 on the host server) to complete the process.</p>
+<p>You&#8217;ll find that KVM saved the <code>sandbox</code> VM configuration in XML format in the <code>/etc/libvirt/qemu</code> directory, so that&#8217;s where to go to tweak the settings. <a href="http://libvirt.org/formatdomain.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://libvirt.org']);" target="_blank">Good documentation</a> is available at the KVM website.</p>
+<p>Be aware, however, that because KVM assumed the attached CD ISO was only needed for initial install, it&#8217;s not featured in the saved config as a permanent connection. You can, of course, remedy this (check out the <code>virt-install</code> man page for starters).</p>
+<p>To finish off, here&#8217;s how to manage the lifecycle (start, restart, blow away, etc) of the VM. Use the <code>virsh</code> utility which can either be run with a single instruction or with no parameters for an interactive CLI:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+# virsh
+Welcome to virsh, the virtualization interactive terminal.
+virsh # list
+ Id Name                 State
+----------------------------------
+ 10 sandbox              running
+
+virsh # destroy
+error: command 'destroy' requires &lt;domain&gt; option
+virsh # destroy sandbox
+Domain sandbox destroyed
+
+virsh # create sandbox
+error: Failed to open file 'sandbox': No such file or directory
+
+virsh # create sandbox.xml
+Domain sandbox created from sandbox.xml
+
+virsh # list
+ Id Name                 State
+----------------------------------
+ 11 sandbox              running
+</pre>
+<p>Try the <code>help</code> command, and note that the VM&#8217;s XML settings file may need updating if you change things  (see <code>dumpxml</code>).</p>
+<p>I hope this is a useful and quick tutorial for KVM on Ubuntu&#8230; Good Luck!</p>
+			    			</div><!-- .entry-content -->
+
+
+		<div class="entry-utility">
+		    This entry was posted in <a href="category/devops/index.html" title="View all posts in devops" rel="category tag">devops</a>, <a href="category/htpc/index.html" title="View all posts in htpc" rel="category tag">htpc</a>, <a href="category/linux/index.html" title="View all posts in linux" rel="category tag">linux</a>, <a href="category/networking/index.html" title="View all posts in networking" rel="category tag">networking</a>, <a href="category/virtualization/index.html" title="View all posts in virtualization" rel="category tag">virtualization</a>. Bookmark the <a href="index.html%3Fp=728.html" title="Permalink to Virtual Machine on Mythbuntu" rel="bookmark">permalink</a>.		    		</div><!-- .entry-utility -->
+		</div><!-- #post-## -->
+
+		<div id="nav-below" class="navigation">
+		    <div class="nav-previous"><a href="index.html%3Fp=717.html" rel="prev"><span class="meta-nav">&larr;</span> Hacking # in OS X</a></div>
+		    <div class="nav-next"><a href="index.html%3Fp=744.html" rel="next">Fixed-width text and WordPress on iPhone/iPad <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-below -->
+
+		
+			<div id="comments">
+
+
+	<p class="nocomments">Comments are closed.</p>
+
+
+								
+</div><!-- #comments -->
+
+
+	    </div><!-- #content -->
+	</div><!-- #container -->
+
+	<div id="primary" class="widget-area" role="complementary">
+	    <ul class="xoxo">
+
+<li id="search-2" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="index.html">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search" />
+				</div>
+			</form></li><li id="archives-2" class="widget-container widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+			<li><a href='2014/03/index.html' title='March 2014'>March 2014</a></li>
+	<li><a href='2013/01/index.html' title='January 2013'>January 2013</a></li>
+	<li><a href='2012/12/index.html' title='December 2012'>December 2012</a></li>
+	<li><a href='2012/09/index.html' title='September 2012'>September 2012</a></li>
+	<li><a href='2012/08/index.html' title='August 2012'>August 2012</a></li>
+	<li><a href='2012/06/index.html' title='June 2012'>June 2012</a></li>
+	<li><a href='2012/04/index.html' title='April 2012'>April 2012</a></li>
+	<li><a href='2012/01/index.html' title='January 2012'>January 2012</a></li>
+	<li><a href='2011/11/index.html' title='November 2011'>November 2011</a></li>
+	<li><a href='2011/10/index.html' title='October 2011'>October 2011</a></li>
+	<li><a href='2011/09/index.html' title='September 2011'>September 2011</a></li>
+	<li><a href='2011/08/index.html' title='August 2011'>August 2011</a></li>
+	<li><a href='2011/07/index.html' title='July 2011'>July 2011</a></li>
+	<li><a href='2011/06/index.html' title='June 2011'>June 2011</a></li>
+	<li><a href='2011/05/index.html' title='May 2011'>May 2011</a></li>
+	<li><a href='2011/04/index.html' title='April 2011'>April 2011</a></li>
+	<li><a href='2011/03/index.html' title='March 2011'>March 2011</a></li>
+	<li><a href='2011/02/index.html' title='February 2011'>February 2011</a></li>
+	<li><a href='2011/01/index.html' title='January 2011'>January 2011</a></li>
+	<li><a href='2010/11/index.html' title='November 2010'>November 2010</a></li>
+	<li><a href='2010/09/index.html' title='September 2010'>September 2010</a></li>
+		</ul>
+</li><li id="categories-2" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-6"><a href="category/blogging/index.html" title="View all posts filed under blogging">blogging</a>
+</li>
+	<li class="cat-item cat-item-28"><a href="category/cats/index.html" title="View all posts filed under cats">cats</a>
+</li>
+	<li class="cat-item cat-item-16"><a href="category/databases/index.html" title="View all posts filed under databases">databases</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="category/devops/index.html" title="View all posts filed under devops">devops</a>
+</li>
+	<li class="cat-item cat-item-21"><a href="category/git/index.html" title="View all posts filed under git">git</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="category/htpc/index.html" title="View all posts filed under htpc">htpc</a>
+</li>
+	<li class="cat-item cat-item-24"><a href="category/kerberos/index.html" title="View all posts filed under kerberos">kerberos</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="category/linux/index.html" title="View all posts filed under linux">linux</a>
+</li>
+	<li class="cat-item cat-item-19"><a href="category/monitoring/index.html" title="View all posts filed under monitoring">monitoring</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="category/mythtv/index.html" title="View all posts filed under mythtv">mythtv</a>
+</li>
+	<li class="cat-item cat-item-20"><a href="category/netdisco/index.html" title="View all posts filed under netdisco">netdisco</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="category/networking/index.html" title="View all posts filed under networking">networking</a>
+</li>
+	<li class="cat-item cat-item-27"><a href="category/opinion/index.html" title="View all posts filed under opinion">opinion</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="category/os-x/index.html" title="View all posts filed under OS X">OS X</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="category/perl/index.html" title="View all posts filed under perl">perl</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="category/personal/index.html" title="View all posts filed under personal">personal</a>
+</li>
+	<li class="cat-item cat-item-22"><a href="category/productivity/index.html" title="View all posts filed under productivity">productivity</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="category/python/index.html" title="View all posts filed under python">python</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="category/radius/index.html" title="View all posts filed under radius">radius</a>
+</li>
+	<li class="cat-item cat-item-26"><a href="category/sysops/index.html" title="View all posts filed under sysops">sysops</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="category/transcoding/index.html" title="View all posts filed under transcoding">transcoding</a>
+</li>
+	<li class="cat-item cat-item-29"><a href="category/video/index.html" title="View all posts filed under video">video</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="category/virtualization/index.html" title="View all posts filed under virtualization">virtualization</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="category/windows/index.html" title="View all posts filed under windows">windows</a>
+</li>
+		</ul>
+</li><li id="syndication" class="widget-container Syndication_widget_syndication_widget"><h3 class="widget-title">Syndication</h3><ul>
+<li>
+<a  title='RSS Feed' href='index.html%3Ffeed=rss2'/>RSS</a></li>
+<li>
+<a title='ATOM Feed' href='index.html%3Ffeed=atom'/>ATOM</a></li>
+<li>
+<a title='POML Feed' href='wp-links-opml.php'/>OPML</a></li>
+</ul>
+</li>			</ul>
+	</div><!-- #primary .widget-area -->
+
+    </div><!-- #main -->
+        	<div id="footer">
+		<div id="colophon">
+
+<table id='ttw_ftable'><tr>
+ <td id='ttw_ftdl'><div id="site-info">
+ &copy; 2014 - <a href="index.html" title="Cats and Code" rel="home">Cats and Code</a>
+ </div></td>  <td id='ttw_ftdr'><div id="site-generator">
+  <a href="http://wordpress.org/" title="Semantic Personal Publishing Platform" rel="generator">Proudly powered by WordPress.</a>
+ 2010 Weaver by WPWeaver.info
+ </div></td> </tr></table>
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+            
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.83c'></script>
+<script type='text/javascript' src='wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js%3Fver=3.0.83c'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://blog.gorwits.me.uk/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.83c";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://blog.gorwits.me.uk/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.83c";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.defaults['wrap-lines'] = false;
+	SyntaxHighlighter.all();
+</script>
+</body>
+</html>

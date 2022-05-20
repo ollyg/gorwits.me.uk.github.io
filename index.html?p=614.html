@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>MythTV Transcoding (4): Add an H.264 Transcode Job | Cats and Code</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="wp-content/themes/2010-weaver/style.css" />
+<link rel="pingback" href="xmlrpc.php" />
+<link rel="alternate" type="application/rss+xml" title="Cats and Code &raquo; Feed" href="index.html%3Ffeed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="Cats and Code &raquo; Comments Feed" href="comments/feed/index.html" />
+
+            <script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.3 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-41472490-1']);
+				            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+			<script type='text/javascript' src='http://blog.gorwits.me.uk/wp-includes/js/comment-reply.min.js?ver=3.6.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.gorwits.me.uk/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='MythTV Transcoding (3): Transcoding for iPad Playback' href='index.html%3Fp=577.html' />
+<link rel='next' title='Releasing trial/dev/beta versions with Dist::Zilla' href='http://blogs.perl.org/users/oliver_gorwits/2011/10/releasing-trialdevbeta-versions-with-distzilla.html' />
+<meta name="generator" content="WordPress 3.6.1" />
+<link rel='canonical' href='index.html%3Fp=614.html' />
+<link rel='shortlink' href='index.html%3Fp=614.html' />
+<link rel="stylesheet" type="text/css" href="wp-content/plugins/wp-recaptcha/recaptcha.css" /><!-- This site is using 2010 Weaver V1.5.4 subtheme: Twenty Ten -->
+<meta name="description" content=" Cats and Code - Hello, Welcome. " />
+<meta name="keywords" content="Cats and Code blog, Cats and Code" />
+<link rel="stylesheet" type="text/css" media="all" href="wp-content/blog.gorwits.me.uk/weaver-subthemes/style-weaver.css" />
+<!-- Add your own CSS snippets between the style tags. -->
+<style type="text/css">
+</style>
+<!-- End of Weaver options -->
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>
+
+<body class="single single-post postid-614 single-format-standard">
+<div id="wrapper" class="hfeed">
+
+    
+    <div id="header">
+	<div id="masthead">
+	    <div id="branding" role="banner">
+		<div id="ttw-site-logo"></div>
+		<div id="ttw-site-logo-link" onclick="location.href='http://blog.gorwits.me.uk/';" style="cursor:pointer;"></div>
+				    		    <div id="site-title">
+		    <span>
+			<a href="index.html" title="Cats and Code" rel="home">Cats and Code</a>
+		    </span>
+		    </div>
+		<div id="site-description">by Oliver Gorwits</div>
+						
+		<div id="access2" role="navigation">
+		    <div class="skip-link screen-reader-text"><a href="index.html%3Fp=614.html#content" title="Skip to content">Skip to content</a></div>
+		    
+		</div><!-- #access2 -->
+
+				
+	    </div><!-- #branding -->
+		
+	    <div id="access" role="navigation">
+		    		<div class="skip-link screen-reader-text"><a href="index.html%3Fp=614.html#content" title="Skip to content">Skip to content</a></div>
+
+		    		    <div class="menu"><ul><li ><a href="index.html" title="Home">Home</a></li><li class="page_item page-item-13"><a href="about/index.html">About</a></li></ul></div>
+	    </div><!-- #access -->
+				
+	</div><!-- #masthead -->
+    </div><!-- #header -->
+
+    
+    <div id="main">
+
+	<div id="container">
+		    <div id="content" role="main">
+
+
+		<div id="nav-above" class="navigation">
+		    <div class="nav-previous"><a href="index.html%3Fp=577.html" rel="prev"><span class="meta-nav">&larr;</span> MythTV Transcoding (3): Transcoding for iPad Playback</a></div>
+		    <div class="nav-next"><a href="http://blogs.perl.org/users/oliver_gorwits/2011/10/releasing-trialdevbeta-versions-with-distzilla.html" rel="next">Releasing trial/dev/beta versions with Dist::Zilla <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-above -->
+
+		<div id="post-614" class="post-614 post type-post status-publish format-standard hentry category-mythtv category-transcoding">
+		    <h1 class="entry-title">MythTV Transcoding (4): Add an H.264 Transcode Job</h1>
+			<div class="entry-meta">
+			    <span class="meta-prep meta-prep-author">Posted on</span> <a href="index.html%3Fp=614.html" title="17:25" rel="bookmark"><span class="entry-date">September 4, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>			</div><!-- .entry-meta -->
+			<div class="entry-content">
+			    <p>I'm doing a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little more advanced.</p>
+<ul>
+<li><em>The complete series of articles is available at <a href="category/transcoding/index.html"  target="_self">this page</a></em></li>
+</ul>
+<p><a href="index.html%3Fp=577.html"  target="_blank">Last time</a> we went through the steps to transcode a recording into the H.264 format, required for playback on iPad (or other Apple devices &#8211; iPod, iPhone, Mac OS X, etc).</p>
+<p>Today we&#8217;ll complete the series by integrating this with MythWeb so that a new button appears which sets off the transcode job, and then go on to make the output available for streaming over the web. Remember that there are other ways to watch recordings on the iPad, as listed in the previous article in this series.</p>
+<p>First we need to let MythTV know about the new user job command (<code>/usr/local/bin/h264xcode</code>). You can do this either in the <code>mythtv-setup</code> program, or via the MythWeb interface. Personally I use the latter, as stopping the MythTV Backend and running the setup program over an SSH tunnel is fiddly, but I&#8217;ll cover both here for completeness.</p>
+<p>In <code>mythtv-setup</code> you want to select <em>General</em> and then hit <em>Next</em> until you reach the <em>Job Queue (Job Commands)</em> page:</p>
+<p><a rel="attachment wp-att-581" href="2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/screen-shot-2011-09-04-at-12-30-39/index.html" ><img class="aligncenter size-full wp-image-581" title="Job Queue - Job Commands" src="wp-content/blog.gorwits.me.uk/2011/09/Screen-shot-2011-09-04-at-12.30.39.png" alt="" width="639" height="480" /></a></p>
+<p>You can see I&#8217;ve filled in the <em>description</em> and <em>command</em> for <em>User Job #1</em>. The command uses parameter variables which are filled in by MythTV (a list of the variables is on the <a href="http://www.mythtv.org/wiki/User_Jobs" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.mythtv.org']);" target="_blank">User Jobs</a> MythTV wiki page). Here&#8217;s the command in full, as it&#8217;s not visible in this screenshot:</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+/usr/local/bin/h264xcode %CHANID% %STARTTIME%
+</pre>
+<p>Alternatively, configure these settings in the MythWeb interface. Click on the big spanner (for Settings) and choose <em>MythTV</em> from the list of buttons on the left. Scroll down and you&#8217;ll find a field called <em>UserJob1</em> and another called <em> UserJobDesc1 </em> just a little below. These take the same values as in the <code>mythtv-setup</code> interface:</p>
+<p><a rel="attachment wp-att-582" href="2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/screen-shot-2011-09-04-at-12-32-33/index.html" ><img class="aligncenter size-full wp-image-582" title="MythWeb Settings - MythTV" src="wp-content/blog.gorwits.me.uk/2011/09/Screen-shot-2011-09-04-at-12.32.33.png" alt="" width="655" height="306" /></a></p>
+<p>Don&#8217;t worry about the dummy values in other User Job description fields &#8211; unless the Job has a command set, it&#8217;s ignored. If you did use MythWeb, you <span style="text-decoration: underline;">must</span> now restart your MythTV Backend process to get these updated settings.</p>
+<p>Hop over to MythWeb, and you should now see a new &#8220;H.264 Encode&#8221; button for each recording, which fires off a transcode Job that&#8217;s also visible in the MythWeb Job Queue:</p>
+<p><a rel="attachment wp-att-589" href="2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/screen-shot-2011-09-04-at-16-05-43/index.html" ><img class="aligncenter size-full wp-image-589" title="Screen shot 2011-09-04 at 16.05.43" src="wp-content/blog.gorwits.me.uk/2011/09/Screen-shot-2011-09-04-at-16.05.43.png" alt="" width="359" height="204" /></a></p>
+<p><a rel="attachment wp-att-590" href="2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/screen-shot-2011-09-04-at-16-09-17/index.html" ><img class="aligncenter size-full wp-image-590" title="Screen shot 2011-09-04 at 16.09.17" src="wp-content/blog.gorwits.me.uk/2011/09/Screen-shot-2011-09-04-at-16.09.17.png" alt="" width="361" height="190" /></a></p>
+<p><a rel="attachment wp-att-591" href="2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/screen-shot-2011-09-04-at-16-10-49/index.html" ><img class="aligncenter size-full wp-image-591" title="Screen shot 2011-09-04 at 16.10.49" src="wp-content/blog.gorwits.me.uk/2011/09/Screen-shot-2011-09-04-at-16.10.49.png" alt="" width="359" height="185" /></a></p>
+<p><a rel="attachment wp-att-592" href="2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/screen-shot-2011-09-04-at-16-11-02/index.html" ><img class="aligncenter size-full wp-image-592" title="Screen shot 2011-09-04 at 16.11.02" src="wp-content/blog.gorwits.me.uk/2011/09/Screen-shot-2011-09-04-at-16.11.02.png" alt="" width="824" height="174" /></a></p>
+<p>If you have the disk space, and want this to happen for all recordings automatically, check out the instructions from <a href="index.html%3Fp=390.html"  target="_blank">part 2</a> of this series. You should tick the <em>Run user job</em> box in MythFrontend settings, and also note that this only takes effect for new Recording Schedules, although I explain a fix for existing schedules at the end of the article. Don&#8217;t forget to clean up old transcode files after a while!</p>
+<p>The final step on my road to iPad streaming is to embed this video into MythWeb, which I&#8217;ll cover in the next article.</p>
+			    			</div><!-- .entry-content -->
+
+
+		<div class="entry-utility">
+		    This entry was posted in <a href="category/mythtv/index.html" title="View all posts in mythtv" rel="category tag">mythtv</a>, <a href="category/transcoding/index.html" title="View all posts in transcoding" rel="category tag">transcoding</a>. Bookmark the <a href="index.html%3Fp=614.html" title="Permalink to MythTV Transcoding (4): Add an H.264 Transcode Job" rel="bookmark">permalink</a>.		    		</div><!-- .entry-utility -->
+		</div><!-- #post-## -->
+
+		<div id="nav-below" class="navigation">
+		    <div class="nav-previous"><a href="index.html%3Fp=577.html" rel="prev"><span class="meta-nav">&larr;</span> MythTV Transcoding (3): Transcoding for iPad Playback</a></div>
+		    <div class="nav-next"><a href="http://blogs.perl.org/users/oliver_gorwits/2011/10/releasing-trialdevbeta-versions-with-distzilla.html" rel="next">Releasing trial/dev/beta versions with Dist::Zilla <span class="meta-nav">&rarr;</span></a></div>
+		</div><!-- #nav-below -->
+
+		
+			<div id="comments">
+
+
+	<p class="nocomments">Comments are closed.</p>
+
+
+								
+</div><!-- #comments -->
+
+
+	    </div><!-- #content -->
+	</div><!-- #container -->
+
+	<div id="primary" class="widget-area" role="complementary">
+	    <ul class="xoxo">
+
+<li id="search-2" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="index.html">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search" />
+				</div>
+			</form></li><li id="archives-2" class="widget-container widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+			<li><a href='2014/03/index.html' title='March 2014'>March 2014</a></li>
+	<li><a href='2013/01/index.html' title='January 2013'>January 2013</a></li>
+	<li><a href='2012/12/index.html' title='December 2012'>December 2012</a></li>
+	<li><a href='2012/09/index.html' title='September 2012'>September 2012</a></li>
+	<li><a href='2012/08/index.html' title='August 2012'>August 2012</a></li>
+	<li><a href='2012/06/index.html' title='June 2012'>June 2012</a></li>
+	<li><a href='2012/04/index.html' title='April 2012'>April 2012</a></li>
+	<li><a href='2012/01/index.html' title='January 2012'>January 2012</a></li>
+	<li><a href='2011/11/index.html' title='November 2011'>November 2011</a></li>
+	<li><a href='2011/10/index.html' title='October 2011'>October 2011</a></li>
+	<li><a href='2011/09/index.html' title='September 2011'>September 2011</a></li>
+	<li><a href='2011/08/index.html' title='August 2011'>August 2011</a></li>
+	<li><a href='2011/07/index.html' title='July 2011'>July 2011</a></li>
+	<li><a href='2011/06/index.html' title='June 2011'>June 2011</a></li>
+	<li><a href='2011/05/index.html' title='May 2011'>May 2011</a></li>
+	<li><a href='2011/04/index.html' title='April 2011'>April 2011</a></li>
+	<li><a href='2011/03/index.html' title='March 2011'>March 2011</a></li>
+	<li><a href='2011/02/index.html' title='February 2011'>February 2011</a></li>
+	<li><a href='2011/01/index.html' title='January 2011'>January 2011</a></li>
+	<li><a href='2010/11/index.html' title='November 2010'>November 2010</a></li>
+	<li><a href='2010/09/index.html' title='September 2010'>September 2010</a></li>
+		</ul>
+</li><li id="categories-2" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-6"><a href="category/blogging/index.html" title="View all posts filed under blogging">blogging</a>
+</li>
+	<li class="cat-item cat-item-28"><a href="category/cats/index.html" title="View all posts filed under cats">cats</a>
+</li>
+	<li class="cat-item cat-item-16"><a href="category/databases/index.html" title="View all posts filed under databases">databases</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="category/devops/index.html" title="View all posts filed under devops">devops</a>
+</li>
+	<li class="cat-item cat-item-21"><a href="category/git/index.html" title="View all posts filed under git">git</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="category/htpc/index.html" title="View all posts filed under htpc">htpc</a>
+</li>
+	<li class="cat-item cat-item-24"><a href="category/kerberos/index.html" title="View all posts filed under kerberos">kerberos</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="category/linux/index.html" title="View all posts filed under linux">linux</a>
+</li>
+	<li class="cat-item cat-item-19"><a href="category/monitoring/index.html" title="View all posts filed under monitoring">monitoring</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="category/mythtv/index.html" title="View all posts filed under mythtv">mythtv</a>
+</li>
+	<li class="cat-item cat-item-20"><a href="category/netdisco/index.html" title="View all posts filed under netdisco">netdisco</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="category/networking/index.html" title="View all posts filed under networking">networking</a>
+</li>
+	<li class="cat-item cat-item-27"><a href="category/opinion/index.html" title="View all posts filed under opinion">opinion</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="category/os-x/index.html" title="View all posts filed under OS X">OS X</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="category/perl/index.html" title="View all posts filed under perl">perl</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="category/personal/index.html" title="View all posts filed under personal">personal</a>
+</li>
+	<li class="cat-item cat-item-22"><a href="category/productivity/index.html" title="View all posts filed under productivity">productivity</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="category/python/index.html" title="View all posts filed under python">python</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="category/radius/index.html" title="View all posts filed under radius">radius</a>
+</li>
+	<li class="cat-item cat-item-26"><a href="category/sysops/index.html" title="View all posts filed under sysops">sysops</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="category/transcoding/index.html" title="View all posts filed under transcoding">transcoding</a>
+</li>
+	<li class="cat-item cat-item-29"><a href="category/video/index.html" title="View all posts filed under video">video</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="category/virtualization/index.html" title="View all posts filed under virtualization">virtualization</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="category/windows/index.html" title="View all posts filed under windows">windows</a>
+</li>
+		</ul>
+</li><li id="syndication" class="widget-container Syndication_widget_syndication_widget"><h3 class="widget-title">Syndication</h3><ul>
+<li>
+<a  title='RSS Feed' href='index.html%3Ffeed=rss2'/>RSS</a></li>
+<li>
+<a title='ATOM Feed' href='index.html%3Ffeed=atom'/>ATOM</a></li>
+<li>
+<a title='POML Feed' href='wp-links-opml.php'/>OPML</a></li>
+</ul>
+</li>			</ul>
+	</div><!-- #primary .widget-area -->
+
+    </div><!-- #main -->
+        	<div id="footer">
+		<div id="colophon">
+
+<table id='ttw_ftable'><tr>
+ <td id='ttw_ftdl'><div id="site-info">
+ &copy; 2014 - <a href="index.html" title="Cats and Code" rel="home">Cats and Code</a>
+ </div></td>  <td id='ttw_ftdr'><div id="site-generator">
+  <a href="http://wordpress.org/" title="Semantic Personal Publishing Platform" rel="generator">Proudly powered by WordPress.</a>
+ 2010 Weaver by WPWeaver.info
+ </div></td> </tr></table>
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+            
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.83c'></script>
+<script type='text/javascript' src='wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushBash.js%3Fver=3.0.83c'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://blog.gorwits.me.uk/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.83c";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://blog.gorwits.me.uk/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.83c";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.defaults['wrap-lines'] = false;
+	SyntaxHighlighter.all();
+</script>
+</body>
+</html>

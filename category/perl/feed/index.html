@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; perl</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/perl/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>Hacking # in OS X</title>
+		<link>http://blog.gorwits.me.uk/2011/11/30/hacking-in-os-x/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=hacking-in-os-x</link>
+		<comments>http://blog.gorwits.me.uk/2011/11/30/hacking-in-os-x/#comments</comments>
+		<pubDate>Wed, 30 Nov 2011 20:57:05 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[linux]]></category>
+		<category><![CDATA[OS X]]></category>
+		<category><![CDATA[perl]]></category>
+		<category><![CDATA[productivity]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=717</guid>
+		<description><![CDATA[To get aÂ # sign on an Apple keyboard you use the Option (or Alt) key + 3. This seems terribly klunky to me, andÂ # is of course used quite a bit in programming and sysadmin work. This hack remaps another &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/11/30/hacking-in-os-x/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>To get aÂ <code>#</code> sign on an Apple keyboard you use the Option (or Alt) key + 3. This seems terribly klunky to me, andÂ <code>#</code> is of course used quite a bit in programming and sysadmin work.</p>
+<p>This hack remaps another key on the keyboard to produce theÂ <code>#</code> character. I chose the funny squiggle that&#8217;s to the left of the number 1 key (Â§). This is theÂ <em>Section sign</em>, used in document formatting. Just create a file atÂ <code>~/Library/KeyBindings/DefaultKeyBinding.dict</code> which contains the following:</p>
+<pre class="brush: plain; title: ; notranslate">
+{
+    /* this will make all &amp;#167; turn into # */
+    &quot;\UA7&quot; = (&quot;insertText:&quot;, &quot;#&quot;);
+}
+</pre>
+<p>Any app that uses Apple&#8217;s Cocoa interface widgets for text input will pick this up after being restarted. There are some that don&#8217;t (perhaps TextMate? Not checked that one so if you know, please comment).</p>
+<p>A lot more information about this is available at this excellent page on theÂ <a rel="nofollow" href="http://www.hcs.harvard.edu/~jrus/Site/Cocoa%20Text%20System.html" target="_blank">Cocoa Text System</a>, including some other neat hacks. Enjoy!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/11/30/hacking-in-os-x/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>A (very) short list of Dist::Zilla tips</title>
+		<link>http://blogs.perl.org/users/oliver_gorwits/2011/11/a-very-short-list-of-distzilla-tips.html?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=a-very-short-list-of-distzilla-tips</link>
+		<comments>http://blogs.perl.org/users/oliver_gorwits/2011/11/a-very-short-list-of-distzilla-tips.html#comments</comments>
+		<pubDate>Thu, 24 Nov 2011 21:43:41 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false"></guid>
+		<description><![CDATA[For App::fooapp type distributions then you might want the README etc generated from a specific file. Add this to dist.ini: main_module = bin/fooapp ; btw, semicolon leads a comment, in case you forgot how to do that Any Module::Install converts reading this should note the bin directory, not script. In bin/fooapp itself you also provide an additional metadata hint (next to ABSTRACT): # PODNAME: fooapp Which results in nifty Metacpan links such as: https://metacpan.org/module/nfflowd Finally this hint to the POD munger will allow a section to be pinned in place above the SYNOPSIS: =begin :prelude # POD here... =end :prelude I hope these tips are helpful to someâ€¦... <a class="more-link" href="http://blogs.perl.org/users/oliver_gorwits/2011/11/a-very-short-list-of-distzilla-tips.html">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[
+        <p>For App::fooapp type distributions then you might want the README etc generated from a specific file. Add this to <code>dist.ini</code>:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">main_module = bin/fooapp
+; btw, semicolon leads a comment, in case you forgot how to do that
+</pre>
+
+<p>Any Module::Install converts reading this should note the <code>bin</code> directory, not <code>script</code>.</p>
+
+<p>In <code>bin/fooapp</code> itself you also provide an additional metadata hint (next to ABSTRACT):</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title=""># PODNAME: fooapp
+</pre>
+
+<p>Which results in nifty Metacpan links such as:</p>
+
+<ul>
+<li><a href="https://metacpan.org/module/nfflowd">https://metacpan.org/module/nfflowd</a></li>
+</ul>
+
+<p>Finally this hint to the POD munger will allow a section to be pinned in place <em>above</em> the SYNOPSIS:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">=begin :prelude
+
+# POD here...
+
+=end :prelude
+</pre>
+
+<p>I hope these tips are helpful to some&#8230;</p>
+
+        
+
+    ]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/11/24/a-very-short-list-of-distzilla-tips/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Painless MythTV Channel Configuration</title>
+		<link>http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=painless-mythtv-channel-configuration</link>
+		<comments>http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/#comments</comments>
+		<pubDate>Thu, 10 Nov 2011 23:07:46 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[htpc]]></category>
+		<category><![CDATA[mythtv]]></category>
+		<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=687</guid>
+		<description><![CDATA[MythTV &#8211; a brilliant homebrew digital video recorder system. Killer features include being able to play content over the LAN at home, scheduling recordings via the web, and generally poke it to integrate with all kinds of devices (e.g. see &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p><a href="http://www.mythtv.org/" target="_blank">MythTV</a> &#8211; a brilliant homebrew digital video recorder system. Killer features include being able to play content over the LAN at home, scheduling recordings via the web, and generally poke it to integrate with all kinds of devices (e.g. see my previous posts on <a href="http://blog.gorwits.me.uk/category/transcoding/" target="_blank">H.264 transcoding</a>). Even better, <a href="http://www.mythbuntu.org/" target="_blank">Mythbuntu</a> makes installation a doddle.</p>
+<p>However the most hated part for me is configuring TV sources and channels &#8211; digital terrestrial via an aerial, and digital via satellite. MythTV&#8217;s built-in scanner works at best intermittently (for me), and when it does, comes up with 1,000 shopping and adult channels which drown out the 20 or so I&#8217;m really interested in.</p>
+<p>Then there&#8217;s TV listings. All credit to the folks working on <a href="http://wiki.xmltv.org/index.php/Main_Page" target="_blank">XMLTV</a> and the Radio Times listings grabber &#8211; that&#8217;s some impressive work. But stitching it into MythTV usually ends up with hand-editing the database to insert XMLTV IDs. User friendly? I think not.</p>
+<p>Partly this is because these tools are used internationally and nothing is standardised between countries. Even in the UK there are three ways to get TV listings (EIT over the air, Bleb, and Radio Times).</p>
+<p>Finally I snapped, and wrote a Perl program to do all this work. It feels so nice now to have a simple, lightweight, repeatable process to configure sources and channels. That&#8217;s what good automation is all about.</p>
+<p>The code will only work in the UK, but might be a starting point for those elsewhere. It configures XMLTV IDs, but that doesn&#8217;t mean you have to use the Radio Times grabber. You still have to go through MythTV&#8217;s setup program to tell it about tuner cards (<em>before</em> running the import program) but that&#8217;s not hard work.</p>
+<p>The <a href="https://github.com/ollyg/mythtv_channel_import" target="_blank">code</a> and <a href="https://github.com/ollyg/mythtv_channel_import/blob/master/README.pod" target="_blank">instructions</a> are hosted on GitHub. Let me know if you use it, and how you get on. Don&#8217;t forget to back up your database (using MythTV&#8217;sÂ <code>mythconverg_*</code> scripts) before starting!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Hosting the AutoCRUD Demo</title>
+		<link>http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=hosting-the-autocrud-demo</link>
+		<comments>http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/#comments</comments>
+		<pubDate>Wed, 19 Oct 2011 18:19:59 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[databases]]></category>
+		<category><![CDATA[devops]]></category>
+		<category><![CDATA[git]]></category>
+		<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=680</guid>
+		<description><![CDATA[In my previous entry here (syndicated from blogs.perl.org), I linked at the end to a demoÂ Catalyst::Plugin::AutoCRUD application running on DotCloud. I&#8217;m much happier with this than running something on my own personal server, and here&#8217;s the notes on its setup. &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>In my <a href="http://blogs.perl.org/users/oliver_gorwits/2011/10/autocrud-revamped.html" target="_blank">previous entry</a> here (syndicated from blogs.perl.org), I linked at the end to a demoÂ <a href="https://metacpan.org/module/Catalyst::Plugin::AutoCRUD" target="_self">Catalyst::Plugin::AutoCRUD</a> application running on DotCloud. I&#8217;m much happier with this than running something on my own personal server, and here&#8217;s the notes on its setup.</p>
+<p>For those unfamiliar, <a href="https://www.dotcloud.com/" target="_blank">DotCloud</a> is a <a href="http://en.wikipedia.org/wiki/Platform_as_a_service" target="_blank">Platform as a Service</a> (PaaS) offering a freemium model. I&#8217;m grateful to them for this as the free account provides all I need for my demo.</p>
+<p>First, I followed to the letter Phillip Smith&#8217;s <a href="http://blogs.perl.org/users/phillip_smith/2011/08/dotcloud-loves-catalyst-apps-up-and-running-in-10-minutes-perl-in-the-cloud-part-iii.html" target="_blank">comprehensive guide</a> on deploying a Perl Catalyst application to the DotCloud service. Next I customised the basic application created in the guide to use AutoCRUD:</p>
+<ul>
+<li>removed the Root controller</li>
+<li>added two Models and their supporting DBIx::Class Result classes</li>
+<li>setÂ <code>basepath</code> in the configuration</li>
+<li>installed an hourly cron job to:
+<ul>
+<li>restore the SQLite databases</li>
+<li>restart the web service (<code>supervisorctl restart uwsgi</code>)</li>
+</ul>
+</li>
+</ul>
+<p>Next I wanted a more tidy looking domain for the demo, so purchased <code>autocrud.pl</code> through <a href="http://www.netim.com/" target="_blank">NETIM</a>. My plan is to have demo.autocrud.pl pointing to the DotCloud instance, and sometime in the future to have <code>autocrud.pl</code> be used for a secret feature I&#8217;m still working on. Sadly NETIM only offers HTTP redirects from subdomains, so I delegated hosting of the DNS to <a href="http://www.cloudns.net/" target="_blank">ClouDNS</a>.</p>
+<p>ClouDNS is another freemium service, again where the free part provides just what I need. They offer not only a bit of a smarter interface than NETIM for DNS zone management, but also HTTP redirects from the zone apex.</p>
+<p>I do of course know that nothing lasts forever, particularly with freemium services, and I&#8217;m grateful for what&#8217;s available because it works very well (I&#8217;ve added promotional icons for ClouDNS and DotCloud to the demo site).</p>
+<p>The end result of this is that I now have the AutoCRUD demo safely hosted on DotCloud with a <a href="http://demo.autocrud.pl/" target="_blank">friendly URL</a> to pass out in documentation or blog posts <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>AutoCRUD revamped</title>
+		<link>http://blogs.perl.org/users/oliver_gorwits/2011/10/autocrud-revamped.html?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=autocrud-revamped</link>
+		<comments>http://blogs.perl.org/users/oliver_gorwits/2011/10/autocrud-revamped.html#comments</comments>
+		<pubDate>Mon, 17 Oct 2011 20:47:54 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false"></guid>
+		<description><![CDATA[For a couple of years Iâ€™ve been planning to rip apart and put back together the guts of Catalyst::Plugin::AutoCRUD, to address limitations in the initial implementation. After changing job and moving house Iâ€™m pleased this finally came to the top of my hacking stack. Nothing was going to happen however before I could work out how to do one thing: achieve independence from DBIx::Class as a â€œstorage engineâ€. I love DBIx::Class, but it would be much more cool to support any data storage system able to represent a table+column paradigm (even things like CSV, as a test case). So SQL::Translator hit me like a thunderbolt. Of course, thatâ€™s exactly what it does - introspect some data storage and provide a neutral, class-based representation of the tables and columns (fields). Itâ€™s a little rough around the edges, but certainly good enough. The Translator provides a metadata structure which AutoCRUDâ€™s web front-end can use, independent of any particular storage engine such as DBIx::Class. This also paves the way for development of display engines other than the bundled ExtJS and simple HTML offerings. Right now thereâ€™s a developer release of AutoCRUD on CPAN, and I hope shortly to have a production release. Whilst the web side might not look much different, the fact is that it can now support significant features such as tables with composite/compound primary keys, or no primary keys for that matter, database views, relations to self, multiple relations to the same table, and so on. Alongside that, Iâ€™ve taken the opportunity to fix a few quirks of the web interface, and chomp my way through the outstanding wishlist. The updated code is now running on a DotCloud instance, so please go and have a play! http://demo.autocrud.pl p.s. a cron job will restore the demoâ€™s databases at the top of every hour... <a class="more-link" href="http://blogs.perl.org/users/oliver_gorwits/2011/10/autocrud-revamped.html">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[
+        <p>For a couple of years I&#8217;ve been planning to rip apart and put back together the guts of <a href="https://metacpan.org/module/Catalyst%3A%3APlugin%3A%3AAutoCRUD">Catalyst::Plugin::AutoCRUD</a>, to address limitations in the initial implementation. After changing job and moving house I&#8217;m pleased this finally came to the top of my hacking stack.</p>
+
+<p>Nothing was going to happen however before I could work out how to do one thing: achieve independence from <a href="https://metacpan.org/module/DBIx%3A%3AClass">DBIx::Class</a> as a &#8220;storage engine&#8221;. I love DBIx::Class, but it would be much more cool to support any data storage system able to represent a table+column paradigm (even things like CSV, as a test case).</p>
+
+<p>So <a href="https://metacpan.org/module/SQL%3A%3ATranslator">SQL::Translator</a> hit me like a thunderbolt. Of course, that&#8217;s <em>exactly</em> what it does - introspect some data storage and provide a neutral, class-based representation of the tables and columns (fields). It&#8217;s a little rough around the edges, but certainly good enough. The Translator provides a metadata structure which AutoCRUD&#8217;s web front-end can use, independent of any particular storage engine such as DBIx::Class. This also paves the way for development of display engines other than the bundled ExtJS and simple HTML offerings.</p>
+
+<p>Right now there&#8217;s a developer release of AutoCRUD on CPAN, and I hope shortly to have a production release. Whilst the web side might not look much different, the fact is that it can now support significant features such as tables with composite/compound primary keys, or no primary keys for that matter, database views, relations to self, multiple relations to the same table, and so on.</p>
+
+<p>Alongside that, I&#8217;ve taken the opportunity to fix a few quirks of the web interface, and chomp my way through the outstanding wishlist. The updated code is now running on a DotCloud instance, so please go and have a play!</p>
+
+<ul>
+<li><a href="http://demo.autocrud.pl">http://demo.autocrud.pl</a></li>
+</ul>
+
+<p><em>p.s. a cron job will restore the demo&#8217;s databases at the top of every hour</em></p>
+
+        
+
+    ]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/10/17/autocrud-revamped/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Releasing trial/dev/beta versions with Dist::Zilla</title>
+		<link>http://blogs.perl.org/users/oliver_gorwits/2011/10/releasing-trialdevbeta-versions-with-distzilla.html?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=releasing-trialdevbeta-versions-with-distzilla</link>
+		<comments>http://blogs.perl.org/users/oliver_gorwits/2011/10/releasing-trialdevbeta-versions-with-distzilla.html#comments</comments>
+		<pubDate>Fri, 14 Oct 2011 07:17:01 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false"></guid>
+		<description><![CDATA[You might have stumbled across Dist::Zilla's --trial command line option in the past, and maybe even used it for a developer CPAN release. Its effect is (as I understand it) two-fold: adds -TRIAL to the name of the distribution archive being produced sets release: testing in the META.json file which is parsed by CPAN services It came to my attention that using -TRIAL is actually pretty bad for you and your system, and other users, even though it's one of the two naming conventions CPAN services use to identify developer releases. The problem is that the actual $VERSION of your code is unaffected. This means once installed, you can't ask your computer the version of an installed distribution and work out from that whether it's a developer release, or not. A secondary issue is that in sites such as metacpan.org there's nothing really obvious about the release which highlights its status as &#34;development&#34;, in the list of available versions. An alternative way to signal to CPAN services that a dist is a trial release is to use an underscore and a secondary version number at the end of $VERSION, like _001. This is still a bit crappy but at least humans can really easily see what's going on. Back to Dist::Zilla. If you use the AutoVersion plugin, a better alternative than using --trial is to set the DEV environment variable when you build or release the distribution. This has the effect of: (sprintf '_%03u', $ENV{DEV}) being added to the end of $VERSION sets release: testing in the META.json file which is parsed by CPAN services Otherwise the best thing to do right now is to set the version manually, for developer releases. I hear from chatter on IRC that there are plans to change the --trial feature of Dist::Zilla to alter $VERSION if necessary (that is, if no underscore exists) - a good compromise, I reckon.... <a class="more-link" href="http://blogs.perl.org/users/oliver_gorwits/2011/10/releasing-trialdevbeta-versions-with-distzilla.html">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[
+        <p>You might have stumbled across Dist::Zilla's <code>--trial</code> command line option in the past, and maybe even used it for a developer CPAN release. Its effect is (as I understand it) two-fold:</p>
+
+<ul>
+<li>adds <code>-TRIAL</code> to the name of the distribution archive being produced</li>
+<li>sets <code>release: testing</code> in the <code>META.json</code> file which is parsed by CPAN services</li>
+</ul>
+
+<p>It came to my attention that using <code>-TRIAL</code> is actually pretty bad for you and your system, and other users, even though it's one of the two naming conventions CPAN services use to <a href="http://www.cpan.org/modules/04pause.html#conventions">identify developer releases</a>.</p>
+
+<p>The problem is that the actual <code>$VERSION</code> of your code is unaffected. This means once installed, you can't ask your computer the version of an installed distribution and work out from that whether it's a developer release, or not. A secondary issue is that in sites such as <a href="https://metacpan.org/">metacpan.org</a> there's nothing really obvious about the release which highlights its status as "development", in the list of available versions.</p>
+
+<p>An alternative way to signal to CPAN services that a dist is a trial release is to use an underscore and a secondary version number at the end of <code>$VERSION</code>, like <code>_001</code>. This is still a bit crappy but at least humans can really easily see what's going on.</p>
+
+<p>Back to Dist::Zilla. If you use the <a href="https://metacpan.org/module/Dist%3A%3AZilla%3A%3APlugin%3A%3AAutoVersion">AutoVersion</a> plugin, a better alternative than using <code>--trial</code> is to set the <code>DEV</code> environment variable when you build or release the distribution. This has the effect of:</p>
+
+<ul>
+<li><code>(sprintf '_%03u', $ENV{DEV})</code> being added to the end of <code>$VERSION</code></li>
+<li>sets <code>release: testing</code> in the <code>META.json</code> file which is parsed by CPAN services</li>
+</ul>
+
+<p>Otherwise the best thing to do right now is to set the version manually, for developer releases. I hear from chatter on IRC that there are plans to change the <code>--trial</code> feature of Dist::Zilla to alter <code>$VERSION</code> <em>if necessary</em> (that is, if no underscore exists) - a good compromise, I reckon.<br />
+</p>
+        
+    ]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/10/14/releasing-trialdevbeta-versions-with-distzilla/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>local::libs for Dist Development</title>
+		<link>http://blogs.perl.org/users/oliver_gorwits/2011/07/locallibs-for-dist-development.html?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=locallibs-for-dist-development</link>
+		<comments>http://blogs.perl.org/users/oliver_gorwits/2011/07/locallibs-for-dist-development.html#comments</comments>
+		<pubDate>Sat, 16 Jul 2011 15:26:25 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false"></guid>
+		<description><![CDATA[Most of my distributions are on GitHub and built using Dist::Zilla. As the dependencies of each vary widely and I donâ€™t want to muck up my workstationâ€™s libraries, I set up a local::lib for each distributionâ€™s development. The App::local::lib::helper scripts make this really easy. As per the docs, I combine the helper with App::cpanminus (cpanm) for all installation. To bootstrap a new local::lib area, I wrote this simple shell script: #!/bin/bash # script named &#34;new-ll&#34; if [ -z $1 ] then echo 'pass the distribution name, please' exit fi echo &#34;creating local::lib for $1 ...&#34; sleep 3 curl -L http://cpanmin.us/ &#124; perl - --notest --quiet --local-lib \ ~/perl5/$1 \ App::cpanminus \ Dist::Zilla \ App::local::lib::helper . Entering the correct environment for a distribution uses another helper script: #!/bin/bash # script named &#34;go&#34; if [ -z $1 ] then echo 'pass the distribution name, please' exit fi ~/perl5/$1/bin/localenv bash . Which means my workflow for a new distribution is: $ new-ll New-Dist-Name $ go New-Dist-Name . Any Perl distributions installed in that shell (for example from dzil authordeps &#124; cpanm or dzil listdeps &#124; cpanm) will be placed into the new local::lib. Itâ€™s a simple ^D to exit. However itâ€™s not obvious that youâ€™re within this special environment, so editing Bashâ€™s $PS1 variable (the shell prompt) to include the following, can help: echo $PERL5LIB &#124; cut -d'/' -f5 . My deep thanks to the authors of the distributions used to create this neat setup.... <a class="more-link" href="http://blogs.perl.org/users/oliver_gorwits/2011/07/locallibs-for-dist-development.html">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[
+        <p>Most of my distributions are on GitHub and built using <a href="http://search.cpan.org/perldoc?Dist::Zilla">Dist::Zilla</a>. As the dependencies of each vary widely and I don&#8217;t want to muck up my workstation&#8217;s libraries, I set up a local::lib for each distribution&#8217;s development.</p>
+
+<p>The <a href="http://search.cpan.org/perldoc?App::local::lib::helper">App::local::lib::helper</a> scripts make this really easy. As per the docs, I combine the helper with <a href="http://search.cpan.org/perldoc?App::cpanminus">App::cpanminus</a> (<code>cpanm</code>) for all installation.</p>
+
+<p>To bootstrap a new local::lib area, I wrote this simple shell script:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">#!/bin/bash
+# script named "new-ll"
+
+if [ -z $1 ]
+  then
+    echo 'pass the distribution name, please'
+    exit
+fi
+
+echo "creating local::lib for $1 ..."
+sleep 3
+
+curl -L http://cpanmin.us/ | perl - --notest --quiet --local-lib \
+    ~/perl5/$1 \
+    App::cpanminus \
+    Dist::Zilla \
+    App::local::lib::helper
+</pre>
+
+<p>. <br />
+Entering the correct environment for a distribution uses another helper script:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">#!/bin/bash
+# script named "go"
+
+if [ -z $1 ]
+  then
+    echo 'pass the distribution name, please'
+    exit
+fi
+
+~/perl5/$1/bin/localenv bash
+</pre>
+
+<p>. <br />
+Which means my workflow for a new distribution is:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">$ new-ll New-Dist-Name
+$ go New-Dist-Name
+</pre>
+
+<p>. <br />
+Any Perl distributions installed in that shell (for example from <code>dzil authordeps | cpanm</code> or <code>dzil listdeps | cpanm</code>) will be placed into the new local::lib. It&#8217;s a simple ^D to exit.</p>
+
+<p>However it&#8217;s not obvious that you&#8217;re within this special environment, so editing Bash&#8217;s <code>$PS1</code> variable (the shell prompt) to include the following, can help:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">echo $PERL5LIB | cut -d'/' -f5
+</pre>
+
+<p>. <br />
+My deep thanks to the authors of the distributions used to create this neat setup.</p>
+
+        
+
+    ]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/07/16/locallibs-for-dist-development/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Perl on a Windows 7 laptop</title>
+		<link>http://blogs.perl.org/users/oliver_gorwits/2011/04/perl-on-a-windows-7-laptop.html?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=perl-on-a-windows-7-laptop</link>
+		<comments>http://blogs.perl.org/users/oliver_gorwits/2011/04/perl-on-a-windows-7-laptop.html#comments</comments>
+		<pubDate>Mon, 18 Apr 2011 20:33:58 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false"></guid>
+		<description><![CDATA[I&#38;#8217;ve been setting up my Windows 7 laptop to have as complete a Perl development environment as possible. I don&#38;#8217;t have a choice about the operating system in this case, but I am used to the Unix-style environment, which I&#38;#8217;d like to maintain. One option is to use Cygwin and just dive into there for everything. However I do want some of my code to work natively under Windows so there is still a need to run Perl tests at a Windows console. I might as well develop there too, if I can. I&#38;#8217;ve ended up with the following steps, which are in places bodgy hacks, but show the principle works at least: Git for Windows Strawberry Perl Vim fix Windows Console perldoc fix local::lib cpanm installer Local CPAN mirror First thing is to install Git for Windows, known as msysgit (don&#38;#8217;t alter any of the Windows PATH settings at install time). It&#38;#8217;s a great little system which ships with Bash, Vim, and a suite of other handy tools. On this platform you probably want to set the End Of Line character(s) to ensure consistency. I have the following in my ~/.gitconfig: [core] editor = vim eol = lf [color] ui = true The bundled Perl in msysgit is a little ancient (5.8.8). Download and install the excellent Strawberry Perl distribution. Our goal is to have perl within the msysgit environment be Strawberry Perl&#38;#8217;s perl. Move C:\Program Files\Git\bin\perl.exe out the way (to perl-g.exe) and copy C:\strawberry\perl\bin\perl.exe in its place (there are no symbolic links under Windows). By changing the Perl though, you knacker parts of Git which use Perl (for example git commit --interactive). The way to fix this is to keep a copy of the original msysgit perl (as above) and then edit any of the scripts in C:\Program Files\Git\libexec\git-core to have #!/usr/bin/perl-g at the top. Here&#38;#8217;s a list: git-add--interactive git-svn git-difftool git-relink git-send-email The msysgit bundled Vim also needs some help, in the form of syntax files. I downloaded and installed GVim for Windows, and copied the .vim files from C:\Program Files\Vim\vim73\syntax to C:\Program Files\Git\share\vim\vim73\syntax but perhaps there&#38;#8217;s a less brute-force way. At the least, you should get hold of perl.vim and pod.vim. The Windows console program leaves a lot to be desired. I found a reasonable alternative in the form of Console2, an open source project hosted on Sourceforge. Download and install that (well, copy to Program Files). You&#38;#8217;ll definitely want to edit its Settings so under Hotkeys, set Close tab and Rename tab to an alternative, or None (by doing Clear then Assign for each). Also under Settings in the Console section I set the Shell to be C:\Program Files\Git\bin\sh.exe --login -i and the Startup dir to be a folder I created in my user area for Perl development. Now, pinning the Console2 application to the Start Menu means it can be opened straight into msysgit&#38;#8217;s Bash. At the shell I installed my own vimrc file to ~/.vimrc, and created a ~/.bash_profile containing the following: alias ll=&#34;ls -l --color&#34; alias view=&#34;vim -R&#34; export TERM=vt100 Strawberry Perl ships with many useful tools in its bin directory. Some of them are Windows batch files (.bat) because the expectatation is that you&#38;#8217;re running Perl from the native Windows console. In this setup we&#38;#8217;re within a Bash shell so they don&#38;#8217;t work. One thing you&#38;#8217;ll probably miss is perldoc, so create a ~/bin directory and in ~/bin/perldoc put the following: #!/usr/bin/perl require 5; BEGIN { $^W = 1 if $ENV{'PERLDOCDEBUG'} } use Pod::Perldoc; exit( Pod::Perldoc-&#38;gt;run() ); I always use a local::lib area for the modules used in my development, and Strawberry Perl ships with this module. Simply run the llw32helper program from the normal Windows console and it&#38;#8217;ll ask you for the new local::lib location then set Registry entries appropriately. One reboot later and perl -V should include this new library path. From Strawberry Perl&#38;#8217;s CPAN shell (perl -MCPAN -e shell) I only install one module - App::cpanminus. This provides a new tool, cpanm, for installing modules. Note that since the previous local::lib setup, App::cpanminus is installed to that location rather than Strawberry Perl&#38;#8217;s standard library path. The final step is to have a local CPAN mirror. This means I can work on the Windows 7 laptop from a remote part of a Scottish Hebridean island, for instance, fully off-line. This uses the CPAN::Mini and CPAN::Mini::Webserver modules, both installed via the cpanm utility. The minicpan command line app will create the mirror for you. The minicpan_webserver app fires up an interface at http://localhost:2963/. Here are example commands used with this setup, which I&#38;#8217;ve made into Bash aliases (also set your ~/.minicpanrc as per the docs): minicpan -l /path/to/local/minicpan -r http://your.cpan.mirror.example.com/ cpanm --mirror file:///C:/path/to/local/minicpan --mirror-only -v Module::Name A remaining niggle is that cursor keys don&#38;#8217;t seem to work in less (Ctrl-N and Ctrl-K are alternatives). I&#38;#8217;ve not yet found a fix for this; however they do work in Vim. Another issue I found is that, bizarrely, cpanm sometimes fails unless the -v option is provided. Also with cpanm it seems more successful at unpacking dist tarballs when treating the local platform as UNIX rather than WIN32 so I hacked the script to do that. I wish I were more capable on this platform to begin to debug this (please email me if you want to collaborate). That&#38;#8217;s pretty much where I&#38;#8217;m at, right now. I&#38;#8217;d welcome constructive feedback on this process in the comments (at blogs.perl.org if you&#38;#8217;re reading a syndication). My deep thanks and respect to all the developers of the above tools and libraries, who have made this possible.... <a class="more-link" href="http://blogs.perl.org/users/oliver_gorwits/2011/04/perl-on-a-windows-7-laptop.html">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[
+        <p>I&#8217;ve been setting up my Windows 7 laptop to have as complete a Perl development environment as possible. I don&#8217;t have a choice about the operating system in this case, but I am used to the Unix-style environment, which I&#8217;d like to maintain.</p>
+
+<p>One option is to use <a href="http://www.cygwin.com/">Cygwin</a> and just dive into there for everything. However I do want <a href="http://search.cpan.org/perldoc?Net::CLI::Interact">some of my code</a> to work natively under Windows so there is still a need to run Perl tests at a Windows console. I might as well develop there too, if I can. I&#8217;ve ended up with the following steps, which are in places bodgy hacks, but show the principle works at least:</p>
+
+<ol>
+<li>Git for Windows</li>
+<li>Strawberry Perl</li>
+<li>Vim fix</li>
+<li>Windows Console</li>
+<li>perldoc fix</li>
+<li>local::lib</li>
+<li>cpanm installer</li>
+<li>Local CPAN mirror</li>
+</ol>
+
+<p>First thing is to install <a href="http://code.google.com/p/msysgit/">Git for Windows</a>, known as <a href="http://code.google.com/p/msysgit/downloads/list">msysgit</a> (don&#8217;t alter any of the Windows PATH settings at install time). It&#8217;s a great little system which ships with Bash, Vim, and a suite of other handy tools. On this platform you probably want to set the End Of Line character(s) to ensure consistency. I have the following in my <code>~/.gitconfig</code>:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">[core]
+    editor = vim
+    eol = lf
+[color]
+    ui = true
+</pre>
+
+<p>The bundled Perl in msysgit is a little ancient (5.8.8). Download and install the excellent <a href="http://strawberryperl.com/">Strawberry Perl</a> distribution. Our goal is to have <code>perl</code> within the msysgit environment be Strawberry Perl&#8217;s <code>perl</code>. Move <code>C:\Program Files\Git\bin\perl.exe</code> out the way (to <code>perl-g.exe</code>) and copy <code>C:\strawberry\perl\bin\perl.exe</code> in its place (there are no symbolic links under Windows).</p>
+
+<p>By changing the Perl though, you knacker parts of Git which use Perl (for example <code>git commit --interactive</code>). The way to fix this is to keep a copy of the original msysgit <code>perl</code> (as above) and then edit any of the scripts in <code>C:\Program Files\Git\libexec\git-core</code> to have <code>#!/usr/bin/perl-g</code> at the top. Here&#8217;s a list:</p>
+
+<ul>
+<li><code>git-add--interactive</code></li>
+<li><code>git-svn</code></li>
+<li><code>git-difftool</code></li>
+<li><code>git-relink</code></li>
+<li><code>git-send-email</code></li>
+</ul>
+
+<p>The msysgit bundled Vim also needs some help, in the form of syntax files. I downloaded and installed <a href="http://www.vim.org/download.php#pc">GVim for Windows</a>, and copied the <code>.vim</code> files from <code>C:\Program Files\Vim\vim73\syntax</code> to <code>C:\Program Files\Git\share\vim\vim73\syntax</code> but perhaps there&#8217;s a less brute-force way. At the least, you should get hold of <code>perl.vim</code> and <code>pod.vim</code>.</p>
+
+<p>The Windows console program leaves a lot to be desired. I found a reasonable alternative in the form of <a href="http://sourceforge.net/projects/console/">Console2</a>, an open source project hosted on Sourceforge. Download and install that (well, copy to Program Files). You&#8217;ll definitely want to edit its Settings so under Hotkeys, set Close tab and Rename tab to an alternative, or None (by doing Clear then Assign for each). Also under Settings in the Console section I set the Shell to be <code>C:\Program Files\Git\bin\sh.exe --login -i</code> and the Startup dir to be a folder I created in my user area for Perl development. Now, pinning the Console2 application to the Start Menu means it can be opened straight into msysgit&#8217;s Bash.</p>
+
+<p>At the shell I installed <a href="http://gorwits.me.uk/data/files/vimrc">my own vimrc</a> file to <code>~/.vimrc</code>, and created a <code>~/.bash_profile</code> containing the following:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">alias ll="ls -l --color"
+alias view="vim -R"
+export TERM=vt100
+</pre>
+
+<p>Strawberry Perl ships with many useful tools in its bin directory. Some of them are Windows batch files (<code>.bat</code>) because the expectatation is that you&#8217;re running Perl from the native Windows console. In this setup we&#8217;re within a Bash shell so they don&#8217;t work. One thing you&#8217;ll probably miss is perldoc, so create a <code>~/bin</code> directory and in <code>~/bin/perldoc</code> put the following:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">#!/usr/bin/perl
+require 5;
+BEGIN { $^W = 1 if $ENV{'PERLDOCDEBUG'} }
+use Pod::Perldoc;
+exit( Pod::Perldoc-&gt;run() );
+</pre>
+
+<p>I always use a <a href="http://search.cpan.org/perldoc?local::lib">local::lib</a> area for the modules used in my development, and Strawberry Perl ships with this module. Simply run the <code>llw32helper</code> program from the normal Windows console and it&#8217;ll ask you for the new local::lib location then set Registry entries appropriately. One reboot later and <code>perl -V</code> should include this new library path.</p>
+
+<p>From Strawberry Perl&#8217;s CPAN shell (<code>perl -MCPAN -e shell</code>) I only install one module - <a href="http://search.cpan.org/perldoc?App::cpanminus">App::cpanminus</a>. This provides a new tool, <code>cpanm</code>, for installing modules. Note that since the previous local::lib setup, App::cpanminus is installed to that location rather than Strawberry Perl&#8217;s standard library path.</p>
+
+<p>The final step is to have a local CPAN mirror. This means I can work on the Windows 7 laptop from a <a href="http://www.islayjura.com/">remote part of a Scottish Hebridean island</a>, for instance, fully off-line. This uses the <a href="http://search.cpan.org/perldoc?CPAN::Mini">CPAN::Mini</a> and <a href="http://search.cpan.org/perldoc?CPAN::Mini::Webserver">CPAN::Mini::Webserver</a> modules, both installed via the <code>cpanm</code> utility. The <code>minicpan</code> command line app will create the mirror for you. The <code>minicpan_webserver</code> app fires up an interface at <code>http://localhost:2963/</code>. Here are example commands used with this setup, which I&#8217;ve made into Bash <em>aliases</em> (also set your <code>~/.minicpanrc</code> as per the docs):</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">minicpan -l /path/to/local/minicpan -r http://your.cpan.mirror.example.com/
+cpanm --mirror file:///C:/path/to/local/minicpan --mirror-only -v Module::Name
+</pre>
+
+<p>A remaining niggle is that cursor keys don&#8217;t seem to work in <code>less</code> (Ctrl-N and Ctrl-K are alternatives). I&#8217;ve not yet found a fix for this; however they do work in Vim. Another issue I found is that, bizarrely, <code>cpanm</code> sometimes fails unless the <code>-v</code> option is provided. Also with <code>cpanm</code> it seems more successful at unpacking dist tarballs when treating the local platform as UNIX rather than WIN32 so I hacked the script to do that. I wish I were more capable on this platform to begin to debug this (please email me if you want to collaborate).</p>
+
+<p>That&#8217;s pretty much where I&#8217;m at, right now. I&#8217;d welcome constructive feedback on this process in the comments (at blogs.perl.org if you&#8217;re reading a syndication). My deep thanks and respect to all the developers of the above tools and libraries, who have made this possible.</p>
+
+        
+
+    ]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/04/18/perl-on-a-windows-7-laptop/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Dist::Zilla::PluginBundle::Author:: namespace</title>
+		<link>http://blogs.perl.org/users/oliver_gorwits/2011/02/dist-zilla-pluginbundle-author-namespace.html?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=distzillapluginbundleauthor-namespace</link>
+		<comments>http://blogs.perl.org/users/oliver_gorwits/2011/02/dist-zilla-pluginbundle-author-namespace.html#comments</comments>
+		<pubDate>Sat, 05 Feb 2011 19:20:16 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false"></guid>
+		<description><![CDATA[Following the lead of Mike Doherty (DOHERTY) I've moved my own Dist::Zilla Author PluginBundle into a new namespace: Dist::Zilla::PluginBundle::Author::OLIVER Having Author PluginBundles is a great system for saving me time and allowing others to build my modules with ease. However I had to agree to Mike's point that polluting the Dist::Zilla::PluginBundle:: namespace wasn't so cool. It also makes things more clear in the dist.ini file: [@Author::OLIVER] If you have an Author PluginBundle, please consider moving it into this new namespace. You can of course keep the old one around, in parallel, until code using it has moved off to the backpan.... <a class="more-link" href="http://blogs.perl.org/users/oliver_gorwits/2011/02/dist-zilla-pluginbundle-author-namespace.html">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[
+        <p>Following the lead of Mike Doherty (<a href="http://search.cpan.org/~doherty/" >DOHERTY</a>) I've moved my own <a href="http://search.cpan.org/perldoc?Dist::Zilla" >Dist::Zilla</a> Author PluginBundle into a new namespace:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">Dist::Zilla::PluginBundle::Author::OLIVER
+</pre>
+
+<p>Having Author PluginBundles is a great system for saving me time and allowing others to build my modules with ease. However I had to agree to Mike's point that polluting the <code>Dist::Zilla::PluginBundle::</code> namespace wasn't so cool. It also makes things more clear in the <code>dist.ini</code> file:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">[@Author::OLIVER]
+</pre>
+
+<p>If you have an Author PluginBundle, please consider moving it into this <a href="http://search.cpan.org/search?query=Dist::Zilla::PluginBundle::Author&mode=all" >new namespace</a>. You can of course keep the old one around, in parallel, until code using it has moved off to the backpan.</p>
+        
+    ]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/02/05/distzillapluginbundleauthor-namespace/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Adding a new RANCID device class</title>
+		<link>http://blog.gorwits.me.uk/2011/02/04/adding-a-new-rancid-device-class/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=adding-a-new-rancid-device-class</link>
+		<comments>http://blog.gorwits.me.uk/2011/02/04/adding-a-new-rancid-device-class/#comments</comments>
+		<pubDate>Fri, 04 Feb 2011 12:21:18 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[networking]]></category>
+		<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=312</guid>
+		<description><![CDATA[The RANCID system is used by many network service providers to backup and audit their network device configurations. It supports many device vendors (Cisco, Juniper, etc) but you might run into a vendor which is not supported. Adding a new &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/02/04/adding-a-new-rancid-device-class/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>The <a href="http://www.shrubbery.net/rancid/" target="_blank">RANCID</a> system is used by many network service providers to backup and audit their network device configurations. It supports many device vendors (Cisco, Juniper, etc) but you might run into a vendor which is not supported. Adding a new device class (in other words, a vendor) to RANCID is not difficult.</p>
+<p>Starting with the basics, we need a script which will connect to the device and emit the output of any commands you want to run there. You could clone and modify one of the existing RANCID scripts such as <code>/usr/bin/jrancid</code> or write your own. Either way, when run it needs to:</p>
+<ul>
+<li>Accept as its final command line argument the name of the device</li>
+<li>Save output to a file in the current working directory, called <code>&lt;devicename&gt;.new</code></li>
+</ul>
+<p>Install this script into <code>/usr/bin/...</code> with a suitable name.</p>
+<p>The next step is to make RANCID aware of this new class of device. Load up the file <code>/usr/bin/rancid-fe</code> in your editor, and scroll down to see the lookup table for all device classes. Add an entry in there which has a &#8220;friendly name&#8221; as the key on the left, and the name of your script (created in the previous step) as the value on the right.</p>
+<p>That&#8217;s it, you can now use this device class (the &#8220;friendly name&#8221;) in your <code>router.db</code> files and RANCID will execute your script to retrieve the configuration. You aren&#8217;t limited only to devices with a CLI now, of course. Your script could retrieve configuration (or any other text data) from any source by any means and save it to the <code>.new</code> file.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/02/04/adding-a-new-rancid-device-class/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

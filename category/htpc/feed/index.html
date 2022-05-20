@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; htpc</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/htpc/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>Virtual Machine on Mythbuntu</title>
+		<link>http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=virtual-machine-on-mythbuntu</link>
+		<comments>http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/#comments</comments>
+		<pubDate>Wed, 04 Jan 2012 23:45:10 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[htpc]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[networking]]></category>
+		<category><![CDATA[virtualization]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=728</guid>
+		<description><![CDATA[I have a Linux box running the excellent Mythbuntu (Ubuntu-based) distribution, headless (that is, without a monitor). Quite a lot of the time it&#8217;s sat around doing nothing (and even during recording or playback the CPU is idle). For some &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>I have a Linux box running the excellent <a href="http://www.mythbuntu.org/" target="_blank">Mythbuntu</a> (Ubuntu-based) distribution, headless (that is, without a monitor). Quite a lot of the time it&#8217;s sat around doing nothing (and even during recording or playback the CPU is idle).</p>
+<p>For some side-projects I wanted a clean Linux installation to mess about with. It seemed a good idea to run virtual machines and make the most of existing hardware; what surprised me was just how easy this turned out to be <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+<p>The <a href="https://help.ubuntu.com/community/KVM" target="_blank">Ubuntu documentation for KVM</a> is excellent, I must say, but I fancied distilling things further and blogging here, as I typically do to record most of my technical adventures. I&#8217;m not going to bother with any of the GUI VM builder tools or even the Q&amp;A install script, but simply specify the VM config fully, up front.</p>
+<p>Optionally, check whether your CPU has virtualization extensions &#8211; any fairly recent desktop chip should do. On Ubuntu there&#8217;s a command called <code>kvm-ok</code>, or you can poke <code>/proc/cpuinfo</code>:</p>
+<pre class="brush: plain; title: ; notranslate">
+# kvm-ok
+INFO: /dev/kvm exists
+KVM acceleration can be used
+
+# egrep -q '(vmx|svm)' /proc/cpuinfo &amp;&amp; echo 'good to go!'
+good to go!
+</pre>
+<p>First up install the KVM software:</p>
+<pre class="brush: plain; title: ; notranslate">
+# apt-get install qemu-kvm virtinst
+</pre>
+<p>This will pull in all the necessary packages. On other platforms it should be similar, but the <code>virtinst</code> package is often renamed (e.g. <code>virt-install</code> or <code>vm-install</code>).</p>
+<p>Before getting stuck in to KVM we need to reconfigure the system&#8217;s network adapter to be a bridge. I prefer to set a static IP for servers on my home LAN and use the <code>/etc/network/interfaces</code> file for configuration:</p>
+<pre class="brush: plain; title: ; notranslate">
+# cat &gt; /etc/network/interfaces
+auto lo eth0 br0
+iface lo inet loopback
+iface eth0 inet manual
+iface br0 inet static
+    address &lt;IP-ADDRESS&gt;
+    network &lt;NETWORK-ADDRESS&gt;
+    netmask &lt;NETMASK&gt;
+    broadcast &lt;BROADCAST&gt;
+    gateway &lt;GATEWAY&gt;
+    bridge_ports eth0
+    bridge_stp off
+    bridge_fd 0
+    bridge_maxwait 0
+    post-up ip link set br0 address &lt;MAC-ADDRESS&gt;
+
+(hit ctrl-D)
+</pre>
+<p>Obviously, fill in the blanks for your own system&#8217;s IP and MAC address details. Next we can blow away Ubuntu&#8217;s network mangler daemon and poke the KVM service into life:</p>
+<pre class="brush: plain; title: ; notranslate">
+# apt-get --purge remove network-manager
+# /etc/init.d/networking restart
+# service libvirt-bin start
+</pre>
+<p>Now find somewhere on your disk for the VMs and a little script to live, and create a directory. I named mine <code>/opt/vm</code>. In there, try starting with this little shell script:</p>
+<pre class="brush: plain; title: ; notranslate">
+#!/bin/bash
+virt-install --name=sandbox --ram=512 --vcpus=2 --os-type=linux \
+  --autostart --disk=path=/opt/vm/sandbox.img,size=50 \
+  --graphics=vnc,listen=0.0.0.0,port=5900 --noautoconsole \
+  --cdrom=/opt/vm/mythbuntu-11.10-desktop-i386.iso
+</pre>
+<p>Walking through the above, it should be clear we&#8217;re creating a new VM called <code>sandbox</code> (this is the name KVM knows it by, not a hostname), with 512MB RAM, two virtual CPUs, a Linux-friendly boot environment, and 50GB (sparse) disk. The VM will be automatically booted by the KVM service when its host system boots. The last line specifies an installation CD image from which the new VM will boot.</p>
+<p>For the graphics configuration I&#8217;ve asked for a headless system with the console being offered up via a VNC port on the host server. Note that the <code>listen=0.0.0.0</code> is <em>essential</em> to connect remotely (e.g. over your home LAN) to the console because otherwise the VNC port is simply bound to the loopback interface.</p>
+<p>Running the above will bring the new VM into life:</p>
+<pre class="brush: plain; title: ; notranslate">
+# ./sandbox.sh
+
+Starting install...
+Creating storage file sandbox.img                      |  50 GB     00:00
+Creating domain...                                     |    0 B     00:01
+Domain installation still in progress. You can reconnect to
+the console to complete the installation process.
+</pre>
+<p>What KVM means by &#8220;installation still in progress&#8221; is that it knows this system is installing from the boot CD, so you should go right ahead and fire up VNC and connect to the console (port 5900 on the host server) to complete the process.</p>
+<p>You&#8217;ll find that KVM saved the <code>sandbox</code> VM configuration in XML format in the <code>/etc/libvirt/qemu</code> directory, so that&#8217;s where to go to tweak the settings. <a href="http://libvirt.org/formatdomain.html" target="_blank">Good documentation</a> is available at the KVM website.</p>
+<p>Be aware, however, that because KVM assumed the attached CD ISO was only needed for initial install, it&#8217;s not featured in the saved config as a permanent connection. You can, of course, remedy this (check out the <code>virt-install</code> man page for starters).</p>
+<p>To finish off, here&#8217;s how to manage the lifecycle (start, restart, blow away, etc) of the VM. Use the <code>virsh</code> utility which can either be run with a single instruction or with no parameters for an interactive CLI:</p>
+<pre class="brush: plain; title: ; notranslate">
+# virsh
+Welcome to virsh, the virtualization interactive terminal.
+virsh # list
+ Id Name                 State
+----------------------------------
+ 10 sandbox              running
+
+virsh # destroy
+error: command 'destroy' requires &lt;domain&gt; option
+virsh # destroy sandbox
+Domain sandbox destroyed
+
+virsh # create sandbox
+error: Failed to open file 'sandbox': No such file or directory
+
+virsh # create sandbox.xml
+Domain sandbox created from sandbox.xml
+
+virsh # list
+ Id Name                 State
+----------------------------------
+ 11 sandbox              running
+</pre>
+<p>Try the <code>help</code> command, and note that the VM&#8217;s XML settings file may need updating if you change things  (see <code>dumpxml</code>).</p>
+<p>I hope this is a useful and quick tutorial for KVM on Ubuntu&#8230; Good Luck!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>MythTV Transcoding (5): HTML5 Playback in MythWeb</title>
+		<link>http://blog.gorwits.me.uk/2011/11/17/mythtv-transcoding-5-html5-playback-in-mythweb/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=mythtv-transcoding-5-html5-playback-in-mythweb</link>
+		<comments>http://blog.gorwits.me.uk/2011/11/17/mythtv-transcoding-5-html5-playback-in-mythweb/#comments</comments>
+		<pubDate>Thu, 17 Nov 2011 21:49:51 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[htpc]]></category>
+		<category><![CDATA[mythtv]]></category>
+		<category><![CDATA[transcoding]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=698</guid>
+		<description><![CDATA[Iâ€™m doing a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/11/17/mythtv-transcoding-5-html5-playback-in-mythweb/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Iâ€™m doing a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little more advanced.</p>
+<ul>
+<li><em>The complete series of articles is available atÂ <a href="http://blog.gorwits.me.uk/category/transcoding/" target="_self">this page</a></em></li>
+</ul>
+<p><a href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-4-streaming-h-264-from-mythweb/" target="_blank">Last time</a> we went through the steps to transcode a recording into the H.264 format, required for playback on iPad (or other Apple devices &#8211; iPod, iPhone, Mac OS X, etc).</p>
+<p>Today we&#8217;ll complete the series by embedding an HTML5 Video player into MythWeb which will stream these files. Of course, this means playback isn&#8217;t only possible on iPad, but also any compatible browser platform. The original plan was simply to provide a file download link in MythWeb, but my friend <a href="http://www.colinmoreyphotography.co.uk/" target="_blank">Colin</a> rightly suggested an embedded HTML5 Video player would be much more awesome.</p>
+<p>Your MythWeb files are probably installed somewhere like <code>/usr/share/mythtv/mythweb</code>. Open upÂ <code>modules/tv/tmpl/default/detail.php</code> and replace the default embedded player with a new HTML5 Video tag. You should find this around line 797. Replace the two lines comprising the Direct Download hyperlink with the following:</p>
+<pre class="brush: php; title: ; notranslate">
+&lt;video controls preload=&quot;none&quot; width=&quot;360&quot; height=&quot;153&quot;&gt;
+  &lt;source
+    src=&quot;/h264xcode/&lt;?php echo $program-&gt;chanid ?&gt;_&lt;?php echo date( 'YmdHis', $program-&gt;recstartts ) ?&gt;.m4v&quot;&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+</pre>
+<p>The above requires that you make the H.264 files available through your MythWeb web server. In my case, I simply created a symlink from the server&#8217;sÂ <code>DocumentRoot</code> to where the H.264 files live (so, change this to reflect your own H.264 file location):</p>
+<pre class="brush: bash; title: ; notranslate">
+ln -s /mnt/mythtv-video/Videos/iPad /var/www/h264xcode
+</pre>
+<p>The result is the following, once the transcoded file appears on disk:</p>
+<p><a rel="attachment wp-att-703" href="http://blog.gorwits.me.uk/2011/11/17/mythtv-transcoding-5-html5-playback-in-mythweb/screen-shot-2011-11-17-at-21-20-16/"><img class="aligncenter size-full wp-image-703" title="embedded html5 player" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/11/Screen-shot-2011-11-17-at-21.20.16.png" alt="" width="438" height="534" /></a></p>
+<p>And we&#8217;re done! Browsing to the MythWeb site on an iPad shows the embedded player which, when clicked, opens fullscreen for native playback. My deep thanks to all those working on the software used in this series of articles, and I also hope you found it a useful read.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/11/17/mythtv-transcoding-5-html5-playback-in-mythweb/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		</item>
+		<item>
+		<title>Painless MythTV Channel Configuration</title>
+		<link>http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=painless-mythtv-channel-configuration</link>
+		<comments>http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/#comments</comments>
+		<pubDate>Thu, 10 Nov 2011 23:07:46 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[htpc]]></category>
+		<category><![CDATA[mythtv]]></category>
+		<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=687</guid>
+		<description><![CDATA[MythTV &#8211; a brilliant homebrew digital video recorder system. Killer features include being able to play content over the LAN at home, scheduling recordings via the web, and generally poke it to integrate with all kinds of devices (e.g. see &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p><a href="http://www.mythtv.org/" target="_blank">MythTV</a> &#8211; a brilliant homebrew digital video recorder system. Killer features include being able to play content over the LAN at home, scheduling recordings via the web, and generally poke it to integrate with all kinds of devices (e.g. see my previous posts on <a href="http://blog.gorwits.me.uk/category/transcoding/" target="_blank">H.264 transcoding</a>). Even better, <a href="http://www.mythbuntu.org/" target="_blank">Mythbuntu</a> makes installation a doddle.</p>
+<p>However the most hated part for me is configuring TV sources and channels &#8211; digital terrestrial via an aerial, and digital via satellite. MythTV&#8217;s built-in scanner works at best intermittently (for me), and when it does, comes up with 1,000 shopping and adult channels which drown out the 20 or so I&#8217;m really interested in.</p>
+<p>Then there&#8217;s TV listings. All credit to the folks working on <a href="http://wiki.xmltv.org/index.php/Main_Page" target="_blank">XMLTV</a> and the Radio Times listings grabber &#8211; that&#8217;s some impressive work. But stitching it into MythTV usually ends up with hand-editing the database to insert XMLTV IDs. User friendly? I think not.</p>
+<p>Partly this is because these tools are used internationally and nothing is standardised between countries. Even in the UK there are three ways to get TV listings (EIT over the air, Bleb, and Radio Times).</p>
+<p>Finally I snapped, and wrote a Perl program to do all this work. It feels so nice now to have a simple, lightweight, repeatable process to configure sources and channels. That&#8217;s what good automation is all about.</p>
+<p>The code will only work in the UK, but might be a starting point for those elsewhere. It configures XMLTV IDs, but that doesn&#8217;t mean you have to use the Radio Times grabber. You still have to go through MythTV&#8217;s setup program to tell it about tuner cards (<em>before</em> running the import program) but that&#8217;s not hard work.</p>
+<p>The <a href="https://github.com/ollyg/mythtv_channel_import" target="_blank">code</a> and <a href="https://github.com/ollyg/mythtv_channel_import/blob/master/README.pod" target="_blank">instructions</a> are hosted on GitHub. Let me know if you use it, and how you get on. Don&#8217;t forget to back up your database (using MythTV&#8217;sÂ <code>mythconverg_*</code> scripts) before starting!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Persistent DVB tuner device names</title>
+		<link>http://blog.gorwits.me.uk/2011/01/31/persistent-dvb-tuner-device-names/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=persistent-dvb-tuner-device-names</link>
+		<comments>http://blog.gorwits.me.uk/2011/01/31/persistent-dvb-tuner-device-names/#comments</comments>
+		<pubDate>Mon, 31 Jan 2011 21:47:59 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[htpc]]></category>
+		<category><![CDATA[linux]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=101</guid>
+		<description><![CDATA[I&#8217;m a user of the excellent MythTV PVR software, and in my system are two tuners: one digital terrestrial and one digital satellite. A problem I had for some time was that their device names under linux were not the &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/01/31/persistent-dvb-tuner-device-names/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>I&#8217;m a user of the excellent <a href="http://mythtv.org/" target="_blank">MythTV</a> <a href="http://en.wikipedia.org/wiki/Digital_video_recorder" target="_blank">PVR</a> software, and in my system are two tuners: one digital terrestrial and one digital satellite. A problem I had for some time was that their device names under linux were not the same on each boot, so MythTV got very upset and would not record things.</p>
+<p>After digging around online for ages I found a document with the trick to keeping persistent device names for tuner cards, which I&#8217;m sorry to say I&#8217;ve now lost. Here goes, for the sake of Google archiving&#8230;</p>
+<p>Start with <a href="http://prefetch.net/articles/linuxpci.html" target="_blank">listing the PCI devices</a> to see their Vendor and Bus ID:</p>
+<pre class="brush: plain; highlight: [4,11]; title: ; notranslate">
+oliver@htpc:~$ lspci -nnv
+&lt;snipped...&gt;
+
+03:05.0 Multimedia controller [0480]: Philips Semiconductors SAA7146 [1131:7146] (rev 01)
+	Subsystem: Technotrend Systemtechnik GmbH S2-3200 [13c2:1019]
+	Flags: bus master, medium devsel, latency 64, IRQ 20
+	Memory at febffc00 (32-bit, non-prefetchable) [size=512]
+	Kernel driver in use: budget_ci dvb
+	Kernel modules: budget-ci
+
+03:06.0 Multimedia controller [0480]: Philips Semiconductors SAA7146 [1131:7146] (rev 01)
+	Subsystem: Technotrend Systemtechnik GmbH Technotrend-Budget/Hauppauge WinTV-NOVA-T DVB card [13c2:1005]
+	Flags: bus master, medium devsel, latency 64, IRQ 21
+	Memory at febff800 (32-bit, non-prefetchable) [size=512]
+	Kernel driver in use: budget dvb
+	Kernel modules: budget
+</pre>
+<p>Hopefully there&#8217;s enough information for you to tell which card is which, if as like my situation the (highlighted) description lines are almost identical. Above, the terrestrial card is <code>WinTV-NOVA-T</code> and the satellite card is <code>S2-3200</code>.</p>
+<p>The pieces of information you want to record for each card are the Bus ID &#8211; the number such as <code>03:05.0</code> at the start of the highlighted line, and the Vendor ID &#8211; the first number before the colon in square brackets such as <code>1131</code>.</p>
+<p>We&#8217;re going to use <a href="http://reactivated.net/writing_udev_rules.html" target="_blank">udev rules</a>, but not to set the device names, instead creating alias (or duplicate) names which are used by MythTV configuration.</p>
+<pre class="brush: plain; title: ; notranslate">
+oliver@htpc:~$ cat /etc/udev/rules.d/15-videosymlinks.rules
+
+SUBSYSTEM==&quot;dvb&quot;, ATTRS{vendor}==&quot;0x1131&quot;, KERNELS==&quot;0000:03:06.0&quot;, PROGRAM=&quot;/bin/sh -c 'K=%k; K=$${K#dvb}; printf dvb/adapter101/%%s $${K#*.}'&quot;, SYMLINK+=&quot;%c&quot;
+SUBSYSTEM==&quot;dvb&quot;, ATTRS{vendor}==&quot;0x1131&quot;, KERNELS==&quot;0000:03:05.0&quot;, PROGRAM=&quot;/bin/sh -c 'K=%k; K=$${K#dvb}; printf dvb/adapter102/%%s $${K#*.}'&quot;, SYMLINK+=&quot;%c&quot;
+</pre>
+<p>I&#8217;ve identified the cards by matching both their Vendor ID (note it&#8217;s Hex so prefixed with <code>0x</code>) and Bus ID, and chosen names <code>adapter101</code> and <code>adapter102</code> (scroll to the right to see). The high numbers are because, as I explained, the original device names are still present:</p>
+<pre class="brush: plain; title: ; notranslate">
+oliver@htpc:~$ ls -1 /dev/dvb/
+adapter0
+adapter1
+adapter101
+adapter102
+</pre>
+<p>Within these alias device directories are in fact symlinks (automatically created!) to the correct card device data, whatever its name happens to be on this boot:</p>
+<pre class="brush: plain; title: ; notranslate">
+oliver@htpc:~$ ll /dev/dvb/adapter101/
+total 0
+drwxr-xr-x 2 root root 120 2010-12-12 13:03 ./
+drwxr-xr-x 6 root root 120 2010-12-12 13:03 ../
+lrwxrwxrwx 1 root root  18 2010-12-12 13:03 demux0 -&gt; ../adapter0/demux0
+lrwxrwxrwx 1 root root  16 2010-12-12 13:03 dvr0 -&gt; ../adapter0/dvr0
+lrwxrwxrwx 1 root root  21 2010-12-12 13:03 frontend0 -&gt; ../adapter0/frontend0
+lrwxrwxrwx 1 root root  16 2010-12-12 13:03 net0 -&gt; ../adapter0/net0
+</pre>
+<p>When configuring MythTV use the new alias names and this problem is solved.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/01/31/persistent-dvb-tuner-device-names/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

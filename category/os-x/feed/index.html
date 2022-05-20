@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; OS X</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/os-x/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>Understanding Stored Passwords in Chrome on OS X</title>
+		<link>http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=understanding-stored-passwords-in-chrome-on-os-x</link>
+		<comments>http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/#comments</comments>
+		<pubDate>Sat, 09 Jun 2012 16:06:10 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[OS X]]></category>
+		<category><![CDATA[productivity]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=757</guid>
+		<description><![CDATA[When my Mac&#8217;s hard disk died, I replaced it with an SSD and reinstalled OS X. At the time I also restored my user&#8217;s &#8220;login.keychain&#8221; file from backup, because I knew that&#8217;s where Chrome had stashed all my stored web &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>When my Mac&#8217;s hard disk died, I replaced it with an SSD and reinstalled OS X. At the time I also restored my user&#8217;s &#8220;<code>login.keychain</code>&#8221; file from backup, because I knew that&#8217;s where Chrome had stashed all my stored web site passwords. Well, it turns out I only half-knew what was going on.</p>
+<p>After the restore, Chrome seemed not to know about any of the credentials. It was quite frustrating because Safari was working fine with the restored Keychain. As a test I entered some credentials in Chrome and they appeared in its own Saved Passwords list! I was expecting that list to be empty because documentation suggests <a href="https://support.google.com/chrome/bin/answer.py?hl=en&amp;answer=95606" target="_blank">Chrome uses the Keychain on OS X</a>.</p>
+<p>After some digging, what I found is that Chrome is quite sensibly engineered, but the user interface is just a little confusing (especially to those with inquiring and suspicious minds!).</p>
+<p>This page of <a href="http://www.chromium.org/developers/design-documents/os-x-password-manager-keychain-integration" target="_blank">Chromium developer documentation</a> explains that Chrome needs to store more metadata about a set of credentials than is supported by the Keychain attributes. Therefore, even though Chrome does use Keychain for credential storage on OS X, it <em>still uses</em> its own built-in (&#8220;non-secure&#8221;) LoginDatabase. My mistaken belief was that the LoginDatabase would be empty once Keychain is in use.</p>
+<p>This can be confirmed by poking around in the local user&#8217;s Chrome application data, and opening the SQLite database called &#8220;<code>Login Data</code>&#8220;. On OS X this contains a row for each stored password but crucially, not the password itself (the username is there, though). Yet in the Chrome Settings user interface, you click &#8220;Managed saved passwords&#8221; and up pops a list of usernames and passwords as if Chrome was storing them. In fact it&#8217;s merging data from both LoginDatabase and Keychain.</p>
+<p>The next confusion arises over the lack of Chrome&#8217;s awareness of Keychain entries. As explained in the same <a href="http://www.chromium.org/developers/design-documents/os-x-password-manager-keychain-integration" target="_blank">developer documentation page</a>, until LoginDatabase has a matching entry, the credentials in Keychain are untrusted by Chrome and hence not displayed.</p>
+<p>To be fair to the Chrome developers, it&#8217;s not an easy thing to get over to the user that the attributes of a set of credentials are split between two stores, and that you can delete or read back from one, but possibly not the other. At least now I know what&#8217;s going on, and I can also make sure always to restore the Chrome application data in future.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Hacking # in OS X</title>
+		<link>http://blog.gorwits.me.uk/2011/11/30/hacking-in-os-x/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=hacking-in-os-x</link>
+		<comments>http://blog.gorwits.me.uk/2011/11/30/hacking-in-os-x/#comments</comments>
+		<pubDate>Wed, 30 Nov 2011 20:57:05 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[linux]]></category>
+		<category><![CDATA[OS X]]></category>
+		<category><![CDATA[perl]]></category>
+		<category><![CDATA[productivity]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=717</guid>
+		<description><![CDATA[To get aÂ # sign on an Apple keyboard you use the Option (or Alt) key + 3. This seems terribly klunky to me, andÂ # is of course used quite a bit in programming and sysadmin work. This hack remaps another &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/11/30/hacking-in-os-x/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>To get aÂ <code>#</code> sign on an Apple keyboard you use the Option (or Alt) key + 3. This seems terribly klunky to me, andÂ <code>#</code> is of course used quite a bit in programming and sysadmin work.</p>
+<p>This hack remaps another key on the keyboard to produce theÂ <code>#</code> character. I chose the funny squiggle that&#8217;s to the left of the number 1 key (Â§). This is theÂ <em>Section sign</em>, used in document formatting. Just create a file atÂ <code>~/Library/KeyBindings/DefaultKeyBinding.dict</code> which contains the following:</p>
+<pre class="brush: plain; title: ; notranslate">
+{
+    /* this will make all &amp;#167; turn into # */
+    &quot;\UA7&quot; = (&quot;insertText:&quot;, &quot;#&quot;);
+}
+</pre>
+<p>Any app that uses Apple&#8217;s Cocoa interface widgets for text input will pick this up after being restarted. There are some that don&#8217;t (perhaps TextMate? Not checked that one so if you know, please comment).</p>
+<p>A lot more information about this is available at this excellent page on theÂ <a rel="nofollow" href="http://www.hcs.harvard.edu/~jrus/Site/Cocoa%20Text%20System.html" target="_blank">Cocoa Text System</a>, including some other neat hacks. Enjoy!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/11/30/hacking-in-os-x/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Backing up Time Machine Backups from a ReadyNAS Duo</title>
+		<link>http://blog.gorwits.me.uk/2011/05/02/backing-up-time-machine-backups-from-a-readynas-duo/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=backing-up-time-machine-backups-from-a-readynas-duo</link>
+		<comments>http://blog.gorwits.me.uk/2011/05/02/backing-up-time-machine-backups-from-a-readynas-duo/#comments</comments>
+		<pubDate>Mon, 02 May 2011 08:32:28 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[OS X]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=474</guid>
+		<description><![CDATA[I&#8217;ve had a ReadyNAS Duo probably for about a year, now, and quite honestly can&#8217;t fault the little black box. Managing computer systems during the day, I have little interest in doing the same at home. The Duo provides home &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/05/02/backing-up-time-machine-backups-from-a-readynas-duo/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>I&#8217;ve had a <a href="http://www.readynas.com/?cat=3" target="_blank">ReadyNAS Duo</a> probably for about a year, now, and quite honestly can&#8217;t fault the little black box. Managing computer systems during the day, I have little interest in doing the same at home. The Duo provides home media sharing (<a href="http://www.dlna.org/about_us/about/" target="_blank">DLNA </a>and iTunes), a shared printer, <a href="http://www.apple.com/macosx/what-is-macosx/time-machine.html" target="_blank">Time Machine</a> backup service, network storage for <a href="http://www.mythtv.org/" target="_blank">MythTV</a>, <a href="http://www.apc.com/products/family/index.cfm?id=270" target="_blank">UPS</a> integration, and pretty good configuration and automation.</p>
+<p>However as we know <a href="http://www.2brightsparks.com/resources/articles/RAID-is-not-a-backup-solution.html" target="_blank">RAID is not a backup solution</a>, so I still have to get the data onto some other media and preferably out of the house. For this we have a <a href="http://www.wdc.com/en/products/products.aspx?id=260" target="_blank">Western Digital Elements</a> external USB hard drive, to which the Duo copies data when connected.</p>
+<p>For Time Machine backups it&#8217;s not obvious how to get copies of the <a href="http://en.wikipedia.org/wiki/Sparse_image" target="_blank">sparsebundles</a>. I found that they&#8217;re stored in the Duo&#8217;s <code>c:</code> volume, in a folder called <code>.timemachine</code>. This can either be backed up with the whole of <code>c:</code> in one job, or separately if referred to by itself.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/05/02/backing-up-time-machine-backups-from-a-readynas-duo/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>WinXP to OS X Switch Notes</title>
+		<link>http://blog.gorwits.me.uk/2011/05/02/winxp-to-os-x-switch-notes/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=winxp-to-os-x-switch-notes</link>
+		<comments>http://blog.gorwits.me.uk/2011/05/02/winxp-to-os-x-switch-notes/#comments</comments>
+		<pubDate>Mon, 02 May 2011 07:39:59 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[OS X]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=469</guid>
+		<description><![CDATA[My wife has just switched her WinXP system to OS X (both on a Mac Mini), and here are some of the tools that helped along the way: Abee is a free utility which helps migrate from Microsoft Outlook Contacts &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/05/02/winxp-to-os-x-switch-notes/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>My wife has just switched her WinXP system to OS X (both on a Mac Mini), and here are some of the tools that helped along the way:</p>
+<ul>
+<li><a href="http://www.sillybit.com/abee/" target="_blank">Abee </a>is a free utility which helps migrate from Microsoft Outlook Contacts CSV Export to OS X Address Book. You map the CSV fields to their new counterparts and it works like a charm.</li>
+<li><a href="http://www.macworld.com/article/146958/2010/03/move_itunes_windows_mac.html" target="_blank">This article explains how to copy an iTunes configuration and library between computer systems</a>. Since iTunes 9, there&#8217;s no need to fiddle with XML file contents, so well done Apple for making this software portable.</li>
+<li>Logitech has a driver for the cordless keyboard in use. Although it helps set up the special function keys (music playback control, etc) the keyboard map is still a mess.</li>
+<li>To fix the keyboard map, <a href="http://pqrs.org/macosx/keyremap4macbook/" target="_blank">KeyRemap4MacBook </a>came to the rescue. It fixes all the UK keyboard layout niggles on the Mac, and even knows about VMware.</li>
+<li>For Windows XP within VMware, with a UK keyboard, the best setup seems to be to have a United Kingdom locale with a <em>US </em>keyboard layout. KeyRemap4MacBook then fixes things to (mostly) work. <em>Phew, that keyboard stuff was harder work than it ought to have been.</em></li>
+<li>The favicon-only favourites (aka bookmarks) bar in Internet Explorer is a nice feature, missing from Google Chrome. Thankfully <a href="https://chrome.google.com/extensions/detail/npgonnihpamikjkfckpolamefpniicak" target="_blank">Iconized Bookmarks Popup</a> is a pretty good replacement (avoid the <em><a href="https://chrome.google.com/extensions/detail/dcckkbjlhigedglildibmgomeannjaid" target="_blank">BookmarksÂ Bar</a></em>, still beta). I had to set the horizontal and vertical spacing manually.</li>
+</ul>
+<p>I&#8217;m pleased to say all the software and hardware we need works sufficiently well on OS X. We still run MS Money on Windows in VMware, but we could switch to Quicken Essentials for Mac. I bought iMovie to replace the previous film editing software (a mediocre freebie bundled with the camera). Address Book is better than Outlook, and iTunes and Microsoft Office are, natively, just as good. I hope her Google Chrome experience to be better than Internet Explorer; we&#8217;ll have to wait and see <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/05/02/winxp-to-os-x-switch-notes/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

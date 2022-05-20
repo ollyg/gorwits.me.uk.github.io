@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; monitoring</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/monitoring/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>Smokeping+lighttpd+TCPPing on Debian/Ubuntu</title>
+		<link>http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=smokepinglighttpdtcpping-on-debianubuntu</link>
+		<comments>http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/#comments</comments>
+		<pubDate>Thu, 11 Aug 2011 12:45:12 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[monitoring]]></category>
+		<category><![CDATA[networking]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=572</guid>
+		<description><![CDATA[Some notes on getting Smokeping to work on Debian/Ubuntu using the lighttpd web server, and the TCPPing check. Install the lighttpd package first, as then the subsequentÂ smokeping package installation will notice that it doesn&#8217;t require the Apache web server. However, &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Some notes on getting Smokeping to work on Debian/Ubuntu using the lighttpd web server, and the TCPPing check.</p>
+<p>Install the <code>lighttpd</code> package <em>first</em>, as then the subsequentÂ <code>smokeping</code> package installation will notice that it doesn&#8217;t require the Apache web server. However, Smokeping doesn&#8217;t auto-configure for lighttpd so a couple of commands are necessary:</p>
+<pre class="brush: plain; title: ; notranslate">
+# lighttpd-enable-mod cgi
+# /etc/init.d/lighttpd force-reload
+# ln -s /usr/share/smokeping/www /var/www/smokeping
+</pre>
+<p>Visiting your web server&#8217;s base url should show a lighttpd help page, and visiting the <code>/cgi-bin/smokeping.cgi</code> path should show the Smokeping home page with logo images working.</p>
+<p>Install the TCPPing script by downloading from <a href="http://www.vdberg.org/~richard/tcpping" target="_blank">http://www.vdberg.org/~richard/tcpping</a> and saving to somewhere like <code>/usr/local/bin/tcpping</code> (setting execute bit, also). Obviously, use this path in your Smokeping Probe configuration:</p>
+<pre class="brush: plain; title: ; notranslate">
++ TCPPing
+
+binary = /usr/local/bin/tcpping
+forks = 10
+offset = random
+# can be overridden in Targets
+pings = 5
+port = 21
+</pre>
+<p>For the TCPPing check, make sure you have the standalone <code>tcptraceroute</code> package installed. You might find an existing <code>/usr/sbin/tcptraceroute</code> command is available, but this is from the <code>traceroute</code> package and won&#8217;t work with the TCPPing script.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>The Limoncelli Test</title>
+		<link>http://blog.gorwits.me.uk/2011/07/28/the-limoncelli-test/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=the-limoncelli-test</link>
+		<comments>http://blog.gorwits.me.uk/2011/07/28/the-limoncelli-test/#comments</comments>
+		<pubDate>Thu, 28 Jul 2011 13:40:48 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[monitoring]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=563</guid>
+		<description><![CDATA[Over at the excellent Everything Sysadmin blog is a simple test which can be applied to your Sysadmin team to assess its productivity and quality of service. It&#8217;s quite straightforward &#8211; just 32 things a good quality team ought to &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/07/28/the-limoncelli-test/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Over at the excellent <a href="http://everythingsysadmin.com/the-test.html" target="_blank">Everything Sysadmin blog</a> is a simple test which can be applied to your Sysadmin team to assess its productivity and quality of service. It&#8217;s quite straightforward &#8211; just 32 things a good quality team ought to be doing, with a few identified as must-have items.</p>
+<p>Of course I&#8217;m not going to say anything about my current workplace but thought it would be interesting to assess my <a href="http://www.oucs.ox.ac.uk/network/index.xml.ID=body.1_div.2" target="_blank">previous</a> <a href="http://blogs.oucs.ox.ac.uk/networks/" target="_blank">team</a> as of October 2010 when I left. I&#8217;m incredibly proud of the work we did and both our efficiency and effectiveness in delivering services with limited resources. That&#8217;s reflected in the score of (drumroll&#8230;) 31 out of 32!</p>
+<p>If you have a Sysadmin team, or work in one, why not quickly run through the test for yourself?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/07/28/the-limoncelli-test/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>A Strategy for Opsview Keywords</title>
+		<link>http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=a-strategy-for-opsview-keywords</link>
+		<comments>http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/#comments</comments>
+		<pubDate>Fri, 20 May 2011 15:04:54 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[monitoring]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=492</guid>
+		<description><![CDATA[At my previous employer, and recently at my current one, I&#8217;ve been responsible for migration to an Opsview based monitoring system. Opsview is an evolution of Nagios which brings a multitude of benefits. I encourage you to check it out. &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>At my <a href="https://noc-monitor.oucs.ox.ac.uk/viewport#style=cells" target="_blank">previous employer</a>, and recently at my current one, I&#8217;ve been responsible for migration to an Opsview based monitoring system. <a href="http://www.opsera.com/products/opsview/Opsview_overview.dot" target="_blank">Opsview</a> is an evolution of Nagios which brings a multitude of benefits. I encourage you to check it out.</p>
+<p>Since the 3.11.3 release, <em>keywords</em> have been put front and centre of the system&#8217;s administration, so I want to present here what I&#8217;ve been working on as a strategy for their configuration. Keywords can support three core parts of the Opsview system:</p>
+<ol>
+<li>The Viewport (a traffic-lights status overview)</li>
+<li>User access controls (what services/hosts can beÂ acknowledged, etc)</li>
+<li>Notifications (what you receive emails about)</li>
+</ol>
+<h2>Most important&#8230;</h2>
+<p>My first bit of advice is <em>do not ever</em> set the keywords when provisioning a new Host or Service Check. This is because on these screens you can&#8217;t see the complete context of keywords, and it&#8217;s far too easy to create useless duplication. You should instead associate keywords with hosts and services from the <span style="text-decoration: underline;">Configuration/Keywords</span> screen.</p>
+<h2>Naming Convention</h2>
+<p>Okay, let&#8217;s go to that screen now, and talk about our naming convention. Yes, there needs to be one, so that you can look at a keyword in another part of Opsview and have a rough idea what it might be associated with. Here&#8217;s the template I use, and some examples:</p>
+<pre class="brush: plain; title: ; notranslate">
+&lt;type&gt;-[&lt;owner&gt;-]&lt;thing&gt;
+
+device-ups
+server-linux
+service-smtpmsa
+service-nss-ntpstratum3
+</pre>
+<p>Let&#8217;s say you have a Linux server running an SMTP message submission service and an NTP Stratum 3 service. I would create one keyword for the underlying operating system (CPU, memory, disk, etc), named &#8220;<code>server-linux</code>&#8220;. I&#8217;d create another for the SMTP service as &#8220;<code>service-smtpmsa</code>&#8221; and another for the NTP as &#8220;<code>service-ntpstratum3</code>&#8220;. If your Opsview is shared between a number of teams, it might also be useful to insert the managing team for that service in the name, as I&#8217;ve done with NSS, above. The type &#8220;<code>device</code>&#8221; tends to be reserved for appliances which fulfil one function, so you don&#8217;t need to separate out their server/service nature.</p>
+<p><a rel="attachment wp-att-507" href="http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/keywords/"><img class="aligncenter size-full wp-image-507" title="keywords" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/05/keywords.png" alt="" width="633" height="112" /></a></p>
+<p>With this in place, if the UNIX Systems team manages the server and OS, and another team manages the applications stack on the box, we&#8217;ve got keywords for each, allowing easy and fine grained visibility controls. When creating the keywords, you should go into the <span style="text-decoration: underline;">Objects</span> tab and associate it with the appropriate hosts and service checks. I find this <em>much</em> more straightforward than using the <span style="text-decoration: underline;">Keywords</span> field on the actual host and service check configuration pages.</p>
+<h2>Viewport</h2>
+<p>Let&#8217;s look at each of the three cornerstone uses I mentioned above, in turn. First is the Viewport. Well, that&#8217;s easy enough to enable for a keyword by toggling the radio button and assigning a sensible description (such as ï»¿ï»¿&#8221;Email Message Submission Service&#8221; for &#8220;<code>service-smtpmsa</code>&#8220;). Which users can see which items in their own viewport is configured in the role (<span style="text-decoration: underline;">Advanced/Roles</span>) associated to that user. I&#8217;d clone off one new role per user, and go to the <span style="text-decoration: underline;">Objects</span> tab, remove all Host Groups or Service Groups and select only some Keywords. Job done &#8211; the user now sees those items in their viewport.</p>
+<h2><a rel="attachment wp-att-510" href="http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/viewport/"><img class="aligncenter size-full wp-image-510" title="viewport" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/05/viewport.png" alt="" width="496" height="245" /></a></h2>
+<h2>Actions</h2>
+<p>Next up is the ability for a user to acknowledge, or mark as down, an item. In fact it&#8217;s done in the same way as the viewport, that is, through a role. That&#8217;s because roles contain, on the Access tab, the <code>VIEWPORTACCESS</code> item for viewports and the <code>ACTIONSOME/NOTIFYSOME</code> items for actioning alerts. Because it&#8217;s currently only possible for a user to have one role, you cannot easily separate these rights for different keywords &#8211; a real pity. But I have no doubt multiple roles will come along, just like multiple notification profiles.</p>
+<h2><a rel="attachment wp-att-511" href="http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/access/"><img class="aligncenter size-full wp-image-511" title="access" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/05/access.png" alt="" width="229" height="245" /></a>Notifications</h2>
+<p>Which brings us to the final item. Again I&#8217;d create a new notification profile for each user, so that it&#8217;s possible to opt them in or out of any service notifications. Using keywords makes things simple &#8211; are you just managing the underlying OS? Then you can have notifications about that, and not the application stack. It doesn&#8217;t stop you seeing the app stack status in your viewport, though. Because the notification profile is associated with a user, you&#8217;ll only be offered keywords that have been authorized in their role, which is a nice touch.</p>
+<h2>And finally&#8230;</h2>
+<p>In each of these steps the naming convention has really helped, because when looking at keywords the meaning &#8220;these hosts&#8221; or &#8220;this service&#8221; will (hopefully) jump out.Â If I were scaling this up, I&#8217;d have it all provisioned via the Opsview API from a configuration management or inventory database, and updated nightly. This is another way naming conventions help &#8211; they are friendly to automation.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

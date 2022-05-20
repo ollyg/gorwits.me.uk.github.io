@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; devops</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/devops/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>Deploying mod_spnego</title>
+		<link>http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=deploying_mod_spnego</link>
+		<comments>http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/#comments</comments>
+		<pubDate>Sun, 22 Apr 2012 14:34:58 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[kerberos]]></category>
+		<category><![CDATA[windows]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=748</guid>
+		<description><![CDATA[SPNEGO is a negotiated authentication mechanism for HTTP which can be used to take advantage of Kerberos credentials for web site login (an alternative to simple username/password, or client digital certificates). The reference implementation for Apache, mod_spnego, can be downloaded &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p><a href="http://en.wikipedia.org/wiki/SPNEGO" target="_blank">SPNEGO</a> is a negotiated authentication mechanism for HTTP which can be used to take advantage of Kerberos credentials for web site login (an alternative to simple username/password, or client digital certificates).</p>
+<p>The reference implementation for Apache, <a href="http://sourceforge.net/projects/modgssapache/" target="_blank">mod_spnego</a>, can be downloaded from SourceForge and contains straightforward build instructions. It&#8217;s also possible to use <a href="http://webauth.stanford.edu/install-spnego.html" target="_blank">Stanford WebAuth in SPNEGO mode</a>.</p>
+<p>To build the module you need development libraries for the following (I&#8217;ve added the SLES package names, for reference):</p>
+<ul>
+<li>openssl (<code>libopenssl-devel</code>)</li>
+<li>krb5 (<code>krb5-devel, krb5-devel-32bit</code>)</li>
+<li>apache (<code>apache2-devel</code>)</li>
+</ul>
+<p>Follow the instructions in the module source. On SLES, be sure to run the <code>apxs</code> command as root, because it goes and installs the module directly after compilation.</p>
+<p>Enabling the module is again quite straightforward:</p>
+<pre class="brush: plain; title: ; notranslate">
+    Krb5AuthEachReq Off
+    &lt;Directory &quot;/foo/bar/quux&quot;&gt;
+        AllowOverride AuthConfig
+        Krb5KeyTabFile /etc/apache2/HTTP.keytab
+        Krb5ServiceName HTTP
+        AuthType SPNEGO
+        Require valid-user
+    &lt;/Directory&gt;
+</pre>
+<p>You&#8217;ll need to install a keytab for the HTTP service principal. The method differs depending on the type of KDC you have, but for Windows AD this would be:</p>
+<pre class="brush: plain; title: ; notranslate">
+net ads -U 'username@realm%password' keytab add HTTP
+</pre>
+<p>As verification I wrote a simple Perl CGI script to echo back <code>$ENV{REMOTE_USER}</code> which emitted <code>user@REALM</code>, as expected.</p>
+<p>Sadly when testing this out I found the use of SPNEGO is not enabled by default in all browsers (for example,Â <a href="http://blob.inf.ed.ac.uk/gdutton/2010/11/chrome-and-spnego/" target="_blank">Google Chrome</a>). A managed desktop seems the only way to ensure the user has both kerberos credentials and a browser started with the correct features enabled. Otherwise, it&#8217;d be just too much work?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Virtual Machine on Mythbuntu</title>
+		<link>http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=virtual-machine-on-mythbuntu</link>
+		<comments>http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/#comments</comments>
+		<pubDate>Wed, 04 Jan 2012 23:45:10 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[htpc]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[networking]]></category>
+		<category><![CDATA[virtualization]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=728</guid>
+		<description><![CDATA[I have a Linux box running the excellent Mythbuntu (Ubuntu-based) distribution, headless (that is, without a monitor). Quite a lot of the time it&#8217;s sat around doing nothing (and even during recording or playback the CPU is idle). For some &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>I have a Linux box running the excellent <a href="http://www.mythbuntu.org/" target="_blank">Mythbuntu</a> (Ubuntu-based) distribution, headless (that is, without a monitor). Quite a lot of the time it&#8217;s sat around doing nothing (and even during recording or playback the CPU is idle).</p>
+<p>For some side-projects I wanted a clean Linux installation to mess about with. It seemed a good idea to run virtual machines and make the most of existing hardware; what surprised me was just how easy this turned out to be <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+<p>The <a href="https://help.ubuntu.com/community/KVM" target="_blank">Ubuntu documentation for KVM</a> is excellent, I must say, but I fancied distilling things further and blogging here, as I typically do to record most of my technical adventures. I&#8217;m not going to bother with any of the GUI VM builder tools or even the Q&amp;A install script, but simply specify the VM config fully, up front.</p>
+<p>Optionally, check whether your CPU has virtualization extensions &#8211; any fairly recent desktop chip should do. On Ubuntu there&#8217;s a command called <code>kvm-ok</code>, or you can poke <code>/proc/cpuinfo</code>:</p>
+<pre class="brush: plain; title: ; notranslate">
+# kvm-ok
+INFO: /dev/kvm exists
+KVM acceleration can be used
+
+# egrep -q '(vmx|svm)' /proc/cpuinfo &amp;&amp; echo 'good to go!'
+good to go!
+</pre>
+<p>First up install the KVM software:</p>
+<pre class="brush: plain; title: ; notranslate">
+# apt-get install qemu-kvm virtinst
+</pre>
+<p>This will pull in all the necessary packages. On other platforms it should be similar, but the <code>virtinst</code> package is often renamed (e.g. <code>virt-install</code> or <code>vm-install</code>).</p>
+<p>Before getting stuck in to KVM we need to reconfigure the system&#8217;s network adapter to be a bridge. I prefer to set a static IP for servers on my home LAN and use the <code>/etc/network/interfaces</code> file for configuration:</p>
+<pre class="brush: plain; title: ; notranslate">
+# cat &gt; /etc/network/interfaces
+auto lo eth0 br0
+iface lo inet loopback
+iface eth0 inet manual
+iface br0 inet static
+    address &lt;IP-ADDRESS&gt;
+    network &lt;NETWORK-ADDRESS&gt;
+    netmask &lt;NETMASK&gt;
+    broadcast &lt;BROADCAST&gt;
+    gateway &lt;GATEWAY&gt;
+    bridge_ports eth0
+    bridge_stp off
+    bridge_fd 0
+    bridge_maxwait 0
+    post-up ip link set br0 address &lt;MAC-ADDRESS&gt;
+
+(hit ctrl-D)
+</pre>
+<p>Obviously, fill in the blanks for your own system&#8217;s IP and MAC address details. Next we can blow away Ubuntu&#8217;s network mangler daemon and poke the KVM service into life:</p>
+<pre class="brush: plain; title: ; notranslate">
+# apt-get --purge remove network-manager
+# /etc/init.d/networking restart
+# service libvirt-bin start
+</pre>
+<p>Now find somewhere on your disk for the VMs and a little script to live, and create a directory. I named mine <code>/opt/vm</code>. In there, try starting with this little shell script:</p>
+<pre class="brush: plain; title: ; notranslate">
+#!/bin/bash
+virt-install --name=sandbox --ram=512 --vcpus=2 --os-type=linux \
+  --autostart --disk=path=/opt/vm/sandbox.img,size=50 \
+  --graphics=vnc,listen=0.0.0.0,port=5900 --noautoconsole \
+  --cdrom=/opt/vm/mythbuntu-11.10-desktop-i386.iso
+</pre>
+<p>Walking through the above, it should be clear we&#8217;re creating a new VM called <code>sandbox</code> (this is the name KVM knows it by, not a hostname), with 512MB RAM, two virtual CPUs, a Linux-friendly boot environment, and 50GB (sparse) disk. The VM will be automatically booted by the KVM service when its host system boots. The last line specifies an installation CD image from which the new VM will boot.</p>
+<p>For the graphics configuration I&#8217;ve asked for a headless system with the console being offered up via a VNC port on the host server. Note that the <code>listen=0.0.0.0</code> is <em>essential</em> to connect remotely (e.g. over your home LAN) to the console because otherwise the VNC port is simply bound to the loopback interface.</p>
+<p>Running the above will bring the new VM into life:</p>
+<pre class="brush: plain; title: ; notranslate">
+# ./sandbox.sh
+
+Starting install...
+Creating storage file sandbox.img                      |  50 GB     00:00
+Creating domain...                                     |    0 B     00:01
+Domain installation still in progress. You can reconnect to
+the console to complete the installation process.
+</pre>
+<p>What KVM means by &#8220;installation still in progress&#8221; is that it knows this system is installing from the boot CD, so you should go right ahead and fire up VNC and connect to the console (port 5900 on the host server) to complete the process.</p>
+<p>You&#8217;ll find that KVM saved the <code>sandbox</code> VM configuration in XML format in the <code>/etc/libvirt/qemu</code> directory, so that&#8217;s where to go to tweak the settings. <a href="http://libvirt.org/formatdomain.html" target="_blank">Good documentation</a> is available at the KVM website.</p>
+<p>Be aware, however, that because KVM assumed the attached CD ISO was only needed for initial install, it&#8217;s not featured in the saved config as a permanent connection. You can, of course, remedy this (check out the <code>virt-install</code> man page for starters).</p>
+<p>To finish off, here&#8217;s how to manage the lifecycle (start, restart, blow away, etc) of the VM. Use the <code>virsh</code> utility which can either be run with a single instruction or with no parameters for an interactive CLI:</p>
+<pre class="brush: plain; title: ; notranslate">
+# virsh
+Welcome to virsh, the virtualization interactive terminal.
+virsh # list
+ Id Name                 State
+----------------------------------
+ 10 sandbox              running
+
+virsh # destroy
+error: command 'destroy' requires &lt;domain&gt; option
+virsh # destroy sandbox
+Domain sandbox destroyed
+
+virsh # create sandbox
+error: Failed to open file 'sandbox': No such file or directory
+
+virsh # create sandbox.xml
+Domain sandbox created from sandbox.xml
+
+virsh # list
+ Id Name                 State
+----------------------------------
+ 11 sandbox              running
+</pre>
+<p>Try the <code>help</code> command, and note that the VM&#8217;s XML settings file may need updating if you change things  (see <code>dumpxml</code>).</p>
+<p>I hope this is a useful and quick tutorial for KVM on Ubuntu&#8230; Good Luck!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Painless MythTV Channel Configuration</title>
+		<link>http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=painless-mythtv-channel-configuration</link>
+		<comments>http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/#comments</comments>
+		<pubDate>Thu, 10 Nov 2011 23:07:46 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[htpc]]></category>
+		<category><![CDATA[mythtv]]></category>
+		<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=687</guid>
+		<description><![CDATA[MythTV &#8211; a brilliant homebrew digital video recorder system. Killer features include being able to play content over the LAN at home, scheduling recordings via the web, and generally poke it to integrate with all kinds of devices (e.g. see &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p><a href="http://www.mythtv.org/" target="_blank">MythTV</a> &#8211; a brilliant homebrew digital video recorder system. Killer features include being able to play content over the LAN at home, scheduling recordings via the web, and generally poke it to integrate with all kinds of devices (e.g. see my previous posts on <a href="http://blog.gorwits.me.uk/category/transcoding/" target="_blank">H.264 transcoding</a>). Even better, <a href="http://www.mythbuntu.org/" target="_blank">Mythbuntu</a> makes installation a doddle.</p>
+<p>However the most hated part for me is configuring TV sources and channels &#8211; digital terrestrial via an aerial, and digital via satellite. MythTV&#8217;s built-in scanner works at best intermittently (for me), and when it does, comes up with 1,000 shopping and adult channels which drown out the 20 or so I&#8217;m really interested in.</p>
+<p>Then there&#8217;s TV listings. All credit to the folks working on <a href="http://wiki.xmltv.org/index.php/Main_Page" target="_blank">XMLTV</a> and the Radio Times listings grabber &#8211; that&#8217;s some impressive work. But stitching it into MythTV usually ends up with hand-editing the database to insert XMLTV IDs. User friendly? I think not.</p>
+<p>Partly this is because these tools are used internationally and nothing is standardised between countries. Even in the UK there are three ways to get TV listings (EIT over the air, Bleb, and Radio Times).</p>
+<p>Finally I snapped, and wrote a Perl program to do all this work. It feels so nice now to have a simple, lightweight, repeatable process to configure sources and channels. That&#8217;s what good automation is all about.</p>
+<p>The code will only work in the UK, but might be a starting point for those elsewhere. It configures XMLTV IDs, but that doesn&#8217;t mean you have to use the Radio Times grabber. You still have to go through MythTV&#8217;s setup program to tell it about tuner cards (<em>before</em> running the import program) but that&#8217;s not hard work.</p>
+<p>The <a href="https://github.com/ollyg/mythtv_channel_import" target="_blank">code</a> and <a href="https://github.com/ollyg/mythtv_channel_import/blob/master/README.pod" target="_blank">instructions</a> are hosted on GitHub. Let me know if you use it, and how you get on. Don&#8217;t forget to back up your database (using MythTV&#8217;sÂ <code>mythconverg_*</code> scripts) before starting!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Hosting the AutoCRUD Demo</title>
+		<link>http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=hosting-the-autocrud-demo</link>
+		<comments>http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/#comments</comments>
+		<pubDate>Wed, 19 Oct 2011 18:19:59 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[databases]]></category>
+		<category><![CDATA[devops]]></category>
+		<category><![CDATA[git]]></category>
+		<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=680</guid>
+		<description><![CDATA[In my previous entry here (syndicated from blogs.perl.org), I linked at the end to a demoÂ Catalyst::Plugin::AutoCRUD application running on DotCloud. I&#8217;m much happier with this than running something on my own personal server, and here&#8217;s the notes on its setup. &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>In my <a href="http://blogs.perl.org/users/oliver_gorwits/2011/10/autocrud-revamped.html" target="_blank">previous entry</a> here (syndicated from blogs.perl.org), I linked at the end to a demoÂ <a href="https://metacpan.org/module/Catalyst::Plugin::AutoCRUD" target="_self">Catalyst::Plugin::AutoCRUD</a> application running on DotCloud. I&#8217;m much happier with this than running something on my own personal server, and here&#8217;s the notes on its setup.</p>
+<p>For those unfamiliar, <a href="https://www.dotcloud.com/" target="_blank">DotCloud</a> is a <a href="http://en.wikipedia.org/wiki/Platform_as_a_service" target="_blank">Platform as a Service</a> (PaaS) offering a freemium model. I&#8217;m grateful to them for this as the free account provides all I need for my demo.</p>
+<p>First, I followed to the letter Phillip Smith&#8217;s <a href="http://blogs.perl.org/users/phillip_smith/2011/08/dotcloud-loves-catalyst-apps-up-and-running-in-10-minutes-perl-in-the-cloud-part-iii.html" target="_blank">comprehensive guide</a> on deploying a Perl Catalyst application to the DotCloud service. Next I customised the basic application created in the guide to use AutoCRUD:</p>
+<ul>
+<li>removed the Root controller</li>
+<li>added two Models and their supporting DBIx::Class Result classes</li>
+<li>setÂ <code>basepath</code> in the configuration</li>
+<li>installed an hourly cron job to:
+<ul>
+<li>restore the SQLite databases</li>
+<li>restart the web service (<code>supervisorctl restart uwsgi</code>)</li>
+</ul>
+</li>
+</ul>
+<p>Next I wanted a more tidy looking domain for the demo, so purchased <code>autocrud.pl</code> through <a href="http://www.netim.com/" target="_blank">NETIM</a>. My plan is to have demo.autocrud.pl pointing to the DotCloud instance, and sometime in the future to have <code>autocrud.pl</code> be used for a secret feature I&#8217;m still working on. Sadly NETIM only offers HTTP redirects from subdomains, so I delegated hosting of the DNS to <a href="http://www.cloudns.net/" target="_blank">ClouDNS</a>.</p>
+<p>ClouDNS is another freemium service, again where the free part provides just what I need. They offer not only a bit of a smarter interface than NETIM for DNS zone management, but also HTTP redirects from the zone apex.</p>
+<p>I do of course know that nothing lasts forever, particularly with freemium services, and I&#8217;m grateful for what&#8217;s available because it works very well (I&#8217;ve added promotional icons for ClouDNS and DotCloud to the demo site).</p>
+<p>The end result of this is that I now have the AutoCRUD demo safely hosted on DotCloud with a <a href="http://demo.autocrud.pl/" target="_blank">friendly URL</a> to pass out in documentation or blog posts <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Is it silly that tmux is fun?</title>
+		<link>http://blog.gorwits.me.uk/2011/08/15/is-it-silly-that-tmux-is-fun/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=is-it-silly-that-tmux-is-fun</link>
+		<comments>http://blog.gorwits.me.uk/2011/08/15/is-it-silly-that-tmux-is-fun/#comments</comments>
+		<pubDate>Mon, 15 Aug 2011 15:08:00 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[productivity]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=575</guid>
+		<description><![CDATA[No, I don&#8217;t think it&#8217;s a bad thing to get a zing of excitement when you find a new tool that improves your life. Maybe you know what I mean &#8211; that feeling of happiness at saving time, remembering more &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/08/15/is-it-silly-that-tmux-is-fun/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>No, I don&#8217;t think it&#8217;s a bad thing to get a zing of excitement when you find a new tool that improves your life. Maybe you know what I mean &#8211; that feeling of happiness at saving time, remembering more easily how to do things, and satisfaction with a new workflow.</p>
+<p>Recently I migrated from the venerable <a href="http://www.gnu.org/s/screen/" target="_blank">screen</a>, to <a href="http://tmux.sourceforge.net/" target="_blank">tmux</a>, and whilst it&#8217;s one of those changes where the old tool had no real show-stopping problems, tmux immediately feels much cleaner and well thought-through.</p>
+<p>I&#8217;ll leave you to read the docs and list of features yourself, but please do check this tool out if you&#8217;re an avid screen user. I&#8217;ve already got many more tmux sessions/windows/panes open than ever felt comfortable with screen, saving me a lot of time and effort when working remotely.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/08/15/is-it-silly-that-tmux-is-fun/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Smokeping+lighttpd+TCPPing on Debian/Ubuntu</title>
+		<link>http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=smokepinglighttpdtcpping-on-debianubuntu</link>
+		<comments>http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/#comments</comments>
+		<pubDate>Thu, 11 Aug 2011 12:45:12 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[monitoring]]></category>
+		<category><![CDATA[networking]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=572</guid>
+		<description><![CDATA[Some notes on getting Smokeping to work on Debian/Ubuntu using the lighttpd web server, and the TCPPing check. Install the lighttpd package first, as then the subsequentÂ smokeping package installation will notice that it doesn&#8217;t require the Apache web server. However, &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Some notes on getting Smokeping to work on Debian/Ubuntu using the lighttpd web server, and the TCPPing check.</p>
+<p>Install the <code>lighttpd</code> package <em>first</em>, as then the subsequentÂ <code>smokeping</code> package installation will notice that it doesn&#8217;t require the Apache web server. However, Smokeping doesn&#8217;t auto-configure for lighttpd so a couple of commands are necessary:</p>
+<pre class="brush: plain; title: ; notranslate">
+# lighttpd-enable-mod cgi
+# /etc/init.d/lighttpd force-reload
+# ln -s /usr/share/smokeping/www /var/www/smokeping
+</pre>
+<p>Visiting your web server&#8217;s base url should show a lighttpd help page, and visiting the <code>/cgi-bin/smokeping.cgi</code> path should show the Smokeping home page with logo images working.</p>
+<p>Install the TCPPing script by downloading from <a href="http://www.vdberg.org/~richard/tcpping" target="_blank">http://www.vdberg.org/~richard/tcpping</a> and saving to somewhere like <code>/usr/local/bin/tcpping</code> (setting execute bit, also). Obviously, use this path in your Smokeping Probe configuration:</p>
+<pre class="brush: plain; title: ; notranslate">
++ TCPPing
+
+binary = /usr/local/bin/tcpping
+forks = 10
+offset = random
+# can be overridden in Targets
+pings = 5
+port = 21
+</pre>
+<p>For the TCPPing check, make sure you have the standalone <code>tcptraceroute</code> package installed. You might find an existing <code>/usr/sbin/tcptraceroute</code> command is available, but this is from the <code>traceroute</code> package and won&#8217;t work with the TCPPing script.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>The Limoncelli Test</title>
+		<link>http://blog.gorwits.me.uk/2011/07/28/the-limoncelli-test/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=the-limoncelli-test</link>
+		<comments>http://blog.gorwits.me.uk/2011/07/28/the-limoncelli-test/#comments</comments>
+		<pubDate>Thu, 28 Jul 2011 13:40:48 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[monitoring]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=563</guid>
+		<description><![CDATA[Over at the excellent Everything Sysadmin blog is a simple test which can be applied to your Sysadmin team to assess its productivity and quality of service. It&#8217;s quite straightforward &#8211; just 32 things a good quality team ought to &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/07/28/the-limoncelli-test/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Over at the excellent <a href="http://everythingsysadmin.com/the-test.html" target="_blank">Everything Sysadmin blog</a> is a simple test which can be applied to your Sysadmin team to assess its productivity and quality of service. It&#8217;s quite straightforward &#8211; just 32 things a good quality team ought to be doing, with a few identified as must-have items.</p>
+<p>Of course I&#8217;m not going to say anything about my current workplace but thought it would be interesting to assess my <a href="http://www.oucs.ox.ac.uk/network/index.xml.ID=body.1_div.2" target="_blank">previous</a> <a href="http://blogs.oucs.ox.ac.uk/networks/" target="_blank">team</a> as of October 2010 when I left. I&#8217;m incredibly proud of the work we did and both our efficiency and effectiveness in delivering services with limited resources. That&#8217;s reflected in the score of (drumroll&#8230;) 31 out of 32!</p>
+<p>If you have a Sysadmin team, or work in one, why not quickly run through the test for yourself?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/07/28/the-limoncelli-test/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Migrate SourceForge CVS repository to git</title>
+		<link>http://blog.gorwits.me.uk/2011/06/22/migrate-sourceforge-cvs-repository-to-git/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=migrate-sourceforge-cvs-repository-to-git</link>
+		<comments>http://blog.gorwits.me.uk/2011/06/22/migrate-sourceforge-cvs-repository-to-git/#comments</comments>
+		<pubDate>Wed, 22 Jun 2011 19:27:00 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[git]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[netdisco]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=529</guid>
+		<description><![CDATA[Updated to include promoting and pushing tags. I recently had need to migrate some SourceForge CVS repositories to git. I&#8217;ll admit I&#8217;m no git expert, so Googled around for advice on the process. What I ended up doing was sufficiently &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/06/22/migrate-sourceforge-cvs-repository-to-git/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p><em>Updated to include promoting and pushing tags.</em></p>
+<p>I recently had need to <a href="https://sites.google.com/site/gorwits/home/netdisco-git" target="_blank">migrate</a> some SourceForge CVS repositories to git. I&#8217;ll admit I&#8217;m no git expert, so Googled around for advice on the process. What I ended up doing was sufficiently distinct from any other guide that I feel it worth recording the process, here.</p>
+<p>The SourceForge <a href="http://sourceforge.net/apps/trac/sourceforge/wiki/Git" target="_blank">wiki page on git</a> is a good start. It explains that you should log into the Project&#8217;s Admin page, go to Features, and tick to enable git. Although it&#8217;s not made clear, there&#8217;s no problem having both CVS and git enabled concurrently.</p>
+<p>Enabling git for the first time will initialize a bare git repository for your project. You can have multiple repositories; the first is named the same as the project itself. If you screw things up, it&#8217;s OK to delete the repository (via an SSH login) and initialize a new one.</p>
+<p>Just like the SourceForge documentation, I&#8217;ll use USERNAME, PROJECTNAME and REPONAME within commands. As just mentioned, the initial configuration is that the latter two are equal, until you progress to additional git repositories.</p>
+<p>Let&#8217;s begin by grabbing a copy of the CVS repository with complete history, using the rsync utility. When you rsync, there will be a directory containing <code>CVSROOT</code> (which can be ignored) and one subdirectory per module:</p>
+<pre class="brush: plain; title: ; notranslate">
+mkdir cvs &amp;&amp; cd cvs
+rsync -av rsync://PROJECTNAME.cvs.sourceforge.net/cvsroot/PROJECTNAME/* .
+</pre>
+<p>Grab the latest cvs2git code and copy the default options file. Change the <code>run_options.set_project</code> setting to point to your project&#8217;s module subdirectory:</p>
+<pre class="brush: plain; title: ; notranslate">
+svn export --username=guest http://cvs2svn.tigris.org/svn/cvs2svn/trunk cvs2svn-trunk
+cp cvs2svn-trunk/cvs2git-example.options cvs2git.options
+vi cvs2git.options
+# edit the string after run_options.set_project, to mention cvs/PROJECTNAME
+</pre>
+<p>Also in the options file, set the committer name mappings in the <code>author_transforms</code> settings. This is needed because CVS logs only show usernames but git commit logs show human name and email &#8211; a mapping can be used during import to create a sensible git history.</p>
+<pre class="brush: plain; title: ; notranslate">
+vi cvs2git.options
+# read the comments above author_transforms and make changes
+</pre>
+<p>But how do you know what CVS usernames need mapping? One solution is to run through this export and git import <em>without</em> a mapping, then run <code>git shortlog -se</code> to dump the commiters. Blow the new git repo away, and re-import after configuring cvs2git <code>author_transforms</code>.</p>
+<p>The cvs2git utility works by generating the input files used by git&#8217;s fast-import command:</p>
+<pre class="brush: plain; title: ; notranslate">
+cvs2svn-trunk/cvs2git --options=cvs2git.options --fallback-encoding utf-8
+git clone ssh://USERNAME@PROJECTNAME.git.sourceforge.net/gitroot/PROJECTNAME/REPONAME
+cd REPONAME
+cat ../cvs2svn-tmp/git-{blob,dump}.dat | git fast-import
+git reset --hard
+</pre>
+<p>At this point, if you&#8217;re going to continue using this new git repository for work, remember to set your <code>user.name</code>, <code>user.email</code> and <code>color.ui</code> options.</p>
+<p>Now you&#8217;re ready to push the repo back to SourceForge. I did test myself that disabling so-called <em>developer access</em> to the repo in the SourceForge Project Member settings page does in fact prevent write access, as expected.</p>
+<pre class="brush: plain; title: ; notranslate">
+git push origin master
+</pre>
+<p>If you had tags on the CVS repo (<code>git tag -l</code>), they&#8217;ll have been imported as <em>lightweight tags</em>. Best practice is always to use annotated tags, so this short script will promote them for you:</p>
+<pre class="brush: plain; title: ; notranslate">
+git config user.name &quot;Firstname Lastname&quot;
+git config user.email &quot;me@example.com&quot;
+git tag -l | while read ver;
+  do git checkout $ver;
+  git tag -d $ver;
+  GIT_COMMITTER_DATE=&quot;$(g show --format=%aD | head -1)&quot; git tag -a $ver -m &quot;prep for $ver release&quot;;
+  done
+git checkout master
+</pre>
+<p>Verify the tags are as you want, using something like:</p>
+<pre class="brush: plain; title: ; notranslate">
+git tag -l | while read tag; do git show $tag | head -3; echo; done
+</pre>
+<p>And then push them to the repository with:</p>
+<pre class="brush: plain; title: ; notranslate">
+git push --tags
+</pre>
+<p>Something you might want to do is set a post-commit email hook. For this you <a href="https://sourceforge.net/apps/trac/sourceforge/wiki/Shell%20service" target="_blank">SSH to SourceForge</a>, and if you have multiple projects remember to connect to the right one!</p>
+<pre class="brush: plain; title: ; notranslate">
+ssh -t USER,PROJECT@shell.sourceforge.net create
+cd /home/scm_git/P/PR/PROJECTNAME
+</pre>
+<p>Download the <a href="http://tinyurl.com/git-post-commit-email" target="_blank">post-receive-email script</a> and place it in the hooks subdirectory; make it executable. Also set the permissions to have group-write, so your project colleagues can alter it if required. Set the necessary git options to allow the script to email someone after a commit. Season to taste.</p>
+<pre class="brush: plain; title: ; notranslate">
+curl -L http://tinyurl.com/git-post-commit-email &gt; hooks/post-receive
+chmod +x hooks/post-receive
+chmod g+w hooks/post-receive
+git config hooks.emailprefix &quot;[git push]&quot;
+git config hooks.emailmaxlines 500
+git config hooks.envelopesender noreply@sourceforge.net
+git config hooks.showrev &quot;t=%s; printf 'http://PROJECTNAME.git.sourceforge.net/git/gitweb.cgi?p=PROJECTNAME/REPONAME;a=commitdiff;h=%%s' ; echo;echo; git show -C ; echo&quot;
+git config hooks.mailinglist PROJECTNAME-COMMITS@lists.sourceforge.net
+</pre>
+<p>Remember to subscribe <code>noreply@sourceforge.net</code> to your announce list, if needed. Finally, set a friendly description on the repository for use by the git web-based repo browser:</p>
+<pre class="brush: plain; title: ; notranslate">
+echo 'PROJECTNAME git repository' &gt; description
+</pre>
+<p>One other thing I did was enable an SSH key on my SourceForge account, as this makes life with SSH-based git much smoother <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' />  If you have the need to create additional git repositories, or even to replace the one created automatically, then it&#8217;s just a case of issuing the git command:</p>
+<pre class="brush: plain; title: ; notranslate">
+cd /home/scm_git/P/PR/PROJECTNAME
+git --git-dir=REPONAME init --shared=all --bare
+</pre>
+<p>Good luck with your own migrations, and happy coding!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/06/22/migrate-sourceforge-cvs-repository-to-git/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+		</item>
+		<item>
+		<title>A Strategy for Opsview Keywords</title>
+		<link>http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=a-strategy-for-opsview-keywords</link>
+		<comments>http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/#comments</comments>
+		<pubDate>Fri, 20 May 2011 15:04:54 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[monitoring]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=492</guid>
+		<description><![CDATA[At my previous employer, and recently at my current one, I&#8217;ve been responsible for migration to an Opsview based monitoring system. Opsview is an evolution of Nagios which brings a multitude of benefits. I encourage you to check it out. &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>At my <a href="https://noc-monitor.oucs.ox.ac.uk/viewport#style=cells" target="_blank">previous employer</a>, and recently at my current one, I&#8217;ve been responsible for migration to an Opsview based monitoring system. <a href="http://www.opsera.com/products/opsview/Opsview_overview.dot" target="_blank">Opsview</a> is an evolution of Nagios which brings a multitude of benefits. I encourage you to check it out.</p>
+<p>Since the 3.11.3 release, <em>keywords</em> have been put front and centre of the system&#8217;s administration, so I want to present here what I&#8217;ve been working on as a strategy for their configuration. Keywords can support three core parts of the Opsview system:</p>
+<ol>
+<li>The Viewport (a traffic-lights status overview)</li>
+<li>User access controls (what services/hosts can beÂ acknowledged, etc)</li>
+<li>Notifications (what you receive emails about)</li>
+</ol>
+<h2>Most important&#8230;</h2>
+<p>My first bit of advice is <em>do not ever</em> set the keywords when provisioning a new Host or Service Check. This is because on these screens you can&#8217;t see the complete context of keywords, and it&#8217;s far too easy to create useless duplication. You should instead associate keywords with hosts and services from the <span style="text-decoration: underline;">Configuration/Keywords</span> screen.</p>
+<h2>Naming Convention</h2>
+<p>Okay, let&#8217;s go to that screen now, and talk about our naming convention. Yes, there needs to be one, so that you can look at a keyword in another part of Opsview and have a rough idea what it might be associated with. Here&#8217;s the template I use, and some examples:</p>
+<pre class="brush: plain; title: ; notranslate">
+&lt;type&gt;-[&lt;owner&gt;-]&lt;thing&gt;
+
+device-ups
+server-linux
+service-smtpmsa
+service-nss-ntpstratum3
+</pre>
+<p>Let&#8217;s say you have a Linux server running an SMTP message submission service and an NTP Stratum 3 service. I would create one keyword for the underlying operating system (CPU, memory, disk, etc), named &#8220;<code>server-linux</code>&#8220;. I&#8217;d create another for the SMTP service as &#8220;<code>service-smtpmsa</code>&#8221; and another for the NTP as &#8220;<code>service-ntpstratum3</code>&#8220;. If your Opsview is shared between a number of teams, it might also be useful to insert the managing team for that service in the name, as I&#8217;ve done with NSS, above. The type &#8220;<code>device</code>&#8221; tends to be reserved for appliances which fulfil one function, so you don&#8217;t need to separate out their server/service nature.</p>
+<p><a rel="attachment wp-att-507" href="http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/keywords/"><img class="aligncenter size-full wp-image-507" title="keywords" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/05/keywords.png" alt="" width="633" height="112" /></a></p>
+<p>With this in place, if the UNIX Systems team manages the server and OS, and another team manages the applications stack on the box, we&#8217;ve got keywords for each, allowing easy and fine grained visibility controls. When creating the keywords, you should go into the <span style="text-decoration: underline;">Objects</span> tab and associate it with the appropriate hosts and service checks. I find this <em>much</em> more straightforward than using the <span style="text-decoration: underline;">Keywords</span> field on the actual host and service check configuration pages.</p>
+<h2>Viewport</h2>
+<p>Let&#8217;s look at each of the three cornerstone uses I mentioned above, in turn. First is the Viewport. Well, that&#8217;s easy enough to enable for a keyword by toggling the radio button and assigning a sensible description (such as ï»¿ï»¿&#8221;Email Message Submission Service&#8221; for &#8220;<code>service-smtpmsa</code>&#8220;). Which users can see which items in their own viewport is configured in the role (<span style="text-decoration: underline;">Advanced/Roles</span>) associated to that user. I&#8217;d clone off one new role per user, and go to the <span style="text-decoration: underline;">Objects</span> tab, remove all Host Groups or Service Groups and select only some Keywords. Job done &#8211; the user now sees those items in their viewport.</p>
+<h2><a rel="attachment wp-att-510" href="http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/viewport/"><img class="aligncenter size-full wp-image-510" title="viewport" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/05/viewport.png" alt="" width="496" height="245" /></a></h2>
+<h2>Actions</h2>
+<p>Next up is the ability for a user to acknowledge, or mark as down, an item. In fact it&#8217;s done in the same way as the viewport, that is, through a role. That&#8217;s because roles contain, on the Access tab, the <code>VIEWPORTACCESS</code> item for viewports and the <code>ACTIONSOME/NOTIFYSOME</code> items for actioning alerts. Because it&#8217;s currently only possible for a user to have one role, you cannot easily separate these rights for different keywords &#8211; a real pity. But I have no doubt multiple roles will come along, just like multiple notification profiles.</p>
+<h2><a rel="attachment wp-att-511" href="http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/access/"><img class="aligncenter size-full wp-image-511" title="access" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/05/access.png" alt="" width="229" height="245" /></a>Notifications</h2>
+<p>Which brings us to the final item. Again I&#8217;d create a new notification profile for each user, so that it&#8217;s possible to opt them in or out of any service notifications. Using keywords makes things simple &#8211; are you just managing the underlying OS? Then you can have notifications about that, and not the application stack. It doesn&#8217;t stop you seeing the app stack status in your viewport, though. Because the notification profile is associated with a user, you&#8217;ll only be offered keywords that have been authorized in their role, which is a nice touch.</p>
+<h2>And finally&#8230;</h2>
+<p>In each of these steps the naming convention has really helped, because when looking at keywords the meaning &#8220;these hosts&#8221; or &#8220;this service&#8221; will (hopefully) jump out.Â If I were scaling this up, I&#8217;d have it all provisioned via the Opsview API from a configuration management or inventory database, and updated nightly. This is another way naming conventions help &#8211; they are friendly to automation.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/05/20/a-strategy-for-opsview-keywords/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Cfengene3 on Debian Squeeze for local management</title>
+		<link>http://blog.gorwits.me.uk/2011/05/10/cfengene3-on-debian-squeeze-for-local-management/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=cfengene3-on-debian-squeeze-for-local-management</link>
+		<comments>http://blog.gorwits.me.uk/2011/05/10/cfengene3-on-debian-squeeze-for-local-management/#comments</comments>
+		<pubDate>Tue, 10 May 2011 20:31:11 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[linux]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=479</guid>
+		<description><![CDATA[Dialling the nerd factor up to 11, I&#8217;ve decided to store configuration for my VPS server in git and manage it with Cfengine3. Joking aside, this is a sound decision: having the VCS repo makes backups simple and trustworthy, and &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/05/10/cfengene3-on-debian-squeeze-for-local-management/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Dialling the nerd factor up to 11, I&#8217;ve decided to store configuration for my <a href="https://www.portfast.co.uk/vps.shtml" target="_blank">VPS server</a> in <a href="http://git-scm.com/" target="_blank">git</a> and manage it with <a href="http://www.cfengine.org" target="_blank">Cfengine3</a>. Joking aside, this is a sound decision: having the VCS repo makes backups simple and trustworthy, and configurationÂ managementÂ motivates me to keep on using that repository.</p>
+<p>On Debian Squeeze it&#8217;s a simple case of <code>apt-get install cfengine3</code>, with the caveat of <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611659" target="_blank">this packaging bug</a> meaning I hacked <code>/etc/cfengine3</code> to symlink from <code>/var/lib/cfengine3/inputs</code>.</p>
+<h6><em>[Edit: A colleague of mine, David, suggests that the package should link cfengine3's masterfiles to /etc, and I'm inclined to agree.]</em></h6>
+<p>Anyone familiar with Cfengine2 will have a good head start on the Cfengine3 configuration, however it&#8217;s still a bit of a learning curve (but we know <a href="http://answers.google.com/answers/threadview?id=512538" target="_blank">complex problems rarely have simple solutions</a>). The first file read is <code>promises.cf</code> which can include other files (&#8220;<code>inputs</code>&#8220;, in any order), and lists the promise bundles and their order of execution:</p>
+<pre class="brush: plain; title: ; notranslate">
+body common control {
+    bundlesequence  =&gt; {
+            &quot;main&quot;
+    };
+
+    inputs =&gt; {
+        &quot;site.cf&quot;,
+        &quot;library.cf&quot;
+    };
+}
+</pre>
+<p>The <code>library.cf</code> file is simply a bunch of macros or templates. For example, the built-in <code>copy_from</code> command is augmented with some sane defaults and named <code>local_copy</code>:</p>
+<pre class="brush: plain; title: ; notranslate">
+body copy_from local_copy(from) {
+    source  =&gt; &quot;$(from)&quot;;
+    compare =&gt; &quot;digest&quot;;
+    copy_backup =&gt; false;
+}
+</pre>
+<p>This is then used in my <code>site.cf</code> file to install some cron jobs:</p>
+<pre class="brush: plain; title: ; notranslate">
+bundle agent main {
+    vars:
+        &quot;repo&quot; string =&gt; &quot;/path/to/git/repo&quot;;
+
+    files:
+        &quot;/etc/cron.d&quot;
+            handle =&gt; &quot;cron_files&quot;,
+            comment =&gt; &quot;copy crontab files to /etc/cron.d&quot;,
+
+            copy_from =&gt; local_copy(&quot;$(repo)/etc/cron.d&quot;),
+            depth_search =&gt; recurse(&quot;inf&quot;),
+            perms =&gt; p(&quot;root&quot;,&quot;444&quot;);
+}
+</pre>
+<p>This is a trivial example, and could be made better. For example <em>all</em> files in the target directory have their permissions changed (via the &#8220;<code>p</code>&#8221; macro), whereas it makes sense only to set those files we copy, not any already existing.</p>
+<p>Hopefully this post shows that Cfengine3 configuration isn&#8217;t that hairy, and once the principles are installed in your head it&#8217;s a case of browsing the <a href="http://www.cfengine.org/manuals/cf3-reference.html" target="_blank">reference manual</a> and building up promise libraries.</p>
+<p><strong><em><span style="text-decoration: underline;">Postscript</span></em></strong></p>
+<p>I&#8217;d like to note that the Cfengine3 configuration mini-language could be better designed. Some statements are terminated by semicolons as in the <code>body</code>, above, others separated by commas but still semicolon-terminated, as in the <code>bundle</code>, and braced sections inconsistently semicolon-terminated. This leads to awkward syntax errors when designing new promises <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_sad.gif' alt=':-(' class='wp-smiley' /> </p>
+<p>Furthermore, I feel the language would benefit from some <a href="http://www.catb.org/~esr/writings/taoup/html/ch08s02.html#fetchmailrc" target="_blank">noise keywords</a>, for example:</p>
+<pre class="brush: plain; title: ; notranslate">
+body copy_from local_copy(from) {
+</pre>
+<p>versus</p>
+<pre class="brush: plain; title: ; notranslate">
+body copy_from as local_copy(from) {
+</pre>
+<p>The latter makes it <em>slightly</em> more clear which is the base primitive and which the new macro name. I&#8217;m a <a href="http://search.cpan.org/perldoc?Net::CLI::Interact::Phrasebook#PHRASEBOOK_FORMAT" target="_blank">great fan</a> of the use of syntactic sugar, in moderation, and intuitive configuration mini-languages.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/05/10/cfengene3-on-debian-squeeze-for-local-management/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+	</channel>
+</rss>

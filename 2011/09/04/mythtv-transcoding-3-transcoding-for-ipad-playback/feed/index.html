@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+		>
+<channel>
+	<title>Comments on: MythTV Transcoding (3): Transcoding for iPad Playback</title>
+	<atom:link href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=mythtv-transcoding-3-transcoding-for-ipad-playback</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sun, 29 Dec 2013 17:47:01 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+	<item>
+		<title>By: Brian Pickford</title>
+		<link>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/#comment-484</link>
+		<dc:creator>Brian Pickford</dc:creator>
+		<pubDate>Sun, 29 Dec 2013 17:47:01 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=577#comment-484</guid>
+		<description><![CDATA[I&#039;ve followed this guide and enjoyed the results, thanks for your efforts in documenting this.
+To make it work on Mythbuntu 12.04LTS I had to compile Yasm from source. I guess this issue will disappear with the next LTS.
+
+Additionally to use this with mythexport, I added the following to a file called /usr/share/mythexport/configs/TabTrans.pm
+
+&lt;code&gt;
+#!/usr/bin/perl 
+
+# Update this with a package name relivant to your new config, make sure it matches with the file name (without the extension).
+package TabTrans;
+
+use ExportBase;
+
+our @ISA = qw(ExportBase);
+
+#Example strings, replace with something relivant to your new config.
+my $description = &quot;h264xcode default settings.&quot;;
+my $devices = &quot;Tablet and superphone&quot;;
+my $notes = &quot;Requires custom ffmpeg build, see http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/&quot;;
+my $version = &quot;1.0&quot;;
+
+#Inherit our base class.
+sub new{
+    my $class = shift;
+    my $self = $class-&gt;SUPER::new(shift, shift, $description, $devices, $notes, $version);
+    bless $self, $class;
+    return $self;
+}
+
+sub export{
+    my( $self ) = @_;
+
+    # Any command can go here, below is an example of ffmpeg, but you can use anything you would like.
+    # Available variables are inputFile, outputFile, and extension
+#   system(&quot;ffmpeg -i \&#039;$self-&gt;{_inputFile}\&#039; -y -pass 1 -an -vcodec libx264 -vpre slowfirstpass -vpre ipod640 -b 1500kb -bt 1000kb -threads 0 -s 800x480 -aspect 16:9 -f$
+system(&quot;time nice -n 19 /usr/local/bin/ffmpeg-264 -i \&#039;$self-&gt;{_inputFile}\&#039; -y -map 0:0 -map 0:1 -er 4 -f ipod -acodec libfaac -ac 2 -ab 128k -ar 44100 -deinterlace -vc$
+
+}
+
+#Feel free to use or extend anything from the base class.
+
+1;
+&lt;/code&gt;]]></description>
+		<content:encoded><![CDATA[<p>I&#8217;ve followed this guide and enjoyed the results, thanks for your efforts in documenting this.<br />
+To make it work on Mythbuntu 12.04LTS I had to compile Yasm from source. I guess this issue will disappear with the next LTS.</p>
+<p>Additionally to use this with mythexport, I added the following to a file called /usr/share/mythexport/configs/TabTrans.pm</p>
+<p><code><br />
+#!/usr/bin/perl </p>
+<p># Update this with a package name relivant to your new config, make sure it matches with the file name (without the extension).<br />
+package TabTrans;</p>
+<p>use ExportBase;</p>
+<p>our @ISA = qw(ExportBase);</p>
+<p>#Example strings, replace with something relivant to your new config.<br />
+my $description = "h264xcode default settings.";<br />
+my $devices = "Tablet and superphone";<br />
+my $notes = "Requires custom ffmpeg build, see <a href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/" rel="nofollow">http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/</a>";<br />
+my $version = "1.0";</p>
+<p>#Inherit our base class.<br />
+sub new{<br />
+    my $class = shift;<br />
+    my $self = $class-&gt;SUPER::new(shift, shift, $description, $devices, $notes, $version);<br />
+    bless $self, $class;<br />
+    return $self;<br />
+}</p>
+<p>sub export{<br />
+    my( $self ) = @_;</p>
+<p>    # Any command can go here, below is an example of ffmpeg, but you can use anything you would like.<br />
+    # Available variables are inputFile, outputFile, and extension<br />
+#   system("ffmpeg -i \'$self-&gt;{_inputFile}\' -y -pass 1 -an -vcodec libx264 -vpre slowfirstpass -vpre ipod640 -b 1500kb -bt 1000kb -threads 0 -s 800x480 -aspect 16:9 -f$<br />
+system("time nice -n 19 /usr/local/bin/ffmpeg-264 -i \'$self-&gt;{_inputFile}\' -y -map 0:0 -map 0:1 -er 4 -f ipod -acodec libfaac -ac 2 -ab 128k -ar 44100 -deinterlace -vc$</p>
+<p>}</p>
+<p>#Feel free to use or extend anything from the base class.</p>
+<p>1;<br />
+</code></p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Oliver Gorwits</title>
+		<link>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/#comment-347</link>
+		<dc:creator>Oliver Gorwits</dc:creator>
+		<pubDate>Sun, 19 May 2013 18:33:09 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=577#comment-347</guid>
+		<description><![CDATA[As root (you may have to sudo):
+
+&lt;code&gt;touch /var/log/mythtv/h264xcode.log&lt;/code&gt;
+&lt;code&gt;chmod mythtv.mythtv /var/log/mythtv/h264xcode.log&lt;/code&gt;]]></description>
+		<content:encoded><![CDATA[<p>As root (you may have to sudo):</p>
+<p><code>touch /var/log/mythtv/h264xcode.log</code><br />
+<code>chmod mythtv.mythtv /var/log/mythtv/h264xcode.log</code></p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: David Tranter</title>
+		<link>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/#comment-346</link>
+		<dc:creator>David Tranter</dc:creator>
+		<pubDate>Sat, 18 May 2013 18:14:11 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=577#comment-346</guid>
+		<description><![CDATA[I have this all setup but am seeing the job queued as per the first comment from Brad how do I carry out the below suggestions?
+
+you need to (as root) touch /var/log/mythtv/h264xcode.log and chmod it to mythtv:mythtv. Otherwise the jobs stay in the â€˜queuedâ€™ state because mythtv doesnâ€™t know about the errors (see below).]]></description>
+		<content:encoded><![CDATA[<p>I have this all setup but am seeing the job queued as per the first comment from Brad how do I carry out the below suggestions?</p>
+<p>you need to (as root) touch /var/log/mythtv/h264xcode.log and chmod it to mythtv:mythtv. Otherwise the jobs stay in the â€˜queuedâ€™ state because mythtv doesnâ€™t know about the errors (see below).</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Oliver Gorwits</title>
+		<link>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/#comment-131</link>
+		<dc:creator>Oliver Gorwits</dc:creator>
+		<pubDate>Sun, 09 Sep 2012 12:05:11 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=577#comment-131</guid>
+		<description><![CDATA[Hi Brad,
+
+Two excellent comments, many thanks. I&#039;ll make a note to update the example script to handle the ffmpeg return code and pass it to mythtv.
+
+regards,
+oliver.]]></description>
+		<content:encoded><![CDATA[<p>Hi Brad,</p>
+<p>Two excellent comments, many thanks. I&#8217;ll make a note to update the example script to handle the ffmpeg return code and pass it to mythtv.</p>
+<p>regards,<br />
+oliver.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Brad</title>
+		<link>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/#comment-130</link>
+		<dc:creator>Brad</dc:creator>
+		<pubDate>Thu, 06 Sep 2012 11:59:56 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=577#comment-130</guid>
+		<description><![CDATA[First, thanks! This is really great!
+
+Second, you need to (as root) touch /var/log/mythtv/h264xcode.log and chmod it to mythtv:mythtv. Otherwise the jobs stay in the &#039;queued&#039; state because mythtv doesn&#039;t know about the errors (see below).
+
+Third, you should probably handle errors from ffmpeg so that mythtv knows the status of the job, and so that you&#039;re not moving unfinished videos to your ipad directory. 
+
+Last, thanks again!]]></description>
+		<content:encoded><![CDATA[<p>First, thanks! This is really great!</p>
+<p>Second, you need to (as root) touch /var/log/mythtv/h264xcode.log and chmod it to mythtv:mythtv. Otherwise the jobs stay in the &#8216;queued&#8217; state because mythtv doesn&#8217;t know about the errors (see below).</p>
+<p>Third, you should probably handle errors from ffmpeg so that mythtv knows the status of the job, and so that you&#8217;re not moving unfinished videos to your ipad directory. </p>
+<p>Last, thanks again!</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; mythtv</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/mythtv/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>MythTV Transcoding (5): HTML5 Playback in MythWeb</title>
+		<link>http://blog.gorwits.me.uk/2011/11/17/mythtv-transcoding-5-html5-playback-in-mythweb/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=mythtv-transcoding-5-html5-playback-in-mythweb</link>
+		<comments>http://blog.gorwits.me.uk/2011/11/17/mythtv-transcoding-5-html5-playback-in-mythweb/#comments</comments>
+		<pubDate>Thu, 17 Nov 2011 21:49:51 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[htpc]]></category>
+		<category><![CDATA[mythtv]]></category>
+		<category><![CDATA[transcoding]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=698</guid>
+		<description><![CDATA[Iâ€™m doing a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/11/17/mythtv-transcoding-5-html5-playback-in-mythweb/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Iâ€™m doing a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little more advanced.</p>
+<ul>
+<li><em>The complete series of articles is available atÂ <a href="http://blog.gorwits.me.uk/category/transcoding/" target="_self">this page</a></em></li>
+</ul>
+<p><a href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-4-streaming-h-264-from-mythweb/" target="_blank">Last time</a> we went through the steps to transcode a recording into the H.264 format, required for playback on iPad (or other Apple devices &#8211; iPod, iPhone, Mac OS X, etc).</p>
+<p>Today we&#8217;ll complete the series by embedding an HTML5 Video player into MythWeb which will stream these files. Of course, this means playback isn&#8217;t only possible on iPad, but also any compatible browser platform. The original plan was simply to provide a file download link in MythWeb, but my friend <a href="http://www.colinmoreyphotography.co.uk/" target="_blank">Colin</a> rightly suggested an embedded HTML5 Video player would be much more awesome.</p>
+<p>Your MythWeb files are probably installed somewhere like <code>/usr/share/mythtv/mythweb</code>. Open upÂ <code>modules/tv/tmpl/default/detail.php</code> and replace the default embedded player with a new HTML5 Video tag. You should find this around line 797. Replace the two lines comprising the Direct Download hyperlink with the following:</p>
+<pre class="brush: php; title: ; notranslate">
+&lt;video controls preload=&quot;none&quot; width=&quot;360&quot; height=&quot;153&quot;&gt;
+  &lt;source
+    src=&quot;/h264xcode/&lt;?php echo $program-&gt;chanid ?&gt;_&lt;?php echo date( 'YmdHis', $program-&gt;recstartts ) ?&gt;.m4v&quot;&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+</pre>
+<p>The above requires that you make the H.264 files available through your MythWeb web server. In my case, I simply created a symlink from the server&#8217;sÂ <code>DocumentRoot</code> to where the H.264 files live (so, change this to reflect your own H.264 file location):</p>
+<pre class="brush: bash; title: ; notranslate">
+ln -s /mnt/mythtv-video/Videos/iPad /var/www/h264xcode
+</pre>
+<p>The result is the following, once the transcoded file appears on disk:</p>
+<p><a rel="attachment wp-att-703" href="http://blog.gorwits.me.uk/2011/11/17/mythtv-transcoding-5-html5-playback-in-mythweb/screen-shot-2011-11-17-at-21-20-16/"><img class="aligncenter size-full wp-image-703" title="embedded html5 player" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/11/Screen-shot-2011-11-17-at-21.20.16.png" alt="" width="438" height="534" /></a></p>
+<p>And we&#8217;re done! Browsing to the MythWeb site on an iPad shows the embedded player which, when clicked, opens fullscreen for native playback. My deep thanks to all those working on the software used in this series of articles, and I also hope you found it a useful read.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/11/17/mythtv-transcoding-5-html5-playback-in-mythweb/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		</item>
+		<item>
+		<title>Painless MythTV Channel Configuration</title>
+		<link>http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=painless-mythtv-channel-configuration</link>
+		<comments>http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/#comments</comments>
+		<pubDate>Thu, 10 Nov 2011 23:07:46 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[htpc]]></category>
+		<category><![CDATA[mythtv]]></category>
+		<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=687</guid>
+		<description><![CDATA[MythTV &#8211; a brilliant homebrew digital video recorder system. Killer features include being able to play content over the LAN at home, scheduling recordings via the web, and generally poke it to integrate with all kinds of devices (e.g. see &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p><a href="http://www.mythtv.org/" target="_blank">MythTV</a> &#8211; a brilliant homebrew digital video recorder system. Killer features include being able to play content over the LAN at home, scheduling recordings via the web, and generally poke it to integrate with all kinds of devices (e.g. see my previous posts on <a href="http://blog.gorwits.me.uk/category/transcoding/" target="_blank">H.264 transcoding</a>). Even better, <a href="http://www.mythbuntu.org/" target="_blank">Mythbuntu</a> makes installation a doddle.</p>
+<p>However the most hated part for me is configuring TV sources and channels &#8211; digital terrestrial via an aerial, and digital via satellite. MythTV&#8217;s built-in scanner works at best intermittently (for me), and when it does, comes up with 1,000 shopping and adult channels which drown out the 20 or so I&#8217;m really interested in.</p>
+<p>Then there&#8217;s TV listings. All credit to the folks working on <a href="http://wiki.xmltv.org/index.php/Main_Page" target="_blank">XMLTV</a> and the Radio Times listings grabber &#8211; that&#8217;s some impressive work. But stitching it into MythTV usually ends up with hand-editing the database to insert XMLTV IDs. User friendly? I think not.</p>
+<p>Partly this is because these tools are used internationally and nothing is standardised between countries. Even in the UK there are three ways to get TV listings (EIT over the air, Bleb, and Radio Times).</p>
+<p>Finally I snapped, and wrote a Perl program to do all this work. It feels so nice now to have a simple, lightweight, repeatable process to configure sources and channels. That&#8217;s what good automation is all about.</p>
+<p>The code will only work in the UK, but might be a starting point for those elsewhere. It configures XMLTV IDs, but that doesn&#8217;t mean you have to use the Radio Times grabber. You still have to go through MythTV&#8217;s setup program to tell it about tuner cards (<em>before</em> running the import program) but that&#8217;s not hard work.</p>
+<p>The <a href="https://github.com/ollyg/mythtv_channel_import" target="_blank">code</a> and <a href="https://github.com/ollyg/mythtv_channel_import/blob/master/README.pod" target="_blank">instructions</a> are hosted on GitHub. Let me know if you use it, and how you get on. Don&#8217;t forget to back up your database (using MythTV&#8217;sÂ <code>mythconverg_*</code> scripts) before starting!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/11/10/painless-mythtv-channel-configuration/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>MythTV Transcoding (4): Add an H.264 Transcode Job</title>
+		<link>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-4-streaming-h-264-from-mythweb/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=mythtv-transcoding-4-streaming-h-264-from-mythweb</link>
+		<comments>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-4-streaming-h-264-from-mythweb/#comments</comments>
+		<pubDate>Sun, 04 Sep 2011 16:25:56 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[mythtv]]></category>
+		<category><![CDATA[transcoding]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=614</guid>
+		<description><![CDATA[Iâ€™m doing a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-4-streaming-h-264-from-mythweb/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Iâ€™m doing a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little more advanced.</p>
+<ul>
+<li><em>The complete series of articles is available atÂ <a href="http://blog.gorwits.me.uk/category/transcoding/" target="_self">this page</a></em></li>
+</ul>
+<p><a href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/" target="_blank">Last time</a> we went through the steps to transcode a recording into the H.264 format, required for playback on iPad (or other Apple devices &#8211; iPod, iPhone, Mac OS X, etc).</p>
+<p>Today we&#8217;ll complete the series by integrating this with MythWeb so that a new button appears which sets off the transcode job, and then go on to make the output available for streaming over the web. Remember that there are other ways to watch recordings on the iPad, as listed in the previous article in this series.</p>
+<p>First we need to let MythTV know about the new user job command (<code>/usr/local/bin/h264xcode</code>). You can do this either in the <code>mythtv-setup</code> program, or via the MythWeb interface. Personally I use the latter, as stopping the MythTV Backend and running the setup program over an SSH tunnel is fiddly, but I&#8217;ll cover both here for completeness.</p>
+<p>In <code>mythtv-setup</code> you want to selectÂ <em>General</em> and then hitÂ <em>Next</em> until you reach theÂ <em>Job Queue (Job Commands)</em> page:</p>
+<p><a rel="attachment wp-att-581" href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/screen-shot-2011-09-04-at-12-30-39/"><img class="aligncenter size-full wp-image-581" title="Job Queue - Job Commands" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/09/Screen-shot-2011-09-04-at-12.30.39.png" alt="" width="639" height="480" /></a></p>
+<p>You can see I&#8217;ve filled in the <em>description</em> and <em>command</em> for <em>User Job #1</em>. The command uses parameter variables which are filled in by MythTV (a list of the variables is on the <a href="http://www.mythtv.org/wiki/User_Jobs" target="_blank">User Jobs</a> MythTV wiki page). Here&#8217;s the command in full, as it&#8217;s not visible in this screenshot:</p>
+<pre class="brush: bash; title: ; notranslate">
+/usr/local/bin/h264xcode %CHANID% %STARTTIME%
+</pre>
+<p>Alternatively, configure these settings in the MythWeb interface. Click on the big spanner (for Settings) and choose <em>MythTV</em> from the list of buttons on the left. Scroll down and you&#8217;ll find a field called <em>UserJob1</em> and another called <em> UserJobDesc1 </em> just a little below. These take the same values as in the <code>mythtv-setup</code> interface:</p>
+<p><a rel="attachment wp-att-582" href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/screen-shot-2011-09-04-at-12-32-33/"><img class="aligncenter size-full wp-image-582" title="MythWeb Settings - MythTV" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/09/Screen-shot-2011-09-04-at-12.32.33.png" alt="" width="655" height="306" /></a></p>
+<p>Don&#8217;t worry about the dummy values in other User Job description fields &#8211; unless the Job has a command set, it&#8217;s ignored. If you did use MythWeb, you <span style="text-decoration: underline;">must</span> now restart your MythTV Backend process to get these updated settings.</p>
+<p>Hop over to MythWeb, and you should now see a new &#8220;H.264 Encode&#8221; button for each recording, which fires off a transcode Job that&#8217;s also visible in the MythWeb Job Queue:</p>
+<p><a rel="attachment wp-att-589" href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/screen-shot-2011-09-04-at-16-05-43/"><img class="aligncenter size-full wp-image-589" title="Screen shot 2011-09-04 at 16.05.43" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/09/Screen-shot-2011-09-04-at-16.05.43.png" alt="" width="359" height="204" /></a></p>
+<p><a rel="attachment wp-att-590" href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/screen-shot-2011-09-04-at-16-09-17/"><img class="aligncenter size-full wp-image-590" title="Screen shot 2011-09-04 at 16.09.17" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/09/Screen-shot-2011-09-04-at-16.09.17.png" alt="" width="361" height="190" /></a></p>
+<p><a rel="attachment wp-att-591" href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/screen-shot-2011-09-04-at-16-10-49/"><img class="aligncenter size-full wp-image-591" title="Screen shot 2011-09-04 at 16.10.49" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/09/Screen-shot-2011-09-04-at-16.10.49.png" alt="" width="359" height="185" /></a></p>
+<p><a rel="attachment wp-att-592" href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/screen-shot-2011-09-04-at-16-11-02/"><img class="aligncenter size-full wp-image-592" title="Screen shot 2011-09-04 at 16.11.02" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/09/Screen-shot-2011-09-04-at-16.11.02.png" alt="" width="824" height="174" /></a></p>
+<p>If you have the disk space, and want this to happen for all recordings automatically, check out the instructions from <a href="http://blog.gorwits.me.uk/2011/02/13/mythtv-transcoding-2-in-place-auto-transcoding/" target="_blank">part 2</a> of this series. You should tick the <em>Run user job</em> box in MythFrontend settings, and also note that this only takes effect for new Recording Schedules, although I explain a fix for existing schedules at the end of the article. Don&#8217;t forget to clean up old transcode files after a while!</p>
+<p>The final step on my road to iPad streaming is to embed this video into MythWeb, which I&#8217;ll cover in the next article.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-4-streaming-h-264-from-mythweb/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>MythTV Transcoding (3): Transcoding for iPad Playback</title>
+		<link>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=mythtv-transcoding-3-transcoding-for-ipad-playback</link>
+		<comments>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/#comments</comments>
+		<pubDate>Sun, 04 Sep 2011 16:17:27 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[mythtv]]></category>
+		<category><![CDATA[transcoding]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=577</guid>
+		<description><![CDATA[Iâ€™m doing a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Iâ€™m doing a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little more advanced.</p>
+<ul>
+<li><em>The complete series of articles is available atÂ <a href="http://blog.gorwits.me.uk/category/transcoding/" target="_self">this page</a></em></li>
+</ul>
+<p><a href="http://blog.gorwits.me.uk/2011/02/13/mythtv-transcoding-2-in-place-auto-transcoding/" target="_blank">Last time</a> I showed where you go in MythTV to edit the default job settings, and what happens when you hit the Transcode button in MythWeb or let MythTV transcode automatically after recording.</p>
+<p>Today I&#8217;m going to continue the series by leaving MythTV to one side, and showing how to create a transcoded recording suitable for playback on an iPad (or other Apple device &#8211; iPod, iPhone, Mac OS X, etc). Next time we&#8217;ll incorporate this into MythWeb for the final result.</p>
+<p>Before that, let&#8217;s look at the different ways that playback on Apple platforms might be achieved (more suggestions are welcome, in the comments):</p>
+<ul>
+<li>Install the <a href="http://sourceforge.net/projects/mythtvformacosx/files/" target="_blank">MythFrontend</a> application natively onto an OS X device.</li>
+<li>Install the <a href="http://www.vlcmediaplayer.org/" target="_blank">VLC Media Player</a> onto an OS X device (as it can handle the <em>ASX Stream</em> link in MythWeb) &#8211; in fact this is what I do on my own desktop Mac.</li>
+<li>Install <a href="http://code.google.com/p/mythpodcaster/" target="_blank">MythPodcaster</a>, a Transcoder and RSS publisher, and subscribe to transcoded recordings in iTunes (leads to syncing them to the iPad).</li>
+<li>Create a MythTV Job to transcode into <a href="http://www.apple.com/quicktime/what-is/" target="_blank">H.264</a> format (compatible with all Apple platforms), and add links to the generated files in MythWeb.</li>
+</ul>
+<p>It&#8217;s the last of these which I&#8217;m going to cover in this article. However an honourable mention must be made of MythPodcaster. First, most of the work here is taken from looking at what that excellent tool does. Second, if you don&#8217;t want to mess about editing MythWeb, then MythPodcaster has its own web interface for not only managing transcode schedules and profiles, but also browsing and playback. It really is an excellent tool I recommend you check out.</p>
+<p>Each MythTV user job is configured as a command which can be executed at the shell command-line. That means the first thing to do is get transcoding working at the command-line for ourselves. The tool for this is <code>ffmpeg</code>, but we must compile a special version which can output H.264. The following instructions are for an Ubuntu system and based on the MythPodcaster <a href="http://code.google.com/p/mythpodcaster/wiki/InstallationOnMythBuntu" target="_blank">InstallationOnMythBuntu</a> page.</p>
+<p>I&#8217;m going to build a custom version of <code>ffmeg</code>, separate to that installed with my Ubuntu system. The instructions below aren&#8217;t intended to be the cleanest solution, but get the job done.</p>
+<pre class="brush: bash; title: ; notranslate">
+sudo apt-get install build-essential git-core yasm checkinstall zlib1g-dev pkg-config
+</pre>
+<p>And we&#8217;ll do this work as the <code>mythtv</code> user in a new directory:</p>
+<pre class="brush: bash; title: ; notranslate">
+sudo mkdir -p /usr/local/lib/ffmpeg-264
+sudo chown mythtv:mythtv /usr/local/lib/ffmpeg-264
+sudo su - mythtv
+cd /usr/local/lib/ffmpeg-264
+</pre>
+<p>Build the faac library:</p>
+<pre class="brush: bash; title: ; notranslate">
+cd /usr/local/lib/ffmpeg-264
+wget http://downloads.sourceforge.net/project/faac/faac-src/faac-1.28/faac-1.28.tar.gz
+tar -zxvf faac-1.28.tar.gz
+cd faac-1.28
+./configure --prefix=/usr/local/lib/ffmpeg-264 --enable-static --disable-shared
+# some kind of gcc-compatibility bug which needs fixing
+sed -i -e &quot;s|^char \*strcasestr.*|//&#92;&#48;|&quot; common/mp4v2/mpeg4ip.h
+make &amp;&amp; make install
+</pre>
+<p>Build the x264 library:</p>
+<pre class="brush: bash; title: ; notranslate">
+cd /usr/local/lib/ffmpeg-264
+git clone git://git.videolan.org/x264.git
+cd x264
+./configure --prefix=/usr/local/lib/ffmpeg-264 --enable-static --disable-shared
+make &amp;&amp; make install
+</pre>
+<p>Build the libmp3lame library:</p>
+<pre class="brush: bash; title: ; notranslate">
+cd /usr/local/lib/ffmpeg-264
+wget http://downloads.sourceforge.net/project/lame/lame/3.98.4/lame-3.98.4.tar.gz
+tar -zxvf lame-3.98.4.tar.gz
+cd lame-3.98.4
+./configure --prefix=/usr/local/lib/ffmpeg-264 --enable-static --disable-shared
+make &amp;&amp; make install
+</pre>
+<p>Build ffmpeg:</p>
+<pre class="brush: bash; title: ; notranslate">
+cd /usr/local/lib/ffmpeg-264
+wget http://www.ffmpeg.org/releases/ffmpeg-0.8.3.tar.gz
+tar -zxvf ffmpeg-0.8.3.tar.gz
+cd ffmpeg-0.8.3
+./configure --prefix=/usr/local/lib/ffmpeg-264 --extra-version=static --disable-debug --enable-static --extra-cflags=--static --disable-ffplay --disable-ffserver --disable-doc --enable-gpl --enable-pthreads --enable-postproc --enable-gray --enable-runtime-cpudetect --enable-libfaac --enable-libmp3lame --enable-libx264 --enable-nonfree --enable-version3 --disable-devices --extra-ldflags=-L/usr/local/lib/ffmpeg-264/lib --extra-cflags=-I/usr/local/lib/ffmpeg-264/include
+make &amp;&amp; make install
+</pre>
+<p>To make life a little easier, I link to this new binary from a more memorable location:</p>
+<pre class="brush: bash; title: ; notranslate">
+exit # if you are still the &quot;mythtv&quot; user
+sudo ln -s /usr/local/lib/ffmpeg-264/bin/ffmpeg /usr/local/bin/ffmpeg-264
+</pre>
+<p>Now we need a magic incantation for ffmpeg-264 which will result in an H.264 file suitable for iPad playback. A good source of possible command line options is the <a href="http://code.google.com/p/mythpodcaster/source/browse/trunk/src/main/conf/transcoding_profiles.xml" target="_blank">MythPodcaster trancoding profiles</a> XML file. In this file, the various iPad profiles, as their names suggest, will ask for various formats and qualities of output (see each <code>encoderArguments</code> key).</p>
+<p>These command line options in turn refer to ffmpeg <em>presets</em> (via <code>-vpre</code>) which should be shipped with ffmpeg in the <em>ffpresets</em> directory. Some of these might work, but I&#8217;m pretty happy with two presets from an older version of ffmpeg:</p>
+<pre class="brush: bash; title: ; notranslate">
+mkdir ~mythtv/.ffmpeg
+cd ~mythtv/.ffmpeg
+wget https://raw.github.com/FFmpeg/FFmpeg/release/0.6/ffpresets/libx264-main.ffpreset
+wget https://raw.github.com/FFmpeg/FFmpeg/release/0.6/ffpresets/libx264-medium.ffpreset
+</pre>
+<p>One problem you might have with ffmpeg options is selection of an audio track in recordings with multiple soundtracks (for example normal, and <a href="http://www.tvhelp.org.uk/audes/whatis.html" target="_blank">audio-descriptive</a>). There&#8217;s no easy way to know which you want (and in my settings I force the choice). Here&#8217;s what I settled on, which seems to work OK for SD content, and if you have others please add a comment, below:</p>
+<pre class="brush: plain; title: ; notranslate">
+-i &lt;infile&gt; -y -map 0:0 -map 0:1 -er 4 -f ipod -acodec libfaac -ac 2 -ab 128k \
+    -ar 44100 -deinterlace -vcodec libx264 -vpre medium -vpre main -b 1200k \
+    -bt 1200k -maxrate 1200k -bufsize 1200k -level 30 -r 30 -g 90 -async 2 \
+    -threads 0 -v 0 &lt;outfile&gt;
+</pre>
+<p>These parameters are wrapped up in a script, making things easier for MythTV configuration. This file, called <code>h264xcode</code> is also placed in <code>/usr/local/bin</code> (and obviously, season this to taste, for your system&#8217;s recording directories):</p>
+<pre class="brush: bash; title: ; notranslate">
+#!/bin/bash
+
+CHANID=$1
+STARTTIME=$2
+
+INDIR=&quot;/mnt/mythtv-video/Videos/MythTV&quot;
+OUTDIR=&quot;/mnt/mythtv-video/Videos/iPad&quot;
+
+PROG=&quot;time nice -n 19 /usr/local/bin/ffmpeg-264&quot;
+PARAMS=&quot;-y -map 0:0 -map 0:1 -er 4 -f ipod -acodec libfaac -ac 2 -ab 128k -ar 44100 -deinterlace -vcodec libx264 -vpre medium -vpre main -b 1200k -bt 1200k -maxrate 1200k -bufsize 1200k -level 30 -r 30 -g 90 -async 2 -threads 0 -v 0&quot;
+
+LOG=&quot;/var/log/mythtv/h264xcode.log&quot;
+OUTFILE=&quot;${OUTDIR}/${CHANID}_${STARTTIME}&quot;
+
+COMMAND=&quot;${PROG} -i ${INDIR}/${CHANID}_${STARTTIME}.mpg ${PARAMS} ${OUTFILE}.m4v.tmp&quot;
+
+echo &quot;h264xcode: ${COMMAND}&quot; &gt;&gt; $LOG
+$COMMAND &gt;&gt; $LOG 2&gt;&amp;1
+mv -f ${OUTFILE}.m4v.tmp ${OUTFILE}.m4v &gt;&gt; $LOG 2&gt;&amp;1
+rm -f ${OUTFILE}.m4v.tmp &gt;&gt; $LOG 2&gt;&amp;1
+</pre>
+<p>Let&#8217;s work through what&#8217;s going on, here. The script takes two arguments &#8211; the channel ID and the start time of the recording (we&#8217;ll see how MythTV passes these, later). From them it&#8217;s possible to locate the original recording file on disk, using the <code>$INDIR</code> variable.</p>
+<p>Next a simple log is set up, and the proposed ffmpeg-264 command echoed to that file. Finally the command itself is run, with a low system priority (<code>nice -n 19</code>), and the output directed to the log file. The H.264 file is saved in <code>$OUTDIR</code>.</p>
+<p>So far so good. All that remains is to let MythTV know about this new user job command, which we&#8217;ll cover in the next article in this series.</p>
+<h6><em>Many thanks to Murray Cox, Seb Jacob, and Colin Morey for providing valuable feedback on this post!</em></h6>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		</item>
+		<item>
+		<title>MythTV Transcoding (2): In-place Auto Transcoding</title>
+		<link>http://blog.gorwits.me.uk/2011/02/13/mythtv-transcoding-2-in-place-auto-transcoding/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=mythtv-transcoding-2-in-place-auto-transcoding</link>
+		<comments>http://blog.gorwits.me.uk/2011/02/13/mythtv-transcoding-2-in-place-auto-transcoding/#comments</comments>
+		<pubDate>Sun, 13 Feb 2011 17:30:48 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[mythtv]]></category>
+		<category><![CDATA[transcoding]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=390</guid>
+		<description><![CDATA[Iâ€™m doing a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/02/13/mythtv-transcoding-2-in-place-auto-transcoding/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Iâ€™m doing a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little more advanced.</p>
+<ul>
+<li><em>The complete series of articles is available atÂ <a href="http://blog.gorwits.me.uk/category/transcoding/" target="_self">this page</a></em></li>
+</ul>
+<p><a href="http://blog.gorwits.me.uk/2011/02/10/mythtv-transcoding-1-the-beginning/" target="_blank">Last time</a> I enabled transcoding on the back-end server, and showed that hitting the <em>Transcode</em> button in MythWeb fired off a job. Today I&#8217;m going to show what that job is doing.</p>
+<p>If you have the MythTV Frontend running then you&#8217;re all set to begin. Otherwise, log into your MythTV box and start the Frontend application (these are instructions for 0.24):</p>
+<pre class="brush: plain; title: ; notranslate">
+workstation:~$ ssh -Y mythtv.example.com
+mythtv:~$ mythfrontend --windowed --geometry 640x480
+</pre>
+<p>Navigate to <em>Utilities/Setup</em>, <em>Setup</em>, <em>TV Settings</em>, <em>General</em>, and hit <em>Next</em> until you end up on the <em>General (Jobs)</em> screen:</p>
+<p><a rel="attachment wp-att-392" href="http://blog.gorwits.me.uk/2011/02/13/mythtv-transcoding-2-in-place-auto-transcoding/screen-shot-2011-02-13-at-16-53-15/"><img class="aligncenter size-full wp-image-392" title="General Settings (Jobs)" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/02/Screen-shot-2011-02-13-at-16.53.15.png" alt="" width="639" height="479" /></a>First settle your eye on the <em>Default transcoder</em> option in the centre of the screen. There are a number of predefined Transcoders (which we&#8217;ll come to shortly), and this is where you choose the one to be run when the <em>Transcode</em> button is pushed in MythWeb.</p>
+<p>Below this option are tick boxes for each kind of Job that we saw in my last blog post. Whereas before we simply permitted them to be run <span style="text-decoration: underline;">manually</span>, or not, these options control whether this is done <span style="text-decoration: underline;">automatically</span>. However this applies to newly created Recording Schedules only. For example if you already have a Schedule for a TV series, new episodes won&#8217;t be auto-transcoded, we need to fix each existing Schedule, and I&#8217;ll show how to do that below.</p>
+<p>Now we know where to choose the default Transcode profile and enable automatic transcoding for new recordings, let&#8217;s look at these mysterious profiles. Navigate toÂ <em>Utilities/Setup</em>,Â <em>Setup</em>,Â <em>TV Settings</em>,Â <em>Recording Profiles</em>, <em>Transcoders</em> to end up on this screen:</p>
+<p><a rel="attachment wp-att-393" href="http://blog.gorwits.me.uk/2011/02/13/mythtv-transcoding-2-in-place-auto-transcoding/screen-shot-2011-02-13-at-16-59-05/"><img class="aligncenter size-full wp-image-393" title="Transcoding Profiles" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/02/Screen-shot-2011-02-13-at-16.59.05.png" alt="" width="638" height="154" /></a>You might have spotted that two profiles are called <em>Autodetect from&#8230;</em>, and indeed these are used when the <em>Default transcoder</em> we saw above is set to <em>Autodetect</em>. Selecting the <em>Autodetect from MPEG2</em> profile shows it&#8217;s quite simple:</p>
+<p><a rel="attachment wp-att-394" href="http://blog.gorwits.me.uk/2011/02/13/mythtv-transcoding-2-in-place-auto-transcoding/screen-shot-2011-02-13-at-17-01-39/"><img class="aligncenter size-full wp-image-394" title="Autodetect from MPEG2" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/02/Screen-shot-2011-02-13-at-17.01.39.png" alt="" width="639" height="478" /></a>So why have a profile which seems to do nothing? Two reasons:</p>
+<ol>
+<li>If you have previously run a <em>Commercial-detection</em> Job, the cutpoints for ad breaks will be stored, and the in-place transcode is an opportunity to remove those sections of the video.</li>
+<li>Sometimes MPEG recordings can contain &#8220;glitches&#8221; or MythTV has trouble seeking within the video; an in-place transcode is an opportunity to rebuild all the metadata, which helps resolve problems.</li>
+</ol>
+<p>It&#8217;s for the second reason that I have automatic in-place transcoding enabled even though I don&#8217;t use commercial detection.Â If you want to transcode to save disk space, take a look at the other <em>Transcoders</em> available, and consider either setting one to be the <em>Default transcoder</em> or creating your own.</p>
+<p>All that remains is for me to fix the automatic transcode setting for my existing recordings, to be in line with new recordings. The only way I know is by editing the backend database directly, but this is strongly discouraged by the MythTV developers. Anyway, at the <code>mysql</code> prompt (get the password from <code>/etc/mythtv/mysql.txt</code>):</p>
+<pre class="brush: plain; title: ; notranslate">
+mythtv:~$ mysql -u mythtv -p mythconverg
+Enter password:
+
+mysql&gt; update record set autotranscode = 1;
+Query OK, 72 rows affected (0.11 sec)
+Rows matched: 72  Changed: 72  Warnings: 0
+</pre>
+<p>If you want to do the same for <em>Commerical-detection</em>, set the <code>autocommflag</code> field.</p>
+<p>Next time I&#8217;ll take a break from MythTV and look at how to transcode an MPEG2 file for the iPad using command line tools.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/02/13/mythtv-transcoding-2-in-place-auto-transcoding/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>MythTV Transcoding (1): The Beginning</title>
+		<link>http://blog.gorwits.me.uk/2011/02/10/mythtv-transcoding-1-the-beginning/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=mythtv-transcoding-1-the-beginning</link>
+		<comments>http://blog.gorwits.me.uk/2011/02/10/mythtv-transcoding-1-the-beginning/#comments</comments>
+		<pubDate>Thu, 10 Feb 2011 20:42:15 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[mythtv]]></category>
+		<category><![CDATA[transcoding]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=340</guid>
+		<description><![CDATA[I&#8217;m going to do a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/02/10/mythtv-transcoding-1-the-beginning/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>I&#8217;m going to do a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little more advanced.</p>
+<ul>
+<li><em>The complete series of articles is available at <a href="http://blog.gorwits.me.uk/category/transcoding/" target="_self">this page</a></em></li>
+</ul>
+<p>What is <a href="http://en.wikipedia.org/wiki/Transcoding" target="_blank">transcoding</a>? The data saved to disk by MythTV from your TV tuner cards has both a format, and a bit-rate. These are usually particular to how the TV station is broadcast and/or how your tuner hardware works. The idea of transcoding is to change either or both properties, perhaps to enable playback on another device, or to save on disk space used.</p>
+<p>MythTV includes a transcoding system and support for some data formats and bit-rates (but not all). In this first session I&#8217;ll enable really basic, manual transcoding.</p>
+<p>What catches people out is that just hitting the <em>Transcode</em> button in MythWeb will not work unless the backend is allowed to transcode. That&#8217;s done in <code>mythtv-setup</code>, the program you probably ran years ago and forgot all about (or never ran).</p>
+<p>Log into your MythTV box (these are instructions for 0.24):</p>
+<pre class="brush: plain; title: ; notranslate">
+workstation:~$ ssh -Y mythtv.example.com
+mythtv:~$ mythtv-setup --geometry 640x480
+</pre>
+<p>Select <em>General</em> and then hit <em>Next</em> until you reach the <em>Job Queue (backend specific)</em> page:</p>
+<p><a rel="attachment wp-att-353" href="http://blog.gorwits.me.uk/2011/02/10/mythtv-transcoding-1-the-beginning/screen-shot-2011-02-09-at-21-36-43/"><img class="aligncenter size-full wp-image-353" title="Job Queue (backend specific)" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/02/Screen-shot-2011-02-09-at-21.36.43.png" alt="" width="640" height="481" /></a></p>
+<p>The notable settings are the six <em>Allow &#8230; Jobs</em> tick-boxes. As you can see I have commercial-detection disabled, and the effect is that even if I hit the <em>Flag Commercials</em> button in MythWeb the job will never start (it will just sit in the job queue).Â There are three types of job:</p>
+<h6><em>Edit: updated descriptions due to feedback from a friend &#8211; thanks, Colin!</em></h6>
+<ul>
+<li><strong>Commercial-detection</strong>: this will attempt to detect and store the commercial break points in TV shows (not a transcode, but may be used by one)</li>
+</ul>
+<ul>
+<li><strong>Transcoding</strong>: what you set to happen when you hit <em>Transcode</em> in MythWeb, which (usually)Â <span style="text-decoration: underline;">replaces the original recording file<br />
+</span></li>
+</ul>
+<ul>
+<li><strong>Four User Jobs</strong>: scripts you create that transcode (or anything else), which we&#8217;ll come to later, and typically don&#8217;t replace the original recording file</li>
+</ul>
+<p>Hitting <em>Next</em> takes you to the <em>Job Queue (Global)</em> transcode settings page:</p>
+<p><a rel="attachment wp-att-345" href="http://blog.gorwits.me.uk/2011/02/10/mythtv-transcoding-1-the-beginning/screen-shot-2011-02-09-at-18-59-07/"><img class="aligncenter size-full wp-image-345" title="Job Queue (Global)" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/02/Screen-shot-2011-02-09-at-18.59.07.png" alt="" width="640" height="480" /></a>An interesting option is <em>Save original files after transcoding (globally)</em>. If you transcode and intend to replace the original recording file (as in bullet two, above), this is a way to preserve a backup should things go wrong. If you do, just make sure there&#8217;s a <code>cron</code> job or similar to delete these old files as otherwise your disk will fill up.</p>
+<p>Finally, hitting <em>Next</em> will show the third transcode-related page where you can configure the <em>User Jobs</em> I mentioned in bullet three, above. I&#8217;ll save these for another blog post to come.</p>
+<p>So far I&#8217;ve allowed transcode jobs but not actually asked MythTV to to run any. Bringing up the MythWeb page for a recorded show (click the thumbnail from <em>Recorded Programs</em>) presents a <em>Transcode</em> button which now works:</p>
+<p><a rel="attachment wp-att-361" href="http://blog.gorwits.me.uk/2011/02/10/mythtv-transcoding-1-the-beginning/screen-shot-2011-02-10-at-20-29-15/"><img class="aligncenter size-full wp-image-361" title="MythWeb Transcode Button" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/02/Screen-shot-2011-02-10-at-20.29.15.png" alt="" width="891" height="263" /></a>For a different show I recently used this button, and on the <em>Backend Status</em> page there&#8217;s a corresponding Job Queue section entry showing its progress:</p>
+<p><a rel="attachment wp-att-362" href="http://blog.gorwits.me.uk/2011/02/10/mythtv-transcoding-1-the-beginning/screen-shot-2011-02-10-at-20-34-52/"><img class="aligncenter size-full wp-image-362" title="MythWeb Job Queue Status" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2011/02/Screen-shot-2011-02-10-at-20.34.52.png" alt="" width="936" height="215" /></a></p>
+<p>Next time I&#8217;ll show what type of transcode is happening, and how to automate this to occur immediately after each recording finishes.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/02/10/mythtv-transcoding-1-the-beginning/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

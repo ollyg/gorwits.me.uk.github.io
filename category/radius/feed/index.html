@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; radius</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/radius/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>FreeRADIUS EAP and CRLs</title>
+		<link>http://blog.gorwits.me.uk/2011/02/28/freeradius-eap-and-crls/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=freeradius-eap-and-crls</link>
+		<comments>http://blog.gorwits.me.uk/2011/02/28/freeradius-eap-and-crls/#comments</comments>
+		<pubDate>Mon, 28 Feb 2011 10:31:16 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[radius]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=410</guid>
+		<description><![CDATA[Just a quick note about a gotcha, which will hopefully help someone searching for the answer&#8230; In FreeRADIUS 2, if you want to use a Certificate Revocation List (CRL) along with the EAP module, then following the instructions in the &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/02/28/freeradius-eap-and-crls/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Just a quick note about a gotcha, which will hopefully help someone searching for the answer&#8230;</p>
+<p>In FreeRADIUS 2, if you want to use a Certificate Revocation List (CRL) along with the EAP module, then following the instructions in the <code>eap</code> configuration file will get you nowhere.</p>
+<p>Instead of setting up a directory and hashing it using the <code>openssl</code> tools, just append the CRL in PEM format to the end of your trusted root CA file. Then, when the <code>openssl</code> libs load the CA they will also load the CRL. You should still have <code>check_crl</code> set to <code>yes</code>, though.</p>
+<p>Thanks to ï»¿ï»¿Mike Griego at University of Texas at Dallas for <a href="http://www.mail-archive.com/freeradius-users@lists.freeradius.org/msg13283.html" target="_blank">posting this workaround</a> on the FreeRADIUS users mail list.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/02/28/freeradius-eap-and-crls/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

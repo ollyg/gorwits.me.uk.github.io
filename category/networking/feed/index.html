@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; networking</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/networking/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>Internet accessible cats &#8211; part 2</title>
+		<link>http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=internet-accessible-cats-part-2</link>
+		<comments>http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/#comments</comments>
+		<pubDate>Thu, 03 Jan 2013 22:08:21 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[cats]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[networking]]></category>
+		<category><![CDATA[transcoding]]></category>
+		<category><![CDATA[video]]></category>
+		<category><![CDATA[virtualization]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=855</guid>
+		<description><![CDATA[So far so good for access to the new Cat Cam: from within the house we can view video from the cats&#8217; shed, yet the camera is safely on its own DMZ. In this final post I&#8217;ll show how I &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>So far so good for access to the new Cat Cam: from within the house we can view video from the cats&#8217; shed, yet the camera is safely on its own DMZ.</p>
+<p>In this final post I&#8217;ll show how I made the camera video feed available on the Internet.</p>
+<p>One thing I wanted from the outset was for Internet clients not to make direct connections to the camera itself. I was a little worried about the ability of the web server and CPU in the camera to cope with multiple clients, and also the security implications of direct access. AÂ second requirement was to have multi platform access &#8211; that is, desktop and iOS. This potentially means different streaming video formats.</p>
+<p>We have one linux server in the house, which is used for many different things and runs <a href="http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/" target="_blank">virtual machines</a>. My back-of-an-envelope plan looked something like this:</p>
+<p><a href="http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/cat-internet-3/" rel="attachment wp-att-858"><img class="aligncenter size-full wp-image-858" title="cat-internet" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2012/12/cat-internet2.png" alt="" width="250" height="382" /></a></p>
+<p>First step was to create the VM, but remember that the camera feed is in a DMZ using a VLAN, so the VM must live there too. In KVM it&#8217;s possible either to send all traffic to a guest system and let it process the VLANs or, you can separate the tagged VLAN traffic in the host system so the guest is dumb and just sees untagged frames. Clearly the latter is preferable so that were the guest to suffer attack from the Internet, it ought not to be able to put traffic onto the house workstation network. The guest is completely within the DMZ.</p>
+<p>With that done and a basic Ubuntu system installed, I started work on Apache and <a href="http://www.videolan.org/vlc/index.html" target="_blank">VLC</a> (the Swiss Army Chainsaw of video processing). First up, VLC&#8230;</p>
+<p>Luckily the camera&#8217;s video feed comes in MJPEG format with a discoverable URL. The idea is to take this feed, duplicate it, and transcode the respective feeds into something suitable for a desktop browser and for iOS. As a bonus, I&#8217;ll timestamp the video to make it easy to tell if the transcoder has crashed (the timestamp would be wrong). After a <em>lot</em>Â of reading online about how to configure VLC I came up with the following monstrosity:</p>
+<pre class="brush: plain; title: ; notranslate">
+/usr/bin/cvlc -I dummy http://guest:guest@172.16.30.10:8888/videostream.cgi?rate=0
+  --sout='#duplicate{
+
+    dst=&quot;transcode{
+      width=320,heigh=240,fps=25,vcodec=h264,vb=256,acodec=none,
+      venc=x264{profile=baseline,level=30,keyint=30,ref=1},
+      sfilter=marq{marquee=\&quot;[%Y-%m-%d %H:%M:%S]\&quot;,position=8,size=18}
+    }:std{access=livehttp{
+        seglen=10,delsegs=true,numsegs=5,
+        index=/var/www/streaming/cats.m3u8,
+        index-url=/streaming/cats-########.ts},
+      mux=ts{use-key-frames},
+      dst=/var/www/streaming/cats-########.ts}&quot;,
+
+    dst=&quot;transcode{
+      width=640,heigh=480,fps=25,vcodec=theo,vb=512,acodec=none,
+      sfilter=marq{marquee=\&quot;[%Y-%m-%d %H:%M:%S]\&quot;,position=8,size=18}
+    }:http{mux=ogg,dst=127.0.0.1:8081/catcam.ogg}&quot;
+
+  }'
+</pre>
+<p>Of the two transcodesÂ (&#8220;dst=&#8221;), the second is more straightforward. It creates an <a href="http://en.wikipedia.org/wiki/Ogg" target="_blank">Ogg</a> format stream using the <a href="http://en.wikipedia.org/wiki/Theora" target="_blank">Theora</a> video codec, which modern browsers should be able to cope with. This is a video stream being served from VLC&#8217;s built-in web server, so I&#8217;ll need to proxy it via Apache. The configuration also applies a filter (&#8220;sfilter=&#8221;) to add a timestamp on the video stream.</p>
+<p>The first transcode uses the new <a href="https://developer.apple.com/resources/http-streaming/" target="_blank">HTTP Live Streaming</a> support in VLC. This is a rather elegant specification from Apple (which is why I selected it for the iOS clients) for simple and efficient delivery of streaming video. It creates a set of files and assumes you have a web server to serve them. The files each contain a few seconds of video, and the client retrieves them and plays one after another. The &#8220;######&#8221; templates an incrementing number within the segment filename. Again, the timestamp is added to the video stream.</p>
+<p>CPU load for the above runs at about 60% (in the VM) on the dual core Athlon X2 245e processor. I wrapped the above in an <a href="http://upstart.ubuntu.com/" target="_blank">Upstart</a> init file, and just in case VLC gets its knickers in a twist, I added a cron job to periodically stop and start the service.</p>
+<p>Now on to Apache. It needs to proxy the Ogg stream and serve the Live Streaming files, and prevent any other access to the web server:</p>
+<pre class="brush: plain; title: ; notranslate">
+# redirect any non-cat requests to the cat index.html
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^/streaming/cats.*
+RewriteCond %{REQUEST_URI} !^/stream/catcam.ogg$
+RewriteCond %{REQUEST_URI} !^/index.html$
+RewriteRule ^(.*) http://%{HTTP_HOST}/index.html [R,L]
+
+ProxyReceiveBufferSize 16384
+ProxyRequests On
+ProxyVia On
+ProxyPreserveHost On
+
+&lt;Proxy *&gt;
+    Order deny,allow
+    Allow from all
+&lt;/Proxy&gt;
+
+# VLC server stream
+ProxyPass /stream/catcam.ogg http://localhost:8081/catcam.ogg
+ProxyPassReverse /stream/catcam.ogg http://localhost:8081/catcam.ogg
+</pre>
+<p>Last but not least for this server, we need a web page which offers up the two video streams. This uses an HTML5 video tag:</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Cat Cam&lt;/title&gt;
+        &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=ISO-8859-1&quot;&gt;
+        &lt;META HTTP-EQUIV=&quot;Pragma&quot; CONTENT=&quot;no-cache&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Cat Cam&lt;/h1&gt;
+        &lt;video id=&quot;video&quot; autoplay=&quot;autoplay&quot;&gt;
+            &lt;source src=&quot;/streaming/cats.m3u8&quot;&gt;
+            &lt;source src=&quot;/stream/catcam.ogg&quot; type=&quot;video/ogg; codecs=theora&quot;&gt;
+            Your browser doesn't appear to support the HTML5 &lt;code&gt;&amp;lt;video&amp;gt;&lt;/code&gt; element.
+        &lt;/video&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>All that remains is to enable a NAT rule and firewall pinhole on the home router for the web server (which is, of course, in the DMZ network connected directly to the router).</p>
+<p>Let&#8217;s see the end result, taken on my iPhone this evening, also demonstrating the automatically activated night vision mode:</p>
+<p><a href="http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/cat-ngith/" rel="attachment wp-att-884"><img class="aligncenter size-full wp-image-884" title="cat-ngith" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2012/12/cat-ngith.png" alt="" width="400" height="267" /></a></p>
+<p>It&#8217;s nice to be able to check in on the wee beasties when I&#8217;m out at work. Other than a lot of reading about VLC, it wasn&#8217;t particularly difficult to do, and I think the end result is really quite good.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Internet accessible cats &#8211; Part 1</title>
+		<link>http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=internet-accessible-cats-part-1</link>
+		<comments>http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/#comments</comments>
+		<pubDate>Mon, 17 Dec 2012 11:01:13 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[cats]]></category>
+		<category><![CDATA[networking]]></category>
+		<category><![CDATA[video]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=834</guid>
+		<description><![CDATA[Previously I discussed the selection and installation of a LoftekÂ CXS 3200 wireless camera, for us to keep an eye on our cats in their shed. As a reminder, here&#8217;s a screenshot of two cute, snoozing cats: This post will cover &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p><a href="http://blog.gorwits.me.uk/2012/12/12/cat-tv/" target="_blank">Previously</a> I discussed the selection and installation of a LoftekÂ CXS 3200 wireless camera, for us to keep an eye on our cats in their shed. As a reminder, here&#8217;s a screenshot of two cute, snoozing cats:</p>
+<p><a href="http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/cat-snooze/" rel="attachment wp-att-907"><img class="aligncenter size-full wp-image-907" title="cat-snooze" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2012/12/cat-snooze.png" alt="" width="500" height="375" /></a></p>
+<p>This post will cover the network changes made at home for the camera, and in the next, how it was made available on the Internet (for us to check up on away from home).</p>
+<p>Naturally the camera needed to go on our home network, but I was a little wary of what shenanigans its software might get up to. For example I know the camera automatically registers itself with a public <a href="http://en.wikipedia.org/wiki/Dynamic_DNS" target="_blank">dynamic DNS</a> service; it&#8217;s possible to update the firmware to disable that feature.</p>
+<p>A safe design is to set up a <a href="http://en.wikipedia.org/wiki/DMZ_(computing)" target="_blank">DMZ</a>, and put the camera on that. Our workstations in the house would be able to talk to the camera, as would the Internet, but the camera would not be permitted access to our workstations. Without dedicated cables for the DMZ I needed to enable a <a href="http://en.wikipedia.org/wiki/Virtual_LAN" target="_blank">VLAN</a> on the network. Thankfully the switch, wireless access point, and router we use support VLANs.</p>
+<p><a href="http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/cat-topo-2/" rel="attachment wp-att-848"><img class="aligncenter size-full wp-image-848" title="cat-topo" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2012/12/cat-topo1.png" alt="" width="500" height="317" /></a></p>
+<p>The switch is a Netgear GS108E, an eight port gigabit device (it lives in the loft, and I ran Cat5e inside the walls to recessed sockets in each room). It&#8217;s a simple job to enable a tagged VLAN on the ports to the router, the wireless access point, and our linux server (which I&#8217;ll come back to, next time).</p>
+<p>I set up a new SSID on the wireless access point dedicated to the camera, which placed all traffic onto this new tagged VLAN. Now the camera and router were linked, via the switch, on a separate path from the rest of the house.</p>
+<p>At the router I needed to configure a VLAN subinterface and add some access control lists to set up the DMZ access rules I mentioned above. The DMZ of course needs its own subnet so I gave it a new /24 network.</p>
+<p>So far, so good: workstations in the house can now browse to http://172.16.30.10:8888/ (the new DMZ network, via the router) and log in to the Loftek camera to see video of the cats. The camera can only initiate connections to the Internet, or reply to requests from workstations in the house.</p>
+<p>In the next post, I&#8217;ll talk about using our home linux server to make the camera video feed available on the Internet.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Simple Tools for Describing Rack Layouts</title>
+		<link>http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=simple-tools-for-describing-rack-layouts</link>
+		<comments>http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/#comments</comments>
+		<pubDate>Thu, 09 Aug 2012 11:22:46 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[networking]]></category>
+		<category><![CDATA[productivity]]></category>
+		<category><![CDATA[sysops]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=779</guid>
+		<description><![CDATA[Often when a system at work is having a problem I won&#8217;t actually know where it is. I can remember where mostÂ of the network kit is located, but not all, and certainly not all the servers connected. Two tools we &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Often when a system at work is having a problem I won&#8217;t actually know where it is. I can remember where <em>most</em>Â of the network kit is located, but not all, and certainly not all the servers connected.</p>
+<p>Two tools we already use can help: <a href="http://netdisco.org" target="_blank">Netdisco</a> shows which switch port a device is connected to, and a good cable and patching database indicates the room or even cabinet location of the device. However I wanted a more visual understanding of just where cabinet &#8220;CX1&#8243; might be located on our campus, and particularly in our large data centre halls.</p>
+<p>There are a few options, in terms of web-based,Â Linux-hosted, open source tools:</p>
+<p><a href="http://sourceforge.net/projects/rackmonkey/" target="_blank">RackMonkey</a> is a simple bit of Perl CGI with an easy to use web interface. It&#8217;s no longer actively maintained, but is hosted on sourceforge. Good features include easy installation, numbering U (position in the rack) from top or bottom, and supporting SQLite3 storage. Missing features include specifying front/back position or facing-direction of the device.</p>
+<p><a href="http://racktables.org/" target="_blank">RackTables</a> is, I think, PHP and MySQL and in addition to rack layout includes IP address and VLAN registries. These latter features we don&#8217;t need, and would be a distraction or confusion to my colleagues if I couldn&#8217;t disable them. What I do like is that devices can occupy front/mid/back zones in each rack unit. <del>Sadly racks can&#8217;t be numbered from top or bottom, and we have a mix of both.</del>Â <strong>Update:</strong>Â From version 0.20.4 RackTables will support numbering in either direction.</p>
+<p><a href="http://demo.racksmith.net/" target="_blank">RackSmith</a> is new and has some good ideas, such as being able to place the racks on a tiled floor plan in a room, in a building. There seems to be sufficient flexibility in how devices are placed in racks, but I notice several user interface bugs, which are understandable as <del>RackSmith is still under development</del>.Â <strong>Update:</strong> It seems public <a href="http://racksmith.net/forum/viewtopic.php?f=10&amp;t=895" target="_blank">development of RackSmith is &#8220;on hold&#8221; and it&#8217;s being rewritten</a> under a SaaS model.</p>
+<p>Both RackTables and RackSmith have demos on-line. RackMonkey is really easy to install so there&#8217;s less need there, anyway.</p>
+<p>At first my choice was going to be RackTables, because of its front/mid/back device positioning, and clear hierarchy of location/room/rack. <del>Sadly because we can&#8217;t reverse the U numbering, it&#8217;s rejected.</del> RackSmith would be lovely but just isn&#8217;t ready. <del>So, I&#8217;ve installed RackMonkey and seeing as it&#8217;s only providing additional information to that in Netdisco and our cable database, it being lightweight and unmaintained is probably not an issue</del>.</p>
+<p><strong>Update:</strong>Â So, RackTables it is! Its continuing development has leap-frogged the competition,</p>
+<p><em>(p.s. given sufficient tuits, I&#8217;d rather take the network inventory tool I once worked on, and extend that to support these features, instead. I don&#8217;t like duplicatingÂ informationÂ between systems.)</em></p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Virtual Machine on Mythbuntu</title>
+		<link>http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=virtual-machine-on-mythbuntu</link>
+		<comments>http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/#comments</comments>
+		<pubDate>Wed, 04 Jan 2012 23:45:10 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[htpc]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[networking]]></category>
+		<category><![CDATA[virtualization]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=728</guid>
+		<description><![CDATA[I have a Linux box running the excellent Mythbuntu (Ubuntu-based) distribution, headless (that is, without a monitor). Quite a lot of the time it&#8217;s sat around doing nothing (and even during recording or playback the CPU is idle). For some &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>I have a Linux box running the excellent <a href="http://www.mythbuntu.org/" target="_blank">Mythbuntu</a> (Ubuntu-based) distribution, headless (that is, without a monitor). Quite a lot of the time it&#8217;s sat around doing nothing (and even during recording or playback the CPU is idle).</p>
+<p>For some side-projects I wanted a clean Linux installation to mess about with. It seemed a good idea to run virtual machines and make the most of existing hardware; what surprised me was just how easy this turned out to be <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+<p>The <a href="https://help.ubuntu.com/community/KVM" target="_blank">Ubuntu documentation for KVM</a> is excellent, I must say, but I fancied distilling things further and blogging here, as I typically do to record most of my technical adventures. I&#8217;m not going to bother with any of the GUI VM builder tools or even the Q&amp;A install script, but simply specify the VM config fully, up front.</p>
+<p>Optionally, check whether your CPU has virtualization extensions &#8211; any fairly recent desktop chip should do. On Ubuntu there&#8217;s a command called <code>kvm-ok</code>, or you can poke <code>/proc/cpuinfo</code>:</p>
+<pre class="brush: plain; title: ; notranslate">
+# kvm-ok
+INFO: /dev/kvm exists
+KVM acceleration can be used
+
+# egrep -q '(vmx|svm)' /proc/cpuinfo &amp;&amp; echo 'good to go!'
+good to go!
+</pre>
+<p>First up install the KVM software:</p>
+<pre class="brush: plain; title: ; notranslate">
+# apt-get install qemu-kvm virtinst
+</pre>
+<p>This will pull in all the necessary packages. On other platforms it should be similar, but the <code>virtinst</code> package is often renamed (e.g. <code>virt-install</code> or <code>vm-install</code>).</p>
+<p>Before getting stuck in to KVM we need to reconfigure the system&#8217;s network adapter to be a bridge. I prefer to set a static IP for servers on my home LAN and use the <code>/etc/network/interfaces</code> file for configuration:</p>
+<pre class="brush: plain; title: ; notranslate">
+# cat &gt; /etc/network/interfaces
+auto lo eth0 br0
+iface lo inet loopback
+iface eth0 inet manual
+iface br0 inet static
+    address &lt;IP-ADDRESS&gt;
+    network &lt;NETWORK-ADDRESS&gt;
+    netmask &lt;NETMASK&gt;
+    broadcast &lt;BROADCAST&gt;
+    gateway &lt;GATEWAY&gt;
+    bridge_ports eth0
+    bridge_stp off
+    bridge_fd 0
+    bridge_maxwait 0
+    post-up ip link set br0 address &lt;MAC-ADDRESS&gt;
+
+(hit ctrl-D)
+</pre>
+<p>Obviously, fill in the blanks for your own system&#8217;s IP and MAC address details. Next we can blow away Ubuntu&#8217;s network mangler daemon and poke the KVM service into life:</p>
+<pre class="brush: plain; title: ; notranslate">
+# apt-get --purge remove network-manager
+# /etc/init.d/networking restart
+# service libvirt-bin start
+</pre>
+<p>Now find somewhere on your disk for the VMs and a little script to live, and create a directory. I named mine <code>/opt/vm</code>. In there, try starting with this little shell script:</p>
+<pre class="brush: plain; title: ; notranslate">
+#!/bin/bash
+virt-install --name=sandbox --ram=512 --vcpus=2 --os-type=linux \
+  --autostart --disk=path=/opt/vm/sandbox.img,size=50 \
+  --graphics=vnc,listen=0.0.0.0,port=5900 --noautoconsole \
+  --cdrom=/opt/vm/mythbuntu-11.10-desktop-i386.iso
+</pre>
+<p>Walking through the above, it should be clear we&#8217;re creating a new VM called <code>sandbox</code> (this is the name KVM knows it by, not a hostname), with 512MB RAM, two virtual CPUs, a Linux-friendly boot environment, and 50GB (sparse) disk. The VM will be automatically booted by the KVM service when its host system boots. The last line specifies an installation CD image from which the new VM will boot.</p>
+<p>For the graphics configuration I&#8217;ve asked for a headless system with the console being offered up via a VNC port on the host server. Note that the <code>listen=0.0.0.0</code> is <em>essential</em> to connect remotely (e.g. over your home LAN) to the console because otherwise the VNC port is simply bound to the loopback interface.</p>
+<p>Running the above will bring the new VM into life:</p>
+<pre class="brush: plain; title: ; notranslate">
+# ./sandbox.sh
+
+Starting install...
+Creating storage file sandbox.img                      |  50 GB     00:00
+Creating domain...                                     |    0 B     00:01
+Domain installation still in progress. You can reconnect to
+the console to complete the installation process.
+</pre>
+<p>What KVM means by &#8220;installation still in progress&#8221; is that it knows this system is installing from the boot CD, so you should go right ahead and fire up VNC and connect to the console (port 5900 on the host server) to complete the process.</p>
+<p>You&#8217;ll find that KVM saved the <code>sandbox</code> VM configuration in XML format in the <code>/etc/libvirt/qemu</code> directory, so that&#8217;s where to go to tweak the settings. <a href="http://libvirt.org/formatdomain.html" target="_blank">Good documentation</a> is available at the KVM website.</p>
+<p>Be aware, however, that because KVM assumed the attached CD ISO was only needed for initial install, it&#8217;s not featured in the saved config as a permanent connection. You can, of course, remedy this (check out the <code>virt-install</code> man page for starters).</p>
+<p>To finish off, here&#8217;s how to manage the lifecycle (start, restart, blow away, etc) of the VM. Use the <code>virsh</code> utility which can either be run with a single instruction or with no parameters for an interactive CLI:</p>
+<pre class="brush: plain; title: ; notranslate">
+# virsh
+Welcome to virsh, the virtualization interactive terminal.
+virsh # list
+ Id Name                 State
+----------------------------------
+ 10 sandbox              running
+
+virsh # destroy
+error: command 'destroy' requires &lt;domain&gt; option
+virsh # destroy sandbox
+Domain sandbox destroyed
+
+virsh # create sandbox
+error: Failed to open file 'sandbox': No such file or directory
+
+virsh # create sandbox.xml
+Domain sandbox created from sandbox.xml
+
+virsh # list
+ Id Name                 State
+----------------------------------
+ 11 sandbox              running
+</pre>
+<p>Try the <code>help</code> command, and note that the VM&#8217;s XML settings file may need updating if you change things  (see <code>dumpxml</code>).</p>
+<p>I hope this is a useful and quick tutorial for KVM on Ubuntu&#8230; Good Luck!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Smokeping+lighttpd+TCPPing on Debian/Ubuntu</title>
+		<link>http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=smokepinglighttpdtcpping-on-debianubuntu</link>
+		<comments>http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/#comments</comments>
+		<pubDate>Thu, 11 Aug 2011 12:45:12 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[monitoring]]></category>
+		<category><![CDATA[networking]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=572</guid>
+		<description><![CDATA[Some notes on getting Smokeping to work on Debian/Ubuntu using the lighttpd web server, and the TCPPing check. Install the lighttpd package first, as then the subsequentÂ smokeping package installation will notice that it doesn&#8217;t require the Apache web server. However, &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Some notes on getting Smokeping to work on Debian/Ubuntu using the lighttpd web server, and the TCPPing check.</p>
+<p>Install the <code>lighttpd</code> package <em>first</em>, as then the subsequentÂ <code>smokeping</code> package installation will notice that it doesn&#8217;t require the Apache web server. However, Smokeping doesn&#8217;t auto-configure for lighttpd so a couple of commands are necessary:</p>
+<pre class="brush: plain; title: ; notranslate">
+# lighttpd-enable-mod cgi
+# /etc/init.d/lighttpd force-reload
+# ln -s /usr/share/smokeping/www /var/www/smokeping
+</pre>
+<p>Visiting your web server&#8217;s base url should show a lighttpd help page, and visiting the <code>/cgi-bin/smokeping.cgi</code> path should show the Smokeping home page with logo images working.</p>
+<p>Install the TCPPing script by downloading from <a href="http://www.vdberg.org/~richard/tcpping" target="_blank">http://www.vdberg.org/~richard/tcpping</a> and saving to somewhere like <code>/usr/local/bin/tcpping</code> (setting execute bit, also). Obviously, use this path in your Smokeping Probe configuration:</p>
+<pre class="brush: plain; title: ; notranslate">
++ TCPPing
+
+binary = /usr/local/bin/tcpping
+forks = 10
+offset = random
+# can be overridden in Targets
+pings = 5
+port = 21
+</pre>
+<p>For the TCPPing check, make sure you have the standalone <code>tcptraceroute</code> package installed. You might find an existing <code>/usr/sbin/tcptraceroute</code> command is available, but this is from the <code>traceroute</code> package and won&#8217;t work with the TCPPing script.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Adding a new RANCID device class</title>
+		<link>http://blog.gorwits.me.uk/2011/02/04/adding-a-new-rancid-device-class/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=adding-a-new-rancid-device-class</link>
+		<comments>http://blog.gorwits.me.uk/2011/02/04/adding-a-new-rancid-device-class/#comments</comments>
+		<pubDate>Fri, 04 Feb 2011 12:21:18 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[networking]]></category>
+		<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=312</guid>
+		<description><![CDATA[The RANCID system is used by many network service providers to backup and audit their network device configurations. It supports many device vendors (Cisco, Juniper, etc) but you might run into a vendor which is not supported. Adding a new &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/02/04/adding-a-new-rancid-device-class/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>The <a href="http://www.shrubbery.net/rancid/" target="_blank">RANCID</a> system is used by many network service providers to backup and audit their network device configurations. It supports many device vendors (Cisco, Juniper, etc) but you might run into a vendor which is not supported. Adding a new device class (in other words, a vendor) to RANCID is not difficult.</p>
+<p>Starting with the basics, we need a script which will connect to the device and emit the output of any commands you want to run there. You could clone and modify one of the existing RANCID scripts such as <code>/usr/bin/jrancid</code> or write your own. Either way, when run it needs to:</p>
+<ul>
+<li>Accept as its final command line argument the name of the device</li>
+<li>Save output to a file in the current working directory, called <code>&lt;devicename&gt;.new</code></li>
+</ul>
+<p>Install this script into <code>/usr/bin/...</code> with a suitable name.</p>
+<p>The next step is to make RANCID aware of this new class of device. Load up the file <code>/usr/bin/rancid-fe</code> in your editor, and scroll down to see the lookup table for all device classes. Add an entry in there which has a &#8220;friendly name&#8221; as the key on the left, and the name of your script (created in the previous step) as the value on the right.</p>
+<p>That&#8217;s it, you can now use this device class (the &#8220;friendly name&#8221;) in your <code>router.db</code> files and RANCID will execute your script to retrieve the configuration. You aren&#8217;t limited only to devices with a CLI now, of course. Your script could retrieve configuration (or any other text data) from any source by any means and save it to the <code>.new</code> file.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/02/04/adding-a-new-rancid-device-class/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

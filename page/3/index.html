@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Cats and Code | by Oliver Gorwits | Page 3</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="../../wp-content/themes/2010-weaver/style.css" />
+<link rel="pingback" href="../../xmlrpc.php" />
+<link rel="alternate" type="application/rss+xml" title="Cats and Code &raquo; Feed" href="../../index.html%3Ffeed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="Cats and Code &raquo; Comments Feed" href="../../comments/feed/index.html" />
+
+            <script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.3 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-41472490-1']);
+				            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+			<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.gorwits.me.uk/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 3.6.1" />
+<link rel="stylesheet" type="text/css" href="../../wp-content/plugins/wp-recaptcha/recaptcha.css" /><!-- This site is using 2010 Weaver V1.5.4 subtheme: Twenty Ten -->
+<meta name="description" content=" Cats and Code - Hello, Welcome. " />
+<meta name="keywords" content="Cats and Code blog, Cats and Code" />
+<link rel="stylesheet" type="text/css" media="all" href="../../wp-content/blog.gorwits.me.uk/weaver-subthemes/style-weaver.css" />
+<!-- Add your own CSS snippets between the style tags. -->
+<style type="text/css">
+</style>
+<!-- End of Weaver options -->
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>
+
+<body class="home blog paged paged-3">
+<div id="wrapper" class="hfeed">
+
+    
+    <div id="header">
+	<div id="masthead">
+	    <div id="branding" role="banner">
+		<div id="ttw-site-logo"></div>
+		<div id="ttw-site-logo-link" onclick="location.href='http://blog.gorwits.me.uk/';" style="cursor:pointer;"></div>
+				    		    <h1 id="site-title">
+		    <span>
+			<a href="../../index.html" title="Cats and Code" rel="home">Cats and Code</a>
+		    </span>
+		    </h1>
+		<div id="site-description">by Oliver Gorwits</div>
+						
+		<div id="access2" role="navigation">
+		    <div class="skip-link screen-reader-text"><a href="index.html#content" title="Skip to content">Skip to content</a></div>
+		    
+		</div><!-- #access2 -->
+
+				
+	    </div><!-- #branding -->
+		
+	    <div id="access" role="navigation">
+		    		<div class="skip-link screen-reader-text"><a href="index.html#content" title="Skip to content">Skip to content</a></div>
+
+		    		    <div class="menu"><ul><li ><a href="../../index.html" title="Home">Home</a></li><li class="page_item page-item-13"><a href="../../about/index.html">About</a></li></ul></div>
+	    </div><!-- #access -->
+				
+	</div><!-- #masthead -->
+    </div><!-- #header -->
+
+    
+    <div id="main">
+	<div id="container">
+                <div id="content" role="main">
+	    
+	<div id="nav-above" class="navigation">
+		<div class="nav-previous"><a href="../4/index.html" ><span class="meta-nav">&larr;</span> Older posts</a></div>
+		<div class="nav-next"><a href="../2/index.html" >Newer posts <span class="meta-nav">&rarr;</span></a></div>
+	</div><!-- #nav-above -->
+
+
+
+    	<div id="post-577" class="post-577 post type-post status-publish format-standard hentry category-mythtv category-transcoding">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=577.html" title="Permalink to MythTV Transcoding (3): Transcoding for iPad Playback" rel="bookmark">MythTV Transcoding (3): Transcoding for iPad Playback</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=577.html" title="17:17" rel="bookmark"><span class="entry-date">September 4, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>Iâ€™m doing a series of posts here on automated transcoding of recordings in MythTV. The idea is to explain the basics, then evolve the design to end up with recordings suitable for playback on the iPad, which is a little more advanced.</p>
+<ul>
+<li><em>The complete series of articles is available atÂ <a href="../../category/transcoding/index.html"  target="_self">this page</a></em></li>
+</ul>
+<p><a href="../../index.html%3Fp=390.html"  target="_blank">Last time</a> I showed where you go in MythTV to edit the default job settings, and what happens when you hit the Transcode button in MythWeb or let MythTV transcode automatically after recording.</p>
+<p>Today I&#8217;m going to continue the series by leaving MythTV to one side, and showing how to create a transcoded recording suitable for playback on an iPad (or other Apple device &#8211; iPod, iPhone, Mac OS X, etc). Next time we&#8217;ll incorporate this into MythWeb for the final result.</p>
+<p>Before that, let&#8217;s look at the different ways that playback on Apple platforms might be achieved (more suggestions are welcome, in the comments):</p>
+<ul>
+<li>Install the <a href="http://sourceforge.net/projects/mythtvformacosx/files/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://sourceforge.net']);" target="_blank">MythFrontend</a> application natively onto an OS X device.</li>
+<li>Install the <a href="http://www.vlcmediaplayer.org/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.vlcmediaplayer.org']);" target="_blank">VLC Media Player</a> onto an OS X device (as it can handle the <em>ASX Stream</em> link in MythWeb) &#8211; in fact this is what I do on my own desktop Mac.</li>
+<li>Install <a href="http://code.google.com/p/mythpodcaster/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://code.google.com']);" target="_blank">MythPodcaster</a>, a Transcoder and RSS publisher, and subscribe to transcoded recordings in iTunes (leads to syncing them to the iPad).</li>
+<li>Create a MythTV Job to transcode into <a href="http://www.apple.com/quicktime/what-is/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.apple.com']);" target="_blank">H.264</a> format (compatible with all Apple platforms), and add links to the generated files in MythWeb.</li>
+</ul>
+<p>It&#8217;s the last of these which I&#8217;m going to cover in this article. However an honourable mention must be made of MythPodcaster. First, most of the work here is taken from looking at what that excellent tool does. Second, if you don&#8217;t want to mess about editing MythWeb, then MythPodcaster has its own web interface for not only managing transcode schedules and profiles, but also browsing and playback. It really is an excellent tool I recommend you check out.</p>
+<p>Each MythTV user job is configured as a command which can be executed at the shell command-line. That means the first thing to do is get transcoding working at the command-line for ourselves. The tool for this is <code>ffmpeg</code>, but we must compile a special version which can output H.264. The following instructions are for an Ubuntu system and based on the MythPodcaster <a href="http://code.google.com/p/mythpodcaster/wiki/InstallationOnMythBuntu" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://code.google.com']);" target="_blank">InstallationOnMythBuntu</a> page.</p>
+<p>I&#8217;m going to build a custom version of <code>ffmeg</code>, separate to that installed with my Ubuntu system. The instructions below aren&#8217;t intended to be the cleanest solution, but get the job done.</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+sudo apt-get install build-essential git-core yasm checkinstall zlib1g-dev pkg-config
+</pre>
+<p>And we&#8217;ll do this work as the <code>mythtv</code> user in a new directory:</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+sudo mkdir -p /usr/local/lib/ffmpeg-264
+sudo chown mythtv:mythtv /usr/local/lib/ffmpeg-264
+sudo su - mythtv
+cd /usr/local/lib/ffmpeg-264
+</pre>
+<p>Build the faac library:</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+cd /usr/local/lib/ffmpeg-264
+wget http://downloads.sourceforge.net/project/faac/faac-src/faac-1.28/faac-1.28.tar.gz
+tar -zxvf faac-1.28.tar.gz
+cd faac-1.28
+./configure --prefix=/usr/local/lib/ffmpeg-264 --enable-static --disable-shared
+# some kind of gcc-compatibility bug which needs fixing
+sed -i -e &quot;s|^char \*strcasestr.*|//&#92;&#48;|&quot; common/mp4v2/mpeg4ip.h
+make &amp;&amp; make install
+</pre>
+<p>Build the x264 library:</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+cd /usr/local/lib/ffmpeg-264
+git clone git://git.videolan.org/x264.git
+cd x264
+./configure --prefix=/usr/local/lib/ffmpeg-264 --enable-static --disable-shared
+make &amp;&amp; make install
+</pre>
+<p>Build the libmp3lame library:</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+cd /usr/local/lib/ffmpeg-264
+wget http://downloads.sourceforge.net/project/lame/lame/3.98.4/lame-3.98.4.tar.gz
+tar -zxvf lame-3.98.4.tar.gz
+cd lame-3.98.4
+./configure --prefix=/usr/local/lib/ffmpeg-264 --enable-static --disable-shared
+make &amp;&amp; make install
+</pre>
+<p>Build ffmpeg:</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+cd /usr/local/lib/ffmpeg-264
+wget http://www.ffmpeg.org/releases/ffmpeg-0.8.3.tar.gz
+tar -zxvf ffmpeg-0.8.3.tar.gz
+cd ffmpeg-0.8.3
+./configure --prefix=/usr/local/lib/ffmpeg-264 --extra-version=static --disable-debug --enable-static --extra-cflags=--static --disable-ffplay --disable-ffserver --disable-doc --enable-gpl --enable-pthreads --enable-postproc --enable-gray --enable-runtime-cpudetect --enable-libfaac --enable-libmp3lame --enable-libx264 --enable-nonfree --enable-version3 --disable-devices --extra-ldflags=-L/usr/local/lib/ffmpeg-264/lib --extra-cflags=-I/usr/local/lib/ffmpeg-264/include
+make &amp;&amp; make install
+</pre>
+<p>To make life a little easier, I link to this new binary from a more memorable location:</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+exit # if you are still the &quot;mythtv&quot; user
+sudo ln -s /usr/local/lib/ffmpeg-264/bin/ffmpeg /usr/local/bin/ffmpeg-264
+</pre>
+<p>Now we need a magic incantation for ffmpeg-264 which will result in an H.264 file suitable for iPad playback. A good source of possible command line options is the <a href="http://code.google.com/p/mythpodcaster/source/browse/trunk/src/main/conf/transcoding_profiles.xml" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://code.google.com']);" target="_blank">MythPodcaster trancoding profiles</a> XML file. In this file, the various iPad profiles, as their names suggest, will ask for various formats and qualities of output (see each <code>encoderArguments</code> key).</p>
+<p>These command line options in turn refer to ffmpeg <em>presets</em> (via <code>-vpre</code>) which should be shipped with ffmpeg in the <em>ffpresets</em> directory. Some of these might work, but I&#8217;m pretty happy with two presets from an older version of ffmpeg:</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+mkdir ~mythtv/.ffmpeg
+cd ~mythtv/.ffmpeg
+wget https://raw.github.com/FFmpeg/FFmpeg/release/0.6/ffpresets/libx264-main.ffpreset
+wget https://raw.github.com/FFmpeg/FFmpeg/release/0.6/ffpresets/libx264-medium.ffpreset
+</pre>
+<p>One problem you might have with ffmpeg options is selection of an audio track in recordings with multiple soundtracks (for example normal, and <a href="http://www.tvhelp.org.uk/audes/whatis.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.tvhelp.org.uk']);" target="_blank">audio-descriptive</a>). There&#8217;s no easy way to know which you want (and in my settings I force the choice). Here&#8217;s what I settled on, which seems to work OK for SD content, and if you have others please add a comment, below:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+-i &lt;infile&gt; -y -map 0:0 -map 0:1 -er 4 -f ipod -acodec libfaac -ac 2 -ab 128k \
+    -ar 44100 -deinterlace -vcodec libx264 -vpre medium -vpre main -b 1200k \
+    -bt 1200k -maxrate 1200k -bufsize 1200k -level 30 -r 30 -g 90 -async 2 \
+    -threads 0 -v 0 &lt;outfile&gt;
+</pre>
+<p>These parameters are wrapped up in a script, making things easier for MythTV configuration. This file, called <code>h264xcode</code> is also placed in <code>/usr/local/bin</code> (and obviously, season this to taste, for your system&#8217;s recording directories):</p>
+<pre class="brush: bash; title: ; notranslate" title="">
+#!/bin/bash
+
+CHANID=$1
+STARTTIME=$2
+
+INDIR=&quot;/mnt/mythtv-video/Videos/MythTV&quot;
+OUTDIR=&quot;/mnt/mythtv-video/Videos/iPad&quot;
+
+PROG=&quot;time nice -n 19 /usr/local/bin/ffmpeg-264&quot;
+PARAMS=&quot;-y -map 0:0 -map 0:1 -er 4 -f ipod -acodec libfaac -ac 2 -ab 128k -ar 44100 -deinterlace -vcodec libx264 -vpre medium -vpre main -b 1200k -bt 1200k -maxrate 1200k -bufsize 1200k -level 30 -r 30 -g 90 -async 2 -threads 0 -v 0&quot;
+
+LOG=&quot;/var/log/mythtv/h264xcode.log&quot;
+OUTFILE=&quot;${OUTDIR}/${CHANID}_${STARTTIME}&quot;
+
+COMMAND=&quot;${PROG} -i ${INDIR}/${CHANID}_${STARTTIME}.mpg ${PARAMS} ${OUTFILE}.m4v.tmp&quot;
+
+echo &quot;h264xcode: ${COMMAND}&quot; &gt;&gt; $LOG
+$COMMAND &gt;&gt; $LOG 2&gt;&amp;1
+mv -f ${OUTFILE}.m4v.tmp ${OUTFILE}.m4v &gt;&gt; $LOG 2&gt;&amp;1
+rm -f ${OUTFILE}.m4v.tmp &gt;&gt; $LOG 2&gt;&amp;1
+</pre>
+<p>Let&#8217;s work through what&#8217;s going on, here. The script takes two arguments &#8211; the channel ID and the start time of the recording (we&#8217;ll see how MythTV passes these, later). From them it&#8217;s possible to locate the original recording file on disk, using the <code>$INDIR</code> variable.</p>
+<p>Next a simple log is set up, and the proposed ffmpeg-264 command echoed to that file. Finally the command itself is run, with a low system priority (<code>nice -n 19</code>), and the output directed to the log file. The H.264 file is saved in <code>$OUTDIR</code>.</p>
+<p>So far so good. All that remains is to let MythTV know about this new user job command, which we&#8217;ll cover in the next article in this series.</p>
+<h6><em>Many thanks to Murray Cox, Seb Jacob, and Colin Morey for providing valuable feedback on this post!</em></h6>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/mythtv/index.html" title="View all posts in mythtv" rel="category tag">mythtv</a>, <a href="../../category/transcoding/index.html" title="View all posts in transcoding" rel="category tag">transcoding</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><a href="../../index.html%3Fp=577.html#comments" title="Comment on MythTV Transcoding (3): Transcoding for iPad Playback">5 Comments</a></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-575" class="post-575 post type-post status-publish format-standard hentry category-devops category-linux category-productivity">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=575.html" title="Permalink to Is it silly that tmux is fun?" rel="bookmark">Is it silly that tmux is fun?</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=575.html" title="16:08" rel="bookmark"><span class="entry-date">August 15, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>No, I don&#8217;t think it&#8217;s a bad thing to get a zing of excitement when you find a new tool that improves your life. Maybe you know what I mean &#8211; that feeling of happiness at saving time, remembering more easily how to do things, and satisfaction with a new workflow.</p>
+<p>Recently I migrated from the venerable <a href="http://www.gnu.org/s/screen/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.gnu.org']);" target="_blank">screen</a>, to <a href="http://tmux.sourceforge.net/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://tmux.sourceforge.net']);" target="_blank">tmux</a>, and whilst it&#8217;s one of those changes where the old tool had no real show-stopping problems, tmux immediately feels much cleaner and well thought-through.</p>
+<p>I&#8217;ll leave you to read the docs and list of features yourself, but please do check this tool out if you&#8217;re an avid screen user. I&#8217;ve already got many more tmux sessions/windows/panes open than ever felt comfortable with screen, saving me a lot of time and effort when working remotely.</p>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/devops/index.html" title="View all posts in devops" rel="category tag">devops</a>, <a href="../../category/linux/index.html" title="View all posts in linux" rel="category tag">linux</a>, <a href="../../category/productivity/index.html" title="View all posts in productivity" rel="category tag">productivity</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><a href="../../index.html%3Fp=575.html#comments" title="Comment on Is it silly that tmux is fun?">1 Comment</a></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-572" class="post-572 post type-post status-publish format-standard hentry category-devops category-monitoring category-networking">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=572.html" title="Permalink to Smokeping+lighttpd+TCPPing on Debian/Ubuntu" rel="bookmark">Smokeping+lighttpd+TCPPing on Debian/Ubuntu</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=572.html" title="13:45" rel="bookmark"><span class="entry-date">August 11, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>Some notes on getting Smokeping to work on Debian/Ubuntu using the lighttpd web server, and the TCPPing check.</p>
+<p>Install the <code>lighttpd</code> package <em>first</em>, as then the subsequentÂ <code>smokeping</code> package installation will notice that it doesn&#8217;t require the Apache web server. However, Smokeping doesn&#8217;t auto-configure for lighttpd so a couple of commands are necessary:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+# lighttpd-enable-mod cgi
+# /etc/init.d/lighttpd force-reload
+# ln -s /usr/share/smokeping/www /var/www/smokeping
+</pre>
+<p>Visiting your web server&#8217;s base url should show a lighttpd help page, and visiting the <code>/cgi-bin/smokeping.cgi</code> path should show the Smokeping home page with logo images working.</p>
+<p>Install the TCPPing script by downloading from <a href="http://www.vdberg.org/~richard/tcpping" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.vdberg.org']);" target="_blank">http://www.vdberg.org/~richard/tcpping</a> and saving to somewhere like <code>/usr/local/bin/tcpping</code> (setting execute bit, also). Obviously, use this path in your Smokeping Probe configuration:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
++ TCPPing
+
+binary = /usr/local/bin/tcpping
+forks = 10
+offset = random
+# can be overridden in Targets
+pings = 5
+port = 21
+</pre>
+<p>For the TCPPing check, make sure you have the standalone <code>tcptraceroute</code> package installed. You might find an existing <code>/usr/sbin/tcptraceroute</code> command is available, but this is from the <code>traceroute</code> package and won&#8217;t work with the TCPPing script.</p>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/devops/index.html" title="View all posts in devops" rel="category tag">devops</a>, <a href="../../category/monitoring/index.html" title="View all posts in monitoring" rel="category tag">monitoring</a>, <a href="../../category/networking/index.html" title="View all posts in networking" rel="category tag">networking</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><a href="../../index.html%3Fp=572.html#comments" title="Comment on Smokeping+lighttpd+TCPPing on Debian/Ubuntu">1 Comment</a></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-563" class="post-563 post type-post status-publish format-standard hentry category-devops category-linux category-monitoring">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=563.html" title="Permalink to The Limoncelli Test" rel="bookmark">The Limoncelli Test</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=563.html" title="14:40" rel="bookmark"><span class="entry-date">July 28, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>Over at the excellent <a href="http://everythingsysadmin.com/the-test.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://everythingsysadmin.com']);" target="_blank">Everything Sysadmin blog</a> is a simple test which can be applied to your Sysadmin team to assess its productivity and quality of service. It&#8217;s quite straightforward &#8211; just 32 things a good quality team ought to be doing, with a few identified as must-have items.</p>
+<p>Of course I&#8217;m not going to say anything about my current workplace but thought it would be interesting to assess my <a href="http://www.oucs.ox.ac.uk/network/index.xml.ID=body.1_div.2" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.oucs.ox.ac.uk']);" target="_blank">previous</a> <a href="http://blogs.oucs.ox.ac.uk/networks/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://blogs.oucs.ox.ac.uk']);" target="_blank">team</a> as of October 2010 when I left. I&#8217;m incredibly proud of the work we did and both our efficiency and effectiveness in delivering services with limited resources. That&#8217;s reflected in the score of (drumroll&#8230;) 31 out of 32!</p>
+<p>If you have a Sysadmin team, or work in one, why not quickly run through the test for yourself?</p>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/devops/index.html" title="View all posts in devops" rel="category tag">devops</a>, <a href="../../category/linux/index.html" title="View all posts in linux" rel="category tag">linux</a>, <a href="../../category/monitoring/index.html" title="View all posts in monitoring" rel="category tag">monitoring</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-555" class="post-555 post type-post status-publish format-standard hentry category-perl">
+	    <h2 class="entry-title"><a href="http://blogs.perl.org/users/oliver_gorwits/2011/07/locallibs-for-dist-development.html" title="Permalink to local::libs for Dist Development" rel="bookmark">local::libs for Dist Development</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://blogs.perl.org/users/oliver_gorwits/2011/07/locallibs-for-dist-development.html" title="16:26" rel="bookmark"><span class="entry-date">July 16, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		
+        <p>Most of my distributions are on GitHub and built using <a href="http://search.cpan.org/perldoc?Dist::Zilla">Dist::Zilla</a>. As the dependencies of each vary widely and I don&#8217;t want to muck up my workstation&#8217;s libraries, I set up a local::lib for each distribution&#8217;s development.</p>
+
+<p>The <a href="http://search.cpan.org/perldoc?App::local::lib::helper">App::local::lib::helper</a> scripts make this really easy. As per the docs, I combine the helper with <a href="http://search.cpan.org/perldoc?App::cpanminus">App::cpanminus</a> (<code>cpanm</code>) for all installation.</p>
+
+<p>To bootstrap a new local::lib area, I wrote this simple shell script:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">#!/bin/bash
+# script named "new-ll"
+
+if [ -z $1 ]
+  then
+    echo 'pass the distribution name, please'
+    exit
+fi
+
+echo "creating local::lib for $1 ..."
+sleep 3
+
+curl -L http://cpanmin.us/ | perl - --notest --quiet --local-lib \
+    ~/perl5/$1 \
+    App::cpanminus \
+    Dist::Zilla \
+    App::local::lib::helper
+</pre>
+
+<p>. <br />
+Entering the correct environment for a distribution uses another helper script:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">#!/bin/bash
+# script named "go"
+
+if [ -z $1 ]
+  then
+    echo 'pass the distribution name, please'
+    exit
+fi
+
+~/perl5/$1/bin/localenv bash
+</pre>
+
+<p>. <br />
+Which means my workflow for a new distribution is:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">$ new-ll New-Dist-Name
+$ go New-Dist-Name
+</pre>
+
+<p>. <br />
+Any Perl distributions installed in that shell (for example from <code>dzil authordeps | cpanm</code> or <code>dzil listdeps | cpanm</code>) will be placed into the new local::lib. It&#8217;s a simple ^D to exit.</p>
+
+<p>However it&#8217;s not obvious that you&#8217;re within this special environment, so editing Bash&#8217;s <code>$PS1</code> variable (the shell prompt) to include the following, can help:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">echo $PERL5LIB | cut -d'/' -f5
+</pre>
+
+<p>. <br />
+My deep thanks to the authors of the distributions used to create this neat setup.</p>
+
+        
+
+    		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/perl/index.html" title="View all posts in perl" rel="category tag">perl</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-551" class="post-551 post type-post status-publish format-standard hentry category-blogging">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=551.html" title="Permalink to MailHide WP plugin reconfigured" rel="bookmark">MailHide WP plugin reconfigured</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=551.html" title="09:52" rel="bookmark"><span class="entry-date">July 2, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>I&#8217;ve just disabled the MailHide WordPress plugin, for content on this blog. I realised it was mangling example code in my posts. Sorry about that!</p>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/blogging/index.html" title="View all posts in blogging" rel="category tag">blogging</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-529" class="post-529 post type-post status-publish format-standard hentry category-devops category-git category-linux category-netdisco">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=529.html" title="Permalink to Migrate SourceForge CVS repository to git" rel="bookmark">Migrate SourceForge CVS repository to git</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=529.html" title="20:27" rel="bookmark"><span class="entry-date">June 22, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p><em>Updated to include promoting and pushing tags.</em></p>
+<p>I recently had need to <a href="https://sites.google.com/site/gorwits/home/netdisco-git" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://sites.google.com']);" target="_blank">migrate</a> some SourceForge CVS repositories to git. I&#8217;ll admit I&#8217;m no git expert, so Googled around for advice on the process. What I ended up doing was sufficiently distinct from any other guide that I feel it worth recording the process, here.</p>
+<p>The SourceForge <a href="http://sourceforge.net/apps/trac/sourceforge/wiki/Git" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://sourceforge.net']);" target="_blank">wiki page on git</a> is a good start. It explains that you should log into the Project&#8217;s Admin page, go to Features, and tick to enable git. Although it&#8217;s not made clear, there&#8217;s no problem having both CVS and git enabled concurrently.</p>
+<p>Enabling git for the first time will initialize a bare git repository for your project. You can have multiple repositories; the first is named the same as the project itself. If you screw things up, it&#8217;s OK to delete the repository (via an SSH login) and initialize a new one.</p>
+<p>Just like the SourceForge documentation, I&#8217;ll use USERNAME, PROJECTNAME and REPONAME within commands. As just mentioned, the initial configuration is that the latter two are equal, until you progress to additional git repositories.</p>
+<p>Let&#8217;s begin by grabbing a copy of the CVS repository with complete history, using the rsync utility. When you rsync, there will be a directory containing <code>CVSROOT</code> (which can be ignored) and one subdirectory per module:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+mkdir cvs &amp;&amp; cd cvs
+rsync -av rsync://PROJECTNAME.cvs.sourceforge.net/cvsroot/PROJECTNAME/* .
+</pre>
+<p>Grab the latest cvs2git code and copy the default options file. Change the <code>run_options.set_project</code> setting to point to your project&#8217;s module subdirectory:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+svn export --username=guest http://cvs2svn.tigris.org/svn/cvs2svn/trunk cvs2svn-trunk
+cp cvs2svn-trunk/cvs2git-example.options cvs2git.options
+vi cvs2git.options
+# edit the string after run_options.set_project, to mention cvs/PROJECTNAME
+</pre>
+<p>Also in the options file, set the committer name mappings in the <code>author_transforms</code> settings. This is needed because CVS logs only show usernames but git commit logs show human name and email &#8211; a mapping can be used during import to create a sensible git history.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+vi cvs2git.options
+# read the comments above author_transforms and make changes
+</pre>
+<p>But how do you know what CVS usernames need mapping? One solution is to run through this export and git import <em>without</em> a mapping, then run <code>git shortlog -se</code> to dump the commiters. Blow the new git repo away, and re-import after configuring cvs2git <code>author_transforms</code>.</p>
+<p>The cvs2git utility works by generating the input files used by git&#8217;s fast-import command:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+cvs2svn-trunk/cvs2git --options=cvs2git.options --fallback-encoding utf-8
+git clone ssh://USERNAME@PROJECTNAME.git.sourceforge.net/gitroot/PROJECTNAME/REPONAME
+cd REPONAME
+cat ../cvs2svn-tmp/git-{blob,dump}.dat | git fast-import
+git reset --hard
+</pre>
+<p>At this point, if you&#8217;re going to continue using this new git repository for work, remember to set your <code>user.name</code>, <code>user.email</code> and <code>color.ui</code> options.</p>
+<p>Now you&#8217;re ready to push the repo back to SourceForge. I did test myself that disabling so-called <em>developer access</em> to the repo in the SourceForge Project Member settings page does in fact prevent write access, as expected.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+git push origin master
+</pre>
+<p>If you had tags on the CVS repo (<code>git tag -l</code>), they&#8217;ll have been imported as <em>lightweight tags</em>. Best practice is always to use annotated tags, so this short script will promote them for you:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+git config user.name &quot;Firstname Lastname&quot;
+git config user.email &quot;me@example.com&quot;
+git tag -l | while read ver;
+  do git checkout $ver;
+  git tag -d $ver;
+  GIT_COMMITTER_DATE=&quot;$(g show --format=%aD | head -1)&quot; git tag -a $ver -m &quot;prep for $ver release&quot;;
+  done
+git checkout master
+</pre>
+<p>Verify the tags are as you want, using something like:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+git tag -l | while read tag; do git show $tag | head -3; echo; done
+</pre>
+<p>And then push them to the repository with:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+git push --tags
+</pre>
+<p>Something you might want to do is set a post-commit email hook. For this you <a href="https://sourceforge.net/apps/trac/sourceforge/wiki/Shell%20service" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://sourceforge.net']);" target="_blank">SSH to SourceForge</a>, and if you have multiple projects remember to connect to the right one!</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+ssh -t USER,PROJECT@shell.sourceforge.net create
+cd /home/scm_git/P/PR/PROJECTNAME
+</pre>
+<p>Download the <a href="http://tinyurl.com/git-post-commit-email" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://tinyurl.com']);" target="_blank">post-receive-email script</a> and place it in the hooks subdirectory; make it executable. Also set the permissions to have group-write, so your project colleagues can alter it if required. Set the necessary git options to allow the script to email someone after a commit. Season to taste.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+curl -L http://tinyurl.com/git-post-commit-email &gt; hooks/post-receive
+chmod +x hooks/post-receive
+chmod g+w hooks/post-receive
+git config hooks.emailprefix &quot;[git push]&quot;
+git config hooks.emailmaxlines 500
+git config hooks.envelopesender noreply@sourceforge.net
+git config hooks.showrev &quot;t=%s; printf 'http://PROJECTNAME.git.sourceforge.net/git/gitweb.cgi?p=PROJECTNAME/REPONAME;a=commitdiff;h=%%s' ; echo;echo; git show -C ; echo&quot;
+git config hooks.mailinglist PROJECTNAME-COMMITS@lists.sourceforge.net
+</pre>
+<p>Remember to subscribe <code>noreply@sourceforge.net</code> to your announce list, if needed. Finally, set a friendly description on the repository for use by the git web-based repo browser:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+echo 'PROJECTNAME git repository' &gt; description
+</pre>
+<p>One other thing I did was enable an SSH key on my SourceForge account, as this makes life with SSH-based git much smoother <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' />  If you have the need to create additional git repositories, or even to replace the one created automatically, then it&#8217;s just a case of issuing the git command:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+cd /home/scm_git/P/PR/PROJECTNAME
+git --git-dir=REPONAME init --shared=all --bare
+</pre>
+<p>Good luck with your own migrations, and happy coding!</p>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/devops/index.html" title="View all posts in devops" rel="category tag">devops</a>, <a href="../../category/git/index.html" title="View all posts in git" rel="category tag">git</a>, <a href="../../category/linux/index.html" title="View all posts in linux" rel="category tag">linux</a>, <a href="../../category/netdisco/index.html" title="View all posts in netdisco" rel="category tag">netdisco</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><a href="../../index.html%3Fp=529.html#comments" title="Comment on Migrate SourceForge CVS repository to git">7 Comments</a></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-492" class="post-492 post type-post status-publish format-standard hentry category-devops category-linux category-monitoring">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=492.html" title="Permalink to A Strategy for Opsview Keywords" rel="bookmark">A Strategy for Opsview Keywords</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=492.html" title="16:04" rel="bookmark"><span class="entry-date">May 20, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>At my <a href="https://noc-monitor.oucs.ox.ac.uk/viewport#style=cells" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://noc-monitor.oucs.ox.ac.uk']);" target="_blank">previous employer</a>, and recently at my current one, I&#8217;ve been responsible for migration to an Opsview based monitoring system. <a href="http://www.opsera.com/products/opsview/Opsview_overview.dot" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.opsera.com']);" target="_blank">Opsview</a> is an evolution of Nagios which brings a multitude of benefits. I encourage you to check it out.</p>
+<p>Since the 3.11.3 release, <em>keywords</em> have been put front and centre of the system&#8217;s administration, so I want to present here what I&#8217;ve been working on as a strategy for their configuration. Keywords can support three core parts of the Opsview system:</p>
+<ol>
+<li>The Viewport (a traffic-lights status overview)</li>
+<li>User access controls (what services/hosts can beÂ acknowledged, etc)</li>
+<li>Notifications (what you receive emails about)</li>
+</ol>
+<h2>Most important&#8230;</h2>
+<p>My first bit of advice is <em>do not ever</em> set the keywords when provisioning a new Host or Service Check. This is because on these screens you can&#8217;t see the complete context of keywords, and it&#8217;s far too easy to create useless duplication. You should instead associate keywords with hosts and services from the <span style="text-decoration: underline;">Configuration/Keywords</span> screen.</p>
+<h2>Naming Convention</h2>
+<p>Okay, let&#8217;s go to that screen now, and talk about our naming convention. Yes, there needs to be one, so that you can look at a keyword in another part of Opsview and have a rough idea what it might be associated with. Here&#8217;s the template I use, and some examples:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+&lt;type&gt;-[&lt;owner&gt;-]&lt;thing&gt;
+
+device-ups
+server-linux
+service-smtpmsa
+service-nss-ntpstratum3
+</pre>
+<p>Let&#8217;s say you have a Linux server running an SMTP message submission service and an NTP Stratum 3 service. I would create one keyword for the underlying operating system (CPU, memory, disk, etc), named &#8220;<code>server-linux</code>&#8220;. I&#8217;d create another for the SMTP service as &#8220;<code>service-smtpmsa</code>&#8221; and another for the NTP as &#8220;<code>service-ntpstratum3</code>&#8220;. If your Opsview is shared between a number of teams, it might also be useful to insert the managing team for that service in the name, as I&#8217;ve done with NSS, above. The type &#8220;<code>device</code>&#8221; tends to be reserved for appliances which fulfil one function, so you don&#8217;t need to separate out their server/service nature.</p>
+<p><a rel="attachment wp-att-507" href="../../2011/05/20/a-strategy-for-opsview-keywords/keywords/index.html" ><img class="aligncenter size-full wp-image-507" title="keywords" src="../../wp-content/blog.gorwits.me.uk/2011/05/keywords.png" alt="" width="633" height="112" /></a></p>
+<p>With this in place, if the UNIX Systems team manages the server and OS, and another team manages the applications stack on the box, we&#8217;ve got keywords for each, allowing easy and fine grained visibility controls. When creating the keywords, you should go into the <span style="text-decoration: underline;">Objects</span> tab and associate it with the appropriate hosts and service checks. I find this <em>much</em> more straightforward than using the <span style="text-decoration: underline;">Keywords</span> field on the actual host and service check configuration pages.</p>
+<h2>Viewport</h2>
+<p>Let&#8217;s look at each of the three cornerstone uses I mentioned above, in turn. First is the Viewport. Well, that&#8217;s easy enough to enable for a keyword by toggling the radio button and assigning a sensible description (such as ï»¿ï»¿&#8221;Email Message Submission Service&#8221; for &#8220;<code>service-smtpmsa</code>&#8220;). Which users can see which items in their own viewport is configured in the role (<span style="text-decoration: underline;">Advanced/Roles</span>) associated to that user. I&#8217;d clone off one new role per user, and go to the <span style="text-decoration: underline;">Objects</span> tab, remove all Host Groups or Service Groups and select only some Keywords. Job done &#8211; the user now sees those items in their viewport.</p>
+<h2><a rel="attachment wp-att-510" href="../../2011/05/20/a-strategy-for-opsview-keywords/viewport/index.html" ><img class="aligncenter size-full wp-image-510" title="viewport" src="../../wp-content/blog.gorwits.me.uk/2011/05/viewport.png" alt="" width="496" height="245" /></a></h2>
+<h2>Actions</h2>
+<p>Next up is the ability for a user to acknowledge, or mark as down, an item. In fact it&#8217;s done in the same way as the viewport, that is, through a role. That&#8217;s because roles contain, on the Access tab, the <code>VIEWPORTACCESS</code> item for viewports and the <code>ACTIONSOME/NOTIFYSOME</code> items for actioning alerts. Because it&#8217;s currently only possible for a user to have one role, you cannot easily separate these rights for different keywords &#8211; a real pity. But I have no doubt multiple roles will come along, just like multiple notification profiles.</p>
+<h2><a rel="attachment wp-att-511" href="../../2011/05/20/a-strategy-for-opsview-keywords/access/index.html" ><img class="aligncenter size-full wp-image-511" title="access" src="../../wp-content/blog.gorwits.me.uk/2011/05/access.png" alt="" width="229" height="245" /></a>Notifications</h2>
+<p>Which brings us to the final item. Again I&#8217;d create a new notification profile for each user, so that it&#8217;s possible to opt them in or out of any service notifications. Using keywords makes things simple &#8211; are you just managing the underlying OS? Then you can have notifications about that, and not the application stack. It doesn&#8217;t stop you seeing the app stack status in your viewport, though. Because the notification profile is associated with a user, you&#8217;ll only be offered keywords that have been authorized in their role, which is a nice touch.</p>
+<h2>And finally&#8230;</h2>
+<p>In each of these steps the naming convention has really helped, because when looking at keywords the meaning &#8220;these hosts&#8221; or &#8220;this service&#8221; will (hopefully) jump out.Â If I were scaling this up, I&#8217;d have it all provisioned via the Opsview API from a configuration management or inventory database, and updated nightly. This is another way naming conventions help &#8211; they are friendly to automation.</p>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/devops/index.html" title="View all posts in devops" rel="category tag">devops</a>, <a href="../../category/linux/index.html" title="View all posts in linux" rel="category tag">linux</a>, <a href="../../category/monitoring/index.html" title="View all posts in monitoring" rel="category tag">monitoring</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-479" class="post-479 post type-post status-publish format-standard hentry category-devops category-linux">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=479.html" title="Permalink to Cfengene3 on Debian Squeeze for local management" rel="bookmark">Cfengene3 on Debian Squeeze for local management</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=479.html" title="21:31" rel="bookmark"><span class="entry-date">May 10, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>Dialling the nerd factor up to 11, I&#8217;ve decided to store configuration for my <a href="https://www.portfast.co.uk/vps.shtml" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.portfast.co.uk']);" target="_blank">VPS server</a> in <a href="http://git-scm.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://git-scm.com']);" target="_blank">git</a> and manage it with <a href="http://www.cfengine.org" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.cfengine.org']);" target="_blank">Cfengine3</a>. Joking aside, this is a sound decision: having the VCS repo makes backups simple and trustworthy, and configurationÂ managementÂ motivates me to keep on using that repository.</p>
+<p>On Debian Squeeze it&#8217;s a simple case of <code>apt-get install cfengine3</code>, with the caveat of <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611659" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://bugs.debian.org']);" target="_blank">this packaging bug</a> meaning I hacked <code>/etc/cfengine3</code> to symlink from <code>/var/lib/cfengine3/inputs</code>.</p>
+<h6><em>[Edit: A colleague of mine, David, suggests that the package should link cfengine3's masterfiles to /etc, and I'm inclined to agree.]</em></h6>
+<p>Anyone familiar with Cfengine2 will have a good head start on the Cfengine3 configuration, however it&#8217;s still a bit of a learning curve (but we know <a href="http://answers.google.com/answers/threadview?id=512538" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://answers.google.com']);" target="_blank">complex problems rarely have simple solutions</a>). The first file read is <code>promises.cf</code> which can include other files (&#8220;<code>inputs</code>&#8220;, in any order), and lists the promise bundles and their order of execution:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+body common control {
+    bundlesequence  =&gt; {
+            &quot;main&quot;
+    };
+
+    inputs =&gt; {
+        &quot;site.cf&quot;,
+        &quot;library.cf&quot;
+    };
+}
+</pre>
+<p>The <code>library.cf</code> file is simply a bunch of macros or templates. For example, the built-in <code>copy_from</code> command is augmented with some sane defaults and named <code>local_copy</code>:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+body copy_from local_copy(from) {
+    source  =&gt; &quot;$(from)&quot;;
+    compare =&gt; &quot;digest&quot;;
+    copy_backup =&gt; false;
+}
+</pre>
+<p>This is then used in my <code>site.cf</code> file to install some cron jobs:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+bundle agent main {
+    vars:
+        &quot;repo&quot; string =&gt; &quot;/path/to/git/repo&quot;;
+
+    files:
+        &quot;/etc/cron.d&quot;
+            handle =&gt; &quot;cron_files&quot;,
+            comment =&gt; &quot;copy crontab files to /etc/cron.d&quot;,
+
+            copy_from =&gt; local_copy(&quot;$(repo)/etc/cron.d&quot;),
+            depth_search =&gt; recurse(&quot;inf&quot;),
+            perms =&gt; p(&quot;root&quot;,&quot;444&quot;);
+}
+</pre>
+<p>This is a trivial example, and could be made better. For example <em>all</em> files in the target directory have their permissions changed (via the &#8220;<code>p</code>&#8221; macro), whereas it makes sense only to set those files we copy, not any already existing.</p>
+<p>Hopefully this post shows that Cfengine3 configuration isn&#8217;t that hairy, and once the principles are installed in your head it&#8217;s a case of browsing the <a href="http://www.cfengine.org/manuals/cf3-reference.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.cfengine.org']);" target="_blank">reference manual</a> and building up promise libraries.</p>
+<p><strong><em><span style="text-decoration: underline;">Postscript</span></em></strong></p>
+<p>I&#8217;d like to note that the Cfengine3 configuration mini-language could be better designed. Some statements are terminated by semicolons as in the <code>body</code>, above, others separated by commas but still semicolon-terminated, as in the <code>bundle</code>, and braced sections inconsistently semicolon-terminated. This leads to awkward syntax errors when designing new promises <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_sad.gif' alt=':-(' class='wp-smiley' /> </p>
+<p>Furthermore, I feel the language would benefit from some <a href="http://www.catb.org/~esr/writings/taoup/html/ch08s02.html#fetchmailrc" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.catb.org']);" target="_blank">noise keywords</a>, for example:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+body copy_from local_copy(from) {
+</pre>
+<p>versus</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+body copy_from as local_copy(from) {
+</pre>
+<p>The latter makes it <em>slightly</em> more clear which is the base primitive and which the new macro name. I&#8217;m a <a href="http://search.cpan.org/perldoc?Net::CLI::Interact::Phrasebook#PHRASEBOOK_FORMAT" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://search.cpan.org']);" target="_blank">great fan</a> of the use of syntactic sugar, in moderation, and intuitive configuration mini-languages.</p>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/devops/index.html" title="View all posts in devops" rel="category tag">devops</a>, <a href="../../category/linux/index.html" title="View all posts in linux" rel="category tag">linux</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><a href="../../index.html%3Fp=479.html#comments" title="Comment on Cfengene3 on Debian Squeeze for local management">2 Comments</a></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-474" class="post-474 post type-post status-publish format-standard hentry category-os-x">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=474.html" title="Permalink to Backing up Time Machine Backups from a ReadyNAS Duo" rel="bookmark">Backing up Time Machine Backups from a ReadyNAS Duo</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=474.html" title="09:32" rel="bookmark"><span class="entry-date">May 2, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>I&#8217;ve had a <a href="http://www.readynas.com/?cat=3" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.readynas.com']);" target="_blank">ReadyNAS Duo</a> probably for about a year, now, and quite honestly can&#8217;t fault the little black box. Managing computer systems during the day, I have little interest in doing the same at home. The Duo provides home media sharing (<a href="http://www.dlna.org/about_us/about/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.dlna.org']);" target="_blank">DLNA </a>and iTunes), a shared printer, <a href="http://www.apple.com/macosx/what-is-macosx/time-machine.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.apple.com']);" target="_blank">Time Machine</a> backup service, network storage for <a href="http://www.mythtv.org/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.mythtv.org']);" target="_blank">MythTV</a>, <a href="http://www.apc.com/products/family/index.cfm?id=270" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.apc.com']);" target="_blank">UPS</a> integration, and pretty good configuration and automation.</p>
+<p>However as we know <a href="http://www.2brightsparks.com/resources/articles/RAID-is-not-a-backup-solution.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.2brightsparks.com']);" target="_blank">RAID is not a backup solution</a>, so I still have to get the data onto some other media and preferably out of the house. For this we have a <a href="http://www.wdc.com/en/products/products.aspx?id=260" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.wdc.com']);" target="_blank">Western Digital Elements</a> external USB hard drive, to which the Duo copies data when connected.</p>
+<p>For Time Machine backups it&#8217;s not obvious how to get copies of the <a href="http://en.wikipedia.org/wiki/Sparse_image" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://en.wikipedia.org']);" target="_blank">sparsebundles</a>. I found that they&#8217;re stored in the Duo&#8217;s <code>c:</code> volume, in a folder called <code>.timemachine</code>. This can either be backed up with the whole of <code>c:</code> in one job, or separately if referred to by itself.</p>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/os-x/index.html" title="View all posts in OS X" rel="category tag">OS X</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+	<div id="nav-below" class="navigation">
+	    <div class="nav-previous"><a href="../4/index.html" ><span class="meta-nav">&larr;</span> Older posts</a></div>
+	    <div class="nav-next"><a href="../2/index.html" >Newer posts <span class="meta-nav">&rarr;</span></a></div>
+	</div><!-- #nav-below -->
+	</div><!-- #content -->
+                </div><!-- #container -->
+
+	<div id="primary" class="widget-area" role="complementary">
+	    <ul class="xoxo">
+
+<li id="search-2" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="../../index.html">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search" />
+				</div>
+			</form></li><li id="archives-2" class="widget-container widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+			<li><a href='../../2014/03/index.html' title='March 2014'>March 2014</a></li>
+	<li><a href='../../2013/01/index.html' title='January 2013'>January 2013</a></li>
+	<li><a href='../../2012/12/index.html' title='December 2012'>December 2012</a></li>
+	<li><a href='../../2012/09/index.html' title='September 2012'>September 2012</a></li>
+	<li><a href='../../2012/08/index.html' title='August 2012'>August 2012</a></li>
+	<li><a href='../../2012/06/index.html' title='June 2012'>June 2012</a></li>
+	<li><a href='../../2012/04/index.html' title='April 2012'>April 2012</a></li>
+	<li><a href='../../2012/01/index.html' title='January 2012'>January 2012</a></li>
+	<li><a href='../../2011/11/index.html' title='November 2011'>November 2011</a></li>
+	<li><a href='../../2011/10/index.html' title='October 2011'>October 2011</a></li>
+	<li><a href='../../2011/09/index.html' title='September 2011'>September 2011</a></li>
+	<li><a href='../../2011/08/index.html' title='August 2011'>August 2011</a></li>
+	<li><a href='../../2011/07/index.html' title='July 2011'>July 2011</a></li>
+	<li><a href='../../2011/06/index.html' title='June 2011'>June 2011</a></li>
+	<li><a href='../../2011/05/index.html' title='May 2011'>May 2011</a></li>
+	<li><a href='../../2011/04/index.html' title='April 2011'>April 2011</a></li>
+	<li><a href='../../2011/03/index.html' title='March 2011'>March 2011</a></li>
+	<li><a href='../../2011/02/index.html' title='February 2011'>February 2011</a></li>
+	<li><a href='../../2011/01/index.html' title='January 2011'>January 2011</a></li>
+	<li><a href='../../2010/11/index.html' title='November 2010'>November 2010</a></li>
+	<li><a href='../../2010/09/index.html' title='September 2010'>September 2010</a></li>
+		</ul>
+</li><li id="categories-2" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-6"><a href="../../category/blogging/index.html" title="View all posts filed under blogging">blogging</a>
+</li>
+	<li class="cat-item cat-item-28"><a href="../../category/cats/index.html" title="View all posts filed under cats">cats</a>
+</li>
+	<li class="cat-item cat-item-16"><a href="../../category/databases/index.html" title="View all posts filed under databases">databases</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="../../category/devops/index.html" title="View all posts filed under devops">devops</a>
+</li>
+	<li class="cat-item cat-item-21"><a href="../../category/git/index.html" title="View all posts filed under git">git</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="../../category/htpc/index.html" title="View all posts filed under htpc">htpc</a>
+</li>
+	<li class="cat-item cat-item-24"><a href="../../category/kerberos/index.html" title="View all posts filed under kerberos">kerberos</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="../../category/linux/index.html" title="View all posts filed under linux">linux</a>
+</li>
+	<li class="cat-item cat-item-19"><a href="../../category/monitoring/index.html" title="View all posts filed under monitoring">monitoring</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="../../category/mythtv/index.html" title="View all posts filed under mythtv">mythtv</a>
+</li>
+	<li class="cat-item cat-item-20"><a href="../../category/netdisco/index.html" title="View all posts filed under netdisco">netdisco</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="../../category/networking/index.html" title="View all posts filed under networking">networking</a>
+</li>
+	<li class="cat-item cat-item-27"><a href="../../category/opinion/index.html" title="View all posts filed under opinion">opinion</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="../../category/os-x/index.html" title="View all posts filed under OS X">OS X</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="../../category/perl/index.html" title="View all posts filed under perl">perl</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="../../category/personal/index.html" title="View all posts filed under personal">personal</a>
+</li>
+	<li class="cat-item cat-item-22"><a href="../../category/productivity/index.html" title="View all posts filed under productivity">productivity</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="../../category/python/index.html" title="View all posts filed under python">python</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="../../category/radius/index.html" title="View all posts filed under radius">radius</a>
+</li>
+	<li class="cat-item cat-item-26"><a href="../../category/sysops/index.html" title="View all posts filed under sysops">sysops</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="../../category/transcoding/index.html" title="View all posts filed under transcoding">transcoding</a>
+</li>
+	<li class="cat-item cat-item-29"><a href="../../category/video/index.html" title="View all posts filed under video">video</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="../../category/virtualization/index.html" title="View all posts filed under virtualization">virtualization</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="../../category/windows/index.html" title="View all posts filed under windows">windows</a>
+</li>
+		</ul>
+</li><li id="syndication" class="widget-container Syndication_widget_syndication_widget"><h3 class="widget-title">Syndication</h3><ul>
+<li>
+<a  title='RSS Feed' href='../../index.html%3Ffeed=rss2'/>RSS</a></li>
+<li>
+<a title='ATOM Feed' href='../../index.html%3Ffeed=atom'/>ATOM</a></li>
+<li>
+<a title='POML Feed' href='../../wp-links-opml.php'/>OPML</a></li>
+</ul>
+</li>			</ul>
+	</div><!-- #primary .widget-area -->
+
+    </div><!-- #main -->
+        	<div id="footer">
+		<div id="colophon">
+
+<table id='ttw_ftable'><tr>
+ <td id='ttw_ftdl'><div id="site-info">
+ &copy; 2014 - <a href="../../index.html" title="Cats and Code" rel="home">Cats and Code</a>
+ </div></td>  <td id='ttw_ftdr'><div id="site-generator">
+  <a href="http://wordpress.org/" title="Semantic Personal Publishing Platform" rel="generator">Proudly powered by WordPress.</a>
+ 2010 Weaver by WPWeaver.info
+ </div></td> </tr></table>
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+            
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='../../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.83c'></script>
+<script type='text/javascript' src='../../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushBash.js%3Fver=3.0.83c'></script>
+<script type='text/javascript' src='../../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js%3Fver=3.0.83c'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://blog.gorwits.me.uk/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.83c";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://blog.gorwits.me.uk/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.83c";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.defaults['wrap-lines'] = false;
+	SyntaxHighlighter.all();
+</script>
+</body>
+</html>

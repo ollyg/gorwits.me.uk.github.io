@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+		>
+<channel>
+	<title>Comments on: Starting irssi in screen at reboot</title>
+	<atom:link href="http://blog.gorwits.me.uk/2011/03/27/starting-irssi-in-screen-at-reboot/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk/2011/03/27/starting-irssi-in-screen-at-reboot/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=starting-irssi-in-screen-at-reboot</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sun, 29 Dec 2013 17:47:01 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+	<item>
+		<title>By: Oliver Gorwits</title>
+		<link>http://blog.gorwits.me.uk/2011/03/27/starting-irssi-in-screen-at-reboot/#comment-129</link>
+		<dc:creator>Oliver Gorwits</dc:creator>
+		<pubDate>Wed, 05 Sep 2012 12:28:45 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=449#comment-129</guid>
+		<description><![CDATA[Hi Mark,
+
+The example I give in the post above is for a user&#039;s own crontab, so there&#039;s no need to specify the username. The screen/irssi session will be started &quot;as&quot; that user automatically. That is, run the &quot;crontab -e&quot; command as &quot;youruser&quot;.
+
+If you want to do something globally on the server for one or more users, then I&#039;d try creating a file in /etc/cron.d/ and adding the &quot;username&quot; field, like this:
+&lt;code&gt;
+@reboot youruser /usr/bin/screen -dmUS irc /usr/bin/irssi
+&lt;/code&gt;
+I hope this helps.]]></description>
+		<content:encoded><![CDATA[<p>Hi Mark,</p>
+<p>The example I give in the post above is for a user&#8217;s own crontab, so there&#8217;s no need to specify the username. The screen/irssi session will be started &#8220;as&#8221; that user automatically. That is, run the &#8220;crontab -e&#8221; command as &#8220;youruser&#8221;.</p>
+<p>If you want to do something globally on the server for one or more users, then I&#8217;d try creating a file in /etc/cron.d/ and adding the &#8220;username&#8221; field, like this:<br />
+<code><br />
+@reboot youruser /usr/bin/screen -dmUS irc /usr/bin/irssi<br />
+</code><br />
+I hope this helps.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: markdark</title>
+		<link>http://blog.gorwits.me.uk/2011/03/27/starting-irssi-in-screen-at-reboot/#comment-126</link>
+		<dc:creator>markdark</dc:creator>
+		<pubDate>Thu, 30 Aug 2012 13:56:05 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=449#comment-126</guid>
+		<description><![CDATA[What about starting irssi for the correct user at reboot? Would it then be:
+@reboot /bin/su -c &quot;/usr/bin/screen -dmUS irc /usr/bin/irssi&quot; youruser]]></description>
+		<content:encoded><![CDATA[<p>What about starting irssi for the correct user at reboot? Would it then be:<br />
+@reboot /bin/su -c &#8220;/usr/bin/screen -dmUS irc /usr/bin/irssi&#8221; youruser</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

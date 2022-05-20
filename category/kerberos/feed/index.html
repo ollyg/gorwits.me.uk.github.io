@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; kerberos</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/kerberos/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>Deploying mod_spnego</title>
+		<link>http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=deploying_mod_spnego</link>
+		<comments>http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/#comments</comments>
+		<pubDate>Sun, 22 Apr 2012 14:34:58 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[kerberos]]></category>
+		<category><![CDATA[windows]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=748</guid>
+		<description><![CDATA[SPNEGO is a negotiated authentication mechanism for HTTP which can be used to take advantage of Kerberos credentials for web site login (an alternative to simple username/password, or client digital certificates). The reference implementation for Apache, mod_spnego, can be downloaded &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p><a href="http://en.wikipedia.org/wiki/SPNEGO" target="_blank">SPNEGO</a> is a negotiated authentication mechanism for HTTP which can be used to take advantage of Kerberos credentials for web site login (an alternative to simple username/password, or client digital certificates).</p>
+<p>The reference implementation for Apache, <a href="http://sourceforge.net/projects/modgssapache/" target="_blank">mod_spnego</a>, can be downloaded from SourceForge and contains straightforward build instructions. It&#8217;s also possible to use <a href="http://webauth.stanford.edu/install-spnego.html" target="_blank">Stanford WebAuth in SPNEGO mode</a>.</p>
+<p>To build the module you need development libraries for the following (I&#8217;ve added the SLES package names, for reference):</p>
+<ul>
+<li>openssl (<code>libopenssl-devel</code>)</li>
+<li>krb5 (<code>krb5-devel, krb5-devel-32bit</code>)</li>
+<li>apache (<code>apache2-devel</code>)</li>
+</ul>
+<p>Follow the instructions in the module source. On SLES, be sure to run the <code>apxs</code> command as root, because it goes and installs the module directly after compilation.</p>
+<p>Enabling the module is again quite straightforward:</p>
+<pre class="brush: plain; title: ; notranslate">
+    Krb5AuthEachReq Off
+    &lt;Directory &quot;/foo/bar/quux&quot;&gt;
+        AllowOverride AuthConfig
+        Krb5KeyTabFile /etc/apache2/HTTP.keytab
+        Krb5ServiceName HTTP
+        AuthType SPNEGO
+        Require valid-user
+    &lt;/Directory&gt;
+</pre>
+<p>You&#8217;ll need to install a keytab for the HTTP service principal. The method differs depending on the type of KDC you have, but for Windows AD this would be:</p>
+<pre class="brush: plain; title: ; notranslate">
+net ads -U 'username@realm%password' keytab add HTTP
+</pre>
+<p>As verification I wrote a simple Perl CGI script to echo back <code>$ENV{REMOTE_USER}</code> which emitted <code>user@REALM</code>, as expected.</p>
+<p>Sadly when testing this out I found the use of SPNEGO is not enabled by default in all browsers (for example,Â <a href="http://blob.inf.ed.ac.uk/gdutton/2010/11/chrome-and-spnego/" target="_blank">Google Chrome</a>). A managed desktop seems the only way to ensure the user has both kerberos credentials and a browser started with the correct features enabled. Otherwise, it&#8217;d be just too much work?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

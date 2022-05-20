@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+		>
+<channel>
+	<title>Comments for Cats and Code</title>
+	<atom:link href="http://blog.gorwits.me.uk/comments/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sun, 29 Dec 2013 17:47:01 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+	<item>
+		<title>Comment on MythTV Transcoding (3): Transcoding for iPad Playback by Brian Pickford</title>
+		<link>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/#comment-484</link>
+		<dc:creator>Brian Pickford</dc:creator>
+		<pubDate>Sun, 29 Dec 2013 17:47:01 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=577#comment-484</guid>
+		<description><![CDATA[I&#039;ve followed this guide and enjoyed the results, thanks for your efforts in documenting this.
+To make it work on Mythbuntu 12.04LTS I had to compile Yasm from source. I guess this issue will disappear with the next LTS.
+
+Additionally to use this with mythexport, I added the following to a file called /usr/share/mythexport/configs/TabTrans.pm
+
+&lt;code&gt;
+#!/usr/bin/perl 
+
+# Update this with a package name relivant to your new config, make sure it matches with the file name (without the extension).
+package TabTrans;
+
+use ExportBase;
+
+our @ISA = qw(ExportBase);
+
+#Example strings, replace with something relivant to your new config.
+my $description = &quot;h264xcode default settings.&quot;;
+my $devices = &quot;Tablet and superphone&quot;;
+my $notes = &quot;Requires custom ffmpeg build, see http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/&quot;;
+my $version = &quot;1.0&quot;;
+
+#Inherit our base class.
+sub new{
+    my $class = shift;
+    my $self = $class-&gt;SUPER::new(shift, shift, $description, $devices, $notes, $version);
+    bless $self, $class;
+    return $self;
+}
+
+sub export{
+    my( $self ) = @_;
+
+    # Any command can go here, below is an example of ffmpeg, but you can use anything you would like.
+    # Available variables are inputFile, outputFile, and extension
+#   system(&quot;ffmpeg -i \&#039;$self-&gt;{_inputFile}\&#039; -y -pass 1 -an -vcodec libx264 -vpre slowfirstpass -vpre ipod640 -b 1500kb -bt 1000kb -threads 0 -s 800x480 -aspect 16:9 -f$
+system(&quot;time nice -n 19 /usr/local/bin/ffmpeg-264 -i \&#039;$self-&gt;{_inputFile}\&#039; -y -map 0:0 -map 0:1 -er 4 -f ipod -acodec libfaac -ac 2 -ab 128k -ar 44100 -deinterlace -vc$
+
+}
+
+#Feel free to use or extend anything from the base class.
+
+1;
+&lt;/code&gt;]]></description>
+		<content:encoded><![CDATA[<p>I&#8217;ve followed this guide and enjoyed the results, thanks for your efforts in documenting this.<br />
+To make it work on Mythbuntu 12.04LTS I had to compile Yasm from source. I guess this issue will disappear with the next LTS.</p>
+<p>Additionally to use this with mythexport, I added the following to a file called /usr/share/mythexport/configs/TabTrans.pm</p>
+<p><code><br />
+#!/usr/bin/perl </p>
+<p># Update this with a package name relivant to your new config, make sure it matches with the file name (without the extension).<br />
+package TabTrans;</p>
+<p>use ExportBase;</p>
+<p>our @ISA = qw(ExportBase);</p>
+<p>#Example strings, replace with something relivant to your new config.<br />
+my $description = "h264xcode default settings.";<br />
+my $devices = "Tablet and superphone";<br />
+my $notes = "Requires custom ffmpeg build, see <a href="http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/" rel="nofollow">http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/</a>";<br />
+my $version = "1.0";</p>
+<p>#Inherit our base class.<br />
+sub new{<br />
+    my $class = shift;<br />
+    my $self = $class-&gt;SUPER::new(shift, shift, $description, $devices, $notes, $version);<br />
+    bless $self, $class;<br />
+    return $self;<br />
+}</p>
+<p>sub export{<br />
+    my( $self ) = @_;</p>
+<p>    # Any command can go here, below is an example of ffmpeg, but you can use anything you would like.<br />
+    # Available variables are inputFile, outputFile, and extension<br />
+#   system("ffmpeg -i \'$self-&gt;{_inputFile}\' -y -pass 1 -an -vcodec libx264 -vpre slowfirstpass -vpre ipod640 -b 1500kb -bt 1000kb -threads 0 -s 800x480 -aspect 16:9 -f$<br />
+system("time nice -n 19 /usr/local/bin/ffmpeg-264 -i \'$self-&gt;{_inputFile}\' -y -map 0:0 -map 0:1 -er 4 -f ipod -acodec libfaac -ac 2 -ab 128k -ar 44100 -deinterlace -vc$</p>
+<p>}</p>
+<p>#Feel free to use or extend anything from the base class.</p>
+<p>1;<br />
+</code></p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on SyntaxHighlighter and Chrome vertical scrollbar bug by FlyingFish</title>
+		<link>http://blog.gorwits.me.uk/2011/02/01/syntaxhighlighter-and-chrome-vertical-scrollbar-bug/#comment-359</link>
+		<dc:creator>FlyingFish</dc:creator>
+		<pubDate>Wed, 07 Aug 2013 13:52:16 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=124#comment-359</guid>
+		<description><![CDATA[It&#039;s very helpful for me, thank you.]]></description>
+		<content:encoded><![CDATA[<p>It&#8217;s very helpful for me, thank you.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on Smokeping+lighttpd+TCPPing on Debian/Ubuntu by Home Internet Monitoring Appliance &#124; Ausfestivus&#039;s Blog</title>
+		<link>http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/#comment-352</link>
+		<dc:creator>Home Internet Monitoring Appliance &#124; Ausfestivus&#039;s Blog</dc:creator>
+		<pubDate>Mon, 01 Jul 2013 23:49:00 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=572#comment-352</guid>
+		<description><![CDATA[[...] http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/ [...]]]></description>
+		<content:encoded><![CDATA[<p>[...] <a href="http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/" rel="nofollow">http://blog.gorwits.me.uk/2011/08/11/smokepinglighttpdtcpping-on-debianubuntu/</a> [...]</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on MythTV Transcoding (3): Transcoding for iPad Playback by Oliver Gorwits</title>
+		<link>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/#comment-347</link>
+		<dc:creator>Oliver Gorwits</dc:creator>
+		<pubDate>Sun, 19 May 2013 18:33:09 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=577#comment-347</guid>
+		<description><![CDATA[As root (you may have to sudo):
+
+&lt;code&gt;touch /var/log/mythtv/h264xcode.log&lt;/code&gt;
+&lt;code&gt;chmod mythtv.mythtv /var/log/mythtv/h264xcode.log&lt;/code&gt;]]></description>
+		<content:encoded><![CDATA[<p>As root (you may have to sudo):</p>
+<p><code>touch /var/log/mythtv/h264xcode.log</code><br />
+<code>chmod mythtv.mythtv /var/log/mythtv/h264xcode.log</code></p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on MythTV Transcoding (3): Transcoding for iPad Playback by David Tranter</title>
+		<link>http://blog.gorwits.me.uk/2011/09/04/mythtv-transcoding-3-transcoding-for-ipad-playback/#comment-346</link>
+		<dc:creator>David Tranter</dc:creator>
+		<pubDate>Sat, 18 May 2013 18:14:11 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=577#comment-346</guid>
+		<description><![CDATA[I have this all setup but am seeing the job queued as per the first comment from Brad how do I carry out the below suggestions?
+
+you need to (as root) touch /var/log/mythtv/h264xcode.log and chmod it to mythtv:mythtv. Otherwise the jobs stay in the â€˜queuedâ€™ state because mythtv doesnâ€™t know about the errors (see below).]]></description>
+		<content:encoded><![CDATA[<p>I have this all setup but am seeing the job queued as per the first comment from Brad how do I carry out the below suggestions?</p>
+<p>you need to (as root) touch /var/log/mythtv/h264xcode.log and chmod it to mythtv:mythtv. Otherwise the jobs stay in the â€˜queuedâ€™ state because mythtv doesnâ€™t know about the errors (see below).</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on Migrate SourceForge CVS repository to git by Benj</title>
+		<link>http://blog.gorwits.me.uk/2011/06/22/migrate-sourceforge-cvs-repository-to-git/#comment-326</link>
+		<dc:creator>Benj</dc:creator>
+		<pubDate>Mon, 28 Jan 2013 12:30:58 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=529#comment-326</guid>
+		<description><![CDATA[To make it work, I had to use the following path instream of the path mentionned in your post.
+
+  /home/git/p/PROJECTNAME/MOUNTPOINT.git/
+
+Some additional information here : https://sourceforge.net/p/allura/tickets/5470/
+
+Cheers,
+Benj]]></description>
+		<content:encoded><![CDATA[<p>To make it work, I had to use the following path instream of the path mentionned in your post.</p>
+<p>  /home/git/p/PROJECTNAME/MOUNTPOINT.git/</p>
+<p>Some additional information here : <a href="https://sourceforge.net/p/allura/tickets/5470/" rel="nofollow">https://sourceforge.net/p/allura/tickets/5470/</a></p>
+<p>Cheers,<br />
+Benj</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on Getting Stuck In by Oliver Gorwits</title>
+		<link>http://blog.gorwits.me.uk/2012/12/07/getting-stuck-in/#comment-308</link>
+		<dc:creator>Oliver Gorwits</dc:creator>
+		<pubDate>Mon, 17 Dec 2012 10:51:37 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=800#comment-308</guid>
+		<description><![CDATA[I&#039;m not sure I share such anticipation :-)]]></description>
+		<content:encoded><![CDATA[<p>I&#8217;m not sure I share such anticipation <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on Getting Stuck In by Dave Ewart</title>
+		<link>http://blog.gorwits.me.uk/2012/12/07/getting-stuck-in/#comment-307</link>
+		<dc:creator>Dave Ewart</dc:creator>
+		<pubDate>Thu, 13 Dec 2012 09:02:54 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=800#comment-307</guid>
+		<description><![CDATA[I look forward to The Continuing Adventures of Oliver Gorwits :-)]]></description>
+		<content:encoded><![CDATA[<p>I look forward to The Continuing Adventures of Oliver Gorwits <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on Simple Tools for Describing Rack Layouts by Oliver Gorwits</title>
+		<link>http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/#comment-306</link>
+		<dc:creator>Oliver Gorwits</dc:creator>
+		<pubDate>Thu, 22 Nov 2012 20:36:57 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=779#comment-306</guid>
+		<description><![CDATA[That looks a really nice piece of software - well done!
+
+I&#039;m pleased you have a live demo on-line, it makes a big difference to potential customers, I think. I played around a bit in the demo and found it intuitive and full featured. Good luck with your business.]]></description>
+		<content:encoded><![CDATA[<p>That looks a really nice piece of software &#8211; well done!</p>
+<p>I&#8217;m pleased you have a live demo on-line, it makes a big difference to potential customers, I think. I played around a bit in the demo and found it intuitive and full featured. Good luck with your business.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>Comment on Simple Tools for Describing Rack Layouts by Hrvoje</title>
+		<link>http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/#comment-305</link>
+		<dc:creator>Hrvoje</dc:creator>
+		<pubDate>Thu, 22 Nov 2012 01:04:35 +0000</pubDate>
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=779#comment-305</guid>
+		<description><![CDATA[Hi Oliver,
+Can u please look at noclayer and tell /write some opinion,  i would very much appreciate it.]]></description>
+		<content:encoded><![CDATA[<p>Hi Oliver,<br />
+Can u please look at noclayer and tell /write some opinion,  i would very much appreciate it.</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

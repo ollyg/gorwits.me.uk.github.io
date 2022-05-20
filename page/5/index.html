@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Cats and Code | by Oliver Gorwits | Page 5</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="stylesheet" type="text/css" media="all" href="../../wp-content/themes/2010-weaver/style.css" />
+<link rel="pingback" href="../../xmlrpc.php" />
+<link rel="alternate" type="application/rss+xml" title="Cats and Code &raquo; Feed" href="../../index.html%3Ffeed=rss2" />
+<link rel="alternate" type="application/rss+xml" title="Cats and Code &raquo; Comments Feed" href="../../comments/feed/index.html" />
+
+            <script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.3 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-41472490-1']);
+				            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+			<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.gorwits.me.uk/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 3.6.1" />
+<link rel="stylesheet" type="text/css" href="../../wp-content/plugins/wp-recaptcha/recaptcha.css" /><!-- This site is using 2010 Weaver V1.5.4 subtheme: Twenty Ten -->
+<meta name="description" content=" Cats and Code - Hello, Welcome. " />
+<meta name="keywords" content="Cats and Code blog, Cats and Code" />
+<link rel="stylesheet" type="text/css" media="all" href="../../wp-content/blog.gorwits.me.uk/weaver-subthemes/style-weaver.css" />
+<!-- Add your own CSS snippets between the style tags. -->
+<style type="text/css">
+</style>
+<!-- End of Weaver options -->
+<style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>
+
+<body class="home blog paged paged-5">
+<div id="wrapper" class="hfeed">
+
+    
+    <div id="header">
+	<div id="masthead">
+	    <div id="branding" role="banner">
+		<div id="ttw-site-logo"></div>
+		<div id="ttw-site-logo-link" onclick="location.href='http://blog.gorwits.me.uk/';" style="cursor:pointer;"></div>
+				    		    <h1 id="site-title">
+		    <span>
+			<a href="../../index.html" title="Cats and Code" rel="home">Cats and Code</a>
+		    </span>
+		    </h1>
+		<div id="site-description">by Oliver Gorwits</div>
+						
+		<div id="access2" role="navigation">
+		    <div class="skip-link screen-reader-text"><a href="index.html#content" title="Skip to content">Skip to content</a></div>
+		    
+		</div><!-- #access2 -->
+
+				
+	    </div><!-- #branding -->
+		
+	    <div id="access" role="navigation">
+		    		<div class="skip-link screen-reader-text"><a href="index.html#content" title="Skip to content">Skip to content</a></div>
+
+		    		    <div class="menu"><ul><li ><a href="../../index.html" title="Home">Home</a></li><li class="page_item page-item-13"><a href="../../about/index.html">About</a></li></ul></div>
+	    </div><!-- #access -->
+				
+	</div><!-- #masthead -->
+    </div><!-- #header -->
+
+    
+    <div id="main">
+	<div id="container">
+                <div id="content" role="main">
+	    
+	<div id="nav-above" class="navigation">
+		<div class="nav-previous"><a href="../6/index.html" ><span class="meta-nav">&larr;</span> Older posts</a></div>
+		<div class="nav-next"><a href="../4/index.html" >Newer posts <span class="meta-nav">&rarr;</span></a></div>
+	</div><!-- #nav-above -->
+
+
+
+    	<div id="post-462" class="post-462 post type-post status-publish format-standard hentry category-perl">
+	    <h2 class="entry-title"><a href="http://blogs.perl.org/users/oliver_gorwits/2011/02/dist-zilla-pluginbundle-author-namespace.html" title="Permalink to Dist::Zilla::PluginBundle::Author:: namespace" rel="bookmark">Dist::Zilla::PluginBundle::Author:: namespace</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://blogs.perl.org/users/oliver_gorwits/2011/02/dist-zilla-pluginbundle-author-namespace.html" title="20:20" rel="bookmark"><span class="entry-date">February 5, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		
+        <p>Following the lead of Mike Doherty (<a href="http://search.cpan.org/~doherty/" >DOHERTY</a>) I've moved my own <a href="http://search.cpan.org/perldoc?Dist::Zilla" >Dist::Zilla</a> Author PluginBundle into a new namespace:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">Dist::Zilla::PluginBundle::Author::OLIVER
+</pre>
+
+<p>Having Author PluginBundles is a great system for saving me time and allowing others to build my modules with ease. However I had to agree to Mike's point that polluting the <code>Dist::Zilla::PluginBundle::</code> namespace wasn't so cool. It also makes things more clear in the <code>dist.ini</code> file:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">[@Author::OLIVER]
+</pre>
+
+<p>If you have an Author PluginBundle, please consider moving it into this <a href="http://search.cpan.org/search?query=Dist::Zilla::PluginBundle::Author&mode=all" >new namespace</a>. You can of course keep the old one around, in parallel, until code using it has moved off to the backpan.</p>
+        
+    		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/perl/index.html" title="View all posts in perl" rel="category tag">perl</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-312" class="post-312 post type-post status-publish format-standard hentry category-networking category-perl">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=312.html" title="Permalink to Adding a new RANCID device class" rel="bookmark">Adding a new RANCID device class</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=312.html" title="12:21" rel="bookmark"><span class="entry-date">February 4, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>The <a href="http://www.shrubbery.net/rancid/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.shrubbery.net']);" target="_blank">RANCID</a> system is used by many network service providers to backup and audit their network device configurations. It supports many device vendors (Cisco, Juniper, etc) but you might run into a vendor which is not supported. Adding a new device class (in other words, a vendor) to RANCID is not difficult.</p>
+<p>Starting with the basics, we need a script which will connect to the device and emit the output of any commands you want to run there. You could clone and modify one of the existing RANCID scripts such as <code>/usr/bin/jrancid</code> or write your own. Either way, when run it needs to:</p>
+<ul>
+<li>Accept as its final command line argument the name of the device</li>
+<li>Save output to a file in the current working directory, called <code>&lt;devicename&gt;.new</code></li>
+</ul>
+<p>Install this script into <code>/usr/bin/...</code> with a suitable name.</p>
+<p>The next step is to make RANCID aware of this new class of device. Load up the file <code>/usr/bin/rancid-fe</code> in your editor, and scroll down to see the lookup table for all device classes. Add an entry in there which has a &#8220;friendly name&#8221; as the key on the left, and the name of your script (created in the previous step) as the value on the right.</p>
+<p>That&#8217;s it, you can now use this device class (the &#8220;friendly name&#8221;) in your <code>router.db</code> files and RANCID will execute your script to retrieve the configuration. You aren&#8217;t limited only to devices with a CLI now, of course. Your script could retrieve configuration (or any other text data) from any source by any means and save it to the <code>.new</code> file.</p>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/networking/index.html" title="View all posts in networking" rel="category tag">networking</a>, <a href="../../category/perl/index.html" title="View all posts in perl" rel="category tag">perl</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-300" class="post-300 post type-post status-publish format-standard hentry category-blogging">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=300.html" title="Permalink to Fixing code snippets syndicated from blogs.perl.org" rel="bookmark">Fixing code snippets syndicated from blogs.perl.org</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=300.html" title="22:18" rel="bookmark"><span class="entry-date">February 3, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>I&#8217;ve got a Perl-specific blog over at <a href="http://blogs.perl.org/users/oliver_gorwits/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://blogs.perl.org']);" target="_blank">blogs.perl.org</a> which has its posts syndicated here (using the excellent <a href="http://wordpress.org/extend/plugins/feedwordpress/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://wordpress.org']);" target="_blank">FeedWordPress</a> plugin).</p>
+<p>The trouble is, pre-formatted blocks (i.e. the <code>&lt;pre&gt;</code> tag) are botched when importing, mainly because I need to perpetrate a hack over on the origin site to get things rendering properly. What would be nice is to have those blocks rendered here using the SyntaxHighlighter WordPress Plugin that is installed.</p>
+<p>It turns out writing a filter plugin for WordPress is not that hard. There is a system of hooks at which the plugin registers callback subroutines. The callback gets passed some content which it can filter, and return back. All I need to do is filter out the junky <code>&lt;pre&gt;</code> sections for ones which will render well under SyntaxHighlighter.</p>
+<p>First the plugin header, which WordPress uses to add an entry to the plugins list, in the Plugins section of the site admin panel:</p>
+<pre class="brush: php; title: ; notranslate" title="">
+&lt;?php
+/*
+Plugin Name: FeedWordpress-SyntaxHighlighter
+Plugin URI: http://blog.gorwits.me.uk/
+Description: Import preformatted text properly for SyntaxHighlighter
+Version: 1.1
+Author: Oliver Gorwits
+Author URI: http://blog.gorwits.me.uk/
+License: Artistic
+*/
+</pre>
+<p>Next we register the callback subroutine against a hook which has been added by the FeedWordPress plugin:</p>
+<pre class="brush: php; first-line: 11; title: ; notranslate" title="">
+add_filter(
+    /*hook=*/ 'syndicated_item_content',
+    /*function=*/ 'fwp_add_class_to_pre_in_content',
+    /*order=*/ 10, 
+    /*arguments=*/ 2
+);
+</pre>
+<p>And finally the callback itself:</p>
+<pre class="brush: php; first-line: 17; title: ; notranslate" title="">
+
+function fwp_add_class_to_pre_in_content ($content, $post) {
+    // remove code segement used to format on the blogs.perl.org site
+    // replaces *all* occurrences
+    $content = str_replace(
+        '&lt;pre&gt;&lt;code class=&quot;prettyprint&quot;&gt;',
+        '&lt;pre&gt;',
+        $content
+    );  
+    $content = str_replace(
+        '&lt;/code&gt;&lt;/pre&gt;',
+        '&lt;/pre&gt;',
+        $content
+    );  
+
+    // locate and extract the pre blocks
+    preg_match_all('/&lt;pre&gt;(?:.(?!&lt;\/pre&gt;))+.&lt;\/pre&gt;(?:&lt;\/p&gt;)?/s',
+        $content, $matches, PREG_OFFSET_CAPTURE);
+
+    // work through list of &lt;pre&gt; blocks, rewriting them
+    foreach (array_reverse($matches[0]) as $val) {
+        $pre_block = $val[0];
+        $offset    = $val[1];
+
+        $new_pre = '&lt;pre class=&quot;brush: plain; gutter: false; title: ;&quot;&gt;' .
+                        // remove the junk added by syndication
+                        // ok, this breaks if pre contains legit HTML
+                        strip_tags($pre_block) .
+                   '&lt;/pre&gt;';
+
+        // reinsert the new pre block into the content
+        // replacing the old one
+        $content = substr($content, 0, $offset) .
+                   str_replace($pre_block, $new_pre,
+                               substr($content, $offset));
+    }
+
+    // Send it back
+    return $content;
+} /* fwp_add_class_to_pre_in_content() */
+</pre>
+<p>I&#8217;m not the best PHP programmer out there, but I cobbled this together and it seems to work <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+<p>The final step is to drop this file into a subdirectory of <code>.../wp-content/plugins/</code> on the server, and hey presto the plugin is available for activating. Next time the feed is syndicated, the content is passed through this code.</p>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/blogging/index.html" title="View all posts in blogging" rel="category tag">blogging</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-463" class="post-463 post type-post status-publish format-standard hentry category-perl">
+	    <h2 class="entry-title"><a href="http://blogs.perl.org/users/oliver_gorwits/2011/02/dist-zilla-plugin-metaresourcesfromgit.html" title="Permalink to Dist::Zilla::Plugin::MetaResourcesFromGit" rel="bookmark">Dist::Zilla::Plugin::MetaResourcesFromGit</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://blogs.perl.org/users/oliver_gorwits/2011/02/dist-zilla-plugin-metaresourcesfromgit.html" title="20:21" rel="bookmark"><span class="entry-date">February 3, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		
+        <p>The <a href="http://search.cpan.org/perldoc?CPAN::Meta::Spec" >CPAN META specification</a> includes support for "resource" links to homepage, bug tracker, mail list, source code repository, and so on. These will appear on search.cpan.org if you <a href="http://search.cpan.org/perldoc?Dist::Zilla::Plugin::MetaJSON" >ship a META.json</a> with your distribution.</p>
+
+<p>Dist::Zilla's <a href="http://search.cpan.org/perldoc?Dist::Zilla::Plugin::MetaResources" >MetaResources</a> plugin allows you to set these links in the distribution config, but I wanted something a little more automagical. This can be done because I've set up my GitHub repositories with consistent naming and layout.</p>
+
+<p>So my new plugin, <a href="http://search.cpan.org/perldoc?Dist::Zilla::Plugin::MetaResourcesFromGit" >Dist::Zilla::Plugin::MetaResourcesFromGit</a>, is a drop-in replacement for the standard MetaResources plugin. It automatically generates four resource links based on the name of the distribution and the remote git repository settings. Simply use the plugin in your <code>dist.ini</code> file:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">[MetaResourcesFromGit]
+</pre>
+
+<p>The default links are equivalent to:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">homepage        = https://github.com/&lt;account>/&lt;repo&gt;/wiki
+bugtracker.web  = https://rt.cpan.org/Public/Dist/Display.html?Name=&lt;dist-name&gt;
+repository.url  = git://github.com/&lt;account&gt;/&lt;repo&gt;.git
+repository.web  = https://github.com/&lt;account&gt;/&lt;repo&gt;
+repository.type = git
+</pre>
+
+<p>Any other resources provided to this Plugin are passed through to the MetaResources Plugin as-is. If you wish to override one of the above, some formatting codes are provided (described in the documentation) to assist. If you wish to suppress the appearance of one of the above resources, set an empty value.</p>
+
+<p>If you want to know more about <a href="http://blogs.perl.org/users/oliver_gorwits/2011/01/my-distzilla-and-gitgithub-workflow.html" >my Dist::Zilla and GitHub workflow</a>, I discussed it in an earlier post on this blog. I wrote this plugin to assist me, and it's also shown how great the Moose-based Dist::Zilla architecture is for extending features.</p>
+
+<p>The Plugin is GitHub centric at the moment, but I'd be happy to accept a patch to work with other cloud-based Git services (Gitorious, SourceForge, etc).</p>
+        
+    		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/perl/index.html" title="View all posts in perl" rel="category tag">perl</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-124" class="post-124 post type-post status-publish format-standard hentry category-blogging">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=124.html" title="Permalink to SyntaxHighlighter and Chrome vertical scrollbar bug" rel="bookmark">SyntaxHighlighter and Chrome vertical scrollbar bug</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=124.html" title="09:00" rel="bookmark"><span class="entry-date">February 1, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>I just noticed that with Google Chrome the code snippets of my blog posts have unnecessaryÂ vertical scrollbars. This is reported in <a href="https://bitbucket.org/alexg/syntaxhighlighter/issue/177" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://bitbucket.org']);" target="_blank">bug #177 in the SyntaxHighlighter code</a>.</p>
+<p>A simple fix (already posted to the bug report) is to edit <code>ï»¿ï»¿.../styles/shCore.css</code> and after the existing <code>overflow</code> entry on line 60, add:</p>
+<pre class="brush: jscript; gutter: false; title: ; notranslate" title="">
+overflow-y: hidden !important;
+</pre>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/blogging/index.html" title="View all posts in blogging" rel="category tag">blogging</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><a href="../../index.html%3Fp=124.html#comments" title="Comment on SyntaxHighlighter and Chrome vertical scrollbar bug">1 Comment</a></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-101" class="post-101 post type-post status-publish format-standard hentry category-htpc category-linux">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=101.html" title="Permalink to Persistent DVB tuner device names" rel="bookmark">Persistent DVB tuner device names</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=101.html" title="21:47" rel="bookmark"><span class="entry-date">January 31, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>I&#8217;m a user of the excellent <a href="http://mythtv.org/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://mythtv.org']);" target="_blank">MythTV</a> <a href="http://en.wikipedia.org/wiki/Digital_video_recorder" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://en.wikipedia.org']);" target="_blank">PVR</a> software, and in my system are two tuners: one digital terrestrial and one digital satellite. A problem I had for some time was that their device names under linux were not the same on each boot, so MythTV got very upset and would not record things.</p>
+<p>After digging around online for ages I found a document with the trick to keeping persistent device names for tuner cards, which I&#8217;m sorry to say I&#8217;ve now lost. Here goes, for the sake of Google archiving&#8230;</p>
+<p>Start with <a href="http://prefetch.net/articles/linuxpci.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://prefetch.net']);" target="_blank">listing the PCI devices</a> to see their Vendor and Bus ID:</p>
+<pre class="brush: plain; highlight: [4,11]; title: ; notranslate" title="">
+oliver@htpc:~$ lspci -nnv
+&lt;snipped...&gt;
+
+03:05.0 Multimedia controller [0480]: Philips Semiconductors SAA7146 [1131:7146] (rev 01)
+	Subsystem: Technotrend Systemtechnik GmbH S2-3200 [13c2:1019]
+	Flags: bus master, medium devsel, latency 64, IRQ 20
+	Memory at febffc00 (32-bit, non-prefetchable) [size=512]
+	Kernel driver in use: budget_ci dvb
+	Kernel modules: budget-ci
+
+03:06.0 Multimedia controller [0480]: Philips Semiconductors SAA7146 [1131:7146] (rev 01)
+	Subsystem: Technotrend Systemtechnik GmbH Technotrend-Budget/Hauppauge WinTV-NOVA-T DVB card [13c2:1005]
+	Flags: bus master, medium devsel, latency 64, IRQ 21
+	Memory at febff800 (32-bit, non-prefetchable) [size=512]
+	Kernel driver in use: budget dvb
+	Kernel modules: budget
+</pre>
+<p>Hopefully there&#8217;s enough information for you to tell which card is which, if as like my situation the (highlighted) description lines are almost identical. Above, the terrestrial card is <code>WinTV-NOVA-T</code> and the satellite card is <code>S2-3200</code>.</p>
+<p>The pieces of information you want to record for each card are the Bus ID &#8211; the number such as <code>03:05.0</code> at the start of the highlighted line, and the Vendor ID &#8211; the first number before the colon in square brackets such as <code>1131</code>.</p>
+<p>We&#8217;re going to use <a href="http://reactivated.net/writing_udev_rules.html" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://reactivated.net']);" target="_blank">udev rules</a>, but not to set the device names, instead creating alias (or duplicate) names which are used by MythTV configuration.</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+oliver@htpc:~$ cat /etc/udev/rules.d/15-videosymlinks.rules
+
+SUBSYSTEM==&quot;dvb&quot;, ATTRS{vendor}==&quot;0x1131&quot;, KERNELS==&quot;0000:03:06.0&quot;, PROGRAM=&quot;/bin/sh -c 'K=%k; K=$${K#dvb}; printf dvb/adapter101/%%s $${K#*.}'&quot;, SYMLINK+=&quot;%c&quot;
+SUBSYSTEM==&quot;dvb&quot;, ATTRS{vendor}==&quot;0x1131&quot;, KERNELS==&quot;0000:03:05.0&quot;, PROGRAM=&quot;/bin/sh -c 'K=%k; K=$${K#dvb}; printf dvb/adapter102/%%s $${K#*.}'&quot;, SYMLINK+=&quot;%c&quot;
+</pre>
+<p>I&#8217;ve identified the cards by matching both their Vendor ID (note it&#8217;s Hex so prefixed with <code>0x</code>) and Bus ID, and chosen names <code>adapter101</code> and <code>adapter102</code> (scroll to the right to see). The high numbers are because, as I explained, the original device names are still present:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+oliver@htpc:~$ ls -1 /dev/dvb/
+adapter0
+adapter1
+adapter101
+adapter102
+</pre>
+<p>Within these alias device directories are in fact symlinks (automatically created!) to the correct card device data, whatever its name happens to be on this boot:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+oliver@htpc:~$ ll /dev/dvb/adapter101/
+total 0
+drwxr-xr-x 2 root root 120 2010-12-12 13:03 ./
+drwxr-xr-x 6 root root 120 2010-12-12 13:03 ../
+lrwxrwxrwx 1 root root  18 2010-12-12 13:03 demux0 -&gt; ../adapter0/demux0
+lrwxrwxrwx 1 root root  16 2010-12-12 13:03 dvr0 -&gt; ../adapter0/dvr0
+lrwxrwxrwx 1 root root  21 2010-12-12 13:03 frontend0 -&gt; ../adapter0/frontend0
+lrwxrwxrwx 1 root root  16 2010-12-12 13:03 net0 -&gt; ../adapter0/net0
+</pre>
+<p>When configuring MythTV use the new alias names and this problem is solved.</p>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/htpc/index.html" title="View all posts in htpc" rel="category tag">htpc</a>, <a href="../../category/linux/index.html" title="View all posts in linux" rel="category tag">linux</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-37" class="post-37 post type-post status-publish format-standard hentry category-blogging">
+	    <h2 class="entry-title"><a href="../../index.html%3Fp=37.html" title="Permalink to Using SyntaxHighlighter" rel="bookmark">Using SyntaxHighlighter</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="../../index.html%3Fp=37.html" title="21:14" rel="bookmark"><span class="entry-date">January 31, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		<p>To prepare for a series of posts here on server configuration tricks, I&#8217;ve installed one of the WordPressÂ <a href="http://wordpress.org/extend/plugins/syntax-highlighter/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://wordpress.org']);" target="_blank">SyntaxHighlighter plugins</a> to my blog. This is a good choice as it exposes the most options from the SyntaxHighlighter JS library.</p>
+<p>Simply create a preformatted paragraph and enter the text to be highlighted. Top and tail this with <code>[brush]</code> tags like so:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+1
+</pre>
+<p>The value of the brush in the class is the <a href="http://alexgorbatchev.com/SyntaxHighlighter/manual/brushes/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://alexgorbatchev.com']);" target="_blank">SyntaxHighlighter Brush alias</a>. This can be followed by various rendering options:</p>
+<pre class="brush: xml; auto-links: false; first-line: 5; highlight: [6]; title: ; notranslate" title="">
+1
+</pre>
+<p>Below are the parameters you can pass and what they do. For the booleans (i.e. on/off), passÂ <code>true</code>/<code>1</code> orÂ <code>false</code>/<code>0</code>.</p>
+<ul>
+<li><code>lang</code> orÂ <code>language</code> â€” The language syntax to highlight with.</li>
+<li><code>autolinks</code> â€” Toggle automatic URL linking.</li>
+<li><code>classname</code> â€” Add an additional CSS class to the code box.</li>
+<li><code>collapse</code> â€” Toggle collapsing the code box by default</li>
+<li><code>firstline</code> â€” What number the first line should be.</li>
+<li><code>gutter</code> â€” Toggle the left-side line numbering.</li>
+<li><code>highlight</code> â€” Line numbers to highlight such as:Â <code>2,5-10,12</code></li>
+<li><code>htmlscript</code> â€” Toggle highlighting any extra HTML/XML.</li>
+<li><code>light</code> â€” Toggle light mode which disables the gutter and toolbar all at once.</li>
+<li><code>padlinenumbers</code> â€” Controls line number padding (<code>false</code>,Â <code>true</code>, or an integer).</li>
+<li><code>title</code> (v3 only) â€” Sets some text to show up before the code.</li>
+<li><code>toolbar</code> â€” Toggle the toolbar (buttons in v2, the about question mark in v3)</li>
+<li><code>wraplines</code> (v2 only) â€” Toggle line wrapping.</li>
+</ul>
+<p>To display <code>[tags]</code> as I have done above without having them interpreted by the plugin, make use of the fact that you can use both the <code>[brush][/brush]</code> form (as above) and a more verbose alternative:</p>
+<pre class="brush: plain; title: ; notranslate" title="">
+1
+</pre>
+		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/blogging/index.html" title="View all posts in blogging" rel="category tag">blogging</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-464" class="post-464 post type-post status-publish format-standard hentry category-perl">
+	    <h2 class="entry-title"><a href="http://blogs.perl.org/users/oliver_gorwits/2011/01/my-distzilla-and-gitgithub-workflow.html" title="Permalink to My Dist::Zilla and git/GitHub workflow" rel="bookmark">My Dist::Zilla and git/GitHub workflow</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://blogs.perl.org/users/oliver_gorwits/2011/01/my-distzilla-and-gitgithub-workflow.html" title="15:18" rel="bookmark"><span class="entry-date">January 16, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		
+        <p>There has been a bit of discussion recently on the <tt>#distzilla</tt> IRC channel about how people are integrating their CPAN distribution development with Git, and in particular some of the <a  href="http://search.cpan.org/perldoc?Dist::Zilla">Dist::Zilla</a> <a  href="http://search.cpan.org/perldoc?Dist::Zilla::Plugin::Git">Git plugin(s)</a>. I thought it might contribute to a useful discussion if I show how I have things set up.</p>
+
+<p>Like many, I want to <a  href="https://github.com/ollyg">host my code on GitHub</a> and then periodically publish to CPAN. Dist::Zilla helps in both these by providing plugins to automatically push releases to GitHub, and then also upload to CPAN.</p>
+
+<p>What bothers some is the stage at which these things happen, and also how the branches and tags are represented on GitHub. In particular, folks might want:</p>
+
+<p>
+<ul>
+	<li>a "clean" git branch which tracks CPAN releases</li>
+	<li>another branch which is the "trunk" of development</li>
+	<li>a user browsing the GitHub website to see <a  href="https://github.com/ollyg/Dist-Zilla-PluginBundle-Author-OLIVER">the CPAN branch</a> (with the README, etc)</li>
+	<li>sane commit messages and tags</li>
+</ul>
+</p>
+
+<p>What I have configured is for the <tt>master</tt> branch on GitHub to be the one tracking CPAN releases. This makes it straightforward for most people to fork the distribution and tinker around without getting into trouble (i.e. they can build the dist).</p>
+
+<p>My trunk of development takes place in a branch called <tt>devel</tt>, and that is from where I kick off Dist::Zilla builds and releases:</p>
+
+<p><img alt="Screen shot 2011-01-16 at 15.56.38.png" src="http://blogs.perl.org/users/oliver_gorwits/2011/01/16/Screen%20shot%202011-01-16%20at%2015.56.38.png" width="371" height="150" class="mt-image-none" style="" /></p>
+
+<p>Tags are applied to the <tt>master</tt> branch automatically, with the version number which was uploaded to CPAN. So a user can again browse to GitHub, and when selecting a (version) tag they will see the CPAN dist at that version.</p>
+
+<p>The commit message for the the <tt>master</tt> branch is also automatic, and contains the text of the latest section in the <tt>Changes</tt> file. Commit messages along my <tt>devel</tt> branch are of couse the everyday notes I make as I code. But following a Dist::Zilla driven release, one commit is done automatically on the <tt>devel</tt> branch to store the new header in the <tt>Changes</tt> file, and it gets the comment "<tt>Bumped changelog following rel. v%v</tt>".</p>
+
+<p>Okay, this is all a bit abstract, so if you follow <a  href="https://github.com/ollyg/Dist-Zilla-PluginBundle-Author-OLIVER/network">this link</a> you can see the network graph for one of my modules. It clearly shows the two branches, how they are merged, and all commit messages.</p>
+
+<p>I think this setup is really neat and tidy, and very intuitive for the visiting user who might not be familiar with Dist::Zilla. It's also almost completely automated so I really just stick to the <tt>devel</tt> branch and forget all about the rest.</p>
+
+<p>Finally, let's look at a snippet from my <tt>dist.ini</tt> which drives it all. Note that the <tt>CommitBuild</tt> Plugin <em>must</em> come before the <tt>@Git</tt> Bundle:</p>
+
+<pre class="brush: plain; gutter: false; title: ;" title="">[Git::CommitBuild]
+branch =
+release_branch = master
+message = &lt;contents of latest changelog entry&gt;
+
+[@Git]
+commit_msg = Bumped changelog following rel. v%v
+</pre>
+
+<p>The <tt>CommitBuild</tt> Plugin is responsible for pushing the built distribution into a branch other than the one I've currently checked out. That is, I'm working in <tt>devel</tt> but the baked distribution is committed to <tt>master</tt> along with a nice comment, just at the same time as being uploaded to CPAN.</p>
+
+<p>Okay, I have one confession. Getting the contents of the <tt>Changes</tt> file entry into that <tt>message</tt> variable does involve a <a  href="https://github.com/ollyg/Dist-Zilla-PluginBundle-Author-OLIVER/blob/v1.103640/lib/Dist/Zilla/PluginBundle/Author/OLIVER.pm#L83">wee hack</a>, but you could equally just say something like "<tt>product of release %v</tt>" using the Git Plugin substitution variables.</p>
+
+<p>I hope showing this has helped.</p>
+
+        
+    		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/perl/index.html" title="View all posts in perl" rel="category tag">perl</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-465" class="post-465 post type-post status-publish format-standard hentry category-perl">
+	    <h2 class="entry-title"><a href="http://blogs.perl.org/users/oliver_gorwits/2011/01/askperl-the-back-compat-dilemma.html" title="Permalink to AskPerl: The Back-Compat Dilemma" rel="bookmark">AskPerl: The Back-Compat Dilemma</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://blogs.perl.org/users/oliver_gorwits/2011/01/askperl-the-back-compat-dilemma.html" title="20:49" rel="bookmark"><span class="entry-date">January 3, 2011</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		
+        <p>Gentle reader, I need your advice.</p>
+
+<p>Some years ago I created the <a href="http://search.cpan.org/perldoc?Net::Appliance::Session">Net::Appliance::Session</a> Perl module. It allows the user to automate interactions with CLI-based networked devices (think routers, switches) - a sort of Expect but with some helpful domain knowledge. The module has turned out to be quite popular (which is important to my story), in use by many organisations.</p>
+
+<p>There is a shopping-list of problems with the code, though, which makes both bug-fixing and feature development really hard. I've been planning a rewrite for over a year, and finally completed most of that in the past few days.</p>
+
+<p>The new version is completely different internally, but that shouldn't matter much. The problem comes in that I've engineered a new "phrasebook" system for the scripted CLI interactions, and also the programmers' API has changed. [Edit: I should add that lots of long-asked-for features are included, so the rewrite did bring benefits for the user.]</p>
+
+<p>Now, I guess that if I release this as Net::Appliance::Session with a major version bump it could cause havoc some time down the line when an innocent upgrades their server and in comes the new package and some maintenance script fails. Perl doesn't make it easy to deal with this (nor do most operating systems, either, of course).</p>
+
+<p>However I'm loathe to change the module's namespace. I like its name, and it feels like chasing my tail if I just rename a module to indicate an incompatible API change.</p>
+
+<p>Alternatively I could write a <em>BackCompat</em> role, but for starters that's a lot of work (the old API was huge) and I worry that things like error handling simply work too differently in the new version to massage. Also, should that role be enabled by default or via a flag at <em>use</em>-time?</p>
+
+<p>I'm not a professional programmer, nor a key part of some large projects like Catalyst, Moose, DBIx::Class which I'm sure have had to deal with such issues in the past. I don't really know the best course of action, and I also don't have much communication at all with my user base (using this module is a sysadmin-practice "smell" so many don't own up to it).</p>
+
+<p>I need your help: please have a think and let me know in comments what you might do in this situation. Many thanks!</p>
+        
+    		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/perl/index.html" title="View all posts in perl" rel="category tag">perl</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+    	<div id="post-466" class="post-466 post type-post status-publish format-standard hentry category-perl">
+	    <h2 class="entry-title"><a href="http://blogs.perl.org/users/oliver_gorwits/2010/11/catatlystxlistframeworkbuilder-finally-removed-from-cpan.html" title="Permalink to CatatlystX::ListFramework::Builder finally removed from CPAN" rel="bookmark">CatatlystX::ListFramework::Builder finally removed from CPAN</a></h2>
+
+	    <div class="entry-meta">
+		<span class="meta-prep meta-prep-author">Posted on</span> <a href="http://blogs.perl.org/users/oliver_gorwits/2010/11/catatlystxlistframeworkbuilder-finally-removed-from-cpan.html" title="21:18" rel="bookmark"><span class="entry-date">November 24, 2010</span></a> <span class="meta-sep">by</span> <span class="author vcard"><a class="url fn n" href="../../author/oliver/index.html" title="View all posts by Oliver Gorwits">Oliver Gorwits</a></span>
+	    </div><!-- .entry-meta -->
+
+		    <div class="entry-content">
+		
+        <p>This note is to announce that I've just now, finally, removed the old CatalystX::ListFramework::Builder distributions from CPAN. Don't worry, the module has long been deprecated in favour of its more popular replacement <a href="http://search.cpan.org/perldoc?Catalyst::Plugin::AutoCRUD">Catalyst::Plugin::AutoCRUD</a>.</p>
+
+<p>This moment cannot pass without thanking Andrew Payne and Peter Edwards for creating the ancestor to them both, CatalystX::ListFramework. I believe Peter had the thought to provide some kind of simple web access to database tables, and prodded Andrew into creating the ListFramework. Whilst out at a <a href="http://miltonkeynes.pm.org/">miltonkeynes.pm</a> meet one evening, I discussed forking the code to make it more automagical and to allow the use of an AJAX UI which Peter had good reason for not wanting at the time. And so ::Builder was born.</p>
+
+<p>I'm looking forward to the future of ::AutoCRUD. More time is available to me since I changed job recently, and there is a bunch of ideas waiting in the queue. If you have suggestions for AutoCRUD's wishlist, please do <a href="https://rt.cpan.org/Public/Dist/Display.html?Name=Catalyst-Plugin-AutoCRUD">create a simple RT ticket</a> against the module. </p>
+
+<p><br />
+</p>
+        
+    		
+	    </div><!-- .entry-content -->
+	
+	    <div class="entry-utility">
+	    		<span class="cat-links">
+			<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="../../category/perl/index.html" title="View all posts in perl" rel="category tag">perl</a>		</span><span class="meta-sep meta-sep-bar">|</span>
+	    	    		<span class="comments-link"><span>Comments Off</span></span>
+			    </div><!-- .entry-utility -->
+	</div><!-- #post-## -->
+
+	
+	
+
+	<div id="nav-below" class="navigation">
+	    <div class="nav-previous"><a href="../6/index.html" ><span class="meta-nav">&larr;</span> Older posts</a></div>
+	    <div class="nav-next"><a href="../4/index.html" >Newer posts <span class="meta-nav">&rarr;</span></a></div>
+	</div><!-- #nav-below -->
+	</div><!-- #content -->
+                </div><!-- #container -->
+
+	<div id="primary" class="widget-area" role="complementary">
+	    <ul class="xoxo">
+
+<li id="search-2" class="widget-container widget_search"><form role="search" method="get" id="searchform" class="searchform" action="../../index.html">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search" />
+				</div>
+			</form></li><li id="archives-2" class="widget-container widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+			<li><a href='../../2014/03/index.html' title='March 2014'>March 2014</a></li>
+	<li><a href='../../2013/01/index.html' title='January 2013'>January 2013</a></li>
+	<li><a href='../../2012/12/index.html' title='December 2012'>December 2012</a></li>
+	<li><a href='../../2012/09/index.html' title='September 2012'>September 2012</a></li>
+	<li><a href='../../2012/08/index.html' title='August 2012'>August 2012</a></li>
+	<li><a href='../../2012/06/index.html' title='June 2012'>June 2012</a></li>
+	<li><a href='../../2012/04/index.html' title='April 2012'>April 2012</a></li>
+	<li><a href='../../2012/01/index.html' title='January 2012'>January 2012</a></li>
+	<li><a href='../../2011/11/index.html' title='November 2011'>November 2011</a></li>
+	<li><a href='../../2011/10/index.html' title='October 2011'>October 2011</a></li>
+	<li><a href='../../2011/09/index.html' title='September 2011'>September 2011</a></li>
+	<li><a href='../../2011/08/index.html' title='August 2011'>August 2011</a></li>
+	<li><a href='../../2011/07/index.html' title='July 2011'>July 2011</a></li>
+	<li><a href='../../2011/06/index.html' title='June 2011'>June 2011</a></li>
+	<li><a href='../../2011/05/index.html' title='May 2011'>May 2011</a></li>
+	<li><a href='../../2011/04/index.html' title='April 2011'>April 2011</a></li>
+	<li><a href='../../2011/03/index.html' title='March 2011'>March 2011</a></li>
+	<li><a href='../../2011/02/index.html' title='February 2011'>February 2011</a></li>
+	<li><a href='../../2011/01/index.html' title='January 2011'>January 2011</a></li>
+	<li><a href='../../2010/11/index.html' title='November 2010'>November 2010</a></li>
+	<li><a href='../../2010/09/index.html' title='September 2010'>September 2010</a></li>
+		</ul>
+</li><li id="categories-2" class="widget-container widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-6"><a href="../../category/blogging/index.html" title="View all posts filed under blogging">blogging</a>
+</li>
+	<li class="cat-item cat-item-28"><a href="../../category/cats/index.html" title="View all posts filed under cats">cats</a>
+</li>
+	<li class="cat-item cat-item-16"><a href="../../category/databases/index.html" title="View all posts filed under databases">databases</a>
+</li>
+	<li class="cat-item cat-item-13"><a href="../../category/devops/index.html" title="View all posts filed under devops">devops</a>
+</li>
+	<li class="cat-item cat-item-21"><a href="../../category/git/index.html" title="View all posts filed under git">git</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="../../category/htpc/index.html" title="View all posts filed under htpc">htpc</a>
+</li>
+	<li class="cat-item cat-item-24"><a href="../../category/kerberos/index.html" title="View all posts filed under kerberos">kerberos</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="../../category/linux/index.html" title="View all posts filed under linux">linux</a>
+</li>
+	<li class="cat-item cat-item-19"><a href="../../category/monitoring/index.html" title="View all posts filed under monitoring">monitoring</a>
+</li>
+	<li class="cat-item cat-item-11"><a href="../../category/mythtv/index.html" title="View all posts filed under mythtv">mythtv</a>
+</li>
+	<li class="cat-item cat-item-20"><a href="../../category/netdisco/index.html" title="View all posts filed under netdisco">netdisco</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="../../category/networking/index.html" title="View all posts filed under networking">networking</a>
+</li>
+	<li class="cat-item cat-item-27"><a href="../../category/opinion/index.html" title="View all posts filed under opinion">opinion</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="../../category/os-x/index.html" title="View all posts filed under OS X">OS X</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="../../category/perl/index.html" title="View all posts filed under perl">perl</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="../../category/personal/index.html" title="View all posts filed under personal">personal</a>
+</li>
+	<li class="cat-item cat-item-22"><a href="../../category/productivity/index.html" title="View all posts filed under productivity">productivity</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="../../category/python/index.html" title="View all posts filed under python">python</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="../../category/radius/index.html" title="View all posts filed under radius">radius</a>
+</li>
+	<li class="cat-item cat-item-26"><a href="../../category/sysops/index.html" title="View all posts filed under sysops">sysops</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="../../category/transcoding/index.html" title="View all posts filed under transcoding">transcoding</a>
+</li>
+	<li class="cat-item cat-item-29"><a href="../../category/video/index.html" title="View all posts filed under video">video</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="../../category/virtualization/index.html" title="View all posts filed under virtualization">virtualization</a>
+</li>
+	<li class="cat-item cat-item-25"><a href="../../category/windows/index.html" title="View all posts filed under windows">windows</a>
+</li>
+		</ul>
+</li><li id="syndication" class="widget-container Syndication_widget_syndication_widget"><h3 class="widget-title">Syndication</h3><ul>
+<li>
+<a  title='RSS Feed' href='../../index.html%3Ffeed=rss2'/>RSS</a></li>
+<li>
+<a title='ATOM Feed' href='../../index.html%3Ffeed=atom'/>ATOM</a></li>
+<li>
+<a title='POML Feed' href='../../wp-links-opml.php'/>OPML</a></li>
+</ul>
+</li>			</ul>
+	</div><!-- #primary .widget-area -->
+
+    </div><!-- #main -->
+        	<div id="footer">
+		<div id="colophon">
+
+<table id='ttw_ftable'><tr>
+ <td id='ttw_ftdl'><div id="site-info">
+ &copy; 2014 - <a href="../../index.html" title="Cats and Code" rel="home">Cats and Code</a>
+ </div></td>  <td id='ttw_ftdr'><div id="site-generator">
+  <a href="http://wordpress.org/" title="Semantic Personal Publishing Platform" rel="generator">Proudly powered by WordPress.</a>
+ 2010 Weaver by WPWeaver.info
+ </div></td> </tr></table>
+		</div><!-- #colophon -->
+	</div><!-- #footer -->
+            
+</div><!-- #wrapper -->
+
+<script type='text/javascript' src='../../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js%3Fver=3.0.83c'></script>
+<script type='text/javascript' src='../../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPhp.js%3Fver=3.0.83c'></script>
+<script type='text/javascript' src='../../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushJScript.js%3Fver=3.0.83c'></script>
+<script type='text/javascript' src='../../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushPlain.js%3Fver=3.0.83c'></script>
+<script type='text/javascript' src='../../wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushXml.js%3Fver=3.0.83c'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://blog.gorwits.me.uk/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.83c";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://blog.gorwits.me.uk/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.83c";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.defaults['wrap-lines'] = false;
+	SyntaxHighlighter.all();
+</script>
+</body>
+</html>

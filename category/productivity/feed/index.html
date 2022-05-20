@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; productivity</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/productivity/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>Evolution of Technology</title>
+		<link>http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=evolution-of-technology</link>
+		<comments>http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/#comments</comments>
+		<pubDate>Sun, 02 Sep 2012 13:03:37 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[opinion]]></category>
+		<category><![CDATA[productivity]]></category>
+		<category><![CDATA[sysops]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=786</guid>
+		<description><![CDATA[As a free software developer I come into contact with a wide variety of opinions on what development process makes for a good end product. I don&#8217;t believe the answer is straightforward. Here&#8217;s an excellent quote from Linus Torvalds which &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>As a free software developer I come into contact with a wide variety of opinions on what development process makes for a good end product. I don&#8217;t believe the answer is straightforward. Here&#8217;s an excellent <a href="http://groups.google.com/group/fa.linux.kernel/msg/52f04d4ab1121c9b" target="_blank">quote from Linus Torvalds</a> which sums things up nicely:</p>
+<blockquote><p>&#8220;Donâ€™t underestimate the power of survival of the fittest. And donâ€™tÂ everÂ make the mistake that you can design something better than what you get from ruthless massively parallel trial-and-error with a feedback cycle. Thatâ€™s giving your intelligenceÂ muchÂ too much credit.&#8221;</p></blockquote>
+<p>My point being: evolution is aÂ tremendouslyÂ powerful system which creates some very functional products. Don&#8217;t over-engineer what you&#8217;re doing. Keep it simple, try to avoid <a href="http://en.wikipedia.org/wiki/Second-system_effect" target="_blank">second system syndrome</a>, and accept that one day someone may come out of the woodwork with a competing product which is either only incrementally better, or blows yours away.</p>
+<p>I&#8217;ve had this happen to me. It doesn&#8217;t upset me, or put me off trying out more ideas, because the itch I wanted to scratch by writing the software in the first place is now being <em>scratched better</em>. I might join in with the competitor, borrow and build upon their ideas, or simply retire from that scene. It&#8217;s all good. It&#8217;s simply evolution.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Simple Tools for Describing Rack Layouts</title>
+		<link>http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=simple-tools-for-describing-rack-layouts</link>
+		<comments>http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/#comments</comments>
+		<pubDate>Thu, 09 Aug 2012 11:22:46 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[networking]]></category>
+		<category><![CDATA[productivity]]></category>
+		<category><![CDATA[sysops]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=779</guid>
+		<description><![CDATA[Often when a system at work is having a problem I won&#8217;t actually know where it is. I can remember where mostÂ of the network kit is located, but not all, and certainly not all the servers connected. Two tools we &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Often when a system at work is having a problem I won&#8217;t actually know where it is. I can remember where <em>most</em>Â of the network kit is located, but not all, and certainly not all the servers connected.</p>
+<p>Two tools we already use can help: <a href="http://netdisco.org" target="_blank">Netdisco</a> shows which switch port a device is connected to, and a good cable and patching database indicates the room or even cabinet location of the device. However I wanted a more visual understanding of just where cabinet &#8220;CX1&#8243; might be located on our campus, and particularly in our large data centre halls.</p>
+<p>There are a few options, in terms of web-based,Â Linux-hosted, open source tools:</p>
+<p><a href="http://sourceforge.net/projects/rackmonkey/" target="_blank">RackMonkey</a> is a simple bit of Perl CGI with an easy to use web interface. It&#8217;s no longer actively maintained, but is hosted on sourceforge. Good features include easy installation, numbering U (position in the rack) from top or bottom, and supporting SQLite3 storage. Missing features include specifying front/back position or facing-direction of the device.</p>
+<p><a href="http://racktables.org/" target="_blank">RackTables</a> is, I think, PHP and MySQL and in addition to rack layout includes IP address and VLAN registries. These latter features we don&#8217;t need, and would be a distraction or confusion to my colleagues if I couldn&#8217;t disable them. What I do like is that devices can occupy front/mid/back zones in each rack unit. <del>Sadly racks can&#8217;t be numbered from top or bottom, and we have a mix of both.</del>Â <strong>Update:</strong>Â From version 0.20.4 RackTables will support numbering in either direction.</p>
+<p><a href="http://demo.racksmith.net/" target="_blank">RackSmith</a> is new and has some good ideas, such as being able to place the racks on a tiled floor plan in a room, in a building. There seems to be sufficient flexibility in how devices are placed in racks, but I notice several user interface bugs, which are understandable as <del>RackSmith is still under development</del>.Â <strong>Update:</strong> It seems public <a href="http://racksmith.net/forum/viewtopic.php?f=10&amp;t=895" target="_blank">development of RackSmith is &#8220;on hold&#8221; and it&#8217;s being rewritten</a> under a SaaS model.</p>
+<p>Both RackTables and RackSmith have demos on-line. RackMonkey is really easy to install so there&#8217;s less need there, anyway.</p>
+<p>At first my choice was going to be RackTables, because of its front/mid/back device positioning, and clear hierarchy of location/room/rack. <del>Sadly because we can&#8217;t reverse the U numbering, it&#8217;s rejected.</del> RackSmith would be lovely but just isn&#8217;t ready. <del>So, I&#8217;ve installed RackMonkey and seeing as it&#8217;s only providing additional information to that in Netdisco and our cable database, it being lightweight and unmaintained is probably not an issue</del>.</p>
+<p><strong>Update:</strong>Â So, RackTables it is! Its continuing development has leap-frogged the competition,</p>
+<p><em>(p.s. given sufficient tuits, I&#8217;d rather take the network inventory tool I once worked on, and extend that to support these features, instead. I don&#8217;t like duplicatingÂ informationÂ between systems.)</em></p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Living with Windows 7</title>
+		<link>http://blog.gorwits.me.uk/2012/08/07/living-with-windows-7/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=living-with-windows-7</link>
+		<comments>http://blog.gorwits.me.uk/2012/08/07/living-with-windows-7/#comments</comments>
+		<pubDate>Tue, 07 Aug 2012 16:25:11 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[productivity]]></category>
+		<category><![CDATA[windows]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=770</guid>
+		<description><![CDATA[Recently at work I migrated from a Linux desktop to a Windows 7 desktop. This is an account of how I then configured the Win7 system. First I should mention that working somewhere where they actually have an official, managed &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/08/07/living-with-windows-7/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Recently at work I migrated from a Linux desktop to a Windows 7 desktop. This is an account of how I then configured the Win7 system.</p>
+<p>First I should mention that working somewhere where they actually have an official, managed Linux desktop is awesome. However for the way I do things, it&#8217;s just not too pleasant an experience. On Linux I got tired of never being able to print something in the appropriate orientation. I also used to spend at least 50% of my time in the Windows VM anyway, working in MS Word/Excel/Visio.</p>
+<p>The rest of my time is spent in Chrome and SSH in a terminal. So the first things to install on Win7 are Chrome and <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank">PuTTY</a>. I created a directory called Applications in my home folder and saved apps such as PuTTY, which do not come with automated installers, there.</p>
+<p>I pinned a shortcut to my home folder to the taskbar. This is trickier than it sounds, as you have to do a two-level right click to get to the pinned folder <em>properties</em> window, then edit the <em>Target:</em> field (and possibly the icon if desired). I still don&#8217;t fully understand the Win7 &#8220;Library&#8221; system.</p>
+<p>To make PuTTY sessions more manageable, I installed <del>two</del>Â three additional apps. First is <a href="http://www.raisin.de/putty-tabs/putty-tabs.html" target="_blank">PuttyTabs</a>, which despite its age works just fine, and allows easy firing-up of a shell to one of our servers, and management of the windows once open. Rarely I might also use <a href="https://sites.google.com/site/macdsite/utilidades/puttytabmanager/" target="_blank">PuTTYTabManager</a> for staged system maintenance when I need to work on several similar systems at once (KDE&#8217;s terminal app is a superb tabbed experience which I do miss).</p>
+<p><strong>Update:</strong> <em>The <a href="http://puttysm.sourceforge.net/" target="_blank">PuTTY Session Manager</a> is another useful app to manage the session list; it can copy attributes/settings between session configs, and backup/restore session configs in bulk.</em></p>
+<p>Once a few windows are up and running I long for focus-follows-mouse. It&#8217;s not available on my iMac at home, but Win7 does have a registry key one can poke. Well done MS! Good luck with <a href="http://sinewalker.wordpress.com/2010/03/10/ms-windows-focus-follows-mouse-registry-hacks/" target="_blank">the process</a>, which I think could benefit from improvedÂ <a href="http://technet.microsoft.com/en-us/library/cc957204.aspx" target="_blank">official documentation</a> (pay attention to the comments on that page, as well).</p>
+<p>The next little gem to install is <a href="http://www.autohotkey.com/" target="_blank">AutoHotKey</a>, as I have an Apple keyboard and like to remap some keys (for example the # sign which I use a lot). Here&#8217;s my current config:</p>
+<pre class="brush: plain; title: ; notranslate">
+#singleinstance force
+Â§::Send {RAlt Down}3{RAlt Up}
+LWin::LCtrl
+::Remy::RÃ©my
+</pre>
+<p>This maps #-sign onto the unused section-sign (Â§) key. It also remaps the left Windows key, which on the Apple UK keyboard is of course the Command key, to be a left Control key. This means at home and at work my left thumb can take care of cut/copy/paste. Finally the last line means I always use the correct spelling for my manager&#8217;s name <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+<p>By the way, I did also install the Apple software drivers for Win7 from their Boot Camp installer on the OS X install disk. This sets the correct keymap for my Apple UK keyboard, as well as enabling the special function keys such as volume control.</p>
+<p>The next app, in no way less awesome, is <a href="http://dexpot.de/" target="_blank">Dexpot</a>, which provides true, full-featured virtual desktop support for Windows. I have four desktops, and use the application pinning feature so that everything in my <em>startup</em> folder is put in the right place when I boot (which isn&#8217;t that often, to be honest). Plugins enabled include Dexcube (3D switching effects), MouseEvents (hot corners), and SevenDex (shortcut buttons in taskbar).</p>
+<p>In case you&#8217;re not familiar with Dexpot, there are loads of features included (for instance context menu items on window taskbars, to allow moving them between desktops or show-on-all). One thing I&#8217;d like built-in is using the scroll-wheel on the desktop background to change virtual desktop; apparently it&#8217;s possible with an AutoHotKey script.</p>
+<p>That&#8217;s it for the main tweaks. Here&#8217;s a list of some of the other applications I&#8217;ve installed:</p>
+<ul>
+<li><a href="http://www.last.fm/download" target="_blank">last.fm standalone player</a></li>
+<li><a href="http://winscp.net/eng/index.php" target="_blank">WinSCP</a></li>
+<li><a href="http://gajim.org/" target="_blank">Gajim</a> (instant messaging)</li>
+<li><a href="http://www.wireshark.org/" target="_blank">Wireshark</a></li>
+<li><a href="http://www.linuxliveusb.com/" target="_blank">LinuxLive USB Creator</a> (make bootable usb stick from ISO image)</li>
+<li><a href="http://notepad-plus-plus.org/" target="_blank">notepad++</a></li>
+<li><a href="http://tortoisesvn.net/" target="_blank">TortoiseSVN</a></li>
+</ul>
+<p>Overall, after a couple of months now with the Win7 desktop, it&#8217;s a vast improvement on Linux. I know some of you may argue all of the above is possible with Linux. I don&#8217;t disagree, except to add that it isn&#8217;t <em>easy</em>. A well-configured desktop is a means to an end, not an end in itself. The Win7 experience is beautiful and slick, and makes me happier in my work &#8211; what more can I say?</p>
+<p>(I&#8217;ll tell you what else I can say&#8230;. I&#8217;d still prefer an iMac!)</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/08/07/living-with-windows-7/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Understanding Stored Passwords in Chrome on OS X</title>
+		<link>http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=understanding-stored-passwords-in-chrome-on-os-x</link>
+		<comments>http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/#comments</comments>
+		<pubDate>Sat, 09 Jun 2012 16:06:10 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[OS X]]></category>
+		<category><![CDATA[productivity]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=757</guid>
+		<description><![CDATA[When my Mac&#8217;s hard disk died, I replaced it with an SSD and reinstalled OS X. At the time I also restored my user&#8217;s &#8220;login.keychain&#8221; file from backup, because I knew that&#8217;s where Chrome had stashed all my stored web &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>When my Mac&#8217;s hard disk died, I replaced it with an SSD and reinstalled OS X. At the time I also restored my user&#8217;s &#8220;<code>login.keychain</code>&#8221; file from backup, because I knew that&#8217;s where Chrome had stashed all my stored web site passwords. Well, it turns out I only half-knew what was going on.</p>
+<p>After the restore, Chrome seemed not to know about any of the credentials. It was quite frustrating because Safari was working fine with the restored Keychain. As a test I entered some credentials in Chrome and they appeared in its own Saved Passwords list! I was expecting that list to be empty because documentation suggests <a href="https://support.google.com/chrome/bin/answer.py?hl=en&amp;answer=95606" target="_blank">Chrome uses the Keychain on OS X</a>.</p>
+<p>After some digging, what I found is that Chrome is quite sensibly engineered, but the user interface is just a little confusing (especially to those with inquiring and suspicious minds!).</p>
+<p>This page of <a href="http://www.chromium.org/developers/design-documents/os-x-password-manager-keychain-integration" target="_blank">Chromium developer documentation</a> explains that Chrome needs to store more metadata about a set of credentials than is supported by the Keychain attributes. Therefore, even though Chrome does use Keychain for credential storage on OS X, it <em>still uses</em> its own built-in (&#8220;non-secure&#8221;) LoginDatabase. My mistaken belief was that the LoginDatabase would be empty once Keychain is in use.</p>
+<p>This can be confirmed by poking around in the local user&#8217;s Chrome application data, and opening the SQLite database called &#8220;<code>Login Data</code>&#8220;. On OS X this contains a row for each stored password but crucially, not the password itself (the username is there, though). Yet in the Chrome Settings user interface, you click &#8220;Managed saved passwords&#8221; and up pops a list of usernames and passwords as if Chrome was storing them. In fact it&#8217;s merging data from both LoginDatabase and Keychain.</p>
+<p>The next confusion arises over the lack of Chrome&#8217;s awareness of Keychain entries. As explained in the same <a href="http://www.chromium.org/developers/design-documents/os-x-password-manager-keychain-integration" target="_blank">developer documentation page</a>, until LoginDatabase has a matching entry, the credentials in Keychain are untrusted by Chrome and hence not displayed.</p>
+<p>To be fair to the Chrome developers, it&#8217;s not an easy thing to get over to the user that the attributes of a set of credentials are split between two stores, and that you can delete or read back from one, but possibly not the other. At least now I know what&#8217;s going on, and I can also make sure always to restore the Chrome application data in future.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Hacking # in OS X</title>
+		<link>http://blog.gorwits.me.uk/2011/11/30/hacking-in-os-x/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=hacking-in-os-x</link>
+		<comments>http://blog.gorwits.me.uk/2011/11/30/hacking-in-os-x/#comments</comments>
+		<pubDate>Wed, 30 Nov 2011 20:57:05 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[linux]]></category>
+		<category><![CDATA[OS X]]></category>
+		<category><![CDATA[perl]]></category>
+		<category><![CDATA[productivity]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=717</guid>
+		<description><![CDATA[To get aÂ # sign on an Apple keyboard you use the Option (or Alt) key + 3. This seems terribly klunky to me, andÂ # is of course used quite a bit in programming and sysadmin work. This hack remaps another &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/11/30/hacking-in-os-x/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>To get aÂ <code>#</code> sign on an Apple keyboard you use the Option (or Alt) key + 3. This seems terribly klunky to me, andÂ <code>#</code> is of course used quite a bit in programming and sysadmin work.</p>
+<p>This hack remaps another key on the keyboard to produce theÂ <code>#</code> character. I chose the funny squiggle that&#8217;s to the left of the number 1 key (Â§). This is theÂ <em>Section sign</em>, used in document formatting. Just create a file atÂ <code>~/Library/KeyBindings/DefaultKeyBinding.dict</code> which contains the following:</p>
+<pre class="brush: plain; title: ; notranslate">
+{
+    /* this will make all &amp;#167; turn into # */
+    &quot;\UA7&quot; = (&quot;insertText:&quot;, &quot;#&quot;);
+}
+</pre>
+<p>Any app that uses Apple&#8217;s Cocoa interface widgets for text input will pick this up after being restarted. There are some that don&#8217;t (perhaps TextMate? Not checked that one so if you know, please comment).</p>
+<p>A lot more information about this is available at this excellent page on theÂ <a rel="nofollow" href="http://www.hcs.harvard.edu/~jrus/Site/Cocoa%20Text%20System.html" target="_blank">Cocoa Text System</a>, including some other neat hacks. Enjoy!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/11/30/hacking-in-os-x/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Is it silly that tmux is fun?</title>
+		<link>http://blog.gorwits.me.uk/2011/08/15/is-it-silly-that-tmux-is-fun/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=is-it-silly-that-tmux-is-fun</link>
+		<comments>http://blog.gorwits.me.uk/2011/08/15/is-it-silly-that-tmux-is-fun/#comments</comments>
+		<pubDate>Mon, 15 Aug 2011 15:08:00 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[productivity]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=575</guid>
+		<description><![CDATA[No, I don&#8217;t think it&#8217;s a bad thing to get a zing of excitement when you find a new tool that improves your life. Maybe you know what I mean &#8211; that feeling of happiness at saving time, remembering more &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/08/15/is-it-silly-that-tmux-is-fun/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>No, I don&#8217;t think it&#8217;s a bad thing to get a zing of excitement when you find a new tool that improves your life. Maybe you know what I mean &#8211; that feeling of happiness at saving time, remembering more easily how to do things, and satisfaction with a new workflow.</p>
+<p>Recently I migrated from the venerable <a href="http://www.gnu.org/s/screen/" target="_blank">screen</a>, to <a href="http://tmux.sourceforge.net/" target="_blank">tmux</a>, and whilst it&#8217;s one of those changes where the old tool had no real show-stopping problems, tmux immediately feels much cleaner and well thought-through.</p>
+<p>I&#8217;ll leave you to read the docs and list of features yourself, but please do check this tool out if you&#8217;re an avid screen user. I&#8217;ve already got many more tmux sessions/windows/panes open than ever felt comfortable with screen, saving me a lot of time and effort when working remotely.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/08/15/is-it-silly-that-tmux-is-fun/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+	</channel>
+</rss>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; git</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/git/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>Hosting the AutoCRUD Demo</title>
+		<link>http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=hosting-the-autocrud-demo</link>
+		<comments>http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/#comments</comments>
+		<pubDate>Wed, 19 Oct 2011 18:19:59 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[databases]]></category>
+		<category><![CDATA[devops]]></category>
+		<category><![CDATA[git]]></category>
+		<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=680</guid>
+		<description><![CDATA[In my previous entry here (syndicated from blogs.perl.org), I linked at the end to a demoÂ Catalyst::Plugin::AutoCRUD application running on DotCloud. I&#8217;m much happier with this than running something on my own personal server, and here&#8217;s the notes on its setup. &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>In my <a href="http://blogs.perl.org/users/oliver_gorwits/2011/10/autocrud-revamped.html" target="_blank">previous entry</a> here (syndicated from blogs.perl.org), I linked at the end to a demoÂ <a href="https://metacpan.org/module/Catalyst::Plugin::AutoCRUD" target="_self">Catalyst::Plugin::AutoCRUD</a> application running on DotCloud. I&#8217;m much happier with this than running something on my own personal server, and here&#8217;s the notes on its setup.</p>
+<p>For those unfamiliar, <a href="https://www.dotcloud.com/" target="_blank">DotCloud</a> is a <a href="http://en.wikipedia.org/wiki/Platform_as_a_service" target="_blank">Platform as a Service</a> (PaaS) offering a freemium model. I&#8217;m grateful to them for this as the free account provides all I need for my demo.</p>
+<p>First, I followed to the letter Phillip Smith&#8217;s <a href="http://blogs.perl.org/users/phillip_smith/2011/08/dotcloud-loves-catalyst-apps-up-and-running-in-10-minutes-perl-in-the-cloud-part-iii.html" target="_blank">comprehensive guide</a> on deploying a Perl Catalyst application to the DotCloud service. Next I customised the basic application created in the guide to use AutoCRUD:</p>
+<ul>
+<li>removed the Root controller</li>
+<li>added two Models and their supporting DBIx::Class Result classes</li>
+<li>setÂ <code>basepath</code> in the configuration</li>
+<li>installed an hourly cron job to:
+<ul>
+<li>restore the SQLite databases</li>
+<li>restart the web service (<code>supervisorctl restart uwsgi</code>)</li>
+</ul>
+</li>
+</ul>
+<p>Next I wanted a more tidy looking domain for the demo, so purchased <code>autocrud.pl</code> through <a href="http://www.netim.com/" target="_blank">NETIM</a>. My plan is to have demo.autocrud.pl pointing to the DotCloud instance, and sometime in the future to have <code>autocrud.pl</code> be used for a secret feature I&#8217;m still working on. Sadly NETIM only offers HTTP redirects from subdomains, so I delegated hosting of the DNS to <a href="http://www.cloudns.net/" target="_blank">ClouDNS</a>.</p>
+<p>ClouDNS is another freemium service, again where the free part provides just what I need. They offer not only a bit of a smarter interface than NETIM for DNS zone management, but also HTTP redirects from the zone apex.</p>
+<p>I do of course know that nothing lasts forever, particularly with freemium services, and I&#8217;m grateful for what&#8217;s available because it works very well (I&#8217;ve added promotional icons for ClouDNS and DotCloud to the demo site).</p>
+<p>The end result of this is that I now have the AutoCRUD demo safely hosted on DotCloud with a <a href="http://demo.autocrud.pl/" target="_blank">friendly URL</a> to pass out in documentation or blog posts <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Migrate SourceForge CVS repository to git</title>
+		<link>http://blog.gorwits.me.uk/2011/06/22/migrate-sourceforge-cvs-repository-to-git/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=migrate-sourceforge-cvs-repository-to-git</link>
+		<comments>http://blog.gorwits.me.uk/2011/06/22/migrate-sourceforge-cvs-repository-to-git/#comments</comments>
+		<pubDate>Wed, 22 Jun 2011 19:27:00 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[devops]]></category>
+		<category><![CDATA[git]]></category>
+		<category><![CDATA[linux]]></category>
+		<category><![CDATA[netdisco]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=529</guid>
+		<description><![CDATA[Updated to include promoting and pushing tags. I recently had need to migrate some SourceForge CVS repositories to git. I&#8217;ll admit I&#8217;m no git expert, so Googled around for advice on the process. What I ended up doing was sufficiently &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/06/22/migrate-sourceforge-cvs-repository-to-git/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p><em>Updated to include promoting and pushing tags.</em></p>
+<p>I recently had need to <a href="https://sites.google.com/site/gorwits/home/netdisco-git" target="_blank">migrate</a> some SourceForge CVS repositories to git. I&#8217;ll admit I&#8217;m no git expert, so Googled around for advice on the process. What I ended up doing was sufficiently distinct from any other guide that I feel it worth recording the process, here.</p>
+<p>The SourceForge <a href="http://sourceforge.net/apps/trac/sourceforge/wiki/Git" target="_blank">wiki page on git</a> is a good start. It explains that you should log into the Project&#8217;s Admin page, go to Features, and tick to enable git. Although it&#8217;s not made clear, there&#8217;s no problem having both CVS and git enabled concurrently.</p>
+<p>Enabling git for the first time will initialize a bare git repository for your project. You can have multiple repositories; the first is named the same as the project itself. If you screw things up, it&#8217;s OK to delete the repository (via an SSH login) and initialize a new one.</p>
+<p>Just like the SourceForge documentation, I&#8217;ll use USERNAME, PROJECTNAME and REPONAME within commands. As just mentioned, the initial configuration is that the latter two are equal, until you progress to additional git repositories.</p>
+<p>Let&#8217;s begin by grabbing a copy of the CVS repository with complete history, using the rsync utility. When you rsync, there will be a directory containing <code>CVSROOT</code> (which can be ignored) and one subdirectory per module:</p>
+<pre class="brush: plain; title: ; notranslate">
+mkdir cvs &amp;&amp; cd cvs
+rsync -av rsync://PROJECTNAME.cvs.sourceforge.net/cvsroot/PROJECTNAME/* .
+</pre>
+<p>Grab the latest cvs2git code and copy the default options file. Change the <code>run_options.set_project</code> setting to point to your project&#8217;s module subdirectory:</p>
+<pre class="brush: plain; title: ; notranslate">
+svn export --username=guest http://cvs2svn.tigris.org/svn/cvs2svn/trunk cvs2svn-trunk
+cp cvs2svn-trunk/cvs2git-example.options cvs2git.options
+vi cvs2git.options
+# edit the string after run_options.set_project, to mention cvs/PROJECTNAME
+</pre>
+<p>Also in the options file, set the committer name mappings in the <code>author_transforms</code> settings. This is needed because CVS logs only show usernames but git commit logs show human name and email &#8211; a mapping can be used during import to create a sensible git history.</p>
+<pre class="brush: plain; title: ; notranslate">
+vi cvs2git.options
+# read the comments above author_transforms and make changes
+</pre>
+<p>But how do you know what CVS usernames need mapping? One solution is to run through this export and git import <em>without</em> a mapping, then run <code>git shortlog -se</code> to dump the commiters. Blow the new git repo away, and re-import after configuring cvs2git <code>author_transforms</code>.</p>
+<p>The cvs2git utility works by generating the input files used by git&#8217;s fast-import command:</p>
+<pre class="brush: plain; title: ; notranslate">
+cvs2svn-trunk/cvs2git --options=cvs2git.options --fallback-encoding utf-8
+git clone ssh://USERNAME@PROJECTNAME.git.sourceforge.net/gitroot/PROJECTNAME/REPONAME
+cd REPONAME
+cat ../cvs2svn-tmp/git-{blob,dump}.dat | git fast-import
+git reset --hard
+</pre>
+<p>At this point, if you&#8217;re going to continue using this new git repository for work, remember to set your <code>user.name</code>, <code>user.email</code> and <code>color.ui</code> options.</p>
+<p>Now you&#8217;re ready to push the repo back to SourceForge. I did test myself that disabling so-called <em>developer access</em> to the repo in the SourceForge Project Member settings page does in fact prevent write access, as expected.</p>
+<pre class="brush: plain; title: ; notranslate">
+git push origin master
+</pre>
+<p>If you had tags on the CVS repo (<code>git tag -l</code>), they&#8217;ll have been imported as <em>lightweight tags</em>. Best practice is always to use annotated tags, so this short script will promote them for you:</p>
+<pre class="brush: plain; title: ; notranslate">
+git config user.name &quot;Firstname Lastname&quot;
+git config user.email &quot;me@example.com&quot;
+git tag -l | while read ver;
+  do git checkout $ver;
+  git tag -d $ver;
+  GIT_COMMITTER_DATE=&quot;$(g show --format=%aD | head -1)&quot; git tag -a $ver -m &quot;prep for $ver release&quot;;
+  done
+git checkout master
+</pre>
+<p>Verify the tags are as you want, using something like:</p>
+<pre class="brush: plain; title: ; notranslate">
+git tag -l | while read tag; do git show $tag | head -3; echo; done
+</pre>
+<p>And then push them to the repository with:</p>
+<pre class="brush: plain; title: ; notranslate">
+git push --tags
+</pre>
+<p>Something you might want to do is set a post-commit email hook. For this you <a href="https://sourceforge.net/apps/trac/sourceforge/wiki/Shell%20service" target="_blank">SSH to SourceForge</a>, and if you have multiple projects remember to connect to the right one!</p>
+<pre class="brush: plain; title: ; notranslate">
+ssh -t USER,PROJECT@shell.sourceforge.net create
+cd /home/scm_git/P/PR/PROJECTNAME
+</pre>
+<p>Download the <a href="http://tinyurl.com/git-post-commit-email" target="_blank">post-receive-email script</a> and place it in the hooks subdirectory; make it executable. Also set the permissions to have group-write, so your project colleagues can alter it if required. Set the necessary git options to allow the script to email someone after a commit. Season to taste.</p>
+<pre class="brush: plain; title: ; notranslate">
+curl -L http://tinyurl.com/git-post-commit-email &gt; hooks/post-receive
+chmod +x hooks/post-receive
+chmod g+w hooks/post-receive
+git config hooks.emailprefix &quot;[git push]&quot;
+git config hooks.emailmaxlines 500
+git config hooks.envelopesender noreply@sourceforge.net
+git config hooks.showrev &quot;t=%s; printf 'http://PROJECTNAME.git.sourceforge.net/git/gitweb.cgi?p=PROJECTNAME/REPONAME;a=commitdiff;h=%%s' ; echo;echo; git show -C ; echo&quot;
+git config hooks.mailinglist PROJECTNAME-COMMITS@lists.sourceforge.net
+</pre>
+<p>Remember to subscribe <code>noreply@sourceforge.net</code> to your announce list, if needed. Finally, set a friendly description on the repository for use by the git web-based repo browser:</p>
+<pre class="brush: plain; title: ; notranslate">
+echo 'PROJECTNAME git repository' &gt; description
+</pre>
+<p>One other thing I did was enable an SSH key on my SourceForge account, as this makes life with SSH-based git much smoother <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' />  If you have the need to create additional git repositories, or even to replace the one created automatically, then it&#8217;s just a case of issuing the git command:</p>
+<pre class="brush: plain; title: ; notranslate">
+cd /home/scm_git/P/PR/PROJECTNAME
+git --git-dir=REPONAME init --shared=all --bare
+</pre>
+<p>Good luck with your own migrations, and happy coding!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/06/22/migrate-sourceforge-cvs-repository-to-git/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+		</item>
+	</channel>
+</rss>

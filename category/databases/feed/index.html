@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; databases</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/databases/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>Hosting the AutoCRUD Demo</title>
+		<link>http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=hosting-the-autocrud-demo</link>
+		<comments>http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/#comments</comments>
+		<pubDate>Wed, 19 Oct 2011 18:19:59 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[databases]]></category>
+		<category><![CDATA[devops]]></category>
+		<category><![CDATA[git]]></category>
+		<category><![CDATA[perl]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=680</guid>
+		<description><![CDATA[In my previous entry here (syndicated from blogs.perl.org), I linked at the end to a demoÂ Catalyst::Plugin::AutoCRUD application running on DotCloud. I&#8217;m much happier with this than running something on my own personal server, and here&#8217;s the notes on its setup. &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>In my <a href="http://blogs.perl.org/users/oliver_gorwits/2011/10/autocrud-revamped.html" target="_blank">previous entry</a> here (syndicated from blogs.perl.org), I linked at the end to a demoÂ <a href="https://metacpan.org/module/Catalyst::Plugin::AutoCRUD" target="_self">Catalyst::Plugin::AutoCRUD</a> application running on DotCloud. I&#8217;m much happier with this than running something on my own personal server, and here&#8217;s the notes on its setup.</p>
+<p>For those unfamiliar, <a href="https://www.dotcloud.com/" target="_blank">DotCloud</a> is a <a href="http://en.wikipedia.org/wiki/Platform_as_a_service" target="_blank">Platform as a Service</a> (PaaS) offering a freemium model. I&#8217;m grateful to them for this as the free account provides all I need for my demo.</p>
+<p>First, I followed to the letter Phillip Smith&#8217;s <a href="http://blogs.perl.org/users/phillip_smith/2011/08/dotcloud-loves-catalyst-apps-up-and-running-in-10-minutes-perl-in-the-cloud-part-iii.html" target="_blank">comprehensive guide</a> on deploying a Perl Catalyst application to the DotCloud service. Next I customised the basic application created in the guide to use AutoCRUD:</p>
+<ul>
+<li>removed the Root controller</li>
+<li>added two Models and their supporting DBIx::Class Result classes</li>
+<li>setÂ <code>basepath</code> in the configuration</li>
+<li>installed an hourly cron job to:
+<ul>
+<li>restore the SQLite databases</li>
+<li>restart the web service (<code>supervisorctl restart uwsgi</code>)</li>
+</ul>
+</li>
+</ul>
+<p>Next I wanted a more tidy looking domain for the demo, so purchased <code>autocrud.pl</code> through <a href="http://www.netim.com/" target="_blank">NETIM</a>. My plan is to have demo.autocrud.pl pointing to the DotCloud instance, and sometime in the future to have <code>autocrud.pl</code> be used for a secret feature I&#8217;m still working on. Sadly NETIM only offers HTTP redirects from subdomains, so I delegated hosting of the DNS to <a href="http://www.cloudns.net/" target="_blank">ClouDNS</a>.</p>
+<p>ClouDNS is another freemium service, again where the free part provides just what I need. They offer not only a bit of a smarter interface than NETIM for DNS zone management, but also HTTP redirects from the zone apex.</p>
+<p>I do of course know that nothing lasts forever, particularly with freemium services, and I&#8217;m grateful for what&#8217;s available because it works very well (I&#8217;ve added promotional icons for ClouDNS and DotCloud to the demo site).</p>
+<p>The end result of this is that I now have the AutoCRUD demo safely hosted on DotCloud with a <a href="http://demo.autocrud.pl/" target="_blank">friendly URL</a> to pass out in documentation or blog posts <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/10/19/hosting-the-autocrud-demo/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Django Admin App Views</title>
+		<link>http://blog.gorwits.me.uk/2011/03/03/django-admin-app-views/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=django-admin-app-views</link>
+		<comments>http://blog.gorwits.me.uk/2011/03/03/django-admin-app-views/#comments</comments>
+		<pubDate>Thu, 03 Mar 2011 09:29:13 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[databases]]></category>
+		<category><![CDATA[python]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=422</guid>
+		<description><![CDATA[Following my previous post about configuring Django models, I&#8217;m now ready to work on the view. Remember, this is simply within the &#8220;Admin&#8221; app which ships with Django, and below is a non-exhaustive set of options: ModelAdmin Derived Class Options &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/03/03/django-admin-app-views/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>Following my previous post about <a href="http://blog.gorwits.me.uk/2011/03/02/django-models/" target="_blank">configuring Django models</a>, I&#8217;m now ready to work on the view. Remember, this is simply within the &#8220;Admin&#8221; app which ships with Django, and below is a non-exhaustive set of options:</p>
+<h2>ModelAdmin Derived Class Options</h2>
+<p>For the list screen:</p>
+<ul>
+<li><code>list_display = ('field1', 'field2')</code></li>
+<li><code>list_display_links = ['field2']</code></li>
+<li><code>list_editable = ['field2']</code></li>
+<li><code>list_filter = ('field1', 'field2')</code></li>
+<li><code>list_per_page = 20</code></li>
+<li><code>search_fields = ['field1', 'foreign_key__fieldname']</code></li>
+</ul>
+<p>For the edit screen, it&#8217;s possible to control the form layout and displayed fields:</p>
+<pre class="brush: python; title: ; notranslate">
+fieldsets = ((&quot;Title&quot;|None, options), )
+options = {
+    fields : (('one', 'line', 'together'), 'field5', 'field6'),
+    classes : ['collapse', 'wide']
+}
+</pre>
+<p><em>or</em> use the following:</p>
+<pre class="brush: python; title: ; notranslate">
+fields = ('field1', 'field2')
+exclude = ('field3', 'field4')
+</pre>
+<p>And some other edit screen options:</p>
+<ul>
+<li><code>filter_horizontal|filter_vertical = ('multi_select_field')</code></li>
+<li><code>radio_fields = ('fk_field', 'choice_field')</code></li>
+<li><code>save_on_top = True</code></li>
+</ul>
+<p>For further details, see the <a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/" target="_blank">Admin App documentation</a>. Also useful are the <a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/actions/">Custom Actions documentation</a>, the <a href="http://docs.djangoproject.com/en/dev/topics/db/queries/" target="_blank">DB Queries documentation</a>, and the <a href="http://docs.djangoproject.com/en/dev/ref/models/querysets/" target="_blank">QuerySet documentation</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/03/03/django-admin-app-views/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Django Models</title>
+		<link>http://blog.gorwits.me.uk/2011/03/02/django-models/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=django-models</link>
+		<comments>http://blog.gorwits.me.uk/2011/03/02/django-models/#comments</comments>
+		<pubDate>Wed, 02 Mar 2011 14:38:53 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[databases]]></category>
+		<category><![CDATA[python]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=416</guid>
+		<description><![CDATA[I&#8217;ve been working on a small Django app recently, and started by cleaning up its model definitions. Here&#8217;s a quick (but not exhaustive) list of useful configuration options: Model Meta Options db_table = "string" managed = False (whether SQL is &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/03/02/django-models/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>I&#8217;ve been working on a small Django app recently, and started by cleaning up its model definitions. Here&#8217;s a quick (but not exhaustive) list of useful configuration options:</p>
+<h2>Model Meta Options</h2>
+<ul>
+<li><code>db_table = "string"</code></li>
+<li><code>managed = False </code> (<em>whether SQL is generated by the manage.py app)</em></li>
+<li><code>ordering = ['column1', '-column2'] </code> (<em>NB admin app only uses the first)</em></li>
+<li><code>order_with_respect_to = 'fk_field'</code></li>
+<li><code>unique_together = (('column1', 'column2'), )</code></li>
+<li><code>verbose_name = "String"</code></li>
+<li><code>verbose_name_plural = "String"</code></li>
+<li><code>abstract = True</code></li>
+</ul>
+<h2>Common Field Options</h2>
+<ul>
+<li><code>null = True</code></li>
+<li><code>blank = True</code></li>
+<li><code>choices = (('db_val', 'displayed_val'), )</code></li>
+<li><code>db_column = "string"</code></li>
+<li><code>db_index = True</code></li>
+<li><code>default = "string"</code></li>
+<li><code>editable = False</code></li>
+<li><code>primary_key = True</code></li>
+<li><code>unique = True</code></li>
+<li><code>verbose_name = "String"</code></li>
+</ul>
+<h2>Field Types and Options</h2>
+<ul>
+<li><code>AutoField</code></li>
+<li><code>BooleanField</code></li>
+<li><code>CharField (max_length=integer)</code></li>
+<li><code>DateField|DateTimeField(auto_now_add=True)</code></li>
+<li><code>IPAddressField</code></li>
+<li><code>PositiveIntegerField</code></li>
+<li><code>TextField</code></li>
+<li><code>ForeignKey(Class, to_field='related_field')</code></li>
+<li><code>ManyToManyField(Class, to_field='related_field')</code></li>
+</ul>
+<p>For further details, see the <a href="http://docs.djangoproject.com/en/dev/topics/db/models/" target="_blank">Models documentation</a>, <a href="http://docs.djangoproject.com/en/dev/ref/models/options/" target="_blank">Meta Options documentation</a> and <a href="http://docs.djangoproject.com/en/dev/ref/models/fields/" target="_blank">Field Types documentation</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/03/02/django-models/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

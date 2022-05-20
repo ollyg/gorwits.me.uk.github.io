@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?><feed
+  xmlns="http://www.w3.org/2005/Atom"
+  xmlns:thr="http://purl.org/syndication/thread/1.0"
+  xml:lang="en-US"
+  xml:base="http://blog.gorwits.me.uk/wp-atom.php"
+   >
+	<title type="text">Cats and Code</title>
+	<subtitle type="text">by Oliver Gorwits</subtitle>
+
+	<updated>2014-03-29T23:28:44Z</updated>
+
+	<link rel="alternate" type="text/html" href="http://blog.gorwits.me.uk" />
+	<id>http://blog.gorwits.me.uk/feed/atom/</id>
+	<link rel="self" type="application/atom+xml" href="http://blog.gorwits.me.uk/feed/atom/" />
+
+	<generator uri="http://wordpress.org/" version="3.6.1">WordPress</generator>
+		<entry>
+		<author>
+			<name>Oliver Gorwits</name>
+						<uri>http://gorwits.me.uk/</uri>
+					</author>
+		<title type="html"><![CDATA[Winding Down]]></title>
+		<link rel="alternate" type="text/html" href="http://blog.gorwits.me.uk/2014/03/29/winding-down/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=winding-down" />
+		<id>http://blog.gorwits.me.uk/?p=924</id>
+		<updated>2014-03-29T23:28:18Z</updated>
+		<published>2014-03-29T22:05:00Z</published>
+		<category scheme="http://blog.gorwits.me.uk" term="blogging" />		<summary type="html"><![CDATA[To those following this blog: you will have guessed that there&#8217;s not a lot of domestic geekery going on nowadays, so I&#8217;ve decided to archive these pages for the time being. What am I up to instead? During the day ECMWF &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2014/03/29/winding-down/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></summary>
+		<content type="html" xml:base="http://blog.gorwits.me.uk/2014/03/29/winding-down/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=winding-down"><![CDATA[<p>To those following this blog: you will have guessed that there&#8217;s not a lot of domestic geekery going on nowadays, so I&#8217;ve decided to archive these pages for the time being.</p>
+<p>What am I up to instead? During the day <a href="http://beta.ecmwf.int/en/about/who-we-are" target="_blank">ECMWF</a> keeps me <em>very</em> busy &#8211; I really love it. Besides that I&#8217;m still improving on the piano, devouring a book or two a week (not as fast as the to-read pile grows, mind you), and herding the <a href="https://metacpan.org/pod/App::Netdisco" target="_blank">Netdisco</a> community and source code towards world domination. All good stuff.</p>
+<p>For the time being, the best place to keep tabs on me is probably <a href="https://twitter.com/olwy" target="_blank">Twitter</a>.</p>
+<p>&#8211; olly.</p>
+]]></content>
+		<link rel="replies" type="text/html" href="http://blog.gorwits.me.uk/2014/03/29/winding-down/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=winding-down#comments" thr:count="0"/>
+		<link rel="replies" type="application/atom+xml" href="http://blog.gorwits.me.uk/2014/03/29/winding-down/feed/atom/" thr:count="0"/>
+		<thr:total>0</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>Oliver Gorwits</name>
+						<uri>http://gorwits.me.uk/</uri>
+					</author>
+		<title type="html"><![CDATA[Internet accessible cats &#8211; part 2]]></title>
+		<link rel="alternate" type="text/html" href="http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=internet-accessible-cats-part-2" />
+		<id>http://blog.gorwits.me.uk/?p=855</id>
+		<updated>2013-01-04T22:50:27Z</updated>
+		<published>2013-01-03T22:08:21Z</published>
+		<category scheme="http://blog.gorwits.me.uk" term="cats" /><category scheme="http://blog.gorwits.me.uk" term="linux" /><category scheme="http://blog.gorwits.me.uk" term="networking" /><category scheme="http://blog.gorwits.me.uk" term="transcoding" /><category scheme="http://blog.gorwits.me.uk" term="video" /><category scheme="http://blog.gorwits.me.uk" term="virtualization" />		<summary type="html"><![CDATA[So far so good for access to the new Cat Cam: from within the house we can view video from the cats&#8217; shed, yet the camera is safely on its own DMZ. In this final post I&#8217;ll show how I &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></summary>
+		<content type="html" xml:base="http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=internet-accessible-cats-part-2"><![CDATA[<p>So far so good for access to the new Cat Cam: from within the house we can view video from the cats&#8217; shed, yet the camera is safely on its own DMZ.</p>
+<p>In this final post I&#8217;ll show how I made the camera video feed available on the Internet.</p>
+<p>One thing I wanted from the outset was for Internet clients not to make direct connections to the camera itself. I was a little worried about the ability of the web server and CPU in the camera to cope with multiple clients, and also the security implications of direct access. AÂ second requirement was to have multi platform access &#8211; that is, desktop and iOS. This potentially means different streaming video formats.</p>
+<p>We have one linux server in the house, which is used for many different things and runs <a href="http://blog.gorwits.me.uk/2012/01/04/virtual-machine-on-mythbuntu/" target="_blank">virtual machines</a>. My back-of-an-envelope plan looked something like this:</p>
+<p><a href="http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/cat-internet-3/" rel="attachment wp-att-858"><img class="aligncenter size-full wp-image-858" title="cat-internet" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2012/12/cat-internet2.png" alt="" width="250" height="382" /></a></p>
+<p>First step was to create the VM, but remember that the camera feed is in a DMZ using a VLAN, so the VM must live there too. In KVM it&#8217;s possible either to send all traffic to a guest system and let it process the VLANs or, you can separate the tagged VLAN traffic in the host system so the guest is dumb and just sees untagged frames. Clearly the latter is preferable so that were the guest to suffer attack from the Internet, it ought not to be able to put traffic onto the house workstation network. The guest is completely within the DMZ.</p>
+<p>With that done and a basic Ubuntu system installed, I started work on Apache and <a href="http://www.videolan.org/vlc/index.html" target="_blank">VLC</a> (the Swiss Army Chainsaw of video processing). First up, VLC&#8230;</p>
+<p>Luckily the camera&#8217;s video feed comes in MJPEG format with a discoverable URL. The idea is to take this feed, duplicate it, and transcode the respective feeds into something suitable for a desktop browser and for iOS. As a bonus, I&#8217;ll timestamp the video to make it easy to tell if the transcoder has crashed (the timestamp would be wrong). After a <em>lot</em>Â of reading online about how to configure VLC I came up with the following monstrosity:</p>
+<pre class="brush: plain; title: ; notranslate">
+/usr/bin/cvlc -I dummy http://guest:guest@172.16.30.10:8888/videostream.cgi?rate=0
+  --sout='#duplicate{
+
+    dst=&quot;transcode{
+      width=320,heigh=240,fps=25,vcodec=h264,vb=256,acodec=none,
+      venc=x264{profile=baseline,level=30,keyint=30,ref=1},
+      sfilter=marq{marquee=\&quot;[%Y-%m-%d %H:%M:%S]\&quot;,position=8,size=18}
+    }:std{access=livehttp{
+        seglen=10,delsegs=true,numsegs=5,
+        index=/var/www/streaming/cats.m3u8,
+        index-url=/streaming/cats-########.ts},
+      mux=ts{use-key-frames},
+      dst=/var/www/streaming/cats-########.ts}&quot;,
+
+    dst=&quot;transcode{
+      width=640,heigh=480,fps=25,vcodec=theo,vb=512,acodec=none,
+      sfilter=marq{marquee=\&quot;[%Y-%m-%d %H:%M:%S]\&quot;,position=8,size=18}
+    }:http{mux=ogg,dst=127.0.0.1:8081/catcam.ogg}&quot;
+
+  }'
+</pre>
+<p>Of the two transcodesÂ (&#8220;dst=&#8221;), the second is more straightforward. It creates an <a href="http://en.wikipedia.org/wiki/Ogg" target="_blank">Ogg</a> format stream using the <a href="http://en.wikipedia.org/wiki/Theora" target="_blank">Theora</a> video codec, which modern browsers should be able to cope with. This is a video stream being served from VLC&#8217;s built-in web server, so I&#8217;ll need to proxy it via Apache. The configuration also applies a filter (&#8220;sfilter=&#8221;) to add a timestamp on the video stream.</p>
+<p>The first transcode uses the new <a href="https://developer.apple.com/resources/http-streaming/" target="_blank">HTTP Live Streaming</a> support in VLC. This is a rather elegant specification from Apple (which is why I selected it for the iOS clients) for simple and efficient delivery of streaming video. It creates a set of files and assumes you have a web server to serve them. The files each contain a few seconds of video, and the client retrieves them and plays one after another. The &#8220;######&#8221; templates an incrementing number within the segment filename. Again, the timestamp is added to the video stream.</p>
+<p>CPU load for the above runs at about 60% (in the VM) on the dual core Athlon X2 245e processor. I wrapped the above in an <a href="http://upstart.ubuntu.com/" target="_blank">Upstart</a> init file, and just in case VLC gets its knickers in a twist, I added a cron job to periodically stop and start the service.</p>
+<p>Now on to Apache. It needs to proxy the Ogg stream and serve the Live Streaming files, and prevent any other access to the web server:</p>
+<pre class="brush: plain; title: ; notranslate">
+# redirect any non-cat requests to the cat index.html
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^/streaming/cats.*
+RewriteCond %{REQUEST_URI} !^/stream/catcam.ogg$
+RewriteCond %{REQUEST_URI} !^/index.html$
+RewriteRule ^(.*) http://%{HTTP_HOST}/index.html [R,L]
+
+ProxyReceiveBufferSize 16384
+ProxyRequests On
+ProxyVia On
+ProxyPreserveHost On
+
+&lt;Proxy *&gt;
+    Order deny,allow
+    Allow from all
+&lt;/Proxy&gt;
+
+# VLC server stream
+ProxyPass /stream/catcam.ogg http://localhost:8081/catcam.ogg
+ProxyPassReverse /stream/catcam.ogg http://localhost:8081/catcam.ogg
+</pre>
+<p>Last but not least for this server, we need a web page which offers up the two video streams. This uses an HTML5 video tag:</p>
+<pre class="brush: xml; title: ; notranslate">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Cat Cam&lt;/title&gt;
+        &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=ISO-8859-1&quot;&gt;
+        &lt;META HTTP-EQUIV=&quot;Pragma&quot; CONTENT=&quot;no-cache&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Cat Cam&lt;/h1&gt;
+        &lt;video id=&quot;video&quot; autoplay=&quot;autoplay&quot;&gt;
+            &lt;source src=&quot;/streaming/cats.m3u8&quot;&gt;
+            &lt;source src=&quot;/stream/catcam.ogg&quot; type=&quot;video/ogg; codecs=theora&quot;&gt;
+            Your browser doesn't appear to support the HTML5 &lt;code&gt;&amp;lt;video&amp;gt;&lt;/code&gt; element.
+        &lt;/video&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>All that remains is to enable a NAT rule and firewall pinhole on the home router for the web server (which is, of course, in the DMZ network connected directly to the router).</p>
+<p>Let&#8217;s see the end result, taken on my iPhone this evening, also demonstrating the automatically activated night vision mode:</p>
+<p><a href="http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/cat-ngith/" rel="attachment wp-att-884"><img class="aligncenter size-full wp-image-884" title="cat-ngith" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2012/12/cat-ngith.png" alt="" width="400" height="267" /></a></p>
+<p>It&#8217;s nice to be able to check in on the wee beasties when I&#8217;m out at work. Other than a lot of reading about VLC, it wasn&#8217;t particularly difficult to do, and I think the end result is really quite good.</p>
+]]></content>
+		<link rel="replies" type="text/html" href="http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=internet-accessible-cats-part-2#comments" thr:count="0"/>
+		<link rel="replies" type="application/atom+xml" href="http://blog.gorwits.me.uk/2013/01/03/internet-accessible-cats-part-2/feed/atom/" thr:count="0"/>
+		<thr:total>0</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>Oliver Gorwits</name>
+						<uri>http://gorwits.me.uk/</uri>
+					</author>
+		<title type="html"><![CDATA[Internet accessible cats &#8211; Part 1]]></title>
+		<link rel="alternate" type="text/html" href="http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=internet-accessible-cats-part-1" />
+		<id>http://blog.gorwits.me.uk/?p=834</id>
+		<updated>2012-12-17T11:01:13Z</updated>
+		<published>2012-12-17T11:01:13Z</published>
+		<category scheme="http://blog.gorwits.me.uk" term="cats" /><category scheme="http://blog.gorwits.me.uk" term="networking" /><category scheme="http://blog.gorwits.me.uk" term="video" />		<summary type="html"><![CDATA[Previously I discussed the selection and installation of a LoftekÂ CXS 3200 wireless camera, for us to keep an eye on our cats in their shed. As a reminder, here&#8217;s a screenshot of two cute, snoozing cats: This post will cover &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></summary>
+		<content type="html" xml:base="http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=internet-accessible-cats-part-1"><![CDATA[<p><a href="http://blog.gorwits.me.uk/2012/12/12/cat-tv/" target="_blank">Previously</a> I discussed the selection and installation of a LoftekÂ CXS 3200 wireless camera, for us to keep an eye on our cats in their shed. As a reminder, here&#8217;s a screenshot of two cute, snoozing cats:</p>
+<p><a href="http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/cat-snooze/" rel="attachment wp-att-907"><img class="aligncenter size-full wp-image-907" title="cat-snooze" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2012/12/cat-snooze.png" alt="" width="500" height="375" /></a></p>
+<p>This post will cover the network changes made at home for the camera, and in the next, how it was made available on the Internet (for us to check up on away from home).</p>
+<p>Naturally the camera needed to go on our home network, but I was a little wary of what shenanigans its software might get up to. For example I know the camera automatically registers itself with a public <a href="http://en.wikipedia.org/wiki/Dynamic_DNS" target="_blank">dynamic DNS</a> service; it&#8217;s possible to update the firmware to disable that feature.</p>
+<p>A safe design is to set up a <a href="http://en.wikipedia.org/wiki/DMZ_(computing)" target="_blank">DMZ</a>, and put the camera on that. Our workstations in the house would be able to talk to the camera, as would the Internet, but the camera would not be permitted access to our workstations. Without dedicated cables for the DMZ I needed to enable a <a href="http://en.wikipedia.org/wiki/Virtual_LAN" target="_blank">VLAN</a> on the network. Thankfully the switch, wireless access point, and router we use support VLANs.</p>
+<p><a href="http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/cat-topo-2/" rel="attachment wp-att-848"><img class="aligncenter size-full wp-image-848" title="cat-topo" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2012/12/cat-topo1.png" alt="" width="500" height="317" /></a></p>
+<p>The switch is a Netgear GS108E, an eight port gigabit device (it lives in the loft, and I ran Cat5e inside the walls to recessed sockets in each room). It&#8217;s a simple job to enable a tagged VLAN on the ports to the router, the wireless access point, and our linux server (which I&#8217;ll come back to, next time).</p>
+<p>I set up a new SSID on the wireless access point dedicated to the camera, which placed all traffic onto this new tagged VLAN. Now the camera and router were linked, via the switch, on a separate path from the rest of the house.</p>
+<p>At the router I needed to configure a VLAN subinterface and add some access control lists to set up the DMZ access rules I mentioned above. The DMZ of course needs its own subnet so I gave it a new /24 network.</p>
+<p>So far, so good: workstations in the house can now browse to http://172.16.30.10:8888/ (the new DMZ network, via the router) and log in to the Loftek camera to see video of the cats. The camera can only initiate connections to the Internet, or reply to requests from workstations in the house.</p>
+<p>In the next post, I&#8217;ll talk about using our home linux server to make the camera video feed available on the Internet.</p>
+]]></content>
+		<link rel="replies" type="text/html" href="http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=internet-accessible-cats-part-1#comments" thr:count="0"/>
+		<link rel="replies" type="application/atom+xml" href="http://blog.gorwits.me.uk/2012/12/17/internet-accessible-cats-part-1/feed/atom/" thr:count="0"/>
+		<thr:total>0</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>Oliver Gorwits</name>
+						<uri>http://gorwits.me.uk/</uri>
+					</author>
+		<title type="html"><![CDATA[Cat TV]]></title>
+		<link rel="alternate" type="text/html" href="http://blog.gorwits.me.uk/2012/12/12/cat-tv/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=cat-tv" />
+		<id>http://blog.gorwits.me.uk/?p=797</id>
+		<updated>2012-12-12T17:37:26Z</updated>
+		<published>2012-12-12T17:37:26Z</published>
+		<category scheme="http://blog.gorwits.me.uk" term="cats" /><category scheme="http://blog.gorwits.me.uk" term="video" />		<summary type="html"><![CDATA[I had some complaints about this blog. It&#8217;s called &#8220;Cats and Code&#8221; but apparently there&#8217;s too much code, and not nearly enough cat action. Well, let&#8217;s fix that. You may recall from blogs passim that our cats, since moving to &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/12/12/cat-tv/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></summary>
+		<content type="html" xml:base="http://blog.gorwits.me.uk/2012/12/12/cat-tv/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=cat-tv"><![CDATA[<p>I had some complaints about this blog. It&#8217;s called &#8220;Cats and Code&#8221; but apparently there&#8217;s too much code, and not nearly enough cat action. Well, let&#8217;s fix that.</p>
+<p>You may recall from blogs passim that our cats, since moving to the current house, live in a heated shed in the garden. I think they love it:</p>
+<ul>
+<li><a href="http://www.petnap.co.uk/acatalog/heated_pet_bed.html" target="_blank">cushioned, heated &#8220;igloo&#8221; beds</a>,</li>
+<li>thermostatically controlled heater for winter,</li>
+<li>a few shelves so they can sit in different places or at the window to look out,</li>
+<li>a cat flap which lets only them enter and leave,</li>
+<li>carpeted floor(!).</li>
+</ul>
+<p>A true cat palace, I think you&#8217;ll agree. We visit several times a day for feeding and cuddles, and mostly they&#8217;re out in the fields behind our house, failing to catch any wildlife.</p>
+<p>One thing I miss is just being able to check up on them any time, to see that they&#8217;re okay. When they were in the house, of course you&#8217;d see them all the time. A good friend of mine mentioned cheap wireless webcams (or CCTV cams).</p>
+<p>In this blog post and probably one other, I&#8217;ll talk about my selection and installation of the camera and how I made it Internet accessible (well, it&#8217;s still &#8220;Cats <em>and Code</em>&#8221; after all). Here&#8217;s an executive summary of the story:</p>
+<div id="attachment_812" class="wp-caption aligncenter" style="width: 410px"><a href="http://blog.gorwits.me.uk/2012/12/12/cat-tv/catcam1-small/" rel="attachment wp-att-812"><img class="size-full wp-image-812 " title="catcam1-small" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2012/12/catcam1-small.png" alt="" width="400" height="300" /></a><p class="wp-caption-text">Enough sleeping... it&#39;s time for hunting.</p></div>
+<p>Several companies make so-called Internet-enabled cameras, for different budgets and with varying software quality. At the domestic end of the market are:</p>
+<ul>
+<li><a href="http://www.axis.com/" target="_blank">Axis</a>, which might be more appropriate for business than the home, because the quality is high, with a price to match.</li>
+<li><a href="http://foscam.co.uk/" target="_blank">Foscam</a> seem to be the one everyone goes for if they want a little home security on a small budget, with quality.</li>
+<li>There are several far-east clones of the Foscam, many sharing the same designs, for example <a href="http://www.loftek.us/" target="_blank">Loftek</a>.</li>
+</ul>
+<p>After some research online and a trawl through the Amazon marketplace, I selected the <a href="http://www.loftek.us/products/product/5.html" target="_blank">Loftek CXS 3200 Black</a>. I didn&#8217;t want to spend much money at all, in case no camera would work inside the shed, but this model at least had good reviews and several useful features.</p>
+<p>Like most similar models the camera can pan and tilt and runs an embedded web server so you can view the video and control the camera. The 3200 automatically switches between day and night vision modes, but interestingly includes the &#8220;IR cut&#8221; feature. This filters infra red when in day vision mode, to solve the common problem of (e.g.) <a href="http://www.youtube.com/watch?v=ADIUhvLQ_Hc" target="_blank">green foliage appearing purple</a>.</p>
+<p>The camera is, of course, wireless, which is handy because the shed has power but no networking. I mounted the camera upside-down as in the image below, and was pleased to find the 3200 has settings to invert the image and pan/tilt controls so everything appears the right way up when viewing the video feed.</p>
+<div id="attachment_813" class="wp-caption aligncenter" style="width: 310px"><a href="http://blog.gorwits.me.uk/2012/12/12/cat-tv/loftek-small/" rel="attachment wp-att-813"><img class="size-full wp-image-813" title="loftek-small" src="http://blog.gorwits.me.uk/wp-content/blog.gorwits.me.uk/2012/12/loftek-small.png" alt="" width="300" height="380" /></a><p class="wp-caption-text">Loftek CXS 3200 Black</p></div>
+<p>In the next post I&#8217;ll talk about the technical set-up of the camera on our home network.</p>
+]]></content>
+		<link rel="replies" type="text/html" href="http://blog.gorwits.me.uk/2012/12/12/cat-tv/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=cat-tv#comments" thr:count="0"/>
+		<link rel="replies" type="application/atom+xml" href="http://blog.gorwits.me.uk/2012/12/12/cat-tv/feed/atom/" thr:count="0"/>
+		<thr:total>0</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>Oliver Gorwits</name>
+						<uri>http://gorwits.me.uk/</uri>
+					</author>
+		<title type="html"><![CDATA[Getting Stuck In]]></title>
+		<link rel="alternate" type="text/html" href="http://blog.gorwits.me.uk/2012/12/07/getting-stuck-in/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=getting-stuck-in" />
+		<id>http://blog.gorwits.me.uk/?p=800</id>
+		<updated>2012-12-07T19:40:21Z</updated>
+		<published>2012-12-07T19:24:42Z</published>
+		<category scheme="http://blog.gorwits.me.uk" term="personal" />		<summary type="html"><![CDATA[I have a problem with accidentally becoming locked in confined places. I know it sounds odd, but after several such situations in my life I&#8217;m becoming convinced it&#8217;s a running theme. Back in 1993, I was visiting Russia and on &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/12/07/getting-stuck-in/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></summary>
+		<content type="html" xml:base="http://blog.gorwits.me.uk/2012/12/07/getting-stuck-in/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=getting-stuck-in"><![CDATA[<p>I have a problem with accidentally becoming locked in confined places. I know it sounds odd, but after several such situations in my life I&#8217;m becoming convinced it&#8217;s a running theme.</p>
+<p>Back in 1993, I was visiting Russia and on the overnight train from St. Petersburg to Moscow. Nature called so I left the sleeping compartment and visited the toilet at the end of the carriage. After finishing my business I couldn&#8217;t unlock the door. Needless to say I wasn&#8217;t too happy, and soon began to shout for assistance.</p>
+<p>After a while no-one had come, so I attacked the door and broke my way out. I didn&#8217;t feel too bad about the broken door &#8211; these were the days when guards would be bribed to unlock your sleeping compartment in the night so you could be robbed. Fun times.</p>
+<p>A long time later, around 2003 I think, we were living in a flat in Oxford and Suzanne had left early for work. I hopped into the en-suite shower, closing the door behind me so that steam didn&#8217;t fill the flat. I guess the lock closed somehow, but it also broke, and when I got out of the shower I was stuck.</p>
+<p>The door opened inwards so I couldn&#8217;t kick it out very easily. After pondering my situation for a good while, I had a <a href="http://en.wikipedia.org/wiki/Angus_MacGyver" target="_blank">MacGyver</a>Â moment and realised I might be able to dismantle the lock.</p>
+<p>From memory, a pair of tweezers was used as a screwdriver, and various other tools fashioned from Suzanne&#8217;s make-up kit. It was a bit like in the WWII movies, taking a long time (probably an hour) to do the work, but I got there in the end. Suzanne wasn&#8217;t happy about the destruction of her kit, but was glad I was OK.</p>
+<p>And then the other night, I went out to feed our cats, who live in a (heated) shed in the garden. I was inside the shed, but it was windy and raining so I pulled the door of the shed closed for shelter. You guessed it, one possessed door lock later and I was stuck.</p>
+<p>This time I was in luck: I had my iPhone, and Suzanne was in the house. I phoned home and was rescued, if a littleÂ embarrassed.</p>
+<p>What to make of all this? Is it normal for people to get accidentally locked into confined spaces? I suspect not. Should I avoid locking doors and risk mutualÂ embarrassmentÂ in bathroom situations? I guess I could be plagued with a worse theme for my life; I don&#8217;t mind the odd minor drama like this. Where next, though &#8211; that&#8217;s the question?!</p>
+]]></content>
+		<link rel="replies" type="text/html" href="http://blog.gorwits.me.uk/2012/12/07/getting-stuck-in/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=getting-stuck-in#comments" thr:count="2"/>
+		<link rel="replies" type="application/atom+xml" href="http://blog.gorwits.me.uk/2012/12/07/getting-stuck-in/feed/atom/" thr:count="2"/>
+		<thr:total>2</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>Oliver Gorwits</name>
+						<uri>http://gorwits.me.uk/</uri>
+					</author>
+		<title type="html"><![CDATA[Evolution of Technology]]></title>
+		<link rel="alternate" type="text/html" href="http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=evolution-of-technology" />
+		<id>http://blog.gorwits.me.uk/?p=786</id>
+		<updated>2012-09-02T13:34:03Z</updated>
+		<published>2012-09-02T13:03:37Z</published>
+		<category scheme="http://blog.gorwits.me.uk" term="opinion" /><category scheme="http://blog.gorwits.me.uk" term="productivity" /><category scheme="http://blog.gorwits.me.uk" term="sysops" />		<summary type="html"><![CDATA[As a free software developer I come into contact with a wide variety of opinions on what development process makes for a good end product. I don&#8217;t believe the answer is straightforward. Here&#8217;s an excellent quote from Linus Torvalds which &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></summary>
+		<content type="html" xml:base="http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=evolution-of-technology"><![CDATA[<p>As a free software developer I come into contact with a wide variety of opinions on what development process makes for a good end product. I don&#8217;t believe the answer is straightforward. Here&#8217;s an excellent <a href="http://groups.google.com/group/fa.linux.kernel/msg/52f04d4ab1121c9b" target="_blank">quote from Linus Torvalds</a> which sums things up nicely:</p>
+<blockquote><p>&#8220;Donâ€™t underestimate the power of survival of the fittest. And donâ€™tÂ everÂ make the mistake that you can design something better than what you get from ruthless massively parallel trial-and-error with a feedback cycle. Thatâ€™s giving your intelligenceÂ muchÂ too much credit.&#8221;</p></blockquote>
+<p>My point being: evolution is aÂ tremendouslyÂ powerful system which creates some very functional products. Don&#8217;t over-engineer what you&#8217;re doing. Keep it simple, try to avoid <a href="http://en.wikipedia.org/wiki/Second-system_effect" target="_blank">second system syndrome</a>, and accept that one day someone may come out of the woodwork with a competing product which is either only incrementally better, or blows yours away.</p>
+<p>I&#8217;ve had this happen to me. It doesn&#8217;t upset me, or put me off trying out more ideas, because the itch I wanted to scratch by writing the software in the first place is now being <em>scratched better</em>. I might join in with the competitor, borrow and build upon their ideas, or simply retire from that scene. It&#8217;s all good. It&#8217;s simply evolution.</p>
+]]></content>
+		<link rel="replies" type="text/html" href="http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=evolution-of-technology#comments" thr:count="0"/>
+		<link rel="replies" type="application/atom+xml" href="http://blog.gorwits.me.uk/2012/09/02/evolution-of-technology/feed/atom/" thr:count="0"/>
+		<thr:total>0</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>Oliver Gorwits</name>
+						<uri>http://gorwits.me.uk/</uri>
+					</author>
+		<title type="html"><![CDATA[Simple Tools for Describing Rack Layouts]]></title>
+		<link rel="alternate" type="text/html" href="http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=simple-tools-for-describing-rack-layouts" />
+		<id>http://blog.gorwits.me.uk/?p=779</id>
+		<updated>2013-01-25T16:58:53Z</updated>
+		<published>2012-08-09T11:22:46Z</published>
+		<category scheme="http://blog.gorwits.me.uk" term="networking" /><category scheme="http://blog.gorwits.me.uk" term="productivity" /><category scheme="http://blog.gorwits.me.uk" term="sysops" />		<summary type="html"><![CDATA[Often when a system at work is having a problem I won&#8217;t actually know where it is. I can remember where mostÂ of the network kit is located, but not all, and certainly not all the servers connected. Two tools we &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></summary>
+		<content type="html" xml:base="http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=simple-tools-for-describing-rack-layouts"><![CDATA[<p>Often when a system at work is having a problem I won&#8217;t actually know where it is. I can remember where <em>most</em>Â of the network kit is located, but not all, and certainly not all the servers connected.</p>
+<p>Two tools we already use can help: <a href="http://netdisco.org" target="_blank">Netdisco</a> shows which switch port a device is connected to, and a good cable and patching database indicates the room or even cabinet location of the device. However I wanted a more visual understanding of just where cabinet &#8220;CX1&#8243; might be located on our campus, and particularly in our large data centre halls.</p>
+<p>There are a few options, in terms of web-based,Â Linux-hosted, open source tools:</p>
+<p><a href="http://sourceforge.net/projects/rackmonkey/" target="_blank">RackMonkey</a> is a simple bit of Perl CGI with an easy to use web interface. It&#8217;s no longer actively maintained, but is hosted on sourceforge. Good features include easy installation, numbering U (position in the rack) from top or bottom, and supporting SQLite3 storage. Missing features include specifying front/back position or facing-direction of the device.</p>
+<p><a href="http://racktables.org/" target="_blank">RackTables</a> is, I think, PHP and MySQL and in addition to rack layout includes IP address and VLAN registries. These latter features we don&#8217;t need, and would be a distraction or confusion to my colleagues if I couldn&#8217;t disable them. What I do like is that devices can occupy front/mid/back zones in each rack unit. <del>Sadly racks can&#8217;t be numbered from top or bottom, and we have a mix of both.</del>Â <strong>Update:</strong>Â From version 0.20.4 RackTables will support numbering in either direction.</p>
+<p><a href="http://demo.racksmith.net/" target="_blank">RackSmith</a> is new and has some good ideas, such as being able to place the racks on a tiled floor plan in a room, in a building. There seems to be sufficient flexibility in how devices are placed in racks, but I notice several user interface bugs, which are understandable as <del>RackSmith is still under development</del>.Â <strong>Update:</strong> It seems public <a href="http://racksmith.net/forum/viewtopic.php?f=10&amp;t=895" target="_blank">development of RackSmith is &#8220;on hold&#8221; and it&#8217;s being rewritten</a> under a SaaS model.</p>
+<p>Both RackTables and RackSmith have demos on-line. RackMonkey is really easy to install so there&#8217;s less need there, anyway.</p>
+<p>At first my choice was going to be RackTables, because of its front/mid/back device positioning, and clear hierarchy of location/room/rack. <del>Sadly because we can&#8217;t reverse the U numbering, it&#8217;s rejected.</del> RackSmith would be lovely but just isn&#8217;t ready. <del>So, I&#8217;ve installed RackMonkey and seeing as it&#8217;s only providing additional information to that in Netdisco and our cable database, it being lightweight and unmaintained is probably not an issue</del>.</p>
+<p><strong>Update:</strong>Â So, RackTables it is! Its continuing development has leap-frogged the competition,</p>
+<p><em>(p.s. given sufficient tuits, I&#8217;d rather take the network inventory tool I once worked on, and extend that to support these features, instead. I don&#8217;t like duplicatingÂ informationÂ between systems.)</em></p>
+]]></content>
+		<link rel="replies" type="text/html" href="http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=simple-tools-for-describing-rack-layouts#comments" thr:count="2"/>
+		<link rel="replies" type="application/atom+xml" href="http://blog.gorwits.me.uk/2012/08/09/simple-tools-for-describing-rack-layouts/feed/atom/" thr:count="2"/>
+		<thr:total>2</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>Oliver Gorwits</name>
+						<uri>http://gorwits.me.uk/</uri>
+					</author>
+		<title type="html"><![CDATA[Living with Windows 7]]></title>
+		<link rel="alternate" type="text/html" href="http://blog.gorwits.me.uk/2012/08/07/living-with-windows-7/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=living-with-windows-7" />
+		<id>http://blog.gorwits.me.uk/?p=770</id>
+		<updated>2012-10-11T15:19:48Z</updated>
+		<published>2012-08-07T16:25:11Z</published>
+		<category scheme="http://blog.gorwits.me.uk" term="productivity" /><category scheme="http://blog.gorwits.me.uk" term="windows" />		<summary type="html"><![CDATA[Recently at work I migrated from a Linux desktop to a Windows 7 desktop. This is an account of how I then configured the Win7 system. First I should mention that working somewhere where they actually have an official, managed &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/08/07/living-with-windows-7/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></summary>
+		<content type="html" xml:base="http://blog.gorwits.me.uk/2012/08/07/living-with-windows-7/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=living-with-windows-7"><![CDATA[<p>Recently at work I migrated from a Linux desktop to a Windows 7 desktop. This is an account of how I then configured the Win7 system.</p>
+<p>First I should mention that working somewhere where they actually have an official, managed Linux desktop is awesome. However for the way I do things, it&#8217;s just not too pleasant an experience. On Linux I got tired of never being able to print something in the appropriate orientation. I also used to spend at least 50% of my time in the Windows VM anyway, working in MS Word/Excel/Visio.</p>
+<p>The rest of my time is spent in Chrome and SSH in a terminal. So the first things to install on Win7 are Chrome and <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank">PuTTY</a>. I created a directory called Applications in my home folder and saved apps such as PuTTY, which do not come with automated installers, there.</p>
+<p>I pinned a shortcut to my home folder to the taskbar. This is trickier than it sounds, as you have to do a two-level right click to get to the pinned folder <em>properties</em> window, then edit the <em>Target:</em> field (and possibly the icon if desired). I still don&#8217;t fully understand the Win7 &#8220;Library&#8221; system.</p>
+<p>To make PuTTY sessions more manageable, I installed <del>two</del>Â three additional apps. First is <a href="http://www.raisin.de/putty-tabs/putty-tabs.html" target="_blank">PuttyTabs</a>, which despite its age works just fine, and allows easy firing-up of a shell to one of our servers, and management of the windows once open. Rarely I might also use <a href="https://sites.google.com/site/macdsite/utilidades/puttytabmanager/" target="_blank">PuTTYTabManager</a> for staged system maintenance when I need to work on several similar systems at once (KDE&#8217;s terminal app is a superb tabbed experience which I do miss).</p>
+<p><strong>Update:</strong> <em>The <a href="http://puttysm.sourceforge.net/" target="_blank">PuTTY Session Manager</a> is another useful app to manage the session list; it can copy attributes/settings between session configs, and backup/restore session configs in bulk.</em></p>
+<p>Once a few windows are up and running I long for focus-follows-mouse. It&#8217;s not available on my iMac at home, but Win7 does have a registry key one can poke. Well done MS! Good luck with <a href="http://sinewalker.wordpress.com/2010/03/10/ms-windows-focus-follows-mouse-registry-hacks/" target="_blank">the process</a>, which I think could benefit from improvedÂ <a href="http://technet.microsoft.com/en-us/library/cc957204.aspx" target="_blank">official documentation</a> (pay attention to the comments on that page, as well).</p>
+<p>The next little gem to install is <a href="http://www.autohotkey.com/" target="_blank">AutoHotKey</a>, as I have an Apple keyboard and like to remap some keys (for example the # sign which I use a lot). Here&#8217;s my current config:</p>
+<pre class="brush: plain; title: ; notranslate">
+#singleinstance force
+Â§::Send {RAlt Down}3{RAlt Up}
+LWin::LCtrl
+::Remy::RÃ©my
+</pre>
+<p>This maps #-sign onto the unused section-sign (Â§) key. It also remaps the left Windows key, which on the Apple UK keyboard is of course the Command key, to be a left Control key. This means at home and at work my left thumb can take care of cut/copy/paste. Finally the last line means I always use the correct spelling for my manager&#8217;s name <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+<p>By the way, I did also install the Apple software drivers for Win7 from their Boot Camp installer on the OS X install disk. This sets the correct keymap for my Apple UK keyboard, as well as enabling the special function keys such as volume control.</p>
+<p>The next app, in no way less awesome, is <a href="http://dexpot.de/" target="_blank">Dexpot</a>, which provides true, full-featured virtual desktop support for Windows. I have four desktops, and use the application pinning feature so that everything in my <em>startup</em> folder is put in the right place when I boot (which isn&#8217;t that often, to be honest). Plugins enabled include Dexcube (3D switching effects), MouseEvents (hot corners), and SevenDex (shortcut buttons in taskbar).</p>
+<p>In case you&#8217;re not familiar with Dexpot, there are loads of features included (for instance context menu items on window taskbars, to allow moving them between desktops or show-on-all). One thing I&#8217;d like built-in is using the scroll-wheel on the desktop background to change virtual desktop; apparently it&#8217;s possible with an AutoHotKey script.</p>
+<p>That&#8217;s it for the main tweaks. Here&#8217;s a list of some of the other applications I&#8217;ve installed:</p>
+<ul>
+<li><a href="http://www.last.fm/download" target="_blank">last.fm standalone player</a></li>
+<li><a href="http://winscp.net/eng/index.php" target="_blank">WinSCP</a></li>
+<li><a href="http://gajim.org/" target="_blank">Gajim</a> (instant messaging)</li>
+<li><a href="http://www.wireshark.org/" target="_blank">Wireshark</a></li>
+<li><a href="http://www.linuxliveusb.com/" target="_blank">LinuxLive USB Creator</a> (make bootable usb stick from ISO image)</li>
+<li><a href="http://notepad-plus-plus.org/" target="_blank">notepad++</a></li>
+<li><a href="http://tortoisesvn.net/" target="_blank">TortoiseSVN</a></li>
+</ul>
+<p>Overall, after a couple of months now with the Win7 desktop, it&#8217;s a vast improvement on Linux. I know some of you may argue all of the above is possible with Linux. I don&#8217;t disagree, except to add that it isn&#8217;t <em>easy</em>. A well-configured desktop is a means to an end, not an end in itself. The Win7 experience is beautiful and slick, and makes me happier in my work &#8211; what more can I say?</p>
+<p>(I&#8217;ll tell you what else I can say&#8230;. I&#8217;d still prefer an iMac!)</p>
+]]></content>
+		<link rel="replies" type="text/html" href="http://blog.gorwits.me.uk/2012/08/07/living-with-windows-7/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=living-with-windows-7#comments" thr:count="0"/>
+		<link rel="replies" type="application/atom+xml" href="http://blog.gorwits.me.uk/2012/08/07/living-with-windows-7/feed/atom/" thr:count="0"/>
+		<thr:total>0</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>Oliver Gorwits</name>
+						<uri>http://gorwits.me.uk/</uri>
+					</author>
+		<title type="html"><![CDATA[Understanding Stored Passwords in Chrome on OS X]]></title>
+		<link rel="alternate" type="text/html" href="http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=understanding-stored-passwords-in-chrome-on-os-x" />
+		<id>http://blog.gorwits.me.uk/?p=757</id>
+		<updated>2012-06-09T16:06:10Z</updated>
+		<published>2012-06-09T16:06:10Z</published>
+		<category scheme="http://blog.gorwits.me.uk" term="OS X" /><category scheme="http://blog.gorwits.me.uk" term="productivity" />		<summary type="html"><![CDATA[When my Mac&#8217;s hard disk died, I replaced it with an SSD and reinstalled OS X. At the time I also restored my user&#8217;s &#8220;login.keychain&#8221; file from backup, because I knew that&#8217;s where Chrome had stashed all my stored web &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></summary>
+		<content type="html" xml:base="http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=understanding-stored-passwords-in-chrome-on-os-x"><![CDATA[<p>When my Mac&#8217;s hard disk died, I replaced it with an SSD and reinstalled OS X. At the time I also restored my user&#8217;s &#8220;<code>login.keychain</code>&#8221; file from backup, because I knew that&#8217;s where Chrome had stashed all my stored web site passwords. Well, it turns out I only half-knew what was going on.</p>
+<p>After the restore, Chrome seemed not to know about any of the credentials. It was quite frustrating because Safari was working fine with the restored Keychain. As a test I entered some credentials in Chrome and they appeared in its own Saved Passwords list! I was expecting that list to be empty because documentation suggests <a href="https://support.google.com/chrome/bin/answer.py?hl=en&amp;answer=95606" target="_blank">Chrome uses the Keychain on OS X</a>.</p>
+<p>After some digging, what I found is that Chrome is quite sensibly engineered, but the user interface is just a little confusing (especially to those with inquiring and suspicious minds!).</p>
+<p>This page of <a href="http://www.chromium.org/developers/design-documents/os-x-password-manager-keychain-integration" target="_blank">Chromium developer documentation</a> explains that Chrome needs to store more metadata about a set of credentials than is supported by the Keychain attributes. Therefore, even though Chrome does use Keychain for credential storage on OS X, it <em>still uses</em> its own built-in (&#8220;non-secure&#8221;) LoginDatabase. My mistaken belief was that the LoginDatabase would be empty once Keychain is in use.</p>
+<p>This can be confirmed by poking around in the local user&#8217;s Chrome application data, and opening the SQLite database called &#8220;<code>Login Data</code>&#8220;. On OS X this contains a row for each stored password but crucially, not the password itself (the username is there, though). Yet in the Chrome Settings user interface, you click &#8220;Managed saved passwords&#8221; and up pops a list of usernames and passwords as if Chrome was storing them. In fact it&#8217;s merging data from both LoginDatabase and Keychain.</p>
+<p>The next confusion arises over the lack of Chrome&#8217;s awareness of Keychain entries. As explained in the same <a href="http://www.chromium.org/developers/design-documents/os-x-password-manager-keychain-integration" target="_blank">developer documentation page</a>, until LoginDatabase has a matching entry, the credentials in Keychain are untrusted by Chrome and hence not displayed.</p>
+<p>To be fair to the Chrome developers, it&#8217;s not an easy thing to get over to the user that the attributes of a set of credentials are split between two stores, and that you can delete or read back from one, but possibly not the other. At least now I know what&#8217;s going on, and I can also make sure always to restore the Chrome application data in future.</p>
+]]></content>
+		<link rel="replies" type="text/html" href="http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=understanding-stored-passwords-in-chrome-on-os-x#comments" thr:count="0"/>
+		<link rel="replies" type="application/atom+xml" href="http://blog.gorwits.me.uk/2012/06/09/understanding-stored-passwords-in-chrome-on-os-x/feed/atom/" thr:count="0"/>
+		<thr:total>0</thr:total>
+	</entry>
+		<entry>
+		<author>
+			<name>Oliver Gorwits</name>
+						<uri>http://gorwits.me.uk/</uri>
+					</author>
+		<title type="html"><![CDATA[Deploying mod_spnego]]></title>
+		<link rel="alternate" type="text/html" href="http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=deploying_mod_spnego" />
+		<id>http://blog.gorwits.me.uk/?p=748</id>
+		<updated>2012-04-22T14:44:35Z</updated>
+		<published>2012-04-22T14:34:58Z</published>
+		<category scheme="http://blog.gorwits.me.uk" term="devops" /><category scheme="http://blog.gorwits.me.uk" term="kerberos" /><category scheme="http://blog.gorwits.me.uk" term="windows" />		<summary type="html"><![CDATA[SPNEGO is a negotiated authentication mechanism for HTTP which can be used to take advantage of Kerberos credentials for web site login (an alternative to simple username/password, or client digital certificates). The reference implementation for Apache, mod_spnego, can be downloaded &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></summary>
+		<content type="html" xml:base="http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=deploying_mod_spnego"><![CDATA[<p><a href="http://en.wikipedia.org/wiki/SPNEGO" target="_blank">SPNEGO</a> is a negotiated authentication mechanism for HTTP which can be used to take advantage of Kerberos credentials for web site login (an alternative to simple username/password, or client digital certificates).</p>
+<p>The reference implementation for Apache, <a href="http://sourceforge.net/projects/modgssapache/" target="_blank">mod_spnego</a>, can be downloaded from SourceForge and contains straightforward build instructions. It&#8217;s also possible to use <a href="http://webauth.stanford.edu/install-spnego.html" target="_blank">Stanford WebAuth in SPNEGO mode</a>.</p>
+<p>To build the module you need development libraries for the following (I&#8217;ve added the SLES package names, for reference):</p>
+<ul>
+<li>openssl (<code>libopenssl-devel</code>)</li>
+<li>krb5 (<code>krb5-devel, krb5-devel-32bit</code>)</li>
+<li>apache (<code>apache2-devel</code>)</li>
+</ul>
+<p>Follow the instructions in the module source. On SLES, be sure to run the <code>apxs</code> command as root, because it goes and installs the module directly after compilation.</p>
+<p>Enabling the module is again quite straightforward:</p>
+<pre class="brush: plain; title: ; notranslate">
+    Krb5AuthEachReq Off
+    &lt;Directory &quot;/foo/bar/quux&quot;&gt;
+        AllowOverride AuthConfig
+        Krb5KeyTabFile /etc/apache2/HTTP.keytab
+        Krb5ServiceName HTTP
+        AuthType SPNEGO
+        Require valid-user
+    &lt;/Directory&gt;
+</pre>
+<p>You&#8217;ll need to install a keytab for the HTTP service principal. The method differs depending on the type of KDC you have, but for Windows AD this would be:</p>
+<pre class="brush: plain; title: ; notranslate">
+net ads -U 'username@realm%password' keytab add HTTP
+</pre>
+<p>As verification I wrote a simple Perl CGI script to echo back <code>$ENV{REMOTE_USER}</code> which emitted <code>user@REALM</code>, as expected.</p>
+<p>Sadly when testing this out I found the use of SPNEGO is not enabled by default in all browsers (for example,Â <a href="http://blob.inf.ed.ac.uk/gdutton/2010/11/chrome-and-spnego/" target="_blank">Google Chrome</a>). A managed desktop seems the only way to ensure the user has both kerberos credentials and a browser started with the correct features enabled. Otherwise, it&#8217;d be just too much work?</p>
+]]></content>
+		<link rel="replies" type="text/html" href="http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=deploying_mod_spnego#comments" thr:count="0"/>
+		<link rel="replies" type="application/atom+xml" href="http://blog.gorwits.me.uk/2012/04/22/deploying_mod_spnego/feed/atom/" thr:count="0"/>
+		<thr:total>0</thr:total>
+	</entry>
+	</feed>

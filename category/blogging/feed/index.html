@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Cats and Code &#187; blogging</title>
+	<atom:link href="http://blog.gorwits.me.uk/category/blogging/feed/" rel="self" type="application/rss+xml" />
+	<link>http://blog.gorwits.me.uk</link>
+	<description>by Oliver Gorwits</description>
+	<lastBuildDate>Sat, 29 Mar 2014 23:28:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.6.1</generator>
+		<item>
+		<title>Winding Down</title>
+		<link>http://blog.gorwits.me.uk/2014/03/29/winding-down/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=winding-down</link>
+		<comments>http://blog.gorwits.me.uk/2014/03/29/winding-down/#comments</comments>
+		<pubDate>Sat, 29 Mar 2014 22:05:00 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[blogging]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=924</guid>
+		<description><![CDATA[To those following this blog: you will have guessed that there&#8217;s not a lot of domestic geekery going on nowadays, so I&#8217;ve decided to archive these pages for the time being. What am I up to instead? During the day ECMWF &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2014/03/29/winding-down/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>To those following this blog: you will have guessed that there&#8217;s not a lot of domestic geekery going on nowadays, so I&#8217;ve decided to archive these pages for the time being.</p>
+<p>What am I up to instead? During the day <a href="http://beta.ecmwf.int/en/about/who-we-are" target="_blank">ECMWF</a> keeps me <em>very</em> busy &#8211; I really love it. Besides that I&#8217;m still improving on the piano, devouring a book or two a week (not as fast as the to-read pile grows, mind you), and herding the <a href="https://metacpan.org/pod/App::Netdisco" target="_blank">Netdisco</a> community and source code towards world domination. All good stuff.</p>
+<p>For the time being, the best place to keep tabs on me is probably <a href="https://twitter.com/olwy" target="_blank">Twitter</a>.</p>
+<p>&#8211; olly.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2014/03/29/winding-down/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Fixed-width text and WordPress on iPhone/iPad</title>
+		<link>http://blog.gorwits.me.uk/2012/01/05/ixed-width-text-and-wordpress-on-iphoneipad/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=ixed-width-text-and-wordpress-on-iphoneipad</link>
+		<comments>http://blog.gorwits.me.uk/2012/01/05/ixed-width-text-and-wordpress-on-iphoneipad/#comments</comments>
+		<pubDate>Thu, 05 Jan 2012 09:56:35 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[blogging]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=744</guid>
+		<description><![CDATA[A quick note to cheer that I fixed an annoyance with my blog rendering on the iPhone/iPad platforms. Text in code blocks or preformatted (i.e. fixed width) came out huge on the iPhone and iPad making things look ridiculous. It &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2012/01/05/ixed-width-text-and-wordpress-on-iphoneipad/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>A quick note to cheer that I fixed an annoyance with my blog rendering on the iPhone/iPad platforms.</p>
+<p>Text in code blocks or preformatted (i.e. fixed width) came out <em>huge</em> on the iPhone and iPad making things look ridiculous. It seems the WordPress Twenty-Ten theme (or derivatives of it) explicitly super-size fixed width text on these platforms.</p>
+<p>The fix is to edit style.css in whatever theme you&#8217;re using and comment out the styling as below:</p>
+<pre class="brush: plain; title: ; notranslate">
+/* =Mobile Safari ( iPad, iPhone and iPod Touch )
+-------------------------------------------------------------- */
+/*
+pre {
+    webkit-text-size-adjust: 140%;
+}
+code {
+    webkit-text-size-adjust: 160%;
+}
+*/
+</pre>
+<p>I suspect there is good intention in the Twenty-Ten theme&#8217;s style, but as I also have the SyntaxHighlighter plugin installed, things conflict and go awry.</p>
+<p>This solution was gratefully <a href="http://wordpress.stackexchange.com/questions/17332/code-formatted-with-syntaxhighlighter-evolved-appearing-incorrectly-on-ipad-ipho" target="_blank">lifted from</a> the WordPress Answers web site.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2012/01/05/ixed-width-text-and-wordpress-on-iphoneipad/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>MailHide WP plugin reconfigured</title>
+		<link>http://blog.gorwits.me.uk/2011/07/02/mailhide-wp-plugin-reconfigured/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=mailhide-wp-plugin-reconfigured</link>
+		<comments>http://blog.gorwits.me.uk/2011/07/02/mailhide-wp-plugin-reconfigured/#comments</comments>
+		<pubDate>Sat, 02 Jul 2011 08:52:58 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[blogging]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=551</guid>
+		<description><![CDATA[I&#8217;ve just disabled the MailHide WordPress plugin, for content on this blog. I realised it was mangling example code in my posts. Sorry about that!]]></description>
+				<content:encoded><![CDATA[<p>I&#8217;ve just disabled the MailHide WordPress plugin, for content on this blog. I realised it was mangling example code in my posts. Sorry about that!</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/07/02/mailhide-wp-plugin-reconfigured/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Fixing code snippets syndicated from blogs.perl.org</title>
+		<link>http://blog.gorwits.me.uk/2011/02/03/fixing-code-snippets-syndicated-from-blogs-perl-org/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=fixing-code-snippets-syndicated-from-blogs-perl-org</link>
+		<comments>http://blog.gorwits.me.uk/2011/02/03/fixing-code-snippets-syndicated-from-blogs-perl-org/#comments</comments>
+		<pubDate>Thu, 03 Feb 2011 22:18:41 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[blogging]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=300</guid>
+		<description><![CDATA[I&#8217;ve got a Perl-specific blog over at blogs.perl.org which has its posts syndicated here (using the excellent FeedWordPress plugin). The trouble is, pre-formatted blocks (i.e. the &#60;pre&#62; tag) are botched when importing, mainly because I need to perpetrate a hack &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/02/03/fixing-code-snippets-syndicated-from-blogs-perl-org/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>I&#8217;ve got a Perl-specific blog over at <a href="http://blogs.perl.org/users/oliver_gorwits/" target="_blank">blogs.perl.org</a> which has its posts syndicated here (using the excellent <a href="http://wordpress.org/extend/plugins/feedwordpress/" target="_blank">FeedWordPress</a> plugin).</p>
+<p>The trouble is, pre-formatted blocks (i.e. the <code>&lt;pre&gt;</code> tag) are botched when importing, mainly because I need to perpetrate a hack over on the origin site to get things rendering properly. What would be nice is to have those blocks rendered here using the SyntaxHighlighter WordPress Plugin that is installed.</p>
+<p>It turns out writing a filter plugin for WordPress is not that hard. There is a system of hooks at which the plugin registers callback subroutines. The callback gets passed some content which it can filter, and return back. All I need to do is filter out the junky <code>&lt;pre&gt;</code> sections for ones which will render well under SyntaxHighlighter.</p>
+<p>First the plugin header, which WordPress uses to add an entry to the plugins list, in the Plugins section of the site admin panel:</p>
+<pre class="brush: php; title: ; notranslate">
+&lt;?php
+/*
+Plugin Name: FeedWordpress-SyntaxHighlighter
+Plugin URI: http://blog.gorwits.me.uk/
+Description: Import preformatted text properly for SyntaxHighlighter
+Version: 1.1
+Author: Oliver Gorwits
+Author URI: http://blog.gorwits.me.uk/
+License: Artistic
+*/
+</pre>
+<p>Next we register the callback subroutine against a hook which has been added by the FeedWordPress plugin:</p>
+<pre class="brush: php; first-line: 11; title: ; notranslate">
+add_filter(
+    /*hook=*/ 'syndicated_item_content',
+    /*function=*/ 'fwp_add_class_to_pre_in_content',
+    /*order=*/ 10, 
+    /*arguments=*/ 2
+);
+</pre>
+<p>And finally the callback itself:</p>
+<pre class="brush: php; first-line: 17; title: ; notranslate">
+
+function fwp_add_class_to_pre_in_content ($content, $post) {
+    // remove code segement used to format on the blogs.perl.org site
+    // replaces *all* occurrences
+    $content = str_replace(
+        '&lt;pre&gt;&lt;code class=&quot;prettyprint&quot;&gt;',
+        '&lt;pre&gt;',
+        $content
+    );  
+    $content = str_replace(
+        '&lt;/code&gt;&lt;/pre&gt;',
+        '&lt;/pre&gt;',
+        $content
+    );  
+
+    // locate and extract the pre blocks
+    preg_match_all('/&lt;pre&gt;(?:.(?!&lt;\/pre&gt;))+.&lt;\/pre&gt;(?:&lt;\/p&gt;)?/s',
+        $content, $matches, PREG_OFFSET_CAPTURE);
+
+    // work through list of &lt;pre&gt; blocks, rewriting them
+    foreach (array_reverse($matches[0]) as $val) {
+        $pre_block = $val[0];
+        $offset    = $val[1];
+
+        $new_pre = '&lt;pre class=&quot;brush: plain; gutter: false; title: ;&quot;&gt;' .
+                        // remove the junk added by syndication
+                        // ok, this breaks if pre contains legit HTML
+                        strip_tags($pre_block) .
+                   '&lt;/pre&gt;';
+
+        // reinsert the new pre block into the content
+        // replacing the old one
+        $content = substr($content, 0, $offset) .
+                   str_replace($pre_block, $new_pre,
+                               substr($content, $offset));
+    }
+
+    // Send it back
+    return $content;
+} /* fwp_add_class_to_pre_in_content() */
+</pre>
+<p>I&#8217;m not the best PHP programmer out there, but I cobbled this together and it seems to work <img src='http://blog.gorwits.me.uk/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+<p>The final step is to drop this file into a subdirectory of <code>.../wp-content/plugins/</code> on the server, and hey presto the plugin is available for activating. Next time the feed is syndicated, the content is passed through this code.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/02/03/fixing-code-snippets-syndicated-from-blogs-perl-org/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>SyntaxHighlighter and Chrome vertical scrollbar bug</title>
+		<link>http://blog.gorwits.me.uk/2011/02/01/syntaxhighlighter-and-chrome-vertical-scrollbar-bug/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=syntaxhighlighter-and-chrome-vertical-scrollbar-bug</link>
+		<comments>http://blog.gorwits.me.uk/2011/02/01/syntaxhighlighter-and-chrome-vertical-scrollbar-bug/#comments</comments>
+		<pubDate>Tue, 01 Feb 2011 09:00:39 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[blogging]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=124</guid>
+		<description><![CDATA[I just noticed that with Google Chrome the code snippets of my blog posts have unnecessaryÂ vertical scrollbars. This is reported in bug #177 in the SyntaxHighlighter code. A simple fix (already posted to the bug report) is to edit ï»¿ï»¿.../styles/shCore.css &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/02/01/syntaxhighlighter-and-chrome-vertical-scrollbar-bug/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>I just noticed that with Google Chrome the code snippets of my blog posts have unnecessaryÂ vertical scrollbars. This is reported in <a href="https://bitbucket.org/alexg/syntaxhighlighter/issue/177" target="_blank">bug #177 in the SyntaxHighlighter code</a>.</p>
+<p>A simple fix (already posted to the bug report) is to edit <code>ï»¿ï»¿.../styles/shCore.css</code> and after the existing <code>overflow</code> entry on line 60, add:</p>
+<pre class="brush: jscript; gutter: false; title: ; notranslate">
+overflow-y: hidden !important;
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/02/01/syntaxhighlighter-and-chrome-vertical-scrollbar-bug/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+		</item>
+		<item>
+		<title>Using SyntaxHighlighter</title>
+		<link>http://blog.gorwits.me.uk/2011/01/31/using-syntaxhighlighter/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=using-syntaxhighlighter</link>
+		<comments>http://blog.gorwits.me.uk/2011/01/31/using-syntaxhighlighter/#comments</comments>
+		<pubDate>Mon, 31 Jan 2011 21:14:12 +0000</pubDate>
+		<dc:creator>Oliver Gorwits</dc:creator>
+				<category><![CDATA[blogging]]></category>
+
+		<guid isPermaLink="false">http://blog.gorwits.me.uk/?p=37</guid>
+		<description><![CDATA[To prepare for a series of posts here on server configuration tricks, I&#8217;ve installed one of the WordPressÂ SyntaxHighlighter plugins to my blog. This is a good choice as it exposes the most options from the SyntaxHighlighter JS library. Simply create &#8230; <a class="more-link" href="http://blog.gorwits.me.uk/2011/01/31/using-syntaxhighlighter/">Continue reading <span class="meta-nav">&#8594;</span></a>]]></description>
+				<content:encoded><![CDATA[<p>To prepare for a series of posts here on server configuration tricks, I&#8217;ve installed one of the WordPressÂ <a href="http://wordpress.org/extend/plugins/syntax-highlighter/" target="_blank">SyntaxHighlighter plugins</a> to my blog. This is a good choice as it exposes the most options from the SyntaxHighlighter JS library.</p>
+<p>Simply create a preformatted paragraph and enter the text to be highlighted. Top and tail this with <code>[brush]</code> tags like so:</p>
+<pre class="brush: plain; title: ; notranslate">
+1
+</pre>
+<p>The value of the brush in the class is the <a href="http://alexgorbatchev.com/SyntaxHighlighter/manual/brushes/" target="_blank">SyntaxHighlighter Brush alias</a>. This can be followed by various rendering options:</p>
+<pre class="brush: xml; auto-links: false; first-line: 5; highlight: [6]; title: ; notranslate">
+1
+</pre>
+<p>Below are the parameters you can pass and what they do. For the booleans (i.e. on/off), passÂ <code>true</code>/<code>1</code> orÂ <code>false</code>/<code>0</code>.</p>
+<ul>
+<li><code>lang</code> orÂ <code>language</code> â€” The language syntax to highlight with.</li>
+<li><code>autolinks</code> â€” Toggle automatic URL linking.</li>
+<li><code>classname</code> â€” Add an additional CSS class to the code box.</li>
+<li><code>collapse</code> â€” Toggle collapsing the code box by default</li>
+<li><code>firstline</code> â€” What number the first line should be.</li>
+<li><code>gutter</code> â€” Toggle the left-side line numbering.</li>
+<li><code>highlight</code> â€” Line numbers to highlight such as:Â <code>2,5-10,12</code></li>
+<li><code>htmlscript</code> â€” Toggle highlighting any extra HTML/XML.</li>
+<li><code>light</code> â€” Toggle light mode which disables the gutter and toolbar all at once.</li>
+<li><code>padlinenumbers</code> â€” Controls line number padding (<code>false</code>,Â <code>true</code>, or an integer).</li>
+<li><code>title</code> (v3 only) â€” Sets some text to show up before the code.</li>
+<li><code>toolbar</code> â€” Toggle the toolbar (buttons in v2, the about question mark in v3)</li>
+<li><code>wraplines</code> (v2 only) â€” Toggle line wrapping.</li>
+</ul>
+<p>To display <code>[tags]</code> as I have done above without having them interpreted by the plugin, make use of the fact that you can use both the <code>[brush][/brush]</code> form (as above) and a more verbose alternative:</p>
+<pre class="brush: plain; title: ; notranslate">
+1
+</pre>
+]]></content:encoded>
+			<wfw:commentRss>http://blog.gorwits.me.uk/2011/01/31/using-syntaxhighlighter/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
